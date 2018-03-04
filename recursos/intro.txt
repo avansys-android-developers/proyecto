@@ -1,1 +1,4 @@
-los inconvenientes mas comunes en la area de pediatria es el manejo de la  historia clina de madre e hijos sobre el control, citas y chequeos. Cada vez que nace un niño se hace mas dificil organizar una adecuada manejo de citas y chequeos con  cartillas o hojas de control y  esto genera no tener la informacion excta de los pacientes.
+los inconvenientes mas comunes en la area de pediatria es el manejo de la  historia clina de madre e hijos sobre el control, citas y chequeos. Cada vez que nace un niño se hace mas dificil organizar una adecuada manejo de citas y chequeos con  cartillas o hojas de control y  esto genera no tener la informacion exacta de los pacientes.
+
+Al tener una gran cantidad de archivos de ficha y cartillas de control genera confuciones, puesto que no llevas la informacion exacta de cuantos madres y niños atienden durante el dia, de la misma manera con las citas y reservas.
+
