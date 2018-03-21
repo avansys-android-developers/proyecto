@@ -1,0 +1,4 @@
+C:\Program Files\Java\jdk-9.0.4\bin
+keytool -exportcert -list -v -alias androiddebugkey -keystore %USERPROFILE%\.android\debug.keystore
+
+AC:70:35:83:EB:74:B5:B0:56:61:37:E0:B7:83:EA:0F:09:E4:F1:25
