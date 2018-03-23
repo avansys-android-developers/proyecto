@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Mageli</string>
+    <!--login-->
+    <string name="correo">Correo electrónico</string>
+    <string name="contrasenia">Contraseña</string>
+    <string name="contraseniabiz">Repetir contraseña</string>
+    <string name="iniciar">Iniciar Sesión</string>
+    <string name="registro">Registrarse</string>
+    <string name="otambien">Ó</string>
+
+    <!--erro login-->
+    <string name="error_correo">Ingrese correo electrónico</string>
+    <string name="error_contrasenia">Ingrese contraseña</string>
 </resources>
