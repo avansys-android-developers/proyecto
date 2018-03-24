@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Mageli</string>
+    <!--login facebook-->
+    <string name="facebook_app_id">362355527601859</string>
+    <string name="fb_login_protocol_scheme">fb362355527601859</string>
+
     <!--login-->
     <string name="correo">Correo electrónico</string>
     <string name="contrasenia">Contraseña</string>
@@ -8,7 +12,13 @@
     <string name="registro">Registrarse</string>
     <string name="otambien">Ó</string>
 
-    <!--erro login-->
-    <string name="error_correo">Ingrese correo electrónico</string>
-    <string name="error_contrasenia">Ingrese contraseña</string>
+    <!--error login-->
+    <string name="error_correo">Ingrese su correo electrónico</string>
+    <string name="error_contrasenia">Ingrese la contraseña</string>
+    <string name="error_correo_no_valido">Ingrese un correo electrónico válido</string>
+    <string name="error_contrasenia_no_valido">Ingrese una contraseña con más 6 caracteres</string>
+    <string name="error_contrasenia_no_igual">Las contraseñas no son iguales</string>
+    <string name="error_registro">Lo sentimos no se ha podido registrar en </string>
+    <string name="error_usuario_existe">Ya existe un usuario con este correo</string>
+
 </resources>

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,24 +8,36 @@
     tools:context="com.chaicopaillag.app.mageli.activity.LoginActivity"
     android:orientation="vertical"
     android:gravity="center"
-    android:id="@+id/contenlog">
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:id="@+id/inputlogcorreo">
+    <meta-data android:name="com.facebook.sdk.ApplicationId"
+        android:value="@string/facebook_app_id"/>
 
-        <android.support.design.widget.TextInputLayout
+    <activity android:name="com.facebook.FacebookActivity"
+        android:configChanges=
+            "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+        android:label="@string/app_name" />
+    <activity
+        android:name="com.facebook.CustomTabActivity"
+        android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="@string/fb_login_protocol_scheme" />
+        </intent-filter>
+    </activity>
+
+
+    <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtcorreolog"
+                android:id="@+id/txtcorreo"
                 android:inputType="textEmailAddress"
                 android:hint="@string/correo"
                 android:maxLines="1"
@@ -39,7 +52,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtcontrasenialog"
+                android:id="@+id/txtcontrasenia"
                 android:hint="@string/contrasenia"
                 android:inputType="textPassword"/>
         </android.support.design.widget.TextInputLayout>
@@ -66,24 +79,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:id="@+id/container_floting_log"
             android:orientation="horizontal">
 
             <android.support.design.widget.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/btngooglelog"
+                android:id="@+id/btngoogle"
                 android:layout_margin="10dp"
                 android:src="@drawable/google"/>
+
             <android.support.design.widget.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/btnfacebooklog"
+                android:id="@+id/btnfacebook"
                 android:layout_margin="10dp"
                 android:src="@drawable/facebook"/>
 
         </LinearLayout>
-
-    </LinearLayout>
-
 </LinearLayout>

@@ -6,34 +6,28 @@
     android:layout_height="match_parent"
     tools:context="com.chaicopaillag.app.mageli.activity.RegistroUsuarioActivity"
     android:gravity="center"
-    android:id="@+id/content">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:id="@+id/container">
+    android:id="@+id/content"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputcoreo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/txtcorreoreg"
+                android:id="@+id/txtcorreo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/correo" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputcontrasenia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/txtcontraseniareg"
+                android:id="@+id/txtcontrasenia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/contrasenia"
@@ -41,12 +35,11 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputcontraseniabiz"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/txtcontraseniabizreg"
+                android:id="@+id/txtcontraseniabiz"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/contraseniabiz"
@@ -70,24 +63,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:id="@+id/container_action_floting_buton"
             android:orientation="horizontal">
 
             <android.support.design.widget.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/btngooglereg"
+                android:id="@+id/btngoogle"
                 android:layout_margin="10dp"
                 android:src="@drawable/google"/>
+
             <android.support.design.widget.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/btnfacebookreg"
+                android:id="@+id/btnfacebook"
                 android:layout_margin="10dp"
                 android:src="@drawable/facebook"/>
 
         </LinearLayout>
-
-    </LinearLayout>
 
 </LinearLayout>

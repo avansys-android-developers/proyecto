@@ -12,6 +12,9 @@ import android.widget.Toast;
 
 import com.chaicopaillag.app.mageli.R;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class LoginActivity extends AppCompatActivity {
 
     EditText txt_correo,txt_contrasenia;
@@ -27,14 +30,14 @@ public class LoginActivity extends AppCompatActivity {
 //        inputcorreo=(TextInputLayout)findViewById(R.id.inputcorreolog);
 //        inputcontrasenia=(TextInputLayout)findViewById(R.id.inputlogcontrasenialog);
 
-        txt_correo=(EditText)findViewById(R.id.txtcorreolog);
-        txt_contrasenia=(EditText)findViewById(R.id.txtcontrasenialog);
+        txt_correo=(EditText)findViewById(R.id.txtcorreo);
+        txt_contrasenia=(EditText)findViewById(R.id.txtcontrasenia);
 
         btn_iniciar=(Button)findViewById(R.id.btnlogin);
         btn_registro=(Button)findViewById(R.id.btnregistrarse);
 
-        btn_facebook=(FloatingActionButton)findViewById(R.id.btnfacebooklog);
-        btn_google=(FloatingActionButton)findViewById(R.id.btngooglelog);
+        btn_facebook=(FloatingActionButton)findViewById(R.id.btnfacebook);
+        btn_google=(FloatingActionButton)findViewById(R.id.btngoogle);
 
 
 
@@ -82,5 +85,14 @@ public class LoginActivity extends AppCompatActivity {
             txt_contrasenia.setError(getString(R.string.error_contrasenia));
         }
 
+    }
+    public static boolean validarcorreo(String correo){
+
+        String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(correo);
+
+        return matcher.matches();
     }
 }
