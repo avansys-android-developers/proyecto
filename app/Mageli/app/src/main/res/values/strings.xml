@@ -3,6 +3,8 @@
     <!--login facebook-->
     <string name="facebook_app_id">362355527601859</string>
     <string name="fb_login_protocol_scheme">fb362355527601859</string>
+    <string name="cancela_sesion_facebook">Se ha cancelado el inicio de sesión con Facebook</string>
+    <string name="error_sesion_facebook">Error al iniciar sesión con Facebook</string>
 
     <!--login-->
     <string name="correo">Correo electrónico</string>

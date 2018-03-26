@@ -1,7 +1,6 @@
 package com.chaicopaillag.app.mageli.activity;
 
 import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +10,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.chaicopaillag.app.mageli.R;
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,16 +24,18 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText txt_correo,txt_contrasenia;
     Button btn_iniciar,btn_registro;
-    FloatingActionButton btn_facebook,btn_google;
     TextInputLayout inputcorreo,inputcontrasenia;
 
+    private LoginButton btn_facebook;
+    private CallbackManager callbackManager;
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-//        inputcorreo=(TextInputLayout)findViewById(R.id.inputcorreolog);
-//        inputcontrasenia=(TextInputLayout)findViewById(R.id.inputlogcontrasenialog);
+        callbackManager = CallbackManager.Factory.create();
 
         txt_correo=(EditText)findViewById(R.id.txtcorreo);
         txt_contrasenia=(EditText)findViewById(R.id.txtcontrasenia);
@@ -36,8 +43,8 @@ public class LoginActivity extends AppCompatActivity {
         btn_iniciar=(Button)findViewById(R.id.btnlogin);
         btn_registro=(Button)findViewById(R.id.btnregistrarse);
 
-        btn_facebook=(FloatingActionButton)findViewById(R.id.btnfacebook);
-        btn_google=(FloatingActionButton)findViewById(R.id.btngoogle);
+        btn_facebook=(LoginButton) findViewById(R.id.btnfacebook);
+//        btn_google=(FloatingActionButton)findViewById(R.id.btngoogle);
 
 
 
@@ -56,21 +63,36 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        btn_google.setOnClickListener(new View.OnClickListener() {
+        btn_facebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
-            public void onClick(View view) {
+            public void onSuccess(LoginResult loginResult) {
+                Ir_a_inicio();
+            }
 
+            @Override
+            public void onCancel() {
+            Toast.makeText(getApplicationContext(),getString(R.string.cancela_sesion_facebook),Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Toast.makeText(getApplicationContext(),getString(R.string.error_sesion_facebook),Toast.LENGTH_LONG).show();
             }
         });
 
-        btn_facebook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        if(AccessToken.getCurrentAccessToken() != null){
+            Ir_a_inicio();
+        }
 
-            }
-        });
 
     }
+
+    private void Ir_a_inicio() {
+        Intent intent = new Intent(LoginActivity.this, InicioActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
     public  void Validarlogeo(){
 
         String correo,contrasenia;
@@ -94,5 +116,11 @@ public class LoginActivity extends AppCompatActivity {
         Matcher matcher = pattern.matcher(correo);
 
         return matcher.matches();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 }
