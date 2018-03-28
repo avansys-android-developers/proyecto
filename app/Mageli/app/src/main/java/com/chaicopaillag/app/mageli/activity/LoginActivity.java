@@ -1,6 +1,7 @@
 package com.chaicopaillag.app.mageli.activity;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,18 +17,42 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     EditText txt_correo,txt_contrasenia;
     Button btn_iniciar,btn_registro;
     TextInputLayout inputcorreo,inputcontrasenia;
 
+    SignInButton btn_google;
     private LoginButton btn_facebook;
     private CallbackManager callbackManager;
+
+    private GoogleApiClient googleApiClient;
+
+    public static final int SIGN_IN_CODE = 777;
+
+    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener firebaseAuthListener;
 
 
     @Override
@@ -35,7 +60,18 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
         callbackManager = CallbackManager.Factory.create();
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this, this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
 
         txt_correo=(EditText)findViewById(R.id.txtcorreo);
         txt_contrasenia=(EditText)findViewById(R.id.txtcontrasenia);
@@ -44,9 +80,7 @@ public class LoginActivity extends AppCompatActivity {
         btn_registro=(Button)findViewById(R.id.btnregistrarse);
 
         btn_facebook=(LoginButton) findViewById(R.id.btnfacebook);
-//        btn_google=(FloatingActionButton)findViewById(R.id.btngoogle);
-
-
+        btn_google=(SignInButton)findViewById(R.id.btngoogle);
 
         btn_registro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,9 +97,23 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
+        btn_google.setColorScheme(SignInButton.COLOR_DARK);
+
+        btn_google.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
+                startActivityForResult(intent, SIGN_IN_CODE);
+            }
+        });
+
+        btn_facebook.setReadPermissions(Arrays.asList("email"));
+
         btn_facebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+                handleFacebookAccessToken(loginResult.getAccessToken());
                 Ir_a_inicio();
             }
 
@@ -80,13 +128,37 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        if(AccessToken.getCurrentAccessToken() != null){
-            Ir_a_inicio();
-        }
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser usuario = firebaseAuth.getCurrentUser();
+                if (usuario != null) {
+                    Ir_a_inicio();
+                }
+            }
+        };
+
 
 
     }
+    private void handleFacebookAccessToken(AccessToken accessToken) {
+//        progressBar.setVisibility(View.VISIBLE);
+//        loginButton.setVisibility(View.GONE);
 
+        AuthCredential credential = FacebookAuthProvider.getCredential(accessToken.getToken());
+        firebaseAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (!task.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), R.string.error_login_firebase, Toast.LENGTH_LONG).show();
+                }
+//                progressBar.setVisibility(View.GONE);
+//                loginButton.setVisibility(View.VISIBLE);
+            }
+        });
+    }
     private void Ir_a_inicio() {
         Intent intent = new Intent(LoginActivity.this, InicioActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -121,6 +193,60 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == SIGN_IN_CODE) {
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            Validar_logueo_google(result);
+        }else{
+
+            callbackManager.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    private void Validar_logueo_google(GoogleSignInResult result) {
+        if (result.isSuccess()) {
+            EscuchadorFirebaseGoogle(result.getSignInAccount());
+//            Ir_a_inicio();
+        } else {
+            Toast.makeText(this, R.string.error_sesion_google, Toast.LENGTH_SHORT).show();
+        }
+    }
+    private void EscuchadorFirebaseGoogle(GoogleSignInAccount signInAccount) {
+
+//        progressBar.setVisibility(View.VISIBLE);
+//        signInButton.setVisibility(View.GONE);
+
+        AuthCredential credential = GoogleAuthProvider.getCredential(signInAccount.getIdToken(), null);
+        firebaseAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+//                progressBar.setVisibility(View.GONE);
+//                signInButton.setVisibility(View.VISIBLE);
+
+                if (!task.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), R.string.error_login_firebase, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        firebaseAuth.addAuthStateListener(firebaseAuthListener);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+//        firebaseAuth.removeAuthStateListener(firebaseAuthListener);
+
+        if (firebaseAuthListener != null) {
+            firebaseAuth.removeAuthStateListener(firebaseAuthListener);
+        }
+    }
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        Toast.makeText(this, R.string.error_conexion_google, Toast.LENGTH_SHORT).show();
     }
 }

@@ -63,18 +63,24 @@
             android:orientation="vertical">
 
             <com.google.android.gms.common.SignInButton
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/btngoogle"
                 >
 
             </com.google.android.gms.common.SignInButton>
 
             <com.facebook.login.widget.LoginButton
                 android:id="@+id/btnfacebook"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
+                android:paddingBottom="12dp"
+                android:paddingTop="12dp"
+                android:layout_marginLeft="3dp"
+                android:paddingLeft="10dp"
+                android:layout_marginRight="3dp"
                 />
 
         </LinearLayout>
