@@ -6,11 +6,11 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/item_pediatra"
-            android:icon="@drawable/persona"
+            android:icon="@drawable/pediatra"
             android:title="Pediatra" />
         <item
             android:id="@+id/item_paciente"
-            android:icon="@drawable/person"
+            android:icon="@drawable/pacientes"
             android:title="Paciente" />
         <item
             android:id="@+id/item_citas"
@@ -26,7 +26,7 @@
         <menu>
             <item
                 android:id="@+id/item_cuenta"
-                android:icon="@drawable/usuario"
+                android:icon="@drawable/cuenta"
                 android:title="Mi Cuenta" />
             <item
                 android:id="@+id/item_salir"

@@ -20,7 +20,7 @@
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:maxWidth="100dp"
         android:maxHeight="100dp"
-        app:srcCompat="@drawable/usuario" />
+        app:srcCompat="@drawable/perfil" />
 
     <TextView
         android:layout_width="match_parent"
