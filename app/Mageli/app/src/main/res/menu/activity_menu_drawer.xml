@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/item_pediatra"
+            android:icon="@drawable/persona"
+            android:title="Pediatra" />
+        <item
+            android:id="@+id/item_paciente"
+            android:icon="@drawable/person"
+            android:title="Paciente" />
+        <item
+            android:id="@+id/item_citas"
+            android:icon="@drawable/citas"
+            android:title="Citas" />
+        <item
+            android:id="@+id/item_consulta"
+            android:icon="@drawable/consultas"
+            android:title="Consultas" />
+    </group>
+
+    <item android:title="Cuenta">
+        <menu>
+            <item
+                android:id="@+id/item_cuenta"
+                android:icon="@drawable/usuario"
+                android:title="Mi Cuenta" />
+            <item
+                android:id="@+id/item_salir"
+                android:icon="@drawable/salir"
+                android:title="Salir" />
+        </menu>
+    </item>
+
+</menu>

@@ -5,9 +5,11 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chaicopaillag.app.mageli.R;
@@ -40,7 +42,8 @@ import java.util.regex.Pattern;
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     EditText txt_correo,txt_contrasenia;
-    Button btn_iniciar,btn_registro;
+    Button btn_iniciar;
+    TextView btn_registro;
     TextInputLayout inputcorreo,inputcontrasenia;
 
     SignInButton btn_google;
@@ -49,7 +52,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     private GoogleApiClient googleApiClient;
 
-    public static final int SIGN_IN_CODE = 777;
+    public static final int SIGN_IN_CODE = 9001;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
@@ -77,7 +80,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         txt_contrasenia=(EditText)findViewById(R.id.txtcontrasenia);
 
         btn_iniciar=(Button)findViewById(R.id.btnlogin);
-        btn_registro=(Button)findViewById(R.id.btnregistrarse);
+        btn_registro=(TextView)findViewById(R.id.btnregistrateahora);
 
         btn_facebook=(LoginButton) findViewById(R.id.btnfacebook);
         btn_google=(SignInButton)findViewById(R.id.btngoogle);
@@ -86,6 +89,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(LoginActivity.this,RegistroUsuarioActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }
         });
@@ -160,7 +164,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         });
     }
     private void Ir_a_inicio() {
-        Intent intent = new Intent(LoginActivity.this, InicioActivity.class);
+        Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
@@ -178,6 +182,22 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         if(contrasenia.equals("")){
             txt_contrasenia.setError(getString(R.string.error_contrasenia));
         }
+        else if (!validarcorreo(correo)){
+            txt_correo.setError(getString(R.string.error_correo_no_valido));
+            return;
+        }else {
+            firebaseAuth.signInWithEmailAndPassword(correo,contrasenia)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()){
+                                Ir_a_inicio();
+                            }else {
+                                Toast.makeText(LoginActivity.this, getText(R.string.error_ingreso), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        }
 
     }
     public static boolean validarcorreo(String correo){
@@ -190,28 +210,29 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         return matcher.matches();
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == SIGN_IN_CODE) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            Validar_logueo_google(result);
+            handleSignInResult(result);
         }else{
 
             callbackManager.onActivityResult(requestCode, resultCode, data);
         }
     }
-
-    private void Validar_logueo_google(GoogleSignInResult result) {
+    private void handleSignInResult(GoogleSignInResult result) {
         if (result.isSuccess()) {
-            EscuchadorFirebaseGoogle(result.getSignInAccount());
-//            Ir_a_inicio();
-        } else {
-            Toast.makeText(this, R.string.error_sesion_google, Toast.LENGTH_SHORT).show();
+            firebaseAuthWithGoogle(result.getSignInAccount());
+        }else {
+            Toast.makeText(this, R.string.error_conexion_google, Toast.LENGTH_SHORT).show();
         }
+
     }
-    private void EscuchadorFirebaseGoogle(GoogleSignInAccount signInAccount) {
+
+    private void firebaseAuthWithGoogle(GoogleSignInAccount signInAccount) {
 
 //        progressBar.setVisibility(View.VISIBLE);
 //        signInButton.setVisibility(View.GONE);

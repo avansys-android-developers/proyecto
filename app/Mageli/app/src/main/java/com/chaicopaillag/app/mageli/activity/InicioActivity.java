@@ -22,12 +22,16 @@ import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class InicioActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
-    Button btn;
+
 
     private GoogleApiClient googleApiClient;
+
+    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener firebaseAuthListener;
 
 
     @Override
@@ -35,7 +39,7 @@ public class InicioActivity extends AppCompatActivity implements GoogleApiClient
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
 
-        btn=(Button)findViewById(R.id.btnsalir);
+
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -45,14 +49,28 @@ public class InicioActivity extends AppCompatActivity implements GoogleApiClient
                 .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-        btn.setOnClickListener(new View.OnClickListener() {
+
+//        btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                FirebaseAuth.getInstance().signOut();
+//                LoginManager.getInstance().logOut();
+//                Ir_a_login();
+//            }
+//        });
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                LoginManager.getInstance().logOut();
-                Ir_a_login();
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+
+                } else {
+                    Ir_a_login();
+                }
             }
-        });
+        };
     }
 
     private void Ir_a_login() {
@@ -66,49 +84,30 @@ public class InicioActivity extends AppCompatActivity implements GoogleApiClient
     protected void onStart() {
         super.onStart();
 
-        OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(googleApiClient);
-        if (opr.isDone()) {
-            GoogleSignInResult result = opr.get();
-            Validar_logueo_google(result);
-        } else {
-            opr.setResultCallback(new ResultCallback<GoogleSignInResult>() {
-                @Override
-                public void onResult(@NonNull GoogleSignInResult googleSignInResult) {
-                    Validar_logueo_google(googleSignInResult);
-                }
-            });
-        }
+        firebaseAuth.addAuthStateListener(firebaseAuthListener);
     }
 
-    private void Validar_logueo_google(GoogleSignInResult result) {
-        if (result.getSignInAccount()!=null){
-            if (result.isSuccess()) {
+    public void Cerrar_sesion(View view) {
+        firebaseAuth.signOut();
 
-                // GoogleSignInAccount account = result.getSignInAccount();
-
-//            nameTextView.setText(account.getDisplayName());
-//            emailTextView.setText(account.getEmail());
-//            idTextView.setText(account.getId());
-//
-//            Glide.with(this).load(account.getPhotoUrl()).into(photoImageView);
-
-            } else {
-                Ir_a_login();
-            }
-        }
-
-    }
-    public void revoke(View view) {
-        Auth.GoogleSignInApi.revokeAccess(googleApiClient).setResultCallback(new ResultCallback<Status>() {
+        Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
             @Override
             public void onResult(@NonNull Status status) {
                 if (status.isSuccess()) {
                     Ir_a_login();
                 } else {
-                    Toast.makeText(getApplicationContext(), R.string.no_revoke_google, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.error_cerrar_sesion, Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (firebaseAuthListener != null) {
+            firebaseAuth.removeAuthStateListener(firebaseAuthListener);
+        }
     }
 
     @Override
