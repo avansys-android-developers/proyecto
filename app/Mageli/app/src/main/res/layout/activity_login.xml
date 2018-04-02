@@ -22,7 +22,8 @@
                 android:inputType="textEmailAddress"
                 android:hint="@string/correo"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -43,19 +44,20 @@
             android:layout_height="wrap_content"
             android:text="@string/iniciar"
             android:id="@+id/btnlogin"
-            android:layout_marginTop="20dp"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/registro"
-            android:id="@+id/btnregistrarse"/>
+            android:layout_marginTop="20dp"
+            android:background="@color/celeste_oscuro"
+            android:textColor="@color/icono"
+            android:textSize="13dp"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/otambien"
             android:textAlignment="center"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/celeste_oscuro"
+            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -67,7 +69,6 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/btngoogle"
                 >
-
             </com.google.android.gms.common.SignInButton>
 
             <com.facebook.login.widget.LoginButton
@@ -79,9 +80,33 @@
                 android:paddingBottom="12dp"
                 android:paddingTop="12dp"
                 android:layout_marginLeft="3dp"
-                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
                 android:layout_marginRight="3dp"
+                android:layout_marginBottom="10dp"
                 />
-
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_tines_cuenta"
+                android:gravity="left"
+                android:layout_marginRight="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/registrate"
+                android:gravity="end"
+                android:id="@+id/btnregistrateahora"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/rosa"
+                android:cursorVisible="true"
+                />
+        </LinearLayout>
+
 </LinearLayout>

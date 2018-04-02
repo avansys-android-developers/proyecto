@@ -39,7 +39,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.RegistroUsuarioActivity" />
-        <activity android:name=".activity.InicioActivity"></activity>
+        <activity android:name=".activity.InicioActivity" />
+        <activity
+            android:name=".activity.MenuActivity"
+            android:label="@string/menu"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

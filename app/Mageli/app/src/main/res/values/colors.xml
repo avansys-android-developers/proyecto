@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+
+    <color name="celeste">#2196F3</color>
+    <color name="celeste_oscuro">#1976D2</color>
+    <color name="celete_light">#BBDEFB</color>
+    <color name="rosa">#FF4081</color>
+    <color name="primario_text">#212121</color>
+    <color name="secondario_text">#757575</color>
+    <color name="icono">#FFFFFF</color>
+    <color name="linea">#BDBDBD</color>
 </resources>
