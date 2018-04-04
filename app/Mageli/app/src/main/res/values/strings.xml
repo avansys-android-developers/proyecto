@@ -21,6 +21,7 @@
     <!--error login firebase-->
     <string name="error_login_firebase">Error al iniciar sesión en Mageli</string>
     <string name="error_cerrar_sesion">Error al Cerrar sesión en Mageli</string>
+    <string name="sesion_cerado_google">Sesion cerrado de Mageli</string>
 
     <!--error login validacion-->
     <string name="error_correo">Ingrese su correo electrónico</string>
