@@ -58,33 +58,13 @@
             android:layout_marginBottom="10dp"
             android:textColor="@color/celeste_oscuro"
             />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
             <com.google.android.gms.common.SignInButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="2dp"
                 android:id="@+id/btngoogle"
                 >
             </com.google.android.gms.common.SignInButton>
-
-            <com.facebook.login.widget.LoginButton
-                android:id="@+id/btnfacebook"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:paddingBottom="12dp"
-                android:paddingTop="12dp"
-                android:layout_marginLeft="3dp"
-                android:paddingStart="10dp"
-                android:layout_marginRight="3dp"
-                android:layout_marginBottom="10dp"
-                />
-        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

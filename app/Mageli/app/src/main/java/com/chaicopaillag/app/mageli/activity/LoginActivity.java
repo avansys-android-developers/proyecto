@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,12 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chaicopaillag.app.mageli.R;
-import com.facebook.AccessToken;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -47,8 +40,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     TextInputLayout inputcorreo,inputcontrasenia;
 
     SignInButton btn_google;
-    private LoginButton btn_facebook;
-    private CallbackManager callbackManager;
 
     private GoogleApiClient googleApiClient;
 
@@ -63,8 +54,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
-        callbackManager = CallbackManager.Factory.create();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -82,7 +71,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         btn_iniciar=(Button)findViewById(R.id.btnlogin);
         btn_registro=(TextView)findViewById(R.id.btnregistrateahora);
 
-        btn_facebook=(LoginButton) findViewById(R.id.btnfacebook);
         btn_google=(SignInButton)findViewById(R.id.btngoogle);
 
         btn_registro.setOnClickListener(new View.OnClickListener() {
@@ -112,25 +100,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             }
         });
 
-        btn_facebook.setReadPermissions(Arrays.asList("email"));
 
-        btn_facebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                handleFacebookAccessToken(loginResult.getAccessToken());
-                Ir_a_inicio();
-            }
-
-            @Override
-            public void onCancel() {
-            Toast.makeText(getApplicationContext(),getString(R.string.cancela_sesion_facebook),Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Toast.makeText(getApplicationContext(),getString(R.string.error_sesion_facebook),Toast.LENGTH_LONG).show();
-            }
-        });
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -147,22 +117,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
 
     }
-    private void handleFacebookAccessToken(AccessToken accessToken) {
-//        progressBar.setVisibility(View.VISIBLE);
-//        loginButton.setVisibility(View.GONE);
 
-        AuthCredential credential = FacebookAuthProvider.getCredential(accessToken.getToken());
-        firebaseAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (!task.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), R.string.error_login_firebase, Toast.LENGTH_LONG).show();
-                }
-//                progressBar.setVisibility(View.GONE);
-//                loginButton.setVisibility(View.VISIBLE);
-            }
-        });
-    }
     private void Ir_a_inicio() {
         Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -198,7 +153,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                         }
                     });
         }
-
     }
     public static boolean validarcorreo(String correo){
 
@@ -210,7 +164,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         return matcher.matches();
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -218,9 +171,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         if (requestCode == SIGN_IN_CODE) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             handleSignInResult(result);
-        }else{
-
-            callbackManager.onActivityResult(requestCode, resultCode, data);
         }
     }
     private void handleSignInResult(GoogleSignInResult result) {
@@ -234,16 +184,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount signInAccount) {
 
-//        progressBar.setVisibility(View.VISIBLE);
-//        signInButton.setVisibility(View.GONE);
-
         AuthCredential credential = GoogleAuthProvider.getCredential(signInAccount.getIdToken(), null);
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-
-//                progressBar.setVisibility(View.GONE);
-//                signInButton.setVisibility(View.VISIBLE);
 
                 if (!task.isSuccessful()) {
                     Toast.makeText(getApplicationContext(), R.string.error_login_firebase, Toast.LENGTH_SHORT).show();
@@ -260,8 +204,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     @Override
     protected void onStop() {
         super.onStop();
-//        firebaseAuth.removeAuthStateListener(firebaseAuthListener);
-
         if (firebaseAuthListener != null) {
             firebaseAuth.removeAuthStateListener(firebaseAuthListener);
         }

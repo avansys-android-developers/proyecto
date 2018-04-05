@@ -1,6 +1,4 @@
 package com.chaicopaillag.app.mageli.activity;
-
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,7 +13,6 @@ import android.view.MenuItem;
 
 import android.widget.Toast;
 import com.chaicopaillag.app.mageli.R;
-import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -128,7 +125,6 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
 
     private void SalirMenu() {
         FirebaseAuth.getInstance().signOut();
-        LoginManager.getInstance().logOut();
         Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
             @Override
             public void onResult(@NonNull Status status) {

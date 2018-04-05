@@ -2,7 +2,6 @@ package com.chaicopaillag.app.mageli.activity;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -26,10 +25,7 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
     EditText txt_correo,txt_contrasenia,getTxt_contraseniabiz;
     Button btn_registro;
     TextView btnIrlogin;
-
     FirebaseAuth firebase_autent;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
