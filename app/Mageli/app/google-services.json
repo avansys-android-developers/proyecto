@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "603651880095",
-    "firebase_url": "https://app-mageli.firebaseio.com",
-    "project_id": "app-mageli",
-    "storage_bucket": "app-mageli.appspot.com"
+    "project_number": "1006198926029",
+    "firebase_url": "https://appmageli.firebaseio.com",
+    "project_id": "appmageli",
+    "storage_bucket": "appmageli.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:603651880095:android:2ad82b3c31eb97da",
+        "mobilesdk_app_id": "1:1006198926029:android:2ad82b3c31eb97da",
         "android_client_info": {
           "package_name": "com.chaicopaillag.app.mageli"
         }
       },
       "oauth_client": [
         {
-          "client_id": "603651880095-pim9o4htt6lg76bmhr16r3to4if41ei1.apps.googleusercontent.com",
+          "client_id": "1006198926029-2tp04tj9pv0n6483am1rjf95v8gpudes.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.chaicopaillag.app.mageli",
-            "certificate_hash": "ac703583eb74b5b0566137e0b783ea0f09e4f125"
+            "certificate_hash": "fd48b08f0e0477c27a2ed44d9f599bb2a1437450"
           }
         },
         {
-          "client_id": "603651880095-ii7topsohc1v7p25gkr0lujm9ffmj57u.apps.googleusercontent.com",
+          "client_id": "1006198926029-a2i72fd5li10ekq3olu7qvm1ast75rni.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAZ9F6pVmR9JOpgXEF7_MMcV_PeF4kLwKg"
+          "current_key": "AIzaSyDqdYMX50XVnmQ1hPe7lEi6l5bbJalJBgE"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "603651880095-ii7topsohc1v7p25gkr0lujm9ffmj57u.apps.googleusercontent.com",
+              "client_id": "1006198926029-a2i72fd5li10ekq3olu7qvm1ast75rni.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
