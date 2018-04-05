@@ -53,10 +53,10 @@
             android:layout_height="wrap_content"
             android:text="@string/registro"
             android:id="@+id/btnregistro"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:background="@color/celeste_oscuro"
             android:textColor="@color/icono"
-            android:textSize="13dp"/>
+            android:textAllCaps="false"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:gravity="center">
         <TextView
             android:layout_width="wrap_content"
@@ -84,7 +84,7 @@
             android:text="@string/ir_login"
             android:gravity="end"
             android:id="@+id/btn_ir_login"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="15dp"
             android:textColor="@color/rosa"
             android:cursorVisible="true"
             />

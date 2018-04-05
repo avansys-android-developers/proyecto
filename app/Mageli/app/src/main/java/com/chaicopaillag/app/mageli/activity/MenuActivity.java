@@ -11,7 +11,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 import com.chaicopaillag.app.mageli.R;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -27,6 +32,11 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
     NavigationView menu_slide;
+    DrawerLayout drawer;
+    ActionBarDrawerToggle toggle;
+    TextView nombreUser,correoUser;
+    ImageView imgUsuario;
+    View nav_cabecera;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,14 +54,19 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+        toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.abrir_nav, R.string.cerar_nav);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
         menu_slide = (NavigationView) findViewById(R.id.nav_view);
+        nav_cabecera=(View)menu_slide.getHeaderView(0);
+
+        nombreUser=(TextView) nav_cabecera.findViewById(R.id.nombreUsuario);
+        correoUser=(TextView)nav_cabecera.findViewById(R.id.correoUsuario);
+        imgUsuario=(ImageView)nav_cabecera.findViewById(R.id.imgUsuario);
+
         menu_slide.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -83,7 +98,7 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    colocar_datos_usuario();
+                    colocar_datos_usuario(user);
                 } else {
                     Ir_a_login();
                 }
@@ -91,8 +106,12 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
         };
     }
 
-    private void colocar_datos_usuario() {
-
+    private void colocar_datos_usuario(FirebaseUser user) {
+        nombreUser.setText(user.getDisplayName());
+        correoUser.setText(user.getEmail());
+        if (user.getPhotoUrl()!=null){
+            Glide.with(getApplicationContext()).load(user.getPhotoUrl()).into(imgUsuario);
+        }
     }
 
     @Override

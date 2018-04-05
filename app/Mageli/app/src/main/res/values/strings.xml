@@ -1,10 +1,7 @@
 <resources>
     <string name="app_name">Mageli</string>
-    <!--login facebook-->
-    <string name="facebook_app_id">362355527601859</string>
-    <string name="fb_login_protocol_scheme">fb362355527601859</string>
-    <string name="cancela_sesion_facebook">Se ha cancelado el inicio de sesión con Facebook</string>
-    <string name="error_sesion_facebook">Error al iniciar sesión con Facebook</string>
+    <!--error conexion internet-->
+    <string name="error_conexion_internet">No tienes conexión a internet, comprueba tu conexión e inténtalo de nuevo</string>
     <!--login google-->
     <string name="error_sesion_google">Error al iniciar sesión con Google</string>
     <string name="error_conexion_google">Error al conectar con Google intenta de nuevo</string>
@@ -44,9 +41,12 @@
     <string name="menu">Mageli</string>
     <string name="abrir_nav">Abrir Menu</string>
     <string name="cerar_nav">Cerrar Menu</string>
-    <string name="nombre_usuario">Usuario</string>
-    <string name="correo_usuario">tucoreo@gmail.com</string>
+    <string name="nombre_usuario">Nombre Usuario</string>
+    <string name="correo_usuario">correo@mageli.com</string>
     <string name="descripcion_nav">Cabezera</string>
     <string name="configuracion">Configuración</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

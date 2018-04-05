@@ -44,10 +44,10 @@
             android:layout_height="wrap_content"
             android:text="@string/iniciar"
             android:id="@+id/btnlogin"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:background="@color/celeste_oscuro"
             android:textColor="@color/icono"
-            android:textSize="13dp"/>
+            android:textAllCaps="false" />
 
         <TextView
             android:layout_width="match_parent"
@@ -60,8 +60,7 @@
             />
             <com.google.android.gms.common.SignInButton
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="2dp"
+                android:layout_height="55dp"
                 android:id="@+id/btngoogle"
                 >
             </com.google.android.gms.common.SignInButton>
@@ -69,21 +68,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="25dp"
             android:gravity="center">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/no_tines_cuenta"
                 android:gravity="left"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="15dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/registrate"
                 android:gravity="end"
                 android:id="@+id/btnregistrateahora"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="15dp"
                 android:textColor="@color/rosa"
                 android:cursorVisible="true"
                 />

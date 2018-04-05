@@ -1,6 +1,9 @@
 package com.chaicopaillag.app.mageli.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -33,33 +36,27 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
-
     EditText txt_correo,txt_contrasenia;
     Button btn_iniciar;
     TextView btn_registro;
-    TextInputLayout inputcorreo,inputcontrasenia;
-
     SignInButton btn_google;
-
     private GoogleApiClient googleApiClient;
-
     public static final int SIGN_IN_CODE = 9001;
-
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
-
-
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
+        if (!compruebaConexion(this)){
+            Toast.makeText(LoginActivity.this, R.string.error_conexion_internet,Toast.LENGTH_LONG).show();
+            finish();
+        }
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
-
         googleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
@@ -91,7 +88,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
 
         btn_google.setColorScheme(SignInButton.COLOR_DARK);
-
         btn_google.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,11 +95,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 startActivityForResult(intent, SIGN_IN_CODE);
             }
         });
-
-
-
         firebaseAuth = FirebaseAuth.getInstance();
-
         firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -113,9 +105,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 }
             }
         };
-
-
-
     }
 
     private void Ir_a_inicio() {
@@ -211,5 +200,22 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Toast.makeText(this, R.string.error_conexion_google, Toast.LENGTH_SHORT).show();
+    }
+    public static boolean compruebaConexion(Context context) {
+
+        boolean connected = false;
+
+        ConnectivityManager connec = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        // Recupera todas las redes (tanto móviles como wifi)
+        NetworkInfo[] redes = connec.getAllNetworkInfo();
+
+        for (int i = 0; i < redes.length; i++) {
+            // Si alguna red tiene conexión, se devuelve true
+            if (redes[i].getState() == NetworkInfo.State.CONNECTED) {
+                connected = true;
+            }
+        }
+        return connected;
     }
 }

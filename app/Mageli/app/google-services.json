@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1006198926029-3uk6ahu081jqvt6j948jif37qto2qo3u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chaicopaillag.app.mageli",
+            "certificate_hash": "ac703583eb74b5b0566137e0b783ea0f09e4f125"
+          }
+        },
+        {
           "client_id": "1006198926029-2tp04tj9pv0n6483am1rjf95v8gpudes.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
