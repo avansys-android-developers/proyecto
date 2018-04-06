@@ -14,12 +14,10 @@
     <string name="otambien">Ó</string>
     <string name="no_tines_cuenta">¿No una tienes cuenta?</string>
     <string name="registrate">Registrate ahora</string>
-
     <!--error login firebase-->
     <string name="error_login_firebase">Error al iniciar sesión en Mageli</string>
     <string name="error_cerrar_sesion">Error al Cerrar sesión en Mageli</string>
     <string name="sesion_cerado_google">Sesion cerrado de Mageli</string>
-
     <!--error login validacion-->
     <string name="error_correo">Ingrese su correo electrónico</string>
     <string name="error_contrasenia">Ingrese la contraseña</string>
@@ -30,9 +28,7 @@
     <string name="error_registro">Lo sentimos no se ha podido registrar en </string>
     <string name="error_usuario_existe">Ya existe un usuario con este correo</string>
     <string name="error_ingreso">Correo y/o contraseña incorrectas</string>
-
     <!--registo_usuario-->
-
     <string name="ya_tines_cuenta">¿Ya tienes una cuenta?</string>
     <string name="ir_login">Inicia sesiòn ahora</string>
     <string name="registro_exito">Se ha Registrado exitósamente en Mageli</string>
@@ -46,7 +42,13 @@
     <string name="descripcion_nav">Cabezera</string>
     <string name="configuracion">Configuración</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <!--Opciones menu-->
+    <string name="pediatria">Pediatras</string>
+    <string name="paciente">Pacientes</string>
+    <string name="citas">Citas</string>
+    <string name="consulta">Consultas</string>
+    <string name="micuenta">Mi Cuenta</string>
+    <string name="chats">Chats</string>
+    <string name="salir">Salir</string>
+    <string name="cuenta">Cuenta</string>
 </resources>

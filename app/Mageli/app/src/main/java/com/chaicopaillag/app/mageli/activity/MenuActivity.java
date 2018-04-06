@@ -1,16 +1,17 @@
 package com.chaicopaillag.app.mageli.activity;
+
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,6 +19,12 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.chaicopaillag.app.mageli.R;
+import com.chaicopaillag.app.mageli.frame.CitasFragment;
+import com.chaicopaillag.app.mageli.frame.ConsultasFragment;
+import com.chaicopaillag.app.mageli.frame.CuentaFragment;
+import com.chaicopaillag.app.mageli.frame.InicioFragment;
+import com.chaicopaillag.app.mageli.frame.PacientesFragment;
+import com.chaicopaillag.app.mageli.frame.PediatrasFragment;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -41,7 +48,6 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -70,28 +76,44 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
         menu_slide.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                boolean transframe=false;
+                Fragment mi_fragmento=null;
                 int id = item.getItemId();
                 switch (id){
                     case R.id.item_pediatra:
+                        mi_fragmento=new PediatrasFragment();
+                        transframe=true;
                         break;
                     case R.id.item_paciente:
+                        mi_fragmento=new PacientesFragment();
+                        transframe=true;
                         break;
                     case R.id.item_citas:
+                        mi_fragmento=new CitasFragment();
+                        transframe=true;
                         break;
                     case R.id.item_consulta:
+                        mi_fragmento=new ConsultasFragment();
+                        transframe=true;
                         break;
                     case R.id.item_cuenta:
+                        mi_fragmento=new CuentaFragment();
+                        transframe=true;
                         break;
                     case R.id.item_salir:
                         SalirMenu();
                         break;
+                }
+                if (transframe){
+                    ponerFragmento(mi_fragmento);
+                    getSupportActionBar().setTitle(item.getTitle());
                 }
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
                 return true;
             }
         });
-
+        ponerFragmento(new InicioFragment());
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -106,6 +128,12 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
         };
     }
 
+    private void ponerFragmento(Fragment mi_fragmento) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.contenedor,mi_fragmento)
+                .commit();
+    }
     private void colocar_datos_usuario(FirebaseUser user) {
         nombreUser.setText(user.getDisplayName());
         correoUser.setText(user.getEmail());
