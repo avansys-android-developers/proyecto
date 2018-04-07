@@ -19,7 +19,7 @@
         android:layout_height="80dp"
         android:src="@drawable/perfil"
         app:civ_border_width="2dp"
-        app:civ_border_color="@color/celete_light"
+        app:civ_border_color="@color/icono"
         android:layout_gravity="center" />
 
     <TextView

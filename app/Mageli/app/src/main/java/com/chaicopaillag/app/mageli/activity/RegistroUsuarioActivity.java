@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -98,6 +100,7 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
                         Toast.makeText(RegistroUsuarioActivity.this,R.string.registro_exito,Toast.LENGTH_LONG).show();
+                        VerificarCorreo();
                         RegresarLogin();
                     }else{
                         Toast.makeText(RegistroUsuarioActivity.this,R.string.registro_error,Toast.LENGTH_LONG).show();
@@ -106,6 +109,20 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
             });
         }
     }
+
+    private void VerificarCorreo() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user.sendEmailVerification()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(RegistroUsuarioActivity.this,getText(R.string.verificacion_correo),Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+    }
+
     public static boolean validarcorreo(String correo){
 
         String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";

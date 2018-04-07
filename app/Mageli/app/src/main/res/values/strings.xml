@@ -3,8 +3,7 @@
     <!--error conexion internet-->
     <string name="error_conexion_internet">No tienes conexión a internet, comprueba tu conexión e inténtalo de nuevo</string>
     <!--login google-->
-    <string name="error_sesion_google">Error al iniciar sesión con Google</string>
-    <string name="error_conexion_google">Error al conectar con Google intenta de nuevo</string>
+    <string name="error_conexion_google">No se ha podido conectar con Google intenta de nuevo</string>
     <!--login-->
     <string name="correo">Correo electrónico</string>
     <string name="contrasenia">Contraseña</string>
@@ -14,10 +13,13 @@
     <string name="otambien">Ó</string>
     <string name="no_tines_cuenta">¿No una tienes cuenta?</string>
     <string name="registrate">Registrate ahora</string>
+    <string name="olvide_contrasenia">Olvide mi contraseña</string>
+    <string name="restablecer_contrasia">Restablecer contraseña</string>
+    <string name="restablecer_contrasia_mensaje">Se envio un link a tu correo para restablecer la contraseña</string>
     <!--error login firebase-->
-    <string name="error_login_firebase">Error al iniciar sesión en Mageli</string>
-    <string name="error_cerrar_sesion">Error al Cerrar sesión en Mageli</string>
-    <string name="sesion_cerado_google">Sesion cerrado de Mageli</string>
+    <string name="error_login_firebase">No se ha podido iniciar sesión en Mageli</string>
+    <string name="error_cerrar_sesion">No se ha podido cerrar sesión en Mageli</string>
+    <string name="cerrar_sesion">Sesion cerrado en Mageli</string>
     <!--error login validacion-->
     <string name="error_correo">Ingrese su correo electrónico</string>
     <string name="error_contrasenia">Ingrese la contraseña</string>
@@ -33,6 +35,8 @@
     <string name="ir_login">Inicia sesiòn ahora</string>
     <string name="registro_exito">Se ha Registrado exitósamente en Mageli</string>
     <string name="registro_error">Lo sentimos no se podido registrar en Mageli</string>
+    <string name="verificacion_correo">Se ha enviado una verificacón a tu correo electrónico</string>
+    <string name="no_verificado_correo">Necesitas verificar tu correo electronico para iniciar sesión Mageli</string>
     <!--Menu-->
     <string name="menu">Mageli</string>
     <string name="abrir_nav">Abrir Menu</string>
@@ -41,14 +45,15 @@
     <string name="correo_usuario">correo@mageli.com</string>
     <string name="descripcion_nav">Cabezera</string>
     <string name="configuracion">Configuración</string>
+    <string name="privacidad">Privacidad</string>
+    <string name="web">Web de App Mageli</string>
 
     <!--Opciones menu-->
-    <string name="pediatria">Pediatras</string>
-    <string name="paciente">Pacientes</string>
+    <string name="perfil">Mi Perfil</string>
     <string name="citas">Citas</string>
     <string name="consulta">Consultas</string>
-    <string name="micuenta">Mi Cuenta</string>
     <string name="chats">Chats</string>
+    <string name="micuenta">Mi Cuenta</string>
+    <string name="cuenta">Datos de la Cuenta</string>
     <string name="salir">Salir</string>
-    <string name="cuenta">Cuenta</string>
 </resources>

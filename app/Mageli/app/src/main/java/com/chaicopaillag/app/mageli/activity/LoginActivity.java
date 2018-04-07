@@ -35,7 +35,7 @@ import java.util.regex.Pattern;
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
     EditText txt_correo,txt_contrasenia;
     Button btn_iniciar;
-    TextView btn_registro;
+    TextView btn_registro,btn_restablecer_contra;
     SignInButton btn_google;
     private GoogleApiClient googleApiClient;
     public static final int SIGN_IN_CODE = 9001;
@@ -54,17 +54,33 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
+
         googleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser usuario = firebaseAuth.getCurrentUser();
+                if (usuario != null) {
+                    if (usuario.isEmailVerified()){
+                        Ir_a_inicio();
+                    }else {
+                        FirebaseAuth.getInstance().signOut();
+                    }
+                }
+            }
+        };
         txt_correo=(EditText)findViewById(R.id.txtcorreo);
         txt_contrasenia=(EditText)findViewById(R.id.txtcontrasenia);
 
         btn_iniciar=(Button)findViewById(R.id.btnlogin);
         btn_registro=(TextView)findViewById(R.id.btnregistrateahora);
 
+        btn_restablecer_contra=(TextView)findViewById(R.id.btnrestablecer_contrasenia);
         btn_google=(SignInButton)findViewById(R.id.btngoogle);
 
         btn_registro.setOnClickListener(new View.OnClickListener() {
@@ -75,16 +91,37 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 startActivity(intent);
             }
         });
+        btn_restablecer_contra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String correo,contrasenia;
+                correo=txt_correo.getText().toString();
 
+                if (correo.equals("")){
+                    txt_correo.setError(getString(R.string.error_correo));
+                    return;
+                }else if (!validarcorreo(correo)){
+                    txt_correo.setError(getString(R.string.error_correo_no_valido));
+                    return;
+                }
+                firebaseAuth.sendPasswordResetEmail(correo)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(LoginActivity.this, getText(R.string.restablecer_contrasia_mensaje), Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+            }
+        });
         btn_iniciar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Validarlogeo();
             }
         });
-
-
-//        btn_google.setColorScheme(SignInButton.COLOR_DARK);
+        btn_google.setColorScheme(SignInButton.COLOR_DARK);
         btn_google.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,16 +129,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 startActivityForResult(intent, SIGN_IN_CODE);
             }
         });
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser usuario = firebaseAuth.getCurrentUser();
-                if (usuario != null) {
-                    Ir_a_inicio();
-                }
-            }
-        };
+
     }
 
     private void Ir_a_inicio() {

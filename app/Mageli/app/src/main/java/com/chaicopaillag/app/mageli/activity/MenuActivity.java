@@ -23,8 +23,7 @@ import com.chaicopaillag.app.mageli.frame.CitasFragment;
 import com.chaicopaillag.app.mageli.frame.ConsultasFragment;
 import com.chaicopaillag.app.mageli.frame.CuentaFragment;
 import com.chaicopaillag.app.mageli.frame.InicioFragment;
-import com.chaicopaillag.app.mageli.frame.PacientesFragment;
-import com.chaicopaillag.app.mageli.frame.PediatrasFragment;
+import com.chaicopaillag.app.mageli.frame.PerfilFragment;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -80,12 +79,8 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
                 Fragment mi_fragmento=null;
                 int id = item.getItemId();
                 switch (id){
-                    case R.id.item_pediatra:
-                        mi_fragmento=new PediatrasFragment();
-                        transframe=true;
-                        break;
-                    case R.id.item_paciente:
-                        mi_fragmento=new PacientesFragment();
+                    case R.id.item_perfil:
+                        mi_fragmento=new PerfilFragment();
                         transframe=true;
                         break;
                     case R.id.item_citas:
@@ -135,11 +130,11 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
                 .commit();
     }
     private void colocar_datos_usuario(FirebaseUser user) {
-        nombreUser.setText(user.getDisplayName());
-        correoUser.setText(user.getEmail());
-        if (user.getPhotoUrl()!=null){
-            Glide.with(getApplicationContext()).load(user.getPhotoUrl()).into(imgUsuario);
-        }
+            nombreUser.setText(user.getDisplayName());
+            correoUser.setText(user.getEmail());
+            if (user.getPhotoUrl()!=null){
+                Glide.with(getApplicationContext()).load(user.getPhotoUrl()).into(imgUsuario);
+            }
     }
 
     @Override
@@ -162,7 +157,7 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
+        if (id == R.id.item_configuracion) {
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -176,9 +171,9 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
             @Override
             public void onResult(@NonNull Status status) {
                 if (status.isSuccess()) {
-                    Toast.makeText(getApplicationContext(), R.string.sesion_cerado_google, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.cerrar_sesion, Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), R.string.error_sesion_google, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.error_conexion_google, Toast.LENGTH_SHORT).show();
                 }
             }
         });

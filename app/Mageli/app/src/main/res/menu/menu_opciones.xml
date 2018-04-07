@@ -2,13 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/item_pediatra"
+            android:id="@+id/item_perfil"
             android:icon="@drawable/pediatra"
-            android:title="@string/pediatria" />
-        <item
-            android:id="@+id/item_paciente"
-            android:icon="@drawable/pacientes"
-            android:title="@string/paciente" />
+            android:title="@string/perfil" />
         <item
             android:id="@+id/item_citas"
             android:icon="@drawable/citas"
@@ -21,15 +17,21 @@
             android:id="@+id/item_chat"
             android:icon="@drawable/chat"
             android:title="@string/chats" />
-        <item
-            android:id="@+id/item_cuenta"
-            android:icon="@drawable/cuenta"
-            android:title="@string/micuenta" />
-        <item
-            android:id="@+id/item_salir"
-            android:icon="@drawable/salir"
-            android:title="@string/salir" />
     </group>
+    <item android:title="@string/cuenta">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/item_cuenta"
+                    android:icon="@drawable/cuenta"
+                    android:title="@string/micuenta" />
+                <item
+                    android:id="@+id/item_salir"
+                    android:icon="@drawable/salir"
+                    android:title="@string/salir" />
+            </group>
+        </menu>
+    </item>
 </menu>
 
 
