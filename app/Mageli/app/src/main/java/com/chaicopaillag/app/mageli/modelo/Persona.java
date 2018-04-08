@@ -2,7 +2,7 @@ package com.chaicopaillag.app.mageli.modelo;
 
 import java.util.Date;
 
-public class Persona {
+public class  Persona {
     private String id;
     private String nombre;
     private String apellidos;

@@ -6,116 +6,137 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.chaicopaillag.app.mageli.activity.LoginActivity"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
-    android:background="#ddd">
-
-    <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtcorreo"
-                android:inputType="textEmailAddress"
-                android:hint="@string/correo"
-                android:maxLines="1"
-                android:singleLine="true"
-                />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true"
-            >
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtcontrasenia"
-                android:hint="@string/contrasenia"
-                android:inputType="textPassword"/>
-        </android.support.design.widget.TextInputLayout>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/iniciar"
-            android:id="@+id/btnlogin"
-            android:layout_marginTop="30dp"
-            android:background="@color/celeste"
-            android:textColor="@color/icono"
-            android:textAllCaps="false"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            />
-    <LinearLayout
+    android:orientation="vertical">
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="25dp"
-        android:gravity="center">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/olvide_contrasenia"
-            android:gravity="left"
-            android:layout_marginRight="15dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/restablecer_contrasia"
-            android:gravity="end"
-            android:id="@+id/btnrestablecer_contrasenia"
-            android:layout_marginLeft="15dp"
-            android:textColor="@color/rosa"
-            android:cursorVisible="true"
-            android:textStyle="bold"
-            />
-    </LinearLayout>
-
-        <TextView
+        android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/otambien"
-            android:textAlignment="center"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:textStyle="bold"
-            android:textColor="@color/celeste_oscuro"
-            />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mageli"
+                android:textSize="30dp"
+                android:textAlignment="center"
+                android:textColor="@color/rosa"/>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtcorreo"
+                    android:inputType="textEmailAddress"
+                    android:hint="@string/correo"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:drawableStart="@drawable/correo"
+                    android:drawableTint="@color/secondario_text"
+                    android:drawablePadding="5dp"
+                    />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true"
+                >
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtcontrasenia"
+                    android:hint="@string/contrasenia"
+                    android:inputType="textPassword"
+                    android:drawableStart="@drawable/candado"
+                    android:drawableTint="@color/secondario_text"
+                    android:drawablePadding="5dp"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/iniciar"
+                android:id="@+id/btnlogin"
+                android:layout_marginTop="30dp"
+                android:background="@color/celeste"
+                android:textColor="@color/icono"
+                android:textAllCaps="false"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="25dp"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/olvide_contrasenia"
+                    android:gravity="left"
+                    android:layout_marginRight="15dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/restablecer_contrasia"
+                    android:gravity="end"
+                    android:id="@+id/btnrestablecer_contrasenia"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/rosa"
+                    android:cursorVisible="true"
+                    android:textStyle="bold"
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/otambien"
+                android:textAlignment="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/celeste_oscuro"
+                />
             <com.google.android.gms.common.SignInButton
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:id="@+id/btngoogle"
                 >
             </com.google.android.gms.common.SignInButton>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="25dp"
-            android:gravity="center">
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/no_tines_cuenta"
-                android:gravity="left"
-                android:layout_marginRight="15dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/registrate"
-                android:gravity="end"
-                android:id="@+id/btnregistrateahora"
-                android:layout_marginLeft="15dp"
-                android:textColor="@color/rosa"
-                android:cursorVisible="true"
-                android:textStyle="bold"
-                />
+                android:orientation="horizontal"
+                android:layout_marginTop="25dp"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no_tines_cuenta"
+                    android:gravity="left"
+                    android:layout_marginRight="15dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/registrate"
+                    android:gravity="end"
+                    android:id="@+id/btnregistrateahora"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/rosa"
+                    android:cursorVisible="true"
+                    android:textStyle="bold"
+                    />
+            </LinearLayout>
+
         </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

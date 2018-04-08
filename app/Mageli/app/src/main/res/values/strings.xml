@@ -56,4 +56,15 @@
     <string name="micuenta">Mi Cuenta</string>
     <string name="cuenta">Datos de la Cuenta</string>
     <string name="salir">Salir</string>
+
+    <!--Perfil-->
+     <string name="nombre">Tu nombre</string>
+    <string name="apellidos">Tus apellidos</string>
+    <string name="numero_documento">Tu numero de identidad</string>
+    <string name="telefono">Numero de Celular</string>
+    <string name="numero_hc">Tu N° historial clinico</string>
+    <string name="direccion">Tu dirección</string>
+    <string name="genero">Genero</string>
+    <string name="fecha_nacimiento">Fecha de nacimiento</string>
+
 </resources>
