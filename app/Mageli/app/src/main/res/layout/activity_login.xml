@@ -15,15 +15,17 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_gravity="center"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp">
+            android:paddingLeft="@dimen/margenDerechoIzquierdo"
+            android:paddingRight="@dimen/margenDerechoIzquierdo">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mageli"
+                android:text="@string/app_name"
                 android:textSize="30dp"
                 android:textAlignment="center"
-                android:textColor="@color/rosa"/>
+                android:textColor="@color/rosa"
+                android:paddingTop="@dimen/padingTopBotom"
+                android:paddingBottom="@dimen/padingTopBotom"/>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -38,7 +40,7 @@
                     android:singleLine="true"
                     android:drawableStart="@drawable/correo"
                     android:drawableTint="@color/secondario_text"
-                    android:drawablePadding="5dp"
+                    android:drawablePadding="@dimen/padingicono"
                     />
             </android.support.design.widget.TextInputLayout>
 
@@ -55,7 +57,7 @@
                     android:inputType="textPassword"
                     android:drawableStart="@drawable/candado"
                     android:drawableTint="@color/secondario_text"
-                    android:drawablePadding="5dp"/>
+                    android:drawablePadding="@dimen/padingicono"/>
             </android.support.design.widget.TextInputLayout>
 
             <Button
@@ -63,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/iniciar"
                 android:id="@+id/btnlogin"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="@dimen/margenAriba_botom"
                 android:background="@color/celeste"
                 android:textColor="@color/icono"
                 android:textAllCaps="false"
@@ -74,7 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="@dimen/padingTopBotom"
                 android:gravity="center">
                 <TextView
                     android:layout_width="wrap_content"
@@ -88,10 +90,12 @@
                     android:text="@string/restablecer_contrasia"
                     android:gravity="end"
                     android:id="@+id/btnrestablecer_contrasenia"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="12dp"
                     android:textColor="@color/rosa"
                     android:cursorVisible="true"
                     android:textStyle="bold"
+                    android:paddingTop="@dimen/padingTopBotom"
+                    android:paddingBottom="@dimen/padingTopBotom"
                     />
             </LinearLayout>
 
@@ -101,9 +105,10 @@
                 android:text="@string/otambien"
                 android:textAlignment="center"
                 android:layout_marginTop="10dp"
+                android:textSize="20dp"
                 android:layout_marginBottom="10dp"
                 android:textStyle="bold"
-                android:textColor="@color/celeste_oscuro"
+                android:textColor="@color/celeste"
                 />
             <com.google.android.gms.common.SignInButton
                 android:layout_width="match_parent"
@@ -115,7 +120,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="@dimen/marginbotom"
                 android:gravity="center">
                 <TextView
                     android:layout_width="wrap_content"
@@ -133,6 +138,8 @@
                     android:textColor="@color/rosa"
                     android:cursorVisible="true"
                     android:textStyle="bold"
+                    android:paddingTop="@dimen/padingTopBotom"
+                    android:paddingBottom="@dimen/padingTopBotom"
                     />
             </LinearLayout>
 

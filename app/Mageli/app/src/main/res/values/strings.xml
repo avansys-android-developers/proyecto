@@ -32,7 +32,7 @@
     <string name="error_ingreso">Correo y/o contraseña incorrectas</string>
     <!--registo_usuario-->
     <string name="ya_tines_cuenta">¿Ya tienes una cuenta?</string>
-    <string name="ir_login">Inicia sesiòn ahora</string>
+    <string name="ir_login">Inicia sesión ahora</string>
     <string name="registro_exito">Se ha Registrado exitósamente en Mageli</string>
     <string name="registro_error">Lo sentimos no se podido registrar en Mageli</string>
     <string name="verificacion_correo">Se ha enviado una verificacón a tu correo electrónico</string>
@@ -44,6 +44,7 @@
     <string name="nombre_usuario">Nombre Usuario</string>
     <string name="correo_usuario">correo@mageli.com</string>
     <string name="descripcion_nav">Cabezera</string>
+    <string name="inicio">Inicio</string>
     <string name="configuracion">Configuración</string>
     <string name="privacidad">Privacidad</string>
     <string name="web">Web de App Mageli</string>
@@ -58,7 +59,7 @@
     <string name="salir">Salir</string>
 
     <!--Perfil-->
-     <string name="nombre">Tu nombre</string>
+    <string name="nombre">Tu nombre</string>
     <string name="apellidos">Tus apellidos</string>
     <string name="numero_documento">Tu numero de identidad</string>
     <string name="telefono">Numero de Celular</string>
@@ -66,5 +67,8 @@
     <string name="direccion">Tu dirección</string>
     <string name="genero">Genero</string>
     <string name="fecha_nacimiento">Fecha de nacimiento</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
