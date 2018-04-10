@@ -66,10 +66,11 @@
                 android:text="@string/iniciar"
                 android:id="@+id/btnlogin"
                 android:layout_marginTop="@dimen/margenAriba_botom"
-                android:background="@color/celeste"
+                android:background="@color/colorPrimary"
                 android:textColor="@color/icono"
                 android:textAllCaps="false"
                 android:layout_marginLeft="4dp"
+                android:backgroundTint="@color/celeste_oscuro"
                 android:layout_marginRight="4dp"
                 />
             <LinearLayout
@@ -90,7 +91,6 @@
                     android:text="@string/restablecer_contrasia"
                     android:gravity="end"
                     android:id="@+id/btnrestablecer_contrasenia"
-                    android:layout_marginLeft="12dp"
                     android:textColor="@color/rosa"
                     android:cursorVisible="true"
                     android:textStyle="bold"
@@ -134,7 +134,6 @@
                     android:text="@string/registrate"
                     android:gravity="end"
                     android:id="@+id/btnregistrateahora"
-                    android:layout_marginLeft="15dp"
                     android:textColor="@color/rosa"
                     android:cursorVisible="true"
                     android:textStyle="bold"

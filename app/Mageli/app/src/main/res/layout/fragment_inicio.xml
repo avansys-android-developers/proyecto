@@ -10,115 +10,217 @@
         android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/margenDerechoIzquierdo"
-            android:layout_gravity="center">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
             <LinearLayout
+                android:clipToPadding="false"
+                android:gravity="center"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:elevation="2dp"
-                android:background="@drawable/boxshadow"
-                android:padding="@dimen/margenDerechoIzquierdo"
-                android:layout_marginBottom="@dimen/marginbotom">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_gravity="fill_horizontal"
-                    android:gravity="center"
-                    android:layout_marginBottom="@dimen/marginbotom">
-                   <LinearLayout
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:orientation="vertical"
-                       android:layout_marginRight="@dimen/pading">
-                       <ImageView
-                           android:layout_width="80dp"
-                           android:layout_height="80dp"
-                           android:src="@drawable/chat"
-                           />
-                       <TextView
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           android:text="@string/perfil"
-                           android:textAlignment="center"/>
-                   </LinearLayout>
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.CardView
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:id="@+id/car_usurios"
+                    android:layout_width="160dp"
+                    android:layout_height="190dp"
+                    android:layout_margin="10dp">
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:layout_marginLeft="@dimen/pading">
+                        android:gravity="center">
                         <ImageView
                             android:layout_width="80dp"
                             android:layout_height="80dp"
-                            android:src="@drawable/citas"
-                            />
+                            android:background="@drawable/fondo_primary"
+                            android:src="@drawable/usuarios_blanco" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/citas"
+                            android:textStyle="bold"
+                            android:textColor="@color/secondario_text"
+                            android:layout_marginTop="10dp"
+                            android:text="@string/car_user"
                             android:textAlignment="center"/>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/linea"
+                            android:layout_margin="10dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/car_user_activos"
+                            android:padding="5dp"
+                            android:textColor="@android:color/darker_gray"/>
                     </LinearLayout>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:paddingTop="@dimen/padingTopBotom">
-                    <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:src="@drawable/consultas"/>
-                    <TextView
+                </android.support.v7.widget.CardView>
+                <android.support.v7.widget.CardView
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:layout_width="160dp"
+                    android:layout_height="190dp"
+                    android:layout_margin="10dp">
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/chats"
-                        android:textAlignment="center"/>
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <ImageView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:background="@drawable/fondo_rosa"
+                            android:src="@drawable/citas_blanco"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:textColor="@color/secondario_text"
+                            android:layout_marginTop="10dp"
+                            android:text="@string/citas"/>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/linea"
+                            android:layout_margin="10dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/car_citas"
+                            android:padding="5dp"
+                            android:textColor="@android:color/darker_gray"/>
 
-                </LinearLayout>
-
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
             </LinearLayout>
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:gravity="center"
                 android:orientation="horizontal"
-                android:elevation="2dp"
-                android:background="@drawable/boxshadow"
-                android:padding="@dimen/pading"
-                android:layout_marginBottom="@dimen/marginbotom">
-                <ImageView
-                    android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.CardView
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:layout_width="340dp"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/chat"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/chats"
-                    android:textAlignment="center"/>
+                    android:layout_margin="10dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/padingTopBotom">
+                        <ImageView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:background="@drawable/fondo_secundary"
+                            android:src="@drawable/consultas_blanco"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/secondario_text"
+                            android:text="@string/consulta"/>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/linea"
+                            android:layout_margin="10dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/car_consultas"
+                            android:padding="5dp"
+                            android:textColor="@android:color/darker_gray"/>
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
             </LinearLayout>
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:gravity="center"
                 android:orientation="horizontal"
-                android:elevation="2dp"
-                android:background="@drawable/boxshadow"
-                android:padding="@dimen/pading"
-                android:layout_marginBottom="@dimen/marginbotom">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/chat"/>
-                <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.CardView
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/chats"
-                    android:textAlignment="center"/>
-            </LinearLayout>
+                    android:layout_margin="10dp">
+                    <LinearLayout
 
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/fondo_rosa"
+                            android:src="@drawable/ubicacion_blanco"
+                            android:layout_marginLeft="@dimen/pading"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="@dimen/pading">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="@string/car_ubicacion"
+                                android:padding="5dp"
+                                android:textColor="@android:color/darker_gray"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+            <LinearLayout
+                android:clipToPadding="false"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.v7.widget.CardView
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/fondo_primary"
+                            android:src="@drawable/reloj_blanco"
+                            android:layout_marginLeft="@dimen/pading"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="@dimen/pading">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="@string/car_horario"
+                                android:padding="5dp"
+                                android:textColor="@android:color/darker_gray"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
         </LinearLayout>
-
     </ScrollView>
 </LinearLayout>

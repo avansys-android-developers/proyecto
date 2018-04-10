@@ -57,6 +57,13 @@
     <string name="micuenta">Mi Cuenta</string>
     <string name="cuenta">Datos de la Cuenta</string>
     <string name="salir">Salir</string>
+    <!-- inicio-->
+    <string name="car_user">Usuarios</string>
+    <string name="car_user_activos">+10 Usuarios activos</string>
+    <string name="car_citas">+100 Citas programadas</string>
+    <string name="car_consultas">+800 Consultas atendidas</string>
+    <string name="car_ubicacion">Avenida Alfonso Ugarte N° 825, Cercado de Lima 15001</string>
+    <string name="car_horario">Hora de atención   08:00 A.M  a  05:00 P.M</string>
 
     <!--Perfil-->
     <string name="nombre">Tu nombre</string>

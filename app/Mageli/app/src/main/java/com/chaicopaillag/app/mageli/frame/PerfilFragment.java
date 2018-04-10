@@ -30,12 +30,6 @@ public class PerfilFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        btn=(AppCompatButton)getView().findViewById(R.id.btn_perfil);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(),"Usuario registrado",Toast.LENGTH_LONG).show();
-            }
-        });
+
     }
 }

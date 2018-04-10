@@ -106,7 +106,7 @@
                     android:text="@string/ir_login"
                     android:gravity="end"
                     android:id="@+id/btn_ir_login"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="10dp"
                     android:textColor="@color/rosa"
                     android:cursorVisible="true"
                     android:textStyle="bold"
