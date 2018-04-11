@@ -4,26 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".frame.PerfilFragment"
-    android:fitsSystemWindows="true">
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/barner_perfil"
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:fitsSystemWindows="true">
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            android:background="@drawable/bgcabeceranav"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:toolbarId="@+id/barner_perfil">
+    tools:context=".frame.PerfilFragment">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="160dp"
                 android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:background="@drawable/bgcabeceranav"
+                android:id="@+id/barner_perfil">
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
@@ -46,35 +34,24 @@
                     android:textAlignment="center"
                     android:textColor="@color/icono"
                     android:textStyle="bold"/>
-
             </LinearLayout>
-        </android.support.design.widget.CollapsingToolbarLayout>
-
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.v4.widget.NestedScrollView
-        android:id="@+id/contenedor_perfil"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_editar_perfil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|start"
-        android:layout_margin="@dimen/fab_margin"
-        app:layout_anchor="@+id/contenedor_perfil"
-        app:layout_anchorGravity="top|end"
-        app:backgroundTint="@color/rosa"
-        app:fabSize="auto"
-        android:src="@drawable/editar_blanco"
-        />
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_editar_perfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|start"
+                android:layout_margin="@dimen/fab_margin"
+                app:layout_anchor="@+id/barner_perfil"
+                app:layout_anchorGravity="bottom|end"
+                app:backgroundTint="@color/rosa"
+                app:fabSize="auto"
+                android:src="@drawable/editar_blanco"
+                />
            <LinearLayout
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:orientation="vertical"
-               android:padding="@dimen/pading"
-               android:layout_marginTop="185dp">
+               android:layout_marginTop="160dp">
 
                <ScrollView
                    android:layout_width="match_parent"
@@ -83,7 +60,8 @@
                    <LinearLayout
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
-                       android:orientation="vertical" >
+                       android:orientation="vertical"
+                       android:padding="@dimen/pading">
 
                        <LinearLayout
                            android:layout_width="match_parent"
@@ -119,7 +97,7 @@
                                            android:src="@drawable/telefono_celeste" />
 
                                        <LinearLayout
-                                           android:layout_width="wrap_content"
+                                           android:layout_width="match_parent"
                                            android:layout_height="wrap_content"
                                            android:layout_marginStart="@dimen/pading"
                                            android:orientation="vertical">
@@ -162,7 +140,7 @@
                                            android:src="@drawable/casa_celeste" />
 
                                        <LinearLayout
-                                           android:layout_width="wrap_content"
+                                           android:layout_width="match_parent"
                                            android:layout_height="wrap_content"
                                            android:layout_marginStart="@dimen/pading"
                                            android:orientation="vertical">
@@ -223,7 +201,7 @@
                                            android:src="@drawable/card_celeste" />
 
                                        <LinearLayout
-                                           android:layout_width="wrap_content"
+                                           android:layout_width="match_parent"
                                            android:layout_height="wrap_content"
                                            android:layout_marginStart="@dimen/pading"
                                            android:orientation="vertical">
@@ -266,7 +244,7 @@
                                            android:src="@drawable/card_celeste" />
 
                                        <LinearLayout
-                                           android:layout_width="wrap_content"
+                                           android:layout_width="match_parent"
                                            android:layout_height="wrap_content"
                                            android:layout_marginStart="@dimen/pading"
                                            android:orientation="vertical">
@@ -327,7 +305,7 @@
                                            android:src="@drawable/calendario_celeste" />
 
                                        <LinearLayout
-                                           android:layout_width="wrap_content"
+                                           android:layout_width="match_parent"
                                            android:layout_height="wrap_content"
                                            android:layout_marginStart="@dimen/pading"
                                            android:orientation="vertical">

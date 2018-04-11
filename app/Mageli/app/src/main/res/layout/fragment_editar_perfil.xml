@@ -9,7 +9,7 @@
         android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="15dp">
 
@@ -52,7 +52,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Se mi Numero de Historia Clinico"
-                android:textColor="@color/secondario_text"/>
+                android:textColor="@color/secondario_text"
+                android:textAlignment="center"
+                android:layout_marginTop="@dimen/pading"/>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -89,11 +91,13 @@
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center">
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Masculino"/>
+                    android:text="Masculino"
+                    android:layout_marginEnd="@dimen/pading"/>
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -111,13 +115,14 @@
                     android:drawablePadding="5dp"/>
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.v7.widget.AppCompatButton
+            <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/registro"
                 android:background="@color/rosa"
                 android:textColor="@color/icono"
-                android:id="@+id/btn_perfil"/>
+                android:id="@+id/btn_perfil"
+                android:layout_marginTop="@dimen/padingTopBotom"/>
         </LinearLayout>
     </ScrollView>
 </FrameLayout>
