@@ -71,7 +71,7 @@
     <string name="numero_documento">Tu numero de identidad</string>
     <string name="telefono">Numero de Celular</string>
     <string name="numero_hc">Tu N° historial clinico</string>
-    <string name="direccion">Tu dirección</string>
+    <string name="direccion">Dirección</string>
     <string name="genero">Genero</string>
     <string name="fecha_nacimiento">Fecha de nacimiento</string>
 
