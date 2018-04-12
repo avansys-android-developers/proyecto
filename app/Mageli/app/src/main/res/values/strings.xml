@@ -66,16 +66,17 @@
     <string name="car_horario">Hora de atención   08:00 A.M  a  05:00 P.M</string>
 
     <!--Perfil-->
-    <string name="nombre">Tu nombre</string>
-    <string name="apellidos">Tus apellidos</string>
-    <string name="numero_documento">Tu numero de identidad</string>
-    <string name="telefono">Numero de Celular</string>
-    <string name="numero_hc">Tu N° historial clinico</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="numero_documento">Número de identidad</string>
+    <string name="telefono">Numero de Célular</string>
+    <string name="numero_hc">N° historial clínico</string>
     <string name="direccion">Dirección</string>
-    <string name="genero">Genero</string>
+    <string name="genero">Género</string>
+    <string name="masculino">Masculino</string>
+    <string name="femenino">Femenino</string>
     <string name="fecha_nacimiento">Fecha de nacimiento</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="si_numero_hi">Se mi Número de Historia Clínico</string>
+    <string name="btn_perfil">Guardar cambios</string>
 
 </resources>

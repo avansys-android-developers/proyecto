@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".frame.EditarPerfilFragment">
+    tools:context=".activity.PerfilActivity">
+    <include layout="@layout/mi_toobar" android:id="@+id/toolbar"/>
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -16,113 +20,129 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawablePadding="5dp"
                     android:drawableStart="@drawable/pediatra"
                     android:hint="@string/nombre"
-                    android:drawablePadding="5dp"
-                    android:inputType="textPersonName"/>
+                    android:inputType="textPersonName" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawablePadding="5dp"
                     android:drawableStart="@drawable/pacientes"
                     android:hint="@string/apellidos"
-                    android:drawablePadding="5dp"
-                    android:inputType="textPersonName"/>
+                    android:inputType="textPersonName" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawablePadding="5dp"
                     android:drawableStart="@drawable/card"
                     android:hint="@string/numero_documento"
-                    android:inputType="number"
-                    android:drawablePadding="5dp"/>
+                    android:inputType="number" />
             </android.support.design.widget.TextInputLayout>
+
             <Switch
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Se mi Numero de Historia Clinico"
-                android:textColor="@color/secondario_text"
+                android:layout_marginTop="@dimen/pading"
+                android:text="@string/si_numero_hi"
                 android:textAlignment="center"
-                android:layout_marginTop="@dimen/pading"/>
+                android:textColor="@color/secondario_text" />
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawablePadding="5dp"
                     android:drawableStart="@drawable/card"
                     android:hint="@string/numero_hc"
-                    android:inputType="number"
-                    android:drawablePadding="5dp"/>
+                    android:inputType="number" />
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawablePadding="5dp"
                     android:drawableStart="@drawable/casa"
                     android:hint="@string/direccion"
-                    android:inputType="textPostalAddress"
-                    android:drawablePadding="5dp"/>
+                    android:inputType="textPostalAddress" />
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawablePadding="5dp"
                     android:drawableStart="@drawable/telefono"
                     android:hint="@string/telefono"
-                    android:inputType="phone"
-                    android:drawablePadding="5dp"/>
+                    android:inputType="phone" />
             </android.support.design.widget.TextInputLayout>
+
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="horizontal">
+
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Masculino"
-                    android:layout_marginEnd="@dimen/pading"/>
+                    android:layout_marginEnd="@dimen/pading"
+                    android:text="@string/masculino" />
+
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Femenino"/>
+                    android:text="@string/femenino" />
             </RadioGroup>
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawablePadding="5dp"
                     android:drawableStart="@drawable/calendario"
                     android:hint="@string/fecha_nacimiento"
-                    android:inputType="date"
-                    android:drawablePadding="5dp"/>
+                    android:inputType="date" />
             </android.support.design.widget.TextInputLayout>
 
             <Button
+                android:id="@+id/btn_perfil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/registro"
-                android:background="@color/rosa"
-                android:textColor="@color/icono"
-                android:id="@+id/btn_perfil"
-                android:layout_marginTop="@dimen/padingTopBotom"/>
+                android:layout_marginTop="@dimen/padingTopBotom"
+                android:background="@color/celeste_oscuro"
+                android:text="@string/btn_perfil"
+                android:textAllCaps="false"
+                android:textColor="@color/icono" />
         </LinearLayout>
     </ScrollView>
-</FrameLayout>
+</RelativeLayout>

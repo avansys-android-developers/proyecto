@@ -1,6 +1,7 @@
 package com.chaicopaillag.app.mageli.frame;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -12,10 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chaicopaillag.app.mageli.R;
+import com.chaicopaillag.app.mageli.activity.MenuActivity;
+import com.chaicopaillag.app.mageli.activity.PerfilActivity;
+
 public class PerfilFragment extends Fragment {
 
     FloatingActionButton fab_editar_perfil;
-    Fragment mi_fragmento=null;
     public PerfilFragment() {
 
     }
@@ -33,16 +36,11 @@ public class PerfilFragment extends Fragment {
         fab_editar_perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mi_fragmento= new EditarPerfilFragment();
-//                ponerFragmento(mi_fragmento);
-//                getSupportActionBar().setTitle(item.getTitle());
+                    Intent intent = new Intent(getContext(), PerfilActivity.class);
+                    startActivity(intent);
+
             }
         });
     }
-//    private void ponerFragmento(Fragment mi_fragmento) {
-//        getSupportFragmentManager()
-//                .beginTransaction()
-//                .replace(R.id.contenedor,mi_fragmento)
-//                .commit();
-//    }
+
 }
