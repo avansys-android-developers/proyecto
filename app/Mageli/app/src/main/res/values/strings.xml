@@ -76,7 +76,7 @@
     <string name="masculino">Masculino</string>
     <string name="femenino">Femenino</string>
     <string name="fecha_nacimiento">Fecha de nacimiento</string>
-    <string name="si_numero_hi">Se mi Número de Historia Clínico</string>
+    <string name="si_numero_hi">Si se el número de Historia Clínica</string>
     <string name="btn_perfil">Guardar cambios</string>
 
 </resources>

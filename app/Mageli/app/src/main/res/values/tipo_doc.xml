@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="tipo_documento">
+        <item>Selecciona tipo de documento</item>
+        <item>DNI</item>
+        <item>Carnet de Extenjero</item>
+        <item>Pasaporte</item>
+        <item>Licencia</item>
+    </array>
+</resources>
