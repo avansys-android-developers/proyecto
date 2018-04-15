@@ -22,6 +22,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/perfil_nombre"
                     android:text="@string/nombre_usuario"
                     android:textAlignment="center"
                     android:textColor="@color/icono"
@@ -30,6 +31,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/perfil_correo"
                     android:text="@string/correo_usuario"
                     android:textAlignment="center"
                     android:textColor="@color/icono"
@@ -116,6 +118,7 @@
                                                android:gravity="center"
                                                android:padding="5dp"
                                                android:text="999 999 999"
+                                               android:id="@+id/pefil_telefono"
                                                android:textColor="@color/secondario_text" />
                                        </LinearLayout>
                                    </LinearLayout>
@@ -158,6 +161,7 @@
                                                android:layout_height="wrap_content"
                                                android:gravity="center"
                                                android:padding="5dp"
+                                               android:id="@+id/perfil_direccion"
                                                android:text="Av Argentina 456"
                                                android:textColor="@color/secondario_text" />
                                        </LinearLayout>
@@ -220,6 +224,7 @@
                                                android:gravity="center"
                                                android:padding="5dp"
                                                android:text="9865 5823"
+                                               android:id="@+id/perfil_numero_doc"
                                                android:textColor="@color/secondario_text" />
                                        </LinearLayout>
                                    </LinearLayout>
@@ -263,6 +268,7 @@
                                                android:gravity="center"
                                                android:padding="5dp"
                                                android:text="FJJHOI"
+                                               android:id="@+id/perfil_nhc"
                                                android:textColor="@color/secondario_text" />
                                        </LinearLayout>
                                    </LinearLayout>
@@ -320,6 +326,7 @@
                                                android:gravity="center"
                                                android:padding="5dp"
                                                android:text="12/12/2018"
+                                               android:id="@+id/perfil_fecha_nac"
                                                android:textColor="@color/secondario_text" />
                                        </LinearLayout>
                                    </LinearLayout>
@@ -361,6 +368,7 @@
                                                android:gravity="center"
                                                android:padding="5dp"
                                                android:text="Masculino"
+                                               android:id="@+id/perfil_genero"
                                                android:textColor="@color/secondario_text" />
                                        </LinearLayout>
                                    </LinearLayout>

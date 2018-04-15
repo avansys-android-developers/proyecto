@@ -12,6 +12,7 @@ public class  Persona {
     private String telefono;
     private String correo;
     private boolean genero;
+    private int tipo_doc;
     private Date fecha_nacimiento;
     private Date fecha_registro;
     private boolean estado;
@@ -22,7 +23,7 @@ public class  Persona {
         super();
     }
 
-    public Persona(String id, String nombre, String apellidos, String numero_documento, String numero_hc, String direccion, String telefono, String correo, boolean genero, Date fecha_nacimiento, Date fecha_registro, boolean estado, int tipo_persona, String especialidad) {
+    public Persona(String id, String nombre, String apellidos, String numero_documento, String numero_hc, String direccion, String telefono, String correo, boolean genero, int tipo_doc, Date fecha_nacimiento, Date fecha_registro, boolean estado, int tipo_persona, String especialidad) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -32,6 +33,7 @@ public class  Persona {
         this.telefono = telefono;
         this.correo = correo;
         this.genero = genero;
+        this.tipo_doc = tipo_doc;
         this.fecha_nacimiento = fecha_nacimiento;
         this.fecha_registro = fecha_registro;
         this.estado = estado;
@@ -111,6 +113,14 @@ public class  Persona {
         this.genero = genero;
     }
 
+    public int getTipo_doc() {
+        return tipo_doc;
+    }
+
+    public void setTipo_doc(int tipo_doc) {
+        this.tipo_doc = tipo_doc;
+    }
+
     public Date getFecha_nacimiento() {
         return fecha_nacimiento;
     }
@@ -150,6 +160,4 @@ public class  Persona {
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
-
-
 }

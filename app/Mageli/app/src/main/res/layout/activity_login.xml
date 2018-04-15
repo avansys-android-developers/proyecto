@@ -71,8 +71,7 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
                 android:layout_marginTop="@dimen/margenAriba_botom"
-                android:background="@color/colorPrimary"
-                android:backgroundTint="@color/celeste_oscuro"
+                android:background="@color/celeste_oscuro"
                 android:text="@string/iniciar"
                 android:textAllCaps="false"
                 android:textColor="@color/icono" />

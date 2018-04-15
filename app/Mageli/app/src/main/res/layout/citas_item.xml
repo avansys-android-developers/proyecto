@@ -47,17 +47,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/btn_cancelar_cita"
-                    android:background="@drawable/pediatra"/>
+                    android:background="@drawable/editar_rosa"/>
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/btn_editar_cita"
-                    android:background="@drawable/pediatra"/>
+                    android:background="@drawable/cancelar_rosa"
+                    android:layout_marginStart="@dimen/pading"
+                    android:layout_marginEnd="@dimen/pading"/>
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/btn_eliminar_cita"
-                    android:background="@drawable/pediatra"/>
+                    android:background="@drawable/eliminar_rosa"/>
             </LinearLayout>
         </LinearLayout>
         <View

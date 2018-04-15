@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.PerfilActivity">
-    <include layout="@layout/mi_toobar" android:id="@+id/toolbar"/>
+    tools:context=".activity.CitaActivity">
+    <include layout="@layout/mi_toobar" android:id="@+id/toolbar_cita"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar">
+        android:layout_below="@+id/toolbar_cita">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,9 +25,8 @@
                     android:drawablePadding="5dp"
                     android:drawableStart="@drawable/pediatra"
                     android:drawableTint="@color/secondario_text"
-                    android:hint="@string/nombre"
-                    android:inputType="textPersonName"
-                    android:id="@+id/txt_nombre"/>
+                    android:hint="Asunto cita"
+                    android:inputType="textPersonName" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -39,8 +39,7 @@
                     android:drawableStart="@drawable/pacientes"
                     android:drawableTint="@color/secondario_text"
                     android:hint="@string/apellidos"
-                    android:inputType="textPersonName"
-                    android:id="@+id/txt_apellidos"/>
+                    android:inputType="textPersonName" />
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -50,8 +49,7 @@
                     android:layout_height="wrap_content"
                     android:entries="@array/tipo_documento"
                     android:layout_marginTop="@dimen/padingTopBotom"
-                    android:layout_marginBottom="@dimen/padingTopBotom"
-                    android:id="@+id/sp_tipo_doc">
+                    android:layout_marginBottom="@dimen/padingTopBotom">
                 </Spinner>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
@@ -64,14 +62,13 @@
                     android:drawableStart="@drawable/card"
                     android:drawableTint="@color/secondario_text"
                     android:hint="@string/numero_documento"
-                    android:inputType="number"
-                    android:id="@+id/txt_numero_doc"/>
+                    android:inputType="number" />
             </android.support.design.widget.TextInputLayout>
             <Switch
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/pading"
-                android:id="@+id/sw_numero_hc"
+                android:id="@+id/sw_numero_hi"
                 android:text="@string/si_numero_hi"
                 android:textAlignment="center"
                 android:textColor="@color/secondario_text" />
@@ -87,8 +84,7 @@
                     android:drawableStart="@drawable/card"
                     android:drawableTint="@color/secondario_text"
                     android:hint="@string/numero_hc"
-                    android:inputType="number"
-                    android:id="@+id/txt_num_hc"/>
+                    android:inputType="number" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -102,8 +98,7 @@
                     android:drawableStart="@drawable/casa"
                     android:drawableTint="@color/secondario_text"
                     android:hint="@string/direccion"
-                    android:inputType="textPostalAddress"
-                    android:id="@+id/txt_direccion"/>
+                    android:inputType="textPostalAddress" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -117,8 +112,7 @@
                     android:drawableStart="@drawable/telefono"
                     android:drawableTint="@color/secondario_text"
                     android:hint="@string/telefono"
-                    android:inputType="phone"
-                    android:id="@+id/txt_telefono"/>
+                    android:inputType="phone" />
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -131,8 +125,7 @@
                     android:drawableStart="@drawable/calendario"
                     android:drawableTint="@color/secondario_text"
                     android:hint="@string/fecha_nacimiento"
-                    android:inputType="date"
-                    android:id="@+id/txt_fecha_nac"/>
+                    android:inputType="date" />
             </android.support.design.widget.TextInputLayout>
             <RadioGroup
                 android:layout_width="match_parent"
@@ -146,17 +139,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/pading"
-                    android:text="@string/masculino"
-                    android:id="@+id/masculino"/>
+                    android:text="@string/masculino" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/femenino"
-                    android:id="@+id/femenino"/>
+                    android:text="@string/femenino" />
             </RadioGroup>
             <Button
-                android:id="@+id/btn_perfil"
+                android:id="@+id/btn_cita"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/padingTopBotom"
@@ -167,4 +158,5 @@
                 android:layout_marginBottom="@dimen/padingTopBotom"/>
         </LinearLayout>
     </ScrollView>
+
 </RelativeLayout>
