@@ -45,11 +45,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        if (!compruebaConexion(this)){
-            Toast.makeText(LoginActivity.this, R.string.error_conexion_internet,Toast.LENGTH_LONG).show();
-            finish();
-        }
+        
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
