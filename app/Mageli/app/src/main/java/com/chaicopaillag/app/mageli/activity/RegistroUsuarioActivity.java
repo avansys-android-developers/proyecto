@@ -1,11 +1,10 @@
-package com.chaicopaillag.app.mageli.activity;
+package com.chaicopaillag.app.mageli.Activity;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,10 +23,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegistroUsuarioActivity extends AppCompatActivity {
-    EditText txt_correo,txt_contrasenia,getTxt_contraseniabiz;
-    Button btn_registro;
-    TextView btnIrlogin;
-    FirebaseAuth firebase_autent;
+    private EditText txt_correo,txt_contrasenia,getTxt_contraseniabiz;
+    private Button btn_registro;
+    private TextView btnIrlogin;
+    private FirebaseAuth firebase_autent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,12 +51,10 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
         btn_registro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               RegistrarUsuario();
+                RegistrarUsuario();
             }
         });
-
     }
-
     private void RegresarLogin() {
         Intent intent = new Intent(RegistroUsuarioActivity.this,LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -103,7 +100,7 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
                         VerificarCorreo();
                         RegresarLogin();
                     }else{
-                        Toast.makeText(RegistroUsuarioActivity.this,R.string.registro_error,Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegistroUsuarioActivity.this,R.string.registro_error, Toast.LENGTH_LONG).show();
                     }
                 }
             });

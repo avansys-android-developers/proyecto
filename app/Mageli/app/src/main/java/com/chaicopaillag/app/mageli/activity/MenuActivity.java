@@ -1,4 +1,4 @@
-package com.chaicopaillag.app.mageli.activity;
+package com.chaicopaillag.app.mageli.Activity;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -18,12 +18,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.chaicopaillag.app.mageli.Fragmento.CitasFragment;
+import com.chaicopaillag.app.mageli.Fragmento.ConsultasFragment;
+import com.chaicopaillag.app.mageli.Fragmento.CuentasFragment;
+import com.chaicopaillag.app.mageli.Fragmento.InicioFragment;
+import com.chaicopaillag.app.mageli.Fragmento.PerfilFragment;
 import com.chaicopaillag.app.mageli.R;
-import com.chaicopaillag.app.mageli.frame.CitasFragment;
-import com.chaicopaillag.app.mageli.frame.ConsultasFragment;
-import com.chaicopaillag.app.mageli.frame.CuentaFragment;
-import com.chaicopaillag.app.mageli.frame.InicioFragment;
-import com.chaicopaillag.app.mageli.frame.PerfilFragment;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -37,29 +37,27 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
     private GoogleApiClient googleApiClient;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
-    NavigationView menu_slide;
-    DrawerLayout drawer;
-    ActionBarDrawerToggle toggle;
-    TextView nombreUser,correoUser;
-    ImageView imgUsuario;
-    View nav_cabecera;
+    private NavigationView menu_slide;
+    private DrawerLayout drawer;
+    private ActionBarDrawerToggle toggle;
+    private TextView nombreUser,correoUser;
+    private ImageView imgUsuario;
+    private View nav_cabecera;
+    private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        inicializar_servicios();
+        inicializar_controles();
+
+    }
+
+    private void inicializar_servicios() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-
-        googleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this, (GoogleApiClient.OnConnectionFailedListener) this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
-
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.contenedor_menu);
 
         toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.abrir_nav, R.string.cerar_nav);
@@ -71,7 +69,6 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
         nombreUser=(TextView) nav_cabecera.findViewById(R.id.nombreUsuario);
         correoUser=(TextView)nav_cabecera.findViewById(R.id.correoUsuario);
         imgUsuario=(ImageView)nav_cabecera.findViewById(R.id.imgUsuario);
-
         menu_slide.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -92,7 +89,7 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
                         transframe=true;
                         break;
                     case R.id.item_cuenta:
-                        mi_fragmento=new CuentaFragment();
+                        mi_fragmento=new CuentasFragment();
                         transframe=true;
                         break;
                     case R.id.item_salir:
@@ -103,7 +100,7 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
                     ponerFragmento(mi_fragmento);
                     getSupportActionBar().setTitle(item.getTitle());
                 }
-                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.contenedor_menu);
                 drawer.closeDrawer(GravityCompat.START);
                 return true;
             }
@@ -122,24 +119,32 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
             }
         };
     }
-
     private void ponerFragmento(Fragment mi_fragmento) {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.contenedor,mi_fragmento)
                 .commit();
     }
-    private void colocar_datos_usuario(FirebaseUser user) {
-            nombreUser.setText(user.getDisplayName());
-            correoUser.setText(user.getEmail());
-            if (user.getPhotoUrl()!=null){
-                Glide.with(getApplicationContext()).load(user.getPhotoUrl()).into(imgUsuario);
-            }
-    }
+    private void inicializar_controles() {
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
 
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this, (GoogleApiClient.OnConnectionFailedListener) this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+    }
+    private void colocar_datos_usuario(FirebaseUser user) {
+        nombreUser.setText(user.getDisplayName());
+        correoUser.setText(user.getEmail());
+        if (user.getPhotoUrl()!=null){
+            Glide.with(getApplicationContext()).load(user.getPhotoUrl()).into(imgUsuario);
+        }
+    }
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.contenedor_menu);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -149,7 +154,7 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
+        getMenuInflater().inflate(R.menu.menu_extra, menu);
         return true;
     }
 

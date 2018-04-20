@@ -4,378 +4,374 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".frame.PerfilFragment">
+    tools:context=".Fragmento.PerfilFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/bgcabeceranav"
+        android:id="@+id/barner_perfil">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_perfil"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="@dimen/pading"
+            android:src="@drawable/perfil"
+            app:civ_border_color="@color/icono"
+            app:civ_border_width="2dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/perfil_nombre"
+            android:textAlignment="center"
+            android:textColor="@color/icono"
+            android:textStyle="bold"
+            android:layout_marginBottom="5dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/perfil_correo"
+            android:textAlignment="center"
+            android:textColor="@color/icono"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_editar_perfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|start"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/editar_blanco"
+        android:visibility="invisible"
+        app:backgroundTint="@color/rosa"
+        app:elevation="10dp"
+        app:fabSize="auto"
+        app:layout_anchor="@+id/barner_perfil"
+        app:layout_anchorGravity="bottom|end" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="160dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:background="@drawable/bgcabeceranav"
-                android:id="@+id/barner_perfil">
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/perfil"
-                    app:civ_border_width="2dp"
-                    app:civ_border_color="@color/icono"
-                    android:layout_marginBottom="@dimen/pading"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/perfil_nombre"
-                    android:text="@string/nombre_usuario"
-                    android:textAlignment="center"
-                    android:textColor="@color/icono"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="5dp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/perfil_correo"
-                    android:text="@string/correo_usuario"
-                    android:textAlignment="center"
-                    android:textColor="@color/icono"
-                    android:textStyle="bold"/>
-            </LinearLayout>
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab_editar_perfil"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|start"
-                android:layout_margin="@dimen/fab_margin"
-                app:layout_anchor="@+id/barner_perfil"
-                app:layout_anchorGravity="bottom|end"
-                app:backgroundTint="@color/rosa"
-                app:fabSize="auto"
-                android:src="@drawable/editar_blanco"
-                />
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:orientation="vertical"
-               android:layout_marginTop="160dp">
+                android:orientation="vertical"
+                android:padding="@dimen/pading">
 
-               <ScrollView
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/pading">
 
-                   <LinearLayout
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:orientation="vertical"
-                       android:padding="@dimen/pading">
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground">
 
-                       <LinearLayout
-                           android:layout_width="match_parent"
-                           android:layout_height="match_parent"
-                           android:clipToPadding="false"
-                           android:gravity="center"
-                           android:orientation="vertical"
-                           android:padding="@dimen/pading">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
 
-                           <android.support.v7.widget.CardView
-                               android:layout_width="match_parent"
-                               android:layout_height="wrap_content"
-                               android:clickable="true"
-                               android:foreground="?android:attr/selectableItemBackground">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:paddingEnd="@dimen/pading"
+                                android:paddingStart="@dimen/pading">
 
-                               <LinearLayout
-                                   android:layout_width="match_parent"
-                                   android:layout_height="wrap_content"
-                                   android:gravity="center"
-                                   android:orientation="vertical">
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:src="@drawable/telefono_celeste" />
 
-                                   <LinearLayout
-                                       android:layout_width="match_parent"
-                                       android:layout_height="wrap_content"
-                                       android:gravity="center"
-                                       android:orientation="horizontal"
-                                       android:paddingEnd="@dimen/pading"
-                                       android:paddingStart="@dimen/pading">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/pading"
+                                    android:orientation="vertical">
 
-                                       <ImageView
-                                           android:layout_width="30dp"
-                                           android:layout_height="30dp"
-                                           android:src="@drawable/telefono_celeste" />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="10dp"
+                                        android:text="@string/telefono"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/primario_text" />
 
-                                       <LinearLayout
-                                           android:layout_width="match_parent"
-                                           android:layout_height="wrap_content"
-                                           android:layout_marginStart="@dimen/pading"
-                                           android:orientation="vertical">
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:padding="5dp"
+                                        android:id="@+id/pefil_telefono"
+                                        android:textColor="@color/secondario_text" />
+                                </LinearLayout>
+                            </LinearLayout>
 
-                                           <TextView
-                                               android:layout_width="match_parent"
-                                               android:layout_height="wrap_content"
-                                               android:layout_marginTop="10dp"
-                                               android:text="@string/telefono"
-                                               android:textAlignment="center"
-                                               android:textColor="@color/primario_text" />
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_margin="10dp"
+                                android:background="@color/linea" />
 
-                                           <TextView
-                                               android:layout_width="match_parent"
-                                               android:layout_height="wrap_content"
-                                               android:gravity="center"
-                                               android:padding="5dp"
-                                               android:text="999 999 999"
-                                               android:id="@+id/pefil_telefono"
-                                               android:textColor="@color/secondario_text" />
-                                       </LinearLayout>
-                                   </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:paddingEnd="@dimen/pading"
+                                android:paddingStart="@dimen/pading">
 
-                                   <View
-                                       android:layout_width="match_parent"
-                                       android:layout_height="1dp"
-                                       android:layout_margin="10dp"
-                                       android:background="@color/linea" />
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:src="@drawable/casa_celeste" />
 
-                                   <LinearLayout
-                                       android:layout_width="match_parent"
-                                       android:layout_height="wrap_content"
-                                       android:gravity="center"
-                                       android:orientation="horizontal"
-                                       android:paddingEnd="@dimen/pading"
-                                       android:paddingStart="@dimen/pading">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/pading"
+                                    android:orientation="vertical">
 
-                                       <ImageView
-                                           android:layout_width="30dp"
-                                           android:layout_height="30dp"
-                                           android:src="@drawable/casa_celeste" />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="10dp"
+                                        android:text="@string/direccion"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/primario_text" />
 
-                                       <LinearLayout
-                                           android:layout_width="match_parent"
-                                           android:layout_height="wrap_content"
-                                           android:layout_marginStart="@dimen/pading"
-                                           android:orientation="vertical">
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:padding="5dp"
+                                        android:id="@+id/perfil_direccion"
+                                        android:textColor="@color/secondario_text" />
+                                </LinearLayout>
+                            </LinearLayout>
 
-                                           <TextView
-                                               android:layout_width="match_parent"
-                                               android:layout_height="wrap_content"
-                                               android:layout_marginTop="10dp"
-                                               android:text="@string/direccion"
-                                               android:textAlignment="center"
-                                               android:textColor="@color/primario_text" />
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+                </LinearLayout>
 
-                                           <TextView
-                                               android:layout_width="match_parent"
-                                               android:layout_height="wrap_content"
-                                               android:gravity="center"
-                                               android:padding="5dp"
-                                               android:id="@+id/perfil_direccion"
-                                               android:text="Av Argentina 456"
-                                               android:textColor="@color/secondario_text" />
-                                       </LinearLayout>
-                                   </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/pading">
 
-                               </LinearLayout>
-                           </android.support.v7.widget.CardView>
-                       </LinearLayout>
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground">
 
-                       <LinearLayout
-                           android:layout_width="match_parent"
-                           android:layout_height="match_parent"
-                           android:clipToPadding="false"
-                           android:gravity="center"
-                           android:orientation="vertical"
-                           android:padding="@dimen/pading">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
 
-                           <android.support.v7.widget.CardView
-                               android:layout_width="match_parent"
-                               android:layout_height="wrap_content"
-                               android:clickable="true"
-                               android:foreground="?android:attr/selectableItemBackground">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:paddingEnd="@dimen/pading"
+                                android:paddingStart="@dimen/pading">
 
-                               <LinearLayout
-                                   android:layout_width="match_parent"
-                                   android:layout_height="wrap_content"
-                                   android:gravity="center"
-                                   android:orientation="vertical">
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:src="@drawable/card_celeste" />
 
-                                   <LinearLayout
-                                       android:layout_width="match_parent"
-                                       android:layout_height="wrap_content"
-                                       android:gravity="center"
-                                       android:orientation="horizontal"
-                                       android:paddingEnd="@dimen/pading"
-                                       android:paddingStart="@dimen/pading">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/pading"
+                                    android:orientation="vertical">
 
-                                       <ImageView
-                                           android:layout_width="30dp"
-                                           android:layout_height="30dp"
-                                           android:src="@drawable/card_celeste" />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="10dp"
+                                        android:text="@string/numero_documento"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/primario_text" />
 
-                                       <LinearLayout
-                                           android:layout_width="match_parent"
-                                           android:layout_height="wrap_content"
-                                           android:layout_marginStart="@dimen/pading"
-                                           android:orientation="vertical">
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:padding="5dp"
+                                        android:id="@+id/perfil_numero_doc"
+                                        android:textColor="@color/secondario_text" />
+                                </LinearLayout>
+                            </LinearLayout>
 
-                                           <TextView
-                                               android:layout_width="match_parent"
-                                               android:layout_height="wrap_content"
-                                               android:layout_marginTop="10dp"
-                                               android:text="@string/numero_documento"
-                                               android:textAlignment="center"
-                                               android:textColor="@color/primario_text" />
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_margin="10dp"
+                                android:background="@color/linea" />
 
-                                           <TextView
-                                               android:layout_width="match_parent"
-                                               android:layout_height="wrap_content"
-                                               android:gravity="center"
-                                               android:padding="5dp"
-                                               android:text="9865 5823"
-                                               android:id="@+id/perfil_numero_doc"
-                                               android:textColor="@color/secondario_text" />
-                                       </LinearLayout>
-                                   </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:paddingEnd="@dimen/pading"
+                                android:paddingStart="@dimen/pading">
 
-                                   <View
-                                       android:layout_width="match_parent"
-                                       android:layout_height="1dp"
-                                       android:layout_margin="10dp"
-                                       android:background="@color/linea" />
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:src="@drawable/card_celeste" />
 
-                                   <LinearLayout
-                                       android:layout_width="match_parent"
-                                       android:layout_height="wrap_content"
-                                       android:gravity="center"
-                                       android:orientation="horizontal"
-                                       android:paddingEnd="@dimen/pading"
-                                       android:paddingStart="@dimen/pading">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/pading"
+                                    android:orientation="vertical">
 
-                                       <ImageView
-                                           android:layout_width="30dp"
-                                           android:layout_height="30dp"
-                                           android:src="@drawable/card_celeste" />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="10dp"
+                                        android:text="@string/numero_hc"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/primario_text" />
 
-                                       <LinearLayout
-                                           android:layout_width="match_parent"
-                                           android:layout_height="wrap_content"
-                                           android:layout_marginStart="@dimen/pading"
-                                           android:orientation="vertical">
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:padding="5dp"
+                                        android:id="@+id/perfil_nhc"
+                                        android:textColor="@color/secondario_text" />
+                                </LinearLayout>
+                            </LinearLayout>
 
-                                           <TextView
-                                               android:layout_width="match_parent"
-                                               android:layout_height="wrap_content"
-                                               android:layout_marginTop="10dp"
-                                               android:text="@string/numero_hc"
-                                               android:textAlignment="center"
-                                               android:textColor="@color/primario_text" />
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/pading">
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground">
 
-                                           <TextView
-                                               android:layout_width="match_parent"
-                                               android:layout_height="wrap_content"
-                                               android:gravity="center"
-                                               android:padding="5dp"
-                                               android:text="FJJHOI"
-                                               android:id="@+id/perfil_nhc"
-                                               android:textColor="@color/secondario_text" />
-                                       </LinearLayout>
-                                   </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
 
-                               </LinearLayout>
-                           </android.support.v7.widget.CardView>
-                       </LinearLayout>
-                       <LinearLayout
-                           android:layout_width="match_parent"
-                           android:layout_height="match_parent"
-                           android:clipToPadding="false"
-                           android:gravity="center"
-                           android:orientation="vertical"
-                           android:padding="@dimen/pading">
-                           <android.support.v7.widget.CardView
-                               android:layout_width="match_parent"
-                               android:layout_height="wrap_content"
-                               android:clickable="true"
-                               android:foreground="?android:attr/selectableItemBackground">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:paddingEnd="@dimen/pading"
+                                android:paddingStart="@dimen/pading">
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:src="@drawable/calendario_celeste" />
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/pading"
+                                    android:orientation="vertical">
 
-                               <LinearLayout
-                                   android:layout_width="match_parent"
-                                   android:layout_height="wrap_content"
-                                   android:gravity="center"
-                                   android:orientation="vertical">
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="10dp"
+                                        android:text="@string/fecha_nacimiento"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/primario_text" />
 
-                                   <LinearLayout
-                                       android:layout_width="match_parent"
-                                       android:layout_height="wrap_content"
-                                       android:gravity="center"
-                                       android:orientation="horizontal"
-                                       android:paddingEnd="@dimen/pading"
-                                       android:paddingStart="@dimen/pading">
-                                       <ImageView
-                                           android:layout_width="30dp"
-                                           android:layout_height="30dp"
-                                           android:src="@drawable/calendario_celeste" />
-                                       <LinearLayout
-                                           android:layout_width="match_parent"
-                                           android:layout_height="wrap_content"
-                                           android:layout_marginStart="@dimen/pading"
-                                           android:orientation="vertical">
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:padding="5dp"
+                                        android:id="@+id/perfil_fecha_nac"
+                                        android:textColor="@color/secondario_text" />
+                                </LinearLayout>
+                            </LinearLayout>
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_margin="10dp"
+                                android:background="@color/linea" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:paddingEnd="@dimen/pading"
+                                android:paddingStart="@dimen/pading">
 
-                                           <TextView
-                                               android:layout_width="match_parent"
-                                               android:layout_height="wrap_content"
-                                               android:layout_marginTop="10dp"
-                                               android:text="@string/fecha_nacimiento"
-                                               android:textAlignment="center"
-                                               android:textColor="@color/primario_text" />
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:src="@drawable/genero_celeste" />
 
-                                           <TextView
-                                               android:layout_width="match_parent"
-                                               android:layout_height="wrap_content"
-                                               android:gravity="center"
-                                               android:padding="5dp"
-                                               android:text="12/12/2018"
-                                               android:id="@+id/perfil_fecha_nac"
-                                               android:textColor="@color/secondario_text" />
-                                       </LinearLayout>
-                                   </LinearLayout>
-                                   <View
-                                       android:layout_width="match_parent"
-                                       android:layout_height="1dp"
-                                       android:layout_margin="10dp"
-                                       android:background="@color/linea" />
-                                   <LinearLayout
-                                       android:layout_width="match_parent"
-                                       android:layout_height="wrap_content"
-                                       android:gravity="center"
-                                       android:orientation="horizontal"
-                                       android:paddingEnd="@dimen/pading"
-                                       android:paddingStart="@dimen/pading">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/pading"
+                                    android:orientation="vertical">
 
-                                       <ImageView
-                                           android:layout_width="30dp"
-                                           android:layout_height="30dp"
-                                           android:src="@drawable/genero_celeste" />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="10dp"
+                                        android:text="@string/genero"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/primario_text" />
 
-                                       <LinearLayout
-                                           android:layout_width="match_parent"
-                                           android:layout_height="wrap_content"
-                                           android:layout_marginStart="@dimen/pading"
-                                           android:orientation="vertical">
-
-                                           <TextView
-                                               android:layout_width="match_parent"
-                                               android:layout_height="wrap_content"
-                                               android:layout_marginTop="10dp"
-                                               android:text="@string/genero"
-                                               android:textAlignment="center"
-                                               android:textColor="@color/primario_text" />
-
-                                           <TextView
-                                               android:layout_width="match_parent"
-                                               android:layout_height="wrap_content"
-                                               android:gravity="center"
-                                               android:padding="5dp"
-                                               android:text="Masculino"
-                                               android:id="@+id/perfil_genero"
-                                               android:textColor="@color/secondario_text" />
-                                       </LinearLayout>
-                                   </LinearLayout>
-                               </LinearLayout>
-                           </android.support.v7.widget.CardView>
-                       </LinearLayout>
-                   </LinearLayout>
-               </ScrollView>
-           </LinearLayout>
-       </android.support.design.widget.CoordinatorLayout>
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:padding="5dp"
+                                        android:id="@+id/perfil_genero"
+                                        android:textColor="@color/secondario_text" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

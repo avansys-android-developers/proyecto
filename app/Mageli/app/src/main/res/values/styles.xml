@@ -1,9 +1,15 @@
 <resources>
-    <!-- Base application theme. -->
+
+    <!-- Thema Base de la App. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
+        <!-- colores de la App. -->
         <item name="colorPrimary">@color/celeste</item>
         <item name="colorPrimaryDark">@color/celeste_oscuro</item>
-        <item name="colorAccent">@color/celeste</item>
+        <item name="colorAccent">@color/rosa</item>
+    </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 </resources>

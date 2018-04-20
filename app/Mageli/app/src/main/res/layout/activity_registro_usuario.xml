@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.chaicopaillag.app.mageli.activity.RegistroUsuarioActivity">
+    tools:context=".Activity.RegistroUsuarioActivity">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -34,8 +34,8 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/correo"
                     android:drawableStart="@drawable/correo"
-                    android:drawableTint="@color/secondario_text"
-                    android:drawablePadding="5dp"/>
+                    android:drawablePadding="5dp"
+                    android:inputType="textEmailAddress"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -50,7 +50,6 @@
                     android:hint="@string/contrasenia"
                     android:inputType="textPassword"
                     android:drawableStart="@drawable/candado"
-                    android:drawableTint="@color/secondario_text"
                     android:drawablePadding="5dp"/>
             </android.support.design.widget.TextInputLayout>
 
@@ -66,7 +65,6 @@
                     android:hint="@string/contraseniabiz"
                     android:inputType="textPassword"
                     android:drawableStart="@drawable/llave"
-                    android:drawableTint="@color/secondario_text"
                     android:drawablePadding="5dp"/>
             </android.support.design.widget.TextInputLayout>
 
@@ -114,4 +112,5 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
 </LinearLayout>

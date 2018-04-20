@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/drawer_layout"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/contenedor_menu"
+    tools:context=".Activity.MenuActivity">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
         <include android:id="@+id/toolbar"
-            layout="@layout/mi_toobar"/>
+            layout="@layout/mi_toolbar"/>
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -23,6 +24,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_menu"
+        app:headerLayout="@layout/menu_cabezera"
         app:menu="@menu/menu_opciones" />
 </android.support.v4.widget.DrawerLayout>

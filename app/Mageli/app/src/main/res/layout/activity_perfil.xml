@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.PerfilActivity">
-    <include layout="@layout/mi_toobar" android:id="@+id/toolbar"/>
+    tools:context=".Activity.PerfilActivity">
+    <include layout="@layout/mi_toolbar" android:id="@+id/toolbar"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -67,19 +68,10 @@
                     android:inputType="number"
                     android:id="@+id/txt_numero_doc"/>
             </android.support.design.widget.TextInputLayout>
-            <Switch
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/pading"
-                android:id="@+id/sw_numero_hc"
-                android:text="@string/si_numero_hi"
-                android:textAlignment="center"
-                android:textColor="@color/secondario_text" />
-
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
+                android:layout_height="wrap_content"
+                android:id="@+id/input_num_hc">
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

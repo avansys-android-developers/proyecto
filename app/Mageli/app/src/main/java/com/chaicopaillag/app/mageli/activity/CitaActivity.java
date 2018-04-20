@@ -1,4 +1,4 @@
-package com.chaicopaillag.app.mageli.activity;
+package com.chaicopaillag.app.mageli.Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,12 +13,15 @@ public class CitaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cita);
+        inicializar_controles();
+    }
 
-         toolbar = (Toolbar) findViewById(R.id.toolbar_cita);
+    private void inicializar_controles() {
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar_cita);
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.egresar_atras));
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.regresar_atras));
         getSupportActionBar().setTitle(getString(R.string.citas));
-
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,6 +30,5 @@ public class CitaActivity extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 }

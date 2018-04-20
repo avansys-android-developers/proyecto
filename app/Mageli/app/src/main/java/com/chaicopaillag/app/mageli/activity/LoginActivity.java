@@ -1,9 +1,6 @@
-package com.chaicopaillag.app.mageli.activity;
+package com.chaicopaillag.app.mageli.Activity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,20 +29,20 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
-    EditText txt_correo,txt_contrasenia;
-    Button btn_iniciar;
-    TextView btn_registro,btn_restablecer_contra;
-    SignInButton btn_google;
+public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
+    private EditText txt_correo,txt_contrasenia;
+    private Button btn_iniciar;
+    private TextView btn_registro,btn_restablecer_contra;
+    private SignInButton btn_google;
     private GoogleApiClient googleApiClient;
     public static final int SIGN_IN_CODE = 9001;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
     @Override
-    protected void onCreate(final Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -221,22 +218,5 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Toast.makeText(this, R.string.error_conexion_google, Toast.LENGTH_SHORT).show();
-    }
-    public static boolean compruebaConexion(Context context) {
-
-        boolean connected = false;
-
-        ConnectivityManager connec = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        // Recupera todas las redes (tanto móviles como wifi)
-        NetworkInfo[] redes = connec.getAllNetworkInfo();
-
-        for (int i = 0; i < redes.length; i++) {
-            // Si alguna red tiene conexión, se devuelve true
-            if (redes[i].getState() == NetworkInfo.State.CONNECTED) {
-                connected = true;
-            }
-        }
-        return connected;
     }
 }

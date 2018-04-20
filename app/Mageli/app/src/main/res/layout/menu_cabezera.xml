@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="@dimen/altura_nav_cabezera"
+    android:gravity="bottom"
+    android:paddingBottom="@dimen/margen_vertical_nav_cab"
+    android:paddingLeft="@dimen/margen_horizontal_nav_cab"
+    android:paddingRight="@dimen/margen_horizontal_nav_cab"
+    android:paddingTop="@dimen/margen_vertical_nav_cab"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:background="@drawable/bgcabeceranav">
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/imgUsuario"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/perfil"
+        app:civ_border_width="2dp"
+        app:civ_border_color="@color/icono"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/nav_cab_vertical_espacio"
+        android:text="@string/nombre_usuario"
+        android:id="@+id/nombreUsuario"
+        android:textAlignment="center"
+        android:textColor="@color/icono"
+        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    <TextView
+        android:id="@+id/correoUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="@color/icono"
+        android:text="@string/correo_usuario" />
+
+</LinearLayout>

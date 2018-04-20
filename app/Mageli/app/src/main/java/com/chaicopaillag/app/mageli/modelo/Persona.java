@@ -1,7 +1,8 @@
-package com.chaicopaillag.app.mageli.modelo;
+package com.chaicopaillag.app.mageli.Modelo;
 
-import java.util.Date;
+import com.google.firebase.database.IgnoreExtraProperties;
 
+@IgnoreExtraProperties
 public class  Persona {
     private String id;
     private String nombre;
@@ -12,18 +13,17 @@ public class  Persona {
     private String telefono;
     private String correo;
     private boolean genero;
-    private int tipo_doc;
-    private Date fecha_nacimiento;
-    private Date fecha_registro;
+    private String tipo_doc;
+    private String fecha_nacimiento;
+    private String fecha_registro;
     private boolean estado;
     private int tipo_persona;
     private String especialidad;
 
     public Persona() {
-        super();
     }
 
-    public Persona(String id, String nombre, String apellidos, String numero_documento, String numero_hc, String direccion, String telefono, String correo, boolean genero, int tipo_doc, Date fecha_nacimiento, Date fecha_registro, boolean estado, int tipo_persona, String especialidad) {
+    public Persona(String id, String nombre, String apellidos, String numero_documento, String numero_hc, String direccion, String telefono, String correo, boolean genero, String tipo_doc, String fecha_nacimiento, String fecha_registro, boolean estado, int tipo_persona, String especialidad) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -113,27 +113,27 @@ public class  Persona {
         this.genero = genero;
     }
 
-    public int getTipo_doc() {
+    public String getTipo_doc() {
         return tipo_doc;
     }
 
-    public void setTipo_doc(int tipo_doc) {
+    public void setTipo_doc(String tipo_doc) {
         this.tipo_doc = tipo_doc;
     }
 
-    public Date getFecha_nacimiento() {
+    public String getFecha_nacimiento() {
         return fecha_nacimiento;
     }
 
-    public void setFecha_nacimiento(Date fecha_nacimiento) {
+    public void setFecha_nacimiento(String fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
-    public Date getFecha_registro() {
+    public String getFecha_registro() {
         return fecha_registro;
     }
 
-    public void setFecha_registro(Date fecha_registro) {
+    public void setFecha_registro(String fecha_registro) {
         this.fecha_registro = fecha_registro;
     }
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--menu-->
+    <dimen name="margen_horizontal_nav_cab">16dp</dimen>
+    <dimen name="margen_vertical_nav_cab">16dp</dimen>
+    <dimen name="nav_cab_vertical_espacio">8dp</dimen>
+    <dimen name="altura_nav_cabezera">176dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <!--layaut-->
+    <dimen name="margenDerechoIzquierdo">30dp</dimen>
+    <dimen name="padingTopBotom">10dp</dimen>
+    <dimen name="pading">10dp</dimen>
+    <dimen name="marginbotom">20dp</dimen>
+    <dimen name="padingicono">5dp</dimen>
+    <dimen name="margenAriba_botom">30dp</dimen>
+</resources>
