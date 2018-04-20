@@ -16,6 +16,7 @@
     <string name="olvide_contrasenia">Olvide mi contraseña</string>
     <string name="restablecer_contrasia">Restablecer contraseña</string>
     <string name="restablecer_contrasia_mensaje">Se envio un link a tu correo para restablecer la contraseña</string>
+    <string name="verificar_sesion">Iniciando sesióm...</string>
     <!--error login firebase-->
     <string name="error_login_firebase">No se ha podido iniciar sesión en Mageli</string>
     <string name="error_cerrar_sesion">No se ha podido cerrar sesión en Mageli</string>
@@ -89,4 +90,5 @@
     <string name="si">Si</string>
     <string name="aceptar">Aceptar</string>
     <string name="cancelar">Cancelar</string>
+    <string name="carga_perfil">Cargando perfil espere...</string>
 </resources>

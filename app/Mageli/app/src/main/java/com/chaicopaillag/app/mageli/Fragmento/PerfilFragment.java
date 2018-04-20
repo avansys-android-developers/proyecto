@@ -1,4 +1,6 @@
 package com.chaicopaillag.app.mageli.Fragmento;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,11 +20,11 @@ import com.chaicopaillag.app.mageli.Modelo.Persona;
 import com.chaicopaillag.app.mageli.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class PerfilFragment extends Fragment {
     private FloatingActionButton fab_editar_perf;
@@ -39,6 +41,7 @@ public class PerfilFragment extends Fragment {
             txtperfil_fecha_nac,
             txtperfil_genero;
     private  String uid;
+    private ProgressDialog progress_carga;
     public PerfilFragment() {
     }
     @Override
@@ -50,18 +53,27 @@ public class PerfilFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        inicializar_servicios();
         inicializar_controles();
+        inicializar_servicios();
+        progres_carga_datos();
+    }
+
+    private void progres_carga_datos() {
+        progress_carga=new ProgressDialog(getContext());
+        progress_carga.setMessage(getString(R.string.carga_perfil));
+        progress_carga.setIndeterminate(true);
+        progress_carga.setCanceledOnTouchOutside(false);
+        progress_carga.show();
     }
 
     private void inicializar_servicios() {
         auth=FirebaseAuth.getInstance();
         user=auth.getCurrentUser();
         uid=user.getUid();
-        firebase_bd= FirebaseDatabase.getInstance().getReference("Persona");
-        firebase_bd.addChildEventListener(new ChildEventListener() {
+        firebase_bd= FirebaseDatabase.getInstance().getReference("Persona").child(uid);
+        firebase_bd.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 Persona persona= dataSnapshot.getValue(Persona.class);
                 if (persona!=null){
                     llenar_datos(persona);
@@ -73,30 +85,13 @@ public class PerfilFragment extends Fragment {
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                Persona persona= dataSnapshot.getValue(Persona.class);
-                if (persona!=null){
-                    llenar_datos(persona);
-                }else {
-                    ir_perfil();
-                }
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(getContext(), getString(R.string.cancelar_leer_datos_perfil), Toast.LENGTH_LONG).show();
+
             }
         });
+        if (user.getPhotoUrl()!=null){
+            Glide.with(getContext()).load(user.getPhotoUrl()).into(imgUsuario);
+        }
     }
 
     private void inicializar_controles() {
@@ -118,7 +113,6 @@ public class PerfilFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
     }
 
     private void llenar_datos(Persona persona) {
@@ -134,9 +128,7 @@ public class PerfilFragment extends Fragment {
         }else {
             txtperfil_genero.setText("Femenino");
         }
-        if (user.getPhotoUrl()!=null){
-            Glide.with(getContext()).load(user.getPhotoUrl()).into(imgUsuario);
-        }
+        progress_carga.dismiss();
     }
     private void ir_perfil(){
         Intent intent = new Intent(getContext(), PerfilActivity.class);

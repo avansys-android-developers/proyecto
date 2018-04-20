@@ -1,6 +1,10 @@
 package com.chaicopaillag.app.mageli.Modelo;
 
+import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @IgnoreExtraProperties
 public class  Persona {
@@ -159,5 +163,26 @@ public class  Persona {
 
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
+    }
+
+    @Exclude
+    public Map<String,Object> miMap(){
+        HashMap<String ,Object>Resultado=new HashMap<>();
+        Resultado.put("id",id);
+        Resultado.put("nombre",nombre);
+        Resultado.put("apellidos",apellidos);
+        Resultado.put("numero_documento",numero_documento);
+        Resultado.put("numero_hc",numero_hc);
+        Resultado.put("direccion",direccion);
+        Resultado.put("telefono",telefono);
+        Resultado.put("correo",correo);
+        Resultado.put("genero",genero);
+        Resultado.put("tipo_doc",tipo_doc);
+        Resultado.put("fecha_nacimiento",fecha_nacimiento);
+        Resultado.put("fecha_registro",fecha_registro);
+        Resultado.put("estado",estado);
+        Resultado.put("tipo_persona",tipo_persona);
+        Resultado.put("especialidad",especialidad);
+        return Resultado;
     }
 }
