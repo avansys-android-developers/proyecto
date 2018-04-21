@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -166,6 +167,7 @@ public class PerfilActivity extends AppCompatActivity {
     }
 
     private void modificar_datos() {
+        Validar_campos();
         Persona persona;
         String id,nombre,apellidos,numero_documento,numero_hc,direccion, telefono,correo,fecha_nacimient;
         boolean genero;
@@ -212,10 +214,10 @@ public class PerfilActivity extends AppCompatActivity {
             Act_Persona_especifico.put("/estado",persona.isEstado());
             Act_Persona_especifico.put("/tipo_persona",persona.getTipo_persona());
             Act_Persona_especifico.put("/especialidad",persona.getEspecialidad());
-            firebase_ref.child(id_ui).updateChildren(Act_Persona_especifico);
+//            firebase_ref.child(id_ui).updateChildren(Act_Persona_especifico);
             Toast.makeText(PerfilActivity.this,R.string.perfil_ok,Toast.LENGTH_LONG).show();
-            onBackPressed();
-            finish();
+            //onBackPressed();
+           // finish();
         }catch (Exception e){
             System.out.print(e.getMessage());
             Toast.makeText(PerfilActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
@@ -237,6 +239,7 @@ public class PerfilActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 txt_numero_hc.setText("...");
+                txt_direccion.isFocused();
             }
         });
         alert_hc.show();
@@ -259,6 +262,7 @@ public class PerfilActivity extends AppCompatActivity {
     }
 
     private void guardar_datos() {
+        Validar_campos();
         Persona persona;
         String id,nombre,apellidos,numero_documento,numero_hc,direccion, telefono,correo,fecha_nacimient;
         boolean genero;
@@ -271,9 +275,9 @@ public class PerfilActivity extends AppCompatActivity {
         direccion=txt_direccion.getText().toString();
         telefono=txt_telefono.getText().toString();
         correo=correo_ui;
-        especialidad="Pediatra";
+        especialidad="...";
         estado=true;
-        tipo_persona=1;
+        tipo_persona=2;
         if (generoMasculino.isChecked()){
             genero=true;
         }else {
@@ -287,13 +291,50 @@ public class PerfilActivity extends AppCompatActivity {
                     numero_hc,direccion,telefono,correo,
                     genero,tipo_doc,fecha_nacimient,fecha_registro+"",
                     estado,tipo_persona,especialidad);
-            firebase_ref.child(id_ui).setValue(persona);
+//            firebase_ref.child(id_ui).setValue(persona);
             Toast.makeText(PerfilActivity.this,R.string.perfil_ok,Toast.LENGTH_LONG).show();
-            onBackPressed();
-            finish();
+            //onBackPressed();
+            //finish();
         }catch (Exception e){
             System.out.print(e.getMessage());
             Toast.makeText(PerfilActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void Validar_campos() {
+        String nombre,apellidos,numero_documento,numero_hc,direccion, telefono,fecha_nacimient;
+        nombre=txt_nombre.getText().toString();
+        apellidos=txt_apellidos.getText().toString();
+        numero_documento=txt_numero_doc.getText().toString();
+        numero_hc=txt_numero_hc.getText().toString();
+        direccion=txt_direccion.getText().toString();
+        telefono=txt_telefono.getText().toString();
+        fecha_nacimient= fecha_nac.getText().toString();
+
+        if (TextUtils.isEmpty(nombre) || nombre.length()<2){
+           txt_nombre.setError(getString(R.string.error_nombre));
+           return;
+        }else  if (TextUtils.isEmpty(apellidos)||apellidos.length()<4){
+            txt_apellidos.setError(getString(R.string.error_apellidos));
+            return;
+        }else  if (TextUtils.isEmpty(tipo_doc)|| tipo_doc==null){
+            Toast.makeText(PerfilActivity.this, R.string.error_tipo_doc, Toast.LENGTH_LONG).show();
+            return;
+        }else  if (TextUtils.isEmpty(numero_documento)||numero_documento.length()<8){
+            txt_numero_doc.setError(getString(R.string.error_numero_documento));
+            return;
+        }else  if (TextUtils.isEmpty(numero_hc)||numero_hc.length()<3){
+            txt_numero_hc.setError(getString(R.string.error_numero_hc));
+            return;
+        }else  if (TextUtils.isEmpty(direccion)||direccion.length()<4){
+            txt_direccion.setError(getString(R.string.error_direccion));
+            return;
+        }else  if (TextUtils.isEmpty(telefono)||telefono.length()<9||telefono.length()>9){
+            txt_telefono.setError(getString(R.string.telefono));
+            return;
+        }else  if (TextUtils.isEmpty(fecha_nacimient)||fecha_nacimient.length()<10){
+            txt_numero_hc.setError(getString(R.string.error_fecha_nacimiento));
+            return;
         }
     }
 }

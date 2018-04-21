@@ -78,10 +78,17 @@
     <string name="femenino">Femenino</string>
     <string name="fecha_nacimiento">Fecha de nacimiento</string>
     <string name="btn_perfil">Guardar cambios</string>
-    <string name="cancelar_leer_datos_perfil">Ud. cancelo la lectura de su perfil</string>
+    <string name="cancelar_leer_datos_perfil">Ud. canceló la lectura de su perfil</string>
     <string name="actualiza_perfil">Por favor actulize tus datos para continuar usando Mageli</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--validacion perfil-->
+    <string name="error_nombre">Ingrese un nombre válido</string>
+    <string name="error_apellidos">Ingrese sus apellidos</string>
+    <string name="error_numero_documento">Ingrese un número de identidad</string>
+    <string name="error_telefono">Ingrese un numero de célular válido</string>
+    <string name="error_numero_hc">Ingrese un N° historial clínico válido</string>
+    <string name="error_direccion">Ingrese su dirección</string>
+    <string name="error_fecha_nacimiento">Ingrese un fecha de nacimiento válido</string>
+    <string name="error_tipo_doc">Seleccione un tipo de documento</string>
     <!--Alrte dialogo-->
     <string name="numero_hc_titulo">Número de Historial Clínico</string>
     <string name="mensaje_num_hc">Si sé el Número de mi Historia Clinica</string>
@@ -90,5 +97,8 @@
     <string name="si">Si</string>
     <string name="aceptar">Aceptar</string>
     <string name="cancelar">Cancelar</string>
-    <string name="carga_perfil">Cargando perfil espere...</string>
+    <string name="carga_perfil">Cargando tu perfil espere...</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class PerfilFragment extends Fragment {
+    private LinearLayout contenedor_perf;
     private FloatingActionButton fab_editar_perf;
     private FirebaseAuth auth;
     private FirebaseUser user;
@@ -77,13 +79,12 @@ public class PerfilFragment extends Fragment {
                 Persona persona= dataSnapshot.getValue(Persona.class);
                 if (persona!=null){
                     llenar_datos(persona);
-                    fab_editar_perf.setVisibility(View.VISIBLE);
                 }else {
+                    progress_carga.dismiss();
                     Toast.makeText(getContext(), getString(R.string.actualiza_perfil), Toast.LENGTH_LONG).show();
                     ir_perfil();
                 }
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -95,6 +96,7 @@ public class PerfilFragment extends Fragment {
     }
 
     private void inicializar_controles() {
+        contenedor_perf=(LinearLayout)getView().findViewById(R.id.contenedor_datos) ;
         fab_editar_perf=(FloatingActionButton) getView().findViewById(R.id.fab_editar_perfil);
         txtperfil_nombre=(TextView)getView().findViewById(R.id.perfil_nombre);
         txtperfil_correo=(TextView)getView().findViewById(R.id.perfil_correo);
@@ -105,6 +107,10 @@ public class PerfilFragment extends Fragment {
         txtperfil_fecha_nac=(TextView)getView().findViewById(R.id.perfil_fecha_nac);
         txtperfil_genero=(TextView)getView().findViewById(R.id.perfil_genero);
         imgUsuario=(ImageView)getView().findViewById(R.id.img_perfil);
+        imgUsuario.setVisibility(View.INVISIBLE);
+        contenedor_perf.setVisibility(View.INVISIBLE);
+        txtperfil_nombre.setVisibility(View.INVISIBLE);
+        txtperfil_correo.setVisibility(View.INVISIBLE);
         fab_editar_perf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,7 +120,6 @@ public class PerfilFragment extends Fragment {
             }
         });
     }
-
     private void llenar_datos(Persona persona) {
         txtperfil_nombre.setText(persona.getNombre()+" "+persona.getApellidos());
         txtperfil_correo.setText(persona.getCorreo());
@@ -129,6 +134,11 @@ public class PerfilFragment extends Fragment {
             txtperfil_genero.setText("Femenino");
         }
         progress_carga.dismiss();
+        imgUsuario.setVisibility(View.VISIBLE);
+        contenedor_perf.setVisibility(View.VISIBLE);
+        txtperfil_nombre.setVisibility(View.VISIBLE);
+        txtperfil_correo.setVisibility(View.VISIBLE);
+        fab_editar_perf.setVisibility(View.VISIBLE);
     }
     private void ir_perfil(){
         Intent intent = new Intent(getContext(), PerfilActivity.class);
