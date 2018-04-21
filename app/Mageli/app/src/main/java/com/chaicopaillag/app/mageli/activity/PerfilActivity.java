@@ -157,9 +157,9 @@ public class PerfilActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = getIntent();
                 if (intent.getBooleanExtra("editar",true)){
-                    guardar_datos();
-                }else {
                     modificar_datos();
+                }else {
+                    guardar_datos();
                 }
             }
         });
@@ -195,24 +195,23 @@ public class PerfilActivity extends AppCompatActivity {
                     numero_hc,direccion,telefono,correo,
                     genero,tipo_doc,fecha_nacimient,fecha_registro+"",
                     estado,tipo_persona,especialidad);
-//            Map<String, Object> miPersona = persona.miMap();/
-//https://medium.com/a-practical-guide-to-firebase-on-android/updating-and-deleting-from-your-firebase-database-bc8d39573829
+//            Map<String, Object> miPersona = persona.miMap();
             Map<String, Object> Act_Persona_especifico = new HashMap<>();
-            Act_Persona_especifico.put("id",persona.getId());
-            Act_Persona_especifico.put("nombre",persona.getNombre());
-            Act_Persona_especifico.put("apellidos",persona.getApellidos());
-            Act_Persona_especifico.put("numero_documento",persona.getNumero_documento());
-            Act_Persona_especifico.put("numero_hc",persona.getNumero_hc());
-            Act_Persona_especifico.put("direccion",persona.getDireccion());
-            Act_Persona_especifico.put("telefono",persona.getTelefono());
-            Act_Persona_especifico.put("correo",persona.getCorreo());
-            Act_Persona_especifico.put("genero",persona.isGenero());
-            Act_Persona_especifico.put("tipo_doc",persona.getTipo_doc());
-            Act_Persona_especifico.put("fecha_nacimiento",persona.getFecha_nacimiento());
-            Act_Persona_especifico.put("fecha_registro",persona.getFecha_registro());
-            Act_Persona_especifico.put("estado",persona.isEstado());
-            Act_Persona_especifico.put("tipo_persona",persona.getTipo_persona());
-            Act_Persona_especifico.put("especialidad",persona.getEspecialidad());
+            Act_Persona_especifico.put("/id",persona.getId() );
+            Act_Persona_especifico.put("/nombre",persona.getNombre());
+            Act_Persona_especifico.put("/apellidos",persona.getApellidos());
+            Act_Persona_especifico.put("/numero_documento",persona.getNumero_documento());
+            Act_Persona_especifico.put("/numero_hc",persona.getNumero_hc());
+            Act_Persona_especifico.put("/direccion",persona.getDireccion());
+            Act_Persona_especifico.put("/telefono",persona.getTelefono());
+            Act_Persona_especifico.put("/correo",persona.getCorreo());
+            Act_Persona_especifico.put("/genero",persona.isGenero());
+            Act_Persona_especifico.put("/tipo_doc",persona.getTipo_doc());
+            Act_Persona_especifico.put("/fecha_nacimiento",persona.getFecha_nacimiento());
+            Act_Persona_especifico.put("/fecha_registro",persona.getFecha_registro());
+            Act_Persona_especifico.put("/estado",persona.isEstado());
+            Act_Persona_especifico.put("/tipo_persona",persona.getTipo_persona());
+            Act_Persona_especifico.put("/especialidad",persona.getEspecialidad());
             firebase_ref.child(id_ui).updateChildren(Act_Persona_especifico);
             Toast.makeText(PerfilActivity.this,R.string.perfil_ok,Toast.LENGTH_LONG).show();
             onBackPressed();
