@@ -27,7 +27,8 @@
                     android:drawableTint="@color/secondario_text"
                     android:hint="@string/nombre"
                     android:inputType="textPersonName"
-                    android:id="@+id/txt_nombre"/>
+                    android:id="@+id/txt_nombre"
+                    android:maxLength="30"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -41,7 +42,8 @@
                     android:drawableTint="@color/secondario_text"
                     android:hint="@string/apellidos"
                     android:inputType="textPersonName"
-                    android:id="@+id/txt_apellidos"/>
+                    android:id="@+id/txt_apellidos"
+                    android:maxLength="50"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -66,7 +68,8 @@
                     android:drawableTint="@color/secondario_text"
                     android:hint="@string/numero_documento"
                     android:inputType="number"
-                    android:id="@+id/txt_numero_doc"/>
+                    android:id="@+id/txt_numero_doc"
+                    android:maxLength="8" />
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -95,7 +98,8 @@
                     android:drawableTint="@color/secondario_text"
                     android:hint="@string/direccion"
                     android:inputType="textPostalAddress"
-                    android:id="@+id/txt_direccion"/>
+                    android:id="@+id/txt_direccion"
+                    android:maxLength="100"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -109,7 +113,8 @@
                     android:drawableStart="@drawable/telefono"
                     android:drawableTint="@color/secondario_text"
                     android:hint="@string/telefono"
-                    android:inputType="phone"
+                    android:inputType="number"
+                    android:maxLength="9"
                     android:id="@+id/txt_telefono"/>
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout

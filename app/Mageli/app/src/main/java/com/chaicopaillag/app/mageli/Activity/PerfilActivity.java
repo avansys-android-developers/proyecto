@@ -3,7 +3,6 @@ package com.chaicopaillag.app.mageli.Activity;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -33,7 +32,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 public class PerfilActivity extends AppCompatActivity {
     private Toolbar toolbar;
@@ -57,8 +55,6 @@ public class PerfilActivity extends AppCompatActivity {
         setContentView(R.layout.activity_perfil);
         inicializar_controles();
         inicializar_servicios();
-
-        
     }
 
     private void inicializar_servicios() {
@@ -156,18 +152,12 @@ public class PerfilActivity extends AppCompatActivity {
         btn_guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = getIntent();
-                if (intent.getBooleanExtra("editar",true)){
-                    modificar_datos();
-                }else {
-                    guardar_datos();
-                }
+                Validar_campos();
             }
         });
     }
 
     private void modificar_datos() {
-        Validar_campos();
         Persona persona;
         String id,nombre,apellidos,numero_documento,numero_hc,direccion, telefono,correo,fecha_nacimient;
         boolean genero;
@@ -214,10 +204,10 @@ public class PerfilActivity extends AppCompatActivity {
             Act_Persona_especifico.put("/estado",persona.isEstado());
             Act_Persona_especifico.put("/tipo_persona",persona.getTipo_persona());
             Act_Persona_especifico.put("/especialidad",persona.getEspecialidad());
-//            firebase_ref.child(id_ui).updateChildren(Act_Persona_especifico);
+            firebase_ref.child(id_ui).updateChildren(Act_Persona_especifico);
             Toast.makeText(PerfilActivity.this,R.string.perfil_ok,Toast.LENGTH_LONG).show();
-            //onBackPressed();
-           // finish();
+            onBackPressed();
+            finish();
         }catch (Exception e){
             System.out.print(e.getMessage());
             Toast.makeText(PerfilActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
@@ -238,7 +228,7 @@ public class PerfilActivity extends AppCompatActivity {
         alert_hc.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                txt_numero_hc.setText("...");
+                txt_numero_hc.setText("0000000000");
                 txt_direccion.isFocused();
             }
         });
@@ -262,7 +252,6 @@ public class PerfilActivity extends AppCompatActivity {
     }
 
     private void guardar_datos() {
-        Validar_campos();
         Persona persona;
         String id,nombre,apellidos,numero_documento,numero_hc,direccion, telefono,correo,fecha_nacimient;
         boolean genero;
@@ -291,10 +280,10 @@ public class PerfilActivity extends AppCompatActivity {
                     numero_hc,direccion,telefono,correo,
                     genero,tipo_doc,fecha_nacimient,fecha_registro+"",
                     estado,tipo_persona,especialidad);
-//            firebase_ref.child(id_ui).setValue(persona);
+            firebase_ref.child(id_ui).setValue(persona);
             Toast.makeText(PerfilActivity.this,R.string.perfil_ok,Toast.LENGTH_LONG).show();
-            //onBackPressed();
-            //finish();
+            onBackPressed();
+            finish();
         }catch (Exception e){
             System.out.print(e.getMessage());
             Toast.makeText(PerfilActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
@@ -311,30 +300,37 @@ public class PerfilActivity extends AppCompatActivity {
         telefono=txt_telefono.getText().toString();
         fecha_nacimient= fecha_nac.getText().toString();
 
-        if (TextUtils.isEmpty(nombre) || nombre.length()<2){
+        if (TextUtils.isEmpty(nombre) || nombre.length()<2||nombre.length()>30){
            txt_nombre.setError(getString(R.string.error_nombre));
            return;
-        }else  if (TextUtils.isEmpty(apellidos)||apellidos.length()<4){
+        }else  if (TextUtils.isEmpty(apellidos)||apellidos.length()<4 ||apellidos.length()>50){
             txt_apellidos.setError(getString(R.string.error_apellidos));
             return;
-        }else  if (TextUtils.isEmpty(tipo_doc)|| tipo_doc==null){
+        }else  if (TextUtils.isEmpty(tipo_doc)|| tipo_doc.equals("Selecciona tipo de documento")){
             Toast.makeText(PerfilActivity.this, R.string.error_tipo_doc, Toast.LENGTH_LONG).show();
             return;
-        }else  if (TextUtils.isEmpty(numero_documento)||numero_documento.length()<8){
+        }else  if (TextUtils.isEmpty(numero_documento)||numero_documento.length()!=8){
             txt_numero_doc.setError(getString(R.string.error_numero_documento));
             return;
-        }else  if (TextUtils.isEmpty(numero_hc)||numero_hc.length()<3){
+        }else  if (TextUtils.isEmpty(numero_hc)||numero_hc.length()!=10){
             txt_numero_hc.setError(getString(R.string.error_numero_hc));
             return;
-        }else  if (TextUtils.isEmpty(direccion)||direccion.length()<4){
+        }else  if (TextUtils.isEmpty(direccion)||direccion.length()<4||direccion.length()>100){
             txt_direccion.setError(getString(R.string.error_direccion));
             return;
-        }else  if (TextUtils.isEmpty(telefono)||telefono.length()<9||telefono.length()>9){
-            txt_telefono.setError(getString(R.string.telefono));
+        }else  if (TextUtils.isEmpty(telefono)||telefono.length()!=9){
+            txt_telefono.setError(getString(R.string.error_telefono));
             return;
-        }else  if (TextUtils.isEmpty(fecha_nacimient)||fecha_nacimient.length()<10){
-            txt_numero_hc.setError(getString(R.string.error_fecha_nacimiento));
+        }else  if (TextUtils.isEmpty(fecha_nacimient)|| fecha_nacimient.length()!=10|| !Utiles.validarFecha(fecha_nacimient)){
+            fecha_nac.setError(getString(R.string.error_fecha_nacimiento));
             return;
+        }else {
+            Intent intent = getIntent();
+            if (intent.getBooleanExtra("editar",true)){
+                modificar_datos();
+            }else {
+                guardar_datos();
+            }
         }
     }
 }
