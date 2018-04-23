@@ -1,5 +1,6 @@
 package com.chaicopaillag.app.mageli.Activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -7,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -63,7 +65,7 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
                 this, drawer, toolbar, R.string.abrir_nav, R.string.cerar_nav);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        menu_slide = (NavigationView) findViewById(R.id.nav_view);
+        menu_slide = (NavigationView) findViewById(R.id.nav_sidebar);
         nav_cabecera=(View)menu_slide.getHeaderView(0);
 
         nombreUser=(TextView) nav_cabecera.findViewById(R.id.nombreUsuario);
@@ -161,29 +163,49 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
-        if (id == R.id.item_configuracion) {
-            return true;
+        switch (id){
+            case R.id.item_notificacion:
+                item.setIcon(R.drawable.si_notificacion);
+                return true;
+            case R.id.item_inicio:
+                ponerFragmento(new InicioFragment());
+                return true;
+            default:
+                    return true;
         }
-        return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
 
     private void SalirMenu() {
-        FirebaseAuth.getInstance().signOut();
-        Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
-            @Override
-            public void onResult(@NonNull Status status) {
-                if (status.isSuccess()) {
-                    Toast.makeText(getApplicationContext(), R.string.cerrar_sesion, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), R.string.error_conexion_google, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
 
-        Ir_a_login();
+           final AlertDialog.Builder alerta= new AlertDialog.Builder(MenuActivity.this);
+            alerta.setTitle(R.string.app_name);
+            alerta.setMessage(R.string.mensaje_salir);
+            alerta.setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    FirebaseAuth.getInstance().signOut();
+                    Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
+                        @Override
+                        public void onResult(@NonNull Status status) {
+                            if (status.isSuccess()) {
+                                Toast.makeText(getApplicationContext(), R.string.cerrar_sesion, Toast.LENGTH_SHORT).show();
+                                Ir_a_login();
+                            } else {
+                                Toast.makeText(getApplicationContext(), R.string.error_conexion_google, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+            });
+            alerta.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    menu_slide.setCheckedItem(0);
+                }
+            });
+            alerta.show();
     }
     private void Ir_a_login() {
         Intent intent = new Intent(this, LoginActivity.class);

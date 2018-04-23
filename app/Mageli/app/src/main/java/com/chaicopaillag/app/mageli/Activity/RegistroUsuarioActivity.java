@@ -27,6 +27,7 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
     private Button btn_registro;
     private TextView btnIrlogin;
     private FirebaseAuth firebase_autent;
+    private FirebaseUser user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,7 +109,7 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
     }
 
     private void VerificarCorreo() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user = FirebaseAuth.getInstance().getCurrentUser();
         user.sendEmailVerification()
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

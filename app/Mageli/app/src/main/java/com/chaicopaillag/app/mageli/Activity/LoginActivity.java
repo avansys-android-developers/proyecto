@@ -1,6 +1,8 @@
 package com.chaicopaillag.app.mageli.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -37,35 +39,19 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     public static final int SIGN_IN_CODE = 9001;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
+    private FirebaseUser usuario;
+    private AlertDialog.Builder alerta;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
+        Inicializar_servicios();
+        Inicializar_controles();
 
-        googleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this, this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
+    }
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser usuario = firebaseAuth.getCurrentUser();
-                if (usuario != null) {
-                    if (usuario.isEmailVerified()){
-                        Ir_a_inicio();
-                    }else {
-                        FirebaseAuth.getInstance().signOut();
-                    }
-                }
-            }
-        };
+    private void Inicializar_controles() {
         txt_correo=(EditText)findViewById(R.id.txtcorreo);
         txt_contrasenia=(EditText)findViewById(R.id.txtcontrasenia);
 
@@ -121,8 +107,49 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 startActivityForResult(intent, SIGN_IN_CODE);
             }
         });
-
     }
+
+    private void Inicializar_servicios() {
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this, this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                usuario = firebaseAuth.getCurrentUser();
+                if (usuario != null) {
+                    if (usuario.isEmailVerified()){
+                        Ir_a_inicio();
+                    }else {
+                        FirebaseAuth.getInstance().signOut();
+                        mensaje_verifa_tu_correo();
+                    }
+                }
+            }
+        };
+    }
+
+    private void mensaje_verifa_tu_correo() {
+        alerta= new AlertDialog.Builder(LoginActivity.this);
+        alerta.setTitle(R.string.app_name);
+        alerta.setMessage(R.string.no_verificado_correo);
+        alerta.setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        alerta.show();
+    }
+
+
     private void Ir_a_inicio() {
         Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

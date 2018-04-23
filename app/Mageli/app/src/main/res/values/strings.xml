@@ -15,7 +15,7 @@
     <string name="registrate">Registrate ahora</string>
     <string name="olvide_contrasenia">Olvide mi contraseña</string>
     <string name="restablecer_contrasia">Restablecer contraseña</string>
-    <string name="restablecer_contrasia_mensaje">Se envio un link a tu correo para restablecer la contraseña</string>
+    <string name="restablecer_contrasia_mensaje">Se ha envio un link a su correo para restablecer la contraseña</string>
     <string name="verificar_sesion">Iniciando sesióm...</string>
     <!--error login firebase-->
     <string name="error_login_firebase">No se ha podido iniciar sesión en Mageli</string>
@@ -36,8 +36,8 @@
     <string name="ir_login">Inicia sesión ahora</string>
     <string name="registro_exito">Se ha Registrado exitósamente en Mageli</string>
     <string name="registro_error">Lo sentimos no se podido registrar en Mageli</string>
-    <string name="verificacion_correo">Se ha enviado una verificacón a tu correo electrónico</string>
-    <string name="no_verificado_correo">Necesitas verificar tu correo electronico para iniciar sesión Mageli</string>
+    <string name="verificacion_correo">Se ha envio un link a su correo para la verificacón de tu correo electrónico</string>
+    <string name="no_verificado_correo">Necesitas verificar tu correo electrónico para iniciar sesión Mageli</string>
     <!--Menu-->
     <string name="menu">Mageli</string>
     <string name="abrir_nav">Abrir Menu</string>
@@ -45,6 +45,7 @@
     <string name="nombre_usuario">Nombre Usuario</string>
     <string name="correo_usuario">correo@mageli.com</string>
     <string name="descripcion_nav">Cabezera</string>
+    <string name="notificacion">Mis notificaciones</string>
     <string name="inicio">Inicio</string>
     <string name="configuracion">Configuración</string>
     <string name="privacidad">Privacidad</string>
@@ -58,6 +59,7 @@
     <string name="micuenta">Mi Cuenta</string>
     <string name="cuenta">Datos de la Cuenta</string>
     <string name="salir">Salir</string>
+    <string name="mensaje_salir">Cerrar sesión en Mageli</string>
     <!-- inicio-->
     <string name="car_user">Usuarios</string>
     <string name="car_user_activos">+10 Usuarios activos</string>
