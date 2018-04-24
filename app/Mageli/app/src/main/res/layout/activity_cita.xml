@@ -21,30 +21,30 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="5dp"
-                    android:drawableStart="@drawable/pediatra"
-                    android:hint="Asunto cita"
-                    android:inputType="textPersonName" />
+                    android:drawableStart="@drawable/asunto"
+                    android:hint="@string/asunto"
+                    android:inputType="textPersonName"
+                    android:id="@+id/asunto_cita"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="125dp"
                     android:drawablePadding="5dp"
                     android:gravity="top"
-                    android:drawableStart="@drawable/pediatra"
-                    android:hint="Descripción de la Cita"
+                    android:drawableStart="@drawable/descripcion"
+                    android:hint="@string/descripcion"
                     android:inputType="text|textMultiLine"
                     android:overScrollMode="always"
                     android:scrollbarStyle="insideInset"
-                    android:scrollbars="vertical" />
+                    android:scrollbars="vertical"
+                    android:id="@+id/descipcion_cita"/>
             </android.support.design.widget.TextInputLayout>
             <com.google.android.flexbox.FlexboxLayout
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
                 android:layout_height="wrap_content"
                 app:flexWrap="wrap"
                 app:alignItems="stretch"
@@ -59,9 +59,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawablePadding="6dp"
-                        android:drawableStart="@drawable/card"
-                        android:hint="Fecha"
-                        android:inputType="number" />
+                        android:drawableStart="@drawable/calendario"
+                        android:hint="@string/fecha"
+                        android:id="@+id/fecha_cita"
+                        android:inputType="date" />
                 </android.support.design.widget.TextInputLayout>
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="wrap_content"
@@ -69,29 +70,81 @@
                     app:layout_flexBasisPercent="45%"
                     android:layout_marginStart="5dp"
                     app:layout_alignSelf="flex_end">
-
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawablePadding="6dp"
-                        android:drawableStart="@drawable/card"
-                        android:hint="Hora"
-                        android:inputType="number" />
+                        android:drawableStart="@drawable/clock"
+                        android:hint="@string/hora"
+                        android:inputType="time"
+                        android:id="@+id/hora_cita"/>
                 </android.support.design.widget.TextInputLayout>
             </com.google.android.flexbox.FlexboxLayout>
-
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.flexbox.FlexboxLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:flexWrap="wrap"
+                app:alignItems="stretch"
+                app:alignContent="space_between">
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawablePadding="5dp"
-                    android:drawableStart="@drawable/casa"
-                    android:hint="Numero de Personas"
-                    android:inputType="textPostalAddress" />
-            </android.support.design.widget.TextInputLayout>
+                    app:layout_flexBasisPercent="40%">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="5dp"
+                        android:drawableStart="@drawable/pacientes"
+                        android:hint="@string/n_peronsas"
+                        android:id="@+id/n_personas"
+                        android:inputType="number" />
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_flexBasisPercent="60%"
+                    android:gravity="center">
+                    <android.support.v7.widget.SwitchCompat
+                        android:layout_width="match_parent"
+                        android:hint="@string/elejir_esp"
+                        android:textAlignment="center"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/sw_elegir_pediatra"/>
+                </android.support.design.widget.TextInputLayout>
+            </com.google.android.flexbox.FlexboxLayout>
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/pading"
+                android:layout_marginBottom="@dimen/pading"
+                android:visibility="gone"
+                android:id="@+id/fila_pediatra">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/perfil"
+                    android:id="@+id/img_perfil_pediatra_cita"
+                    android:layout_marginEnd="@dimen/pading"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/primario_text"
+                        android:text="@string/pediatra"
+                        android:layout_marginBottom="5dp"
+                        android:id="@+id/nombre_pediatra_cita"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/primario_text"
+                        android:text="@string/especialidad"
+                        android:id="@+id/especialidad_pediatra_cita"/>
+                </LinearLayout>
+            </com.google.android.flexbox.FlexboxLayout>
             <Button
                 android:id="@+id/btn_cita"
                 android:layout_width="match_parent"

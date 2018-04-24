@@ -91,7 +91,7 @@
     <string name="error_direccion">Ingrese su dirección</string>
     <string name="error_fecha_nacimiento">Ingrese un fecha de nacimiento válido</string>
     <string name="error_tipo_doc">Seleccione un tipo de documento</string>
-    <!--Alrte dialogo-->
+    <!--Aleta dialogo-->
     <string name="numero_hc_titulo">Número de Historial Clínico</string>
     <string name="mensaje_num_hc">Si sé el Número de mi Historia Clinica</string>
     <string name="perfil_ok">Datos actualizados corectamente</string>
@@ -100,7 +100,15 @@
     <string name="aceptar">Aceptar</string>
     <string name="cancelar">Cancelar</string>
     <string name="carga_perfil">Cargando tu perfil espere...</string>
-
+    <!--nueva cita-->
+    <string name="asunto">Asunto</string>
+    <string name="descripcion">Descripción</string>
+    <string name="fecha">Fecha</string>
+    <string name="hora">Hora</string>
+    <string name="n_peronsas">N° de personas</string>
+    <string name="elejir_esp">Elegir especialista</string>
+    <string name="pediatra">Pediatra</string>
+    <string name="especialidad">Especialidad</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
