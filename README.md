@@ -1,6 +1,7 @@
 # Mageli
-Desarrollo de Aplicación Movil (android) de citas y consultas en el area de pediatría de una Hospital.
-![](https://cdn-images-1.medium.com/max/1600/1*XJo1GyYJN-3WrSKpUkyUkw.gif "Firebase y android")
+Desarrollo de una aplicación móvil de citas y consultas para optimizar la calidad de atencion en el area de pediatria del hospital "San Bartolome" en la ciudad de Lima
+![](http://www.iconninja.com/files/80/214/457/google-firebase-icon.png "Firebase")
+![](https://m.popkey.co/f50dbf/QXK56.gif "Android")
 ___
 ***Registro de Usuario***
 > Si eres un usuario nuevo tendrás que registrarte en la aplicación con correo electrónico y tu contraseña correctamente, se te enviara un link a tu correo para que puedas validar tu registro e iniciar sesion en **Mageli**, de lo contrario no podras iniciar sesión.
@@ -38,4 +39,8 @@ ___
 
 ![](https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/app/propotipos/editarperfil.png "Login")
 
+***Mis Citas***
+> En la s.
+
+![](https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/app/propotipos/miscitas.png  "Login")
 
