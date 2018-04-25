@@ -93,10 +93,10 @@ public class CitaActivity extends AppCompatActivity {
     }
     private void cargar_calendario() {
         calenda= Calendar.getInstance();
-        anio=calenda.YEAR;
-        mes=calenda.MONTH;
-        dia=calenda.DAY_OF_MONTH;
-        calendario= new DatePickerDialog(CitaActivity.this, new DatePickerDialog.OnDateSetListener() {
+        anio=calenda.get(Calendar.YEAR);
+        mes=calenda.get(Calendar.MONTH);
+        dia=calenda.get(Calendar.DAY_OF_MONTH);
+        calendario= new DatePickerDialog(CitaActivity.this,R.style.datepicker, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 String _dia=dayOfMonth<10 ? "0"+dayOfMonth : dayOfMonth+"";
@@ -108,9 +108,9 @@ public class CitaActivity extends AppCompatActivity {
     }
     private void cargar_hora() {
         calenda= Calendar.getInstance();
-        hora=calenda.HOUR;
-        minuto=calenda.MINUTE;
-        reloj= new TimePickerDialog(CitaActivity.this, new TimePickerDialog.OnTimeSetListener() {
+        hora=calenda.get(Calendar.HOUR_OF_DAY);
+        minuto=calenda.get(Calendar.MINUTE);
+        reloj= new TimePickerDialog(CitaActivity.this,R.style.datepicker, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 mihora.setText(hourOfDay+":"+minute);

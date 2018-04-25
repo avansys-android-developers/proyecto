@@ -3,6 +3,7 @@ package com.chaicopaillag.app.mageli.Activity;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -216,9 +217,9 @@ public class PerfilActivity extends AppCompatActivity {
 
     private void pregunta_numero_hc() {
         final AlertDialog.Builder alert_hc = new AlertDialog.Builder(PerfilActivity.this);
-        alert_hc.setTitle(R.string.numero_hc_titulo);
+        alert_hc.setTitle(R.string.app_name);
         alert_hc.setMessage(R.string.mensaje_num_hc);
-        alert_hc.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
+        alert_hc.setPositiveButton(R.string.si,new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 txt_numero_hc.setText("");
@@ -237,10 +238,10 @@ public class PerfilActivity extends AppCompatActivity {
 
     private void cargar_calendario() {
         calendario=Calendar.getInstance();
-        anio=calendario.YEAR;
-        mes=calendario.MONTH;
-        dia=calendario.DAY_OF_MONTH;
-        mi_popap= new DatePickerDialog(PerfilActivity.this, new DatePickerDialog.OnDateSetListener() {
+        anio=calendario.get(Calendar.YEAR);
+        mes=calendario.get(Calendar.MONTH);
+        dia=calendario.get(Calendar.DAY_OF_MONTH);
+        mi_popap= new DatePickerDialog(PerfilActivity.this,R.style.datepicker, new DatePickerDialog.OnDateSetListener() {
            @Override
            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
             String dia=dayOfMonth<10 ? "0"+dayOfMonth : dayOfMonth+"";

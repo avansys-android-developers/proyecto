@@ -12,4 +12,9 @@
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
+    <style name="datepicker" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/rosa</item>
+        <item name="colorPrimaryDark">@color/celeste_oscuro</item>
+        <item name="colorAccent">@color/celeste</item>
+    </style>
 </resources>
