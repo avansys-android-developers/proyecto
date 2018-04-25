@@ -1,4 +1,5 @@
 package com.chaicopaillag.app.mageli.Activity;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -41,6 +42,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
     private FirebaseUser usuario;
     private AlertDialog.Builder alerta;
+    private ProgressDialog progress_carga;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -173,6 +175,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             txt_correo.setError(getString(R.string.error_correo_no_valido));
             return;
         }else {
+            progres_iniciando_sesion();
             firebaseAuth.signInWithEmailAndPassword(correo,contrasenia)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -180,6 +183,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             if (task.isSuccessful()){
                                 Ir_a_inicio();
                             }else {
+                                progress_carga.dismiss();
                                 Toast.makeText(LoginActivity.this, getText(R.string.error_ingreso), Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -194,6 +198,14 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         Matcher matcher = pattern.matcher(correo);
 
         return matcher.matches();
+    }
+    private void progres_iniciando_sesion() {
+        progress_carga=new ProgressDialog(LoginActivity.this,R.style.progrescolor);
+        progress_carga.setTitle(R.string.app_name);
+        progress_carga.setMessage(getString(R.string.verificar_sesion));
+        progress_carga.setIndeterminate(true);
+        progress_carga.setCancelable(false);
+        progress_carga.show();
     }
 
     @Override
@@ -215,11 +227,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount signInAccount) {
-
+        progres_iniciando_sesion();
         AuthCredential credential = GoogleAuthProvider.getCredential(signInAccount.getIdToken(), null);
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                progress_carga.dismiss();
                 if (!task.isSuccessful()) {
                     Toast.makeText(getApplicationContext(), R.string.error_login_firebase, Toast.LENGTH_SHORT).show();
                 }

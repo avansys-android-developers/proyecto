@@ -216,7 +216,7 @@ public class PerfilActivity extends AppCompatActivity {
     }
 
     private void pregunta_numero_hc() {
-        final AlertDialog.Builder alert_hc = new AlertDialog.Builder(PerfilActivity.this);
+        final AlertDialog.Builder alert_hc = new AlertDialog.Builder(PerfilActivity.this,R.style.progrescolor);
         alert_hc.setTitle(R.string.app_name);
         alert_hc.setMessage(R.string.mensaje_num_hc);
         alert_hc.setPositiveButton(R.string.si,new DialogInterface.OnClickListener() {

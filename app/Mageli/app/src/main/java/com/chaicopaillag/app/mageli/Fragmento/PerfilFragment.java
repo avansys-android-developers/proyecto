@@ -61,7 +61,7 @@ public class PerfilFragment extends Fragment {
     }
 
     private void progres_carga_datos() {
-        progress_carga=new ProgressDialog(getContext());
+        progress_carga=new ProgressDialog(getContext(),R.style.progrescolor);
         progress_carga.setTitle(R.string.app_name);
         progress_carga.setMessage(getString(R.string.carga_perfil));
         progress_carga.setIndeterminate(true);

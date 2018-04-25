@@ -179,7 +179,7 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
 
     private void SalirMenu() {
 
-           final AlertDialog.Builder alerta= new AlertDialog.Builder(MenuActivity.this);
+           final AlertDialog.Builder alerta= new AlertDialog.Builder(MenuActivity.this,R.style.progrescolor);
             alerta.setTitle(R.string.app_name);
             alerta.setMessage(R.string.mensaje_salir);
             alerta.setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {

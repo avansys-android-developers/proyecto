@@ -1,5 +1,4 @@
 <resources>
-
     <!-- Thema Base de la App. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- colores de la App. -->
@@ -12,9 +11,17 @@
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
+    <!--tema de calendario-->
     <style name="datepicker" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorPrimary">@color/rosa</item>
         <item name="colorPrimaryDark">@color/celeste_oscuro</item>
         <item name="colorAccent">@color/celeste</item>
+    </style>
+    <!--theme color alerdialog-->
+    <style name="progrescolor" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/celeste_oscuro</item>
+        <item name="android:progressBackgroundTint">@color/rosa</item>
+        <item name="android:textColor">@color/primario_text</item>
+        <item name="android:background">@color/icono</item>
     </style>
 </resources>
