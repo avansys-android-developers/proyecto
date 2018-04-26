@@ -101,7 +101,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 Validarlogeo();
             }
         });
-        btn_google.setColorScheme(SignInButton.COLOR_DARK);
+//        btn_google.setColorScheme(SignInButton.COLOR_DARK);
         btn_google.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -11,12 +11,12 @@
     <string name="iniciar">Iniciar Sesión</string>
     <string name="registro">Registrarse</string>
     <string name="otambien">Ó</string>
-    <string name="no_tines_cuenta">¿aun no tienes una cuenta?</string>
+    <string name="no_tines_cuenta">¿Aun no tienes una cuenta?</string>
     <string name="registrate">Registrate ahora</string>
     <string name="olvide_contrasenia">Olvide mi contraseña</string>
     <string name="restablecer_contrasia">Restablecer contraseña</string>
     <string name="restablecer_contrasia_mensaje">Se ha envio un link a su correo para restablecer la contraseña</string>
-    <string name="verificar_sesion">Iniciando sesióm...</string>
+    <string name="verificar_sesion">Iniciando sesión...</string>
     <!--error login firebase-->
     <string name="error_login_firebase">No se ha podido iniciar sesión en Mageli</string>
     <string name="error_cerrar_sesion">No se ha podido cerrar sesión en Mageli</string>
@@ -109,6 +109,14 @@
     <string name="elejir_esp">Elegir especialista</string>
     <string name="pediatra">Pediatra</string>
     <string name="especialidad">Especialidad</string>
+    <!--validacion_cita-->
+    <string name="error_asunto_cita">Ingrese un asunto válido</string>
+    <string name="error_descripcion_cita">Ingrese una descripción válida</string>
+    <string name="error_fecha_cita">Ingrese una fecha válida</string>
+    <string name="error_hora_cita">Ingrese una hora válido</string>
+    <string name="error_numero_persona_cita">Ingrese un número válido</string>
+    <string name="error_numero_persona_permitida">Puedes hacer una cita solo para dos persona</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

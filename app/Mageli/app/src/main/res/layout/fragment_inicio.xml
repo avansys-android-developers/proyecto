@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/bgactivity"
     tools:context=".Fragmento.InicioFragment">
     <ScrollView
         android:layout_width="match_parent"
@@ -182,7 +183,9 @@
                             android:padding="5dp"
                             android:background="@drawable/fondo_rosa"
                             android:src="@drawable/ubicacion_blanco"
-                            android:layout_marginLeft="@dimen/pading"/>
+                            android:layout_marginLeft="@dimen/pading"
+                            android:layout_marginTop="@dimen/pading"
+                            android:layout_marginBottom="@dimen/pading"/>
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -224,7 +227,9 @@
                             android:padding="5dp"
                             android:background="@drawable/fondo_primary"
                             android:src="@drawable/reloj_blanco"
-                            android:layout_marginLeft="@dimen/pading"/>
+                            android:layout_marginLeft="@dimen/pading"
+                            android:layout_marginBottom="@dimen/pading"
+                            android:layout_marginTop="@dimen/pading"/>
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

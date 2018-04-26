@@ -8,4 +8,5 @@
     <color name="secondario_text">#757575</color>
     <color name="icono">#FFFFFF</color>
     <color name="linea">#BDBDBD</color>
+    <color name="bgactivity">#ddd</color>
 </resources>

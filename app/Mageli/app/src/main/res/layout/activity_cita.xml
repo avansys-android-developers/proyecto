@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bgactivity"
     android:orientation="vertical"
     tools:context=".Activity.CitaActivity">
         <include layout="@layout/mi_toolbar"
@@ -142,7 +143,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/primario_text"
                         android:text="@string/especialidad"
-                        android:id="@+id/especialidad_pediatra_cita"/>
+                        android:id="@+id/uid_pediatra"/>
                 </LinearLayout>
             </com.google.android.flexbox.FlexboxLayout>
             <Button

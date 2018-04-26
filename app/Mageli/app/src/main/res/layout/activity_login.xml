@@ -4,31 +4,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Activity.LoginActivity">
+    tools:context=".Activity.LoginActivity"
+    android:background="@color/bgactivity">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:ignore="UselessParent">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
         <LinearLayout
             android:id="@+id/contenedor_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:orientation="vertical"
             android:paddingLeft="@dimen/margenDerechoIzquierdo"
-            android:paddingRight="@dimen/margenDerechoIzquierdo"
-            android:gravity="center">
-
-            <TextView
+            android:paddingRight="@dimen/margenDerechoIzquierdo">
+            <com.google.android.flexbox.FlexboxLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/padingTopBotom"
-                android:paddingTop="@dimen/padingTopBotom"
-                android:text="@string/app_name"
-                android:textAlignment="center"
-                android:textColor="@color/rosa"
-                android:textSize="30sp" />
-
+                app:justifyContent="center"
+                android:layout_marginBottom="@dimen/marginbotom"
+                android:layout_marginTop="@dimen/marginbotom">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/logo"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textColor="@color/celeste_oscuro"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textSize="20sp" />
+            </com.google.android.flexbox.FlexboxLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
