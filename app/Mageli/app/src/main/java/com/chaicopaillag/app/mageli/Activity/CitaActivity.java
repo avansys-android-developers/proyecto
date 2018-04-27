@@ -23,8 +23,14 @@ import com.chaicopaillag.app.mageli.R;
 import com.google.android.flexbox.FlexboxLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -39,7 +45,7 @@ public class CitaActivity extends AppCompatActivity {
     FirebaseUser User;
     private Persona persona;
     List<Persona>lista_pediatras;
-    FirebaseDatabase fire_base;
+    DatabaseReference fire_base;
     private Toolbar toolbar;
     private Calendar calenda;
     private TimePickerDialog reloj;
@@ -60,7 +66,7 @@ public class CitaActivity extends AppCompatActivity {
     }
 
     private void inicializar_servicio() {
-        fire_base=FirebaseDatabase.getInstance();
+        fire_base=FirebaseDatabase.getInstance().getReference("Persona");
         firebaseAuth=FirebaseAuth.getInstance();
         User=firebaseAuth.getCurrentUser();
     }
@@ -123,8 +129,25 @@ public class CitaActivity extends AppCompatActivity {
     }
 
     private void cargar_pediatras() {
+        lista_pediatras=new ArrayList<Persona>();
         PopapPediatras=new AlertDialog.Builder(CitaActivity.this);
         PopapPediatras.setTitle(R.string.app_name);
+        Query consulta= fire_base.orderByChild("tipo_persona").equalTo(1);
+        consulta.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot person : dataSnapshot.getChildren()){
+                    persona=person.getValue(Persona.class);
+                    lista_pediatras.add(persona);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         flexbox_pediatra.setVisibility(View.VISIBLE);
         nombre_pediatra.setText("Pediatra Nombre");
         uid_pediatra.setText("kdjada7da8d4a4da6d4");
