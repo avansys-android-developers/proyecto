@@ -113,37 +113,59 @@
                         android:id="@+id/sw_elegir_pediatra"/>
                 </android.support.design.widget.TextInputLayout>
             </com.google.android.flexbox.FlexboxLayout>
+
             <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/fila_pediatra"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/pading"
                 android:layout_marginBottom="@dimen/pading"
-                android:visibility="gone"
-                android:id="@+id/fila_pediatra">
+                android:layout_marginTop="@dimen/pading"
+                android:visibility="gone">
+
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_perfil_pediatra_cita"
                     android:layout_width="100dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/perfil"
-                    android:id="@+id/img_perfil_pediatra_cita"
-                    android:layout_marginEnd="@dimen/pading"/>
+                    android:layout_marginEnd="@dimen/pading"
+                    android:src="@drawable/perfil" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:layout_height="wrap_content">
+                    android:orientation="vertical">
+
                     <TextView
+                        android:id="@+id/nombre_pediatra_cita"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/primario_text"
-                        android:text="@string/pediatra"
                         android:layout_marginBottom="5dp"
-                        android:id="@+id/nombre_pediatra_cita"/>
+                        android:text="@string/pediatra"
+                        android:textColor="@color/primario_text" />
+
                     <TextView
+                        android:id="@+id/especialidad_pediatra_cita"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/primario_text"
+                        android:layout_marginBottom="5dp" />
+                    <View
+                        android:id="@+id/divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/linea" />
+                    <TextView
+                        android:id="@+id/correo_pediatra_cita"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp" />
+                    <TextView
+                        android:id="@+id/uid_pediatra"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:text="@string/especialidad"
-                        android:id="@+id/uid_pediatra"/>
+                        android:textColor="@color/primario_text"
+                        android:textSize="8sp" />
+
                 </LinearLayout>
             </com.google.android.flexbox.FlexboxLayout>
             <Button
