@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.chaicopaillag.app.mageli.Modelo.Citas;
 import com.chaicopaillag.app.mageli.Modelo.Persona;
 import com.chaicopaillag.app.mageli.R;
 import com.google.android.flexbox.FlexboxLayout;
@@ -45,6 +46,7 @@ public class CitaActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser User;
     private Persona persona;
+    private Citas citas;
     private ArrayList<Persona>lista_pediatras;
     private DatabaseReference fire_base;
     private Toolbar toolbar;
@@ -68,7 +70,7 @@ public class CitaActivity extends AppCompatActivity {
     }
 
     private void inicializar_servicio() {
-        fire_base=FirebaseDatabase.getInstance().getReference("Persona");
+        fire_base=FirebaseDatabase.getInstance().getReference();
         firebaseAuth=FirebaseAuth.getInstance();
         User=firebaseAuth.getCurrentUser();
     }
@@ -120,7 +122,7 @@ public class CitaActivity extends AppCompatActivity {
                 if (isChecked){
                     cargar_pediatras();
                 }else {
-                    flexbox_pediatra.setVisibility(View.GONE);
+                    flexbox_pediatra.setVisibility(View.INVISIBLE);
                 }
             }
         });
@@ -136,7 +138,7 @@ public class CitaActivity extends AppCompatActivity {
         final List<String> lista = new ArrayList<>();
         PopapPediatras=new AlertDialog.Builder(CitaActivity.this);
         PopapPediatras.setTitle(R.string.popap_titulo_pediatras);
-        final Query consulta= fire_base.orderByChild("tipo_persona").equalTo(2);
+        final Query consulta= fire_base.child("Persona").orderByChild("tipo_persona").equalTo(2);
         progress_cargando_pediatras();
         consulta.addValueEventListener(new ValueEventListener() {
             @Override
@@ -220,15 +222,16 @@ public class CitaActivity extends AppCompatActivity {
     }
 
     private void guardar_cita() {
-        String _uid_cita,_asunto,_descripcion,_fecha,_hora,_n_personas,_ui_paciente,_ui_pediatra;
+        String _uid_cita,_asunto,_descripcion,_fecha,_hora,_ui_paciente,_ui_pediatra;
         boolean flag_atendido,flag_cancelado,flag_postergado,estado;
-        Date _fecha_registro = new Date();
+        int _n_personas;
+        Date _fecha_registro;
         _uid_cita= UUID.randomUUID().toString();
         _asunto=asunto.getText().toString();
         _descripcion=descripcion.getText().toString();
         _fecha=fecha.getText().toString();
         _hora=mihora.getText().toString();
-        _n_personas=numero_personas.getText().toString();
+        _n_personas=Integer.parseInt(numero_personas.getText().toString());
         _ui_paciente=User.getUid();
         _ui_pediatra=Obtener_Uid_pediatra();
         flag_atendido=false;
@@ -236,14 +239,31 @@ public class CitaActivity extends AppCompatActivity {
         flag_postergado=false;
         estado=true;
         try{
-
+        _fecha_registro= new Date();
+        citas=new Citas();
+        citas.setId(_uid_cita);
+        citas.setAsunto(_asunto);
+        citas.setDescripcion(_descripcion);
+        citas.setFecha(_fecha);
+        citas.setHora(_hora);
+        citas.setCantidad_personas(_n_personas);
+        citas.setUid_paciente(_ui_paciente);
+        citas.setUid_pediatra(_ui_pediatra);
+        citas.setFecha_registro(_fecha_registro.toString());
+        citas.setFlag_atendido(flag_atendido);
+        citas.setFlag_cancelado(flag_cancelado);
+        citas.setFlag_postergado(flag_postergado);
+        citas.setEstado(estado);
+        fire_base.child("Citas").child(_uid_cita).setValue(citas);
+        Toast.makeText(this, R.string.cita_registrado_ok, Toast.LENGTH_SHORT).show();
+        finish();
         }catch (Exception e){
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
     }
     private String Obtener_Uid_pediatra(){
-        String UID_P="UID Pediatra";
+        String UID_P="AUnfN3zdsHevqcOGwfz29lB09Y33";
         if (sw_elegir_pediatra.isChecked()){
             UID_P=uid_pediatra.getText().toString();
         }

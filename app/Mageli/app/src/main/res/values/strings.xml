@@ -115,9 +115,10 @@
     <string name="error_fecha_cita">Ingrese una fecha válida</string>
     <string name="error_hora_cita">Ingrese una hora válido</string>
     <string name="error_numero_persona_cita">Ingrese un número válido</string>
-    <string name="error_numero_persona_permitida">Puedes hacer una cita solo para dos persona</string>
+    <string name="error_numero_persona_permitida">Puedes hacer una cita máximo para dos personas</string>
     <string name="popap_titulo_pediatras">Seleccione una especialista</string>
-    <string name="cargando_pediatras">Cargando especialista espere...</string>
+    <string name="cargando_pediatras">Cargando especialistas espere...</string>
+    <string name="cita_registrado_ok">Tu cita fue agregado con exíto</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

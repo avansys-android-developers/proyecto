@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<CalendarView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:id="@+id/carview">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,11 +14,6 @@
             android:gravity="center"
             android:orientation="horizontal"
             android:padding="@dimen/pading">
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/perfil"
-                android:id="@+id/perfilcitas"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -26,16 +22,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:text="@string/nombre_usuario"
                     android:textAlignment="textStart"
                     android:textColor="@color/primario_text"
-                    android:id="@+id/nombre_user"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Especialidad"
-                    android:textColor="@color/secondario_text" />
+                    android:id="@+id/item_asunto_cita"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -46,7 +36,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/btn_cancelar_cita"
-                    android:background="@drawable/editar_rosa"/>
+                    android:background="@drawable/editar_rosa" />
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -65,7 +55,8 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/linea"
-            android:layout_marginStart="@dimen/margenDerechoIzquierdo"
+            android:id="@+id/line1"
+            android:layout_marginStart="15dp"
             android:layout_marginEnd="@dimen/pading"/>
         <LinearLayout
             android:layout_width="match_parent"
@@ -74,40 +65,42 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/pading"
-                android:layout_marginBottom="@dimen/padingTopBotom"
-                android:layout_marginStart="@dimen/margenDerechoIzquierdo"
-                android:text="lorem ipson dolor son modor mitur nhu namor,lorem ipson dolor son modor mitur nhu namor"/>
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="20dp"
+                android:id="@+id/item_descripcion_cita"
+                android:text="Modor mitur nhu namor"/>
         </LinearLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/linea"
-            android:layout_marginStart="@dimen/margenDerechoIzquierdo"
+            android:layout_marginStart="15dp"
             android:layout_marginEnd="@dimen/pading"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginStart="@dimen/margenDerechoIzquierdo">
+            android:layout_marginStart="@dimen/pading">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/pading">
+                android:orientation="vertical">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10/10/2018"/>
+                    android:text="10/10/2018"
+                    android:id="@+id/item_fecha"
+                    android:layout_marginEnd="@dimen/pading"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/pading">
+                android:orientation="vertical">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/item_hora_cita"
                     android:text="20:00 horas"/>
             </LinearLayout>
             <LinearLayout
@@ -121,8 +114,9 @@
                     android:layout_height="wrap_content"
                     android:text="Estado"
                     android:layout_marginEnd="@dimen/marginbotom"
+                    android:id="@+id/item_estado_cita"
                     />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</CalendarView>

@@ -207,7 +207,6 @@ public class PerfilActivity extends AppCompatActivity {
             Act_Persona_especifico.put("/especialidad",persona.getEspecialidad());
             firebase_ref.child(id_ui).updateChildren(Act_Persona_especifico);
             Toast.makeText(PerfilActivity.this,R.string.perfil_ok,Toast.LENGTH_LONG).show();
-            onBackPressed();
             finish();
         }catch (Exception e){
             System.out.print(e.getMessage());

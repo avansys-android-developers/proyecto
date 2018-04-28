@@ -25,7 +25,8 @@
                     android:drawableStart="@drawable/asunto"
                     android:hint="@string/asunto"
                     android:inputType="textPersonName"
-                    android:id="@+id/asunto_cita"/>
+                    android:id="@+id/asunto_cita"
+                    android:maxLength="30"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -42,7 +43,8 @@
                     android:overScrollMode="always"
                     android:scrollbarStyle="insideInset"
                     android:scrollbars="vertical"
-                    android:id="@+id/descipcion_cita"/>
+                    android:id="@+id/descipcion_cita"
+                    android:maxLength="500"/>
             </android.support.design.widget.TextInputLayout>
             <com.google.android.flexbox.FlexboxLayout
                 android:layout_width="match_parent"
@@ -63,7 +65,8 @@
                         android:drawableStart="@drawable/calendario"
                         android:hint="@string/fecha"
                         android:id="@+id/fecha_cita"
-                        android:inputType="date" />
+                        android:inputType="date"
+                        android:maxLength="10"/>
                 </android.support.design.widget.TextInputLayout>
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="wrap_content"
@@ -78,7 +81,8 @@
                         android:drawableStart="@drawable/clock"
                         android:hint="@string/hora"
                         android:inputType="time"
-                        android:id="@+id/hora_cita"/>
+                        android:id="@+id/hora_cita"
+                        android:maxLength="5"/>
                 </android.support.design.widget.TextInputLayout>
             </com.google.android.flexbox.FlexboxLayout>
             <com.google.android.flexbox.FlexboxLayout
@@ -98,7 +102,8 @@
                         android:drawableStart="@drawable/pacientes"
                         android:hint="@string/n_peronsas"
                         android:id="@+id/n_personas"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:maxLength="1"/>
                 </android.support.design.widget.TextInputLayout>
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="wrap_content"
@@ -120,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/pading"
                 android:layout_marginTop="@dimen/pading"
-                android:visibility="gone">
+                android:visibility="invisible">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/img_perfil_pediatra_cita"
@@ -139,15 +144,16 @@
                         android:id="@+id/nombre_pediatra_cita"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:text="@string/pediatra"
-                        android:textColor="@color/primario_text" />
+                        android:text="Gerardo Chaico Padilla"
+                        android:textColor="@color/primario_text"
+                        android:textSize="13dp" />
 
                     <TextView
                         android:id="@+id/especialidad_pediatra_cita"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp" />
+                        android:text="Pediatra"
+                        android:textSize="12dp"/>
                     <View
                         android:id="@+id/divider"
                         android:layout_width="match_parent"
@@ -157,14 +163,16 @@
                         android:id="@+id/correo_pediatra_cita"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp" />
+                        android:layout_marginBottom="5dp"
+                        android:text="micoreo@cv-true.com"
+                        android:textSize="11dp"/>
                     <TextView
                         android:id="@+id/uid_pediatra"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/especialidad"
-                        android:textColor="@color/primario_text"
-                        android:textSize="8sp" />
+                        android:text="4s5a4d5asd5a4d"
+                        android:textColor="@color/secondario_text"
+                        android:textSize="7sp" />
 
                 </LinearLayout>
             </com.google.android.flexbox.FlexboxLayout>
