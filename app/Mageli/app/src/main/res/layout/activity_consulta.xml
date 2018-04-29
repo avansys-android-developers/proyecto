@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bgactivity"
+    android:orientation="vertical"
+    tools:context=".Activity.CitaActivity">
+    <include layout="@layout/mi_toolbar"
+        android:id="@+id/toolbar_cita"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/margenDerechoIzquierdo"
+        android:paddingEnd="@dimen/margenDerechoIzquierdo">
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/asunto"
+                android:hint="@string/asunto_consulta"
+                android:inputType="textPersonName"
+                android:id="@+id/asunto_consulta"
+                android:maxLength="30"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:drawablePadding="5dp"
+                android:gravity="top"
+                android:drawableStart="@drawable/descripcion"
+                android:hint="@string/descripcion_consulta"
+                android:inputType="text|textMultiLine"
+                android:overScrollMode="always"
+                android:scrollbarStyle="insideInset"
+                android:scrollbars="vertical"
+                android:id="@+id/descipcion_consulta"
+                android:maxLength="500"/>
+        </android.support.design.widget.TextInputLayout>
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:hint="@string/consulta_privada"
+                android:textAlignment="textStart"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/pading"
+                android:id="@+id/sw_consulta_privada"
+                app:layout_flexBasisPercent="70%"/>
+        </com.google.android.flexbox.FlexboxLayout>
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/fila_pediatra_privada"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/pading"
+            android:layout_marginTop="@dimen/pading"
+            android:visibility="invisible">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_perfil_pediatra_consulta"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="@dimen/pading"
+                android:src="@drawable/perfil" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/nombre_pediatra_consulta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Gerardo Chaico Padilla"
+                    android:textColor="@color/primario_text"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/especialidad_pediatra_consulta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pediatra"
+                    android:textSize="12dp"/>
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/linea" />
+                <TextView
+                    android:id="@+id/correo_pediatra_consulta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="micoreo@cv-true.com"
+                    android:textSize="11dp"/>
+                <TextView
+                    android:id="@+id/uid_pediatra_consulta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="4s5a4d5asd5a4d"
+                    android:textColor="@color/secondario_text"
+                    android:textSize="7sp" />
+
+            </LinearLayout>
+        </com.google.android.flexbox.FlexboxLayout>
+        <Button
+            android:id="@+id/btn_consulta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padingTopBotom"
+            android:background="@color/celeste_oscuro"
+            android:text="@string/btn_consulta"
+            android:textAllCaps="false"
+            android:textColor="@color/icono"
+            android:layout_marginBottom="@dimen/padingTopBotom"/>
+    </LinearLayout>
+
+</LinearLayout>

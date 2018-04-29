@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.chaicopaillag.app.mageli">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/iconmageli"
@@ -20,7 +22,8 @@
         <activity android:name=".Activity.MenuActivity" />
         <activity android:name=".Activity.RegistroUsuarioActivity" />
         <activity android:name=".Activity.PerfilActivity" />
-        <activity android:name=".Activity.CitaActivity"></activity>
+        <activity android:name=".Activity.CitaActivity" />
+        <activity android:name=".Activity.ConsultaActivity"></activity>
     </application>
 
 </manifest>
