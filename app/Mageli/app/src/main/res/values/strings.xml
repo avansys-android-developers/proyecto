@@ -118,6 +118,7 @@
     <string name="popap_titulo_pediatras">Seleccione una especialista</string>
     <string name="cargando_pediatras">Cargando especialistas espere...</string>
     <string name="cita_registrado_ok">Tu cita fue agregado con exíto</string>
+    <string name="cargando_citas">Cargando tus citas espere...</string>
     <!-- TODO: Nueva consulta -->
     <string name="asunto_consulta">Asunto de la consulta</string>
     <string name="descripcion_consulta">Describe tu consulta</string>
