@@ -55,7 +55,7 @@
     <string name="perfil">Mi Perfil</string>
     <string name="citas">Citas</string>
     <string name="consulta">Consultas</string>
-    <string name="chats">Chats</string>
+    <string name="chats">Mensajes</string>
     <string name="micuenta">Mi Cuenta</string>
     <string name="cuenta">Datos de la Cuenta</string>
     <string name="salir">Salir</string>
@@ -67,7 +67,6 @@
     <string name="car_consultas">+800 Consultas atendidas</string>
     <string name="car_ubicacion">Avenida Alfonso Ugarte N° 825, Cercado de Lima 15001</string>
     <string name="car_horario">Hora de atención   08:00 A.M  a  05:00 P.M</string>
-
     <!--TODO: Perfil-->
     <string name="nombre">Nombre</string>
     <string name="apellidos">Apellidos</string>
@@ -126,6 +125,8 @@
     <string name="btn_consulta">Enviar consulta</string>
     <string name="consulta_registrado_ok">Consulta publicado correctamente</string>
     <string name="cargando_cosultas">Cargando tus consultas espere...</string>
+    <string name="eliminar_consulta">¿Desea eliminar la consulta?</string>
+    <string name="eliminar_cita">¿Desea eliminar la cita?</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

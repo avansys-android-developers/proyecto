@@ -66,8 +66,10 @@
                         android:hint="@string/fecha"
                         android:id="@+id/fecha_cita"
                         android:inputType="date"
+                        style="@android:style/Widget.DeviceDefault.Light.Spinner"
                         android:maxLength="10"/>
                 </android.support.design.widget.TextInputLayout>
+
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -82,6 +84,7 @@
                         android:hint="@string/hora"
                         android:inputType="time"
                         android:id="@+id/hora_cita"
+                        style="@android:style/Widget.DeviceDefault.Light.Spinner"
                         android:maxLength="5"/>
                 </android.support.design.widget.TextInputLayout>
             </com.google.android.flexbox.FlexboxLayout>

@@ -1,17 +1,22 @@
 package com.chaicopaillag.app.mageli.Fragmento;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.chaicopaillag.app.mageli.Activity.CitaActivity;
+import com.chaicopaillag.app.mageli.Activity.ConsultaActivity;
+import com.chaicopaillag.app.mageli.Activity.PerfilActivity;
 import com.chaicopaillag.app.mageli.Adapter.ConsultasAdapter;
 import com.chaicopaillag.app.mageli.Modelo.Consulta;
 import com.chaicopaillag.app.mageli.R;
@@ -24,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 public class ConsultasFragment extends Fragment {
+    private RecyclerView recyclerViewconsukta;
     private FloatingActionButton fab_agregar_conculta;
     private DatabaseReference firebase;
     private FirebaseAuth firebaseAuth;
@@ -50,12 +56,15 @@ public class ConsultasFragment extends Fragment {
         firebase= FirebaseDatabase.getInstance().getReference("Consultas");
         firebaseAuth=FirebaseAuth.getInstance();
         firebaseUser=firebaseAuth.getCurrentUser();
-        Query query=firebase.limitToFirst(100);
+        LinearLayoutManager linearLayoutManager= new LinearLayoutManager(getContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerViewconsukta.setLayoutManager(linearLayoutManager);
         progres_carga_datos();
+        Query query=firebase.orderByChild("uid_paciente").equalTo(firebaseUser.getUid()).limitToFirst(100);
          item_consulta=new FirebaseRecyclerOptions.Builder<Consulta>().setQuery(query,Consulta.class).build();
          adapter= new FirebaseRecyclerAdapter<Consulta, ConsultasAdapter.ViewHolder>(item_consulta) {
             @Override
-            protected void onBindViewHolder(@NonNull ConsultasAdapter.ViewHolder holder, int position, @NonNull Consulta model) {
+            protected void onBindViewHolder(@NonNull ConsultasAdapter.ViewHolder holder, final int position, @NonNull Consulta model) {
                 holder.setAsunto(model.getAsunto());
                 holder.setDescripcion(model.getDescripcion());
                 if (model.isFlag_respuesta()){
@@ -63,6 +72,26 @@ public class ConsultasFragment extends Fragment {
                 }else {
                     holder.setRespuesta("Sin Respuesta");
                 }
+                holder.btn_eliminar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final AlertDialog.Builder alert_consulta = new AlertDialog.Builder(getContext(),R.style.progrescolor);
+                        alert_consulta.setTitle(R.string.app_name);
+                        alert_consulta.setMessage(R.string.eliminar_consulta);
+                        alert_consulta.setPositiveButton(R.string.si,new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                adapter.getRef(position).removeValue();
+                            }
+                        });
+                        alert_consulta.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        });
+                        alert_consulta.show();
+                    }
+                });
             }
             @NonNull
             @Override
@@ -78,6 +107,7 @@ public class ConsultasFragment extends Fragment {
                  progress_carga.dismiss();
              }
          };
+         recyclerViewconsukta.setAdapter(adapter);
     }
 
     @Override
@@ -101,12 +131,12 @@ public class ConsultasFragment extends Fragment {
         progress_carga.show();
     }
     private void inicializar_controles() {
-        fab_agregar_conculta=(FloatingActionButton) getView().findViewById(R.id.fab_agregar_citas);
-
+        fab_agregar_conculta=(FloatingActionButton) getView().findViewById(R.id.fab_agregar_consultas);
+        recyclerViewconsukta=(RecyclerView)getView().findViewById(R.id.recy_consultas);
         fab_agregar_conculta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), CitaActivity.class);
+                Intent intent = new Intent(getContext(), ConsultaActivity.class);
                 startActivity(intent);
             }
         });

@@ -9,13 +9,13 @@ import com.chaicopaillag.app.mageli.R;
 public class CitasAdapter{
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        CardView cardView;
-        TextView asunto;
-        TextView descripcion;
-        TextView fecha;
-        TextView hora;
-        TextView estado;
-        ImageButton btn_eliminar_cita,btn_cancelar_cita,btn_posponer;
+        public CardView cardView;
+        public TextView asunto;
+        public TextView descripcion;
+        public TextView fecha;
+        public TextView hora;
+        public TextView estado;
+        public ImageButton btn_eliminar_cita,btn_cancelar_cita,btn_posponer;
         public ViewHolder(View itemView) {
             super(itemView);
             cardView=(CardView)itemView.findViewById(R.id.carview);

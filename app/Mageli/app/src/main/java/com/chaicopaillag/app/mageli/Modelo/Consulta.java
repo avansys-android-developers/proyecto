@@ -8,12 +8,13 @@ public class Consulta {
     private String uid_pediatra;
     private String fecha_registro;
     private boolean flag_respuesta;
+    private boolean flag_privacidad;
     private boolean estado;
 
     public Consulta() {
     }
 
-    public Consulta(String id, String asunto, String descripcion, String uid_paciente, String uid_pediatra, String fecha_registro, boolean flag_respuesta, boolean estado) {
+    public Consulta(String id, String asunto, String descripcion, String uid_paciente, String uid_pediatra, String fecha_registro, boolean flag_respuesta, boolean flag_privacidad, boolean estado) {
         this.id = id;
         this.asunto = asunto;
         this.descripcion = descripcion;
@@ -21,6 +22,7 @@ public class Consulta {
         this.uid_pediatra = uid_pediatra;
         this.fecha_registro = fecha_registro;
         this.flag_respuesta = flag_respuesta;
+        this.flag_privacidad = flag_privacidad;
         this.estado = estado;
     }
 
@@ -78,6 +80,14 @@ public class Consulta {
 
     public void setFlag_respuesta(boolean flag_respuesta) {
         this.flag_respuesta = flag_respuesta;
+    }
+
+    public boolean isFlag_privacidad() {
+        return flag_privacidad;
+    }
+
+    public void setFlag_privacidad(boolean flag_privacidad) {
+        this.flag_privacidad = flag_privacidad;
     }
 
     public boolean isEstado() {

@@ -178,7 +178,7 @@ public class ConsultaActivity extends AppCompatActivity {
 
     private void guardar_cita() {
         String _uid_consulta,_asunto,_descripcion,_ui_paciente,_ui_pediatra;
-        boolean flag_respuesta,estado;
+        boolean flag_respuesta,estado,privacidad;
         Date _fecha_registro;
         _uid_consulta= UUID.randomUUID().toString();
         _asunto=asunto.getText().toString();
@@ -187,6 +187,10 @@ public class ConsultaActivity extends AppCompatActivity {
         _ui_pediatra=Obtener_Uid_pediatra();
         flag_respuesta=false;
         estado=true;
+        privacidad=false;
+        if (sw_elegir_pediatra.isChecked()){
+            privacidad=true;
+        }
         try{
             _fecha_registro= new Date();
             consulta=new Consulta();
@@ -198,6 +202,7 @@ public class ConsultaActivity extends AppCompatActivity {
             consulta.setFecha_registro(_fecha_registro.toString());
             consulta.setFlag_respuesta(flag_respuesta);
             consulta.setEstado(estado);
+            consulta.setFlag_privacidad(privacidad);
             fire_base.child("Consultas").child(_uid_consulta).setValue(consulta);
             Toast.makeText(this, R.string.consulta_registrado_ok, Toast.LENGTH_SHORT).show();
             finish();

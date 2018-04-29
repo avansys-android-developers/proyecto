@@ -1,11 +1,13 @@
 package com.chaicopaillag.app.mageli.Fragmento;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -71,7 +73,7 @@ public class CitasFragment extends Fragment {
         adapter= new FirebaseRecyclerAdapter<Citas, CitasAdapter.ViewHolder>(citas_items) {
 
             @Override
-            protected void onBindViewHolder(@NonNull CitasAdapter.ViewHolder holder, int position, @NonNull Citas model) {
+            protected void onBindViewHolder(@NonNull CitasAdapter.ViewHolder holder, final int position, @NonNull Citas model) {
                 holder.setAsunto(model.getAsunto());
                 holder.setDescripcion(model.getDescripcion());
                 holder.setFecha(model.getFecha());
@@ -81,6 +83,26 @@ public class CitasFragment extends Fragment {
                 }else {
                     holder.setEstado("Pendiente");
                 }
+                holder.btn_eliminar_cita.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final AlertDialog.Builder alert_cita = new AlertDialog.Builder(getContext(),R.style.progrescolor);
+                        alert_cita.setTitle(R.string.app_name);
+                        alert_cita.setMessage(R.string.eliminar_cita);
+                        alert_cita.setPositiveButton(R.string.si,new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                adapter.getRef(position).removeValue();
+                            }
+                        });
+                        alert_cita.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        });
+                        alert_cita.show();
+                    }
+                });
             }
             @NonNull
             @Override

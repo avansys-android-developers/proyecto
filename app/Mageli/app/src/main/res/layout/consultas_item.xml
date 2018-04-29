@@ -64,6 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginStart="20dp"
                 android:id="@+id/item_descripcion_consulta"
                 android:text="Modor mitur nhu namor"/>
