@@ -65,7 +65,7 @@ public class PerfilFragment extends Fragment {
         progress_carga.setTitle(R.string.app_name);
         progress_carga.setMessage(getString(R.string.carga_perfil));
         progress_carga.setIndeterminate(true);
-        progress_carga.setCanceledOnTouchOutside(false);
+        progress_carga.setCancelable(false);
         progress_carga.show();
     }
 

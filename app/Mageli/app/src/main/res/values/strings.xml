@@ -119,6 +119,7 @@
     <string name="popap_titulo_pediatras">Seleccione una especialista</string>
     <string name="cargando_pediatras">Cargando especialistas espere...</string>
     <string name="cita_registrado_ok">Tu cita fue agregado con exíto</string>
+    <string name="cargando_citas">Cargando tus citas espere...</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
