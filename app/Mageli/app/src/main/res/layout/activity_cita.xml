@@ -182,7 +182,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/padingTopBotom"
                 android:background="@color/celeste_oscuro"
-                android:text="Guardar cita"
+                android:text="@string/btn_cita"
                 android:textAllCaps="false"
                 android:textColor="@color/icono"
                 android:layout_marginBottom="@dimen/padingTopBotom"/>

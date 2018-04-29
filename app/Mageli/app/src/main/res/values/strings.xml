@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">Mageli</string>
-    <!--error conexion internet-->
+    <!--TODO: error conexion internet-->
     <string name="error_conexion_internet">No tienes conexión a internet, comprueba tu conexión e inténtalo de nuevo</string>
-    <!--login google-->
+    <!--TODO: login google-->
     <string name="error_conexion_google">No se ha podido conectar con Google intenta de nuevo</string>
-    <!--login-->
+    <!--TODO: login-->
     <string name="correo">Correo electrónico</string>
     <string name="contrasenia">Contraseña</string>
     <string name="contraseniabiz">Repetir contraseña</string>
@@ -17,11 +17,11 @@
     <string name="restablecer_contrasia">Restablecer contraseña</string>
     <string name="restablecer_contrasia_mensaje">Se ha envio un link a su correo para restablecer la contraseña</string>
     <string name="verificar_sesion">Iniciando sesión...</string>
-    <!--error login firebase-->
+    <!--TODO: error login firebase-->
     <string name="error_login_firebase">No se ha podido iniciar sesión en Mageli</string>
     <string name="error_cerrar_sesion">No se ha podido cerrar sesión en Mageli</string>
     <string name="cerrar_sesion">Sesion cerrado en Mageli</string>
-    <!--error login validacion-->
+    <!--TODO: error login validacion-->
     <string name="error_correo">Ingrese su correo electrónico</string>
     <string name="error_contrasenia">Ingrese la contraseña</string>
     <string name="error_contraseniabiz">Reingrese la contraseña</string>
@@ -31,14 +31,14 @@
     <string name="error_registro">Lo sentimos no se ha podido registrar en </string>
     <string name="error_usuario_existe">Ya existe un usuario con este correo</string>
     <string name="error_ingreso">Correo y/o contraseña incorrectas</string>
-    <!--registo_usuario-->
+    <!--TODO: registo_usuario-->
     <string name="ya_tines_cuenta">¿Ya tienes una cuenta?</string>
     <string name="ir_login">Inicia sesión ahora</string>
     <string name="registro_exito">Se ha Registrado exitósamente en Mageli</string>
     <string name="registro_error">Lo sentimos no se podido registrar en Mageli</string>
     <string name="verificacion_correo">Se ha envio un link a su correo para la verificacón de tu correo electrónico</string>
     <string name="no_verificado_correo">Necesitas verificar tu correo electrónico para iniciar sesión Mageli</string>
-    <!--Menu-->
+    <!--TODO: Menu-->
     <string name="menu">Mageli</string>
     <string name="abrir_nav">Abrir Menu</string>
     <string name="cerar_nav">Cerrar Menu</string>
@@ -51,7 +51,7 @@
     <string name="privacidad">Privacidad</string>
     <string name="web">Web de App Mageli</string>
 
-    <!--Opciones menu-->
+    <!--TODO: Opciones menu-->
     <string name="perfil">Mi Perfil</string>
     <string name="citas">Citas</string>
     <string name="consulta">Consultas</string>
@@ -60,7 +60,7 @@
     <string name="cuenta">Datos de la Cuenta</string>
     <string name="salir">Salir</string>
     <string name="mensaje_salir">Cerrar sesión en Mageli</string>
-    <!-- inicio-->
+    <!-- TODO: inicio-->
     <string name="car_user">Usuarios</string>
     <string name="car_user_activos">+10 Usuarios activos</string>
     <string name="car_citas">+100 Citas programadas</string>
@@ -68,7 +68,7 @@
     <string name="car_ubicacion">Avenida Alfonso Ugarte N° 825, Cercado de Lima 15001</string>
     <string name="car_horario">Hora de atención   08:00 A.M  a  05:00 P.M</string>
 
-    <!--Perfil-->
+    <!--TODO: Perfil-->
     <string name="nombre">Nombre</string>
     <string name="apellidos">Apellidos</string>
     <string name="numero_documento">Número de identidad</string>
@@ -82,7 +82,7 @@
     <string name="btn_perfil">Guardar cambios</string>
     <string name="cancelar_leer_datos_perfil">Ud. canceló la lectura de su perfil</string>
     <string name="actualiza_perfil">Por favor actulize tus datos para continuar usando Mageli</string>
-    <!--validacion perfil-->
+    <!--TODO: validacion perfil-->
     <string name="error_nombre">Ingrese un nombre válido</string>
     <string name="error_apellidos">Ingrese sus apellidos</string>
     <string name="error_numero_documento">Ingrese un número de identidad</string>
@@ -91,7 +91,7 @@
     <string name="error_direccion">Ingrese su dirección</string>
     <string name="error_fecha_nacimiento">Ingrese un fecha de nacimiento válido</string>
     <string name="error_tipo_doc">Seleccione un tipo de documento</string>
-    <!--Aleta dialogo-->
+    <!--TODO: Aleta dialogo-->
     <string name="numero_hc_titulo">Número de Historial Clínico</string>
     <string name="mensaje_num_hc">Si sé el Número de mi Historia Clinica</string>
     <string name="perfil_ok">Datos actualizados corectamente</string>
@@ -100,16 +100,15 @@
     <string name="aceptar">Aceptar</string>
     <string name="cancelar">Cancelar</string>
     <string name="carga_perfil">Cargando tu perfil espere...</string>
-    <!--nueva cita-->
+    <!-- TODO: nueva cita-->
     <string name="asunto">Asunto</string>
     <string name="descripcion">Descripción</string>
     <string name="fecha">Fecha</string>
     <string name="hora">Hora</string>
     <string name="n_peronsas">N° de personas</string>
     <string name="elejir_esp">Elegir especialista</string>
-    <string name="pediatra">Pediatra</string>
-    <string name="especialidad">Especialidad</string>
-    <!--validacion_cita-->
+    <string name="btn_cita">Guardar cita</string>
+    <!--TODO: validacion_cita-->
     <string name="error_asunto_cita">Ingrese un asunto válido</string>
     <string name="error_descripcion_cita">Ingrese una descripción válida</string>
     <string name="error_fecha_cita">Ingrese una fecha válida</string>
@@ -119,6 +118,13 @@
     <string name="popap_titulo_pediatras">Seleccione una especialista</string>
     <string name="cargando_pediatras">Cargando especialistas espere...</string>
     <string name="cita_registrado_ok">Tu cita fue agregado con exíto</string>
+    <!-- TODO: Nueva consulta -->
+    <string name="asunto_consulta">Asunto de la consulta</string>
+    <string name="descripcion_consulta">Describe tu consulta</string>
+    <string name="consulta_privada">Hacer una consulta privada</string>
+    <string name="btn_consulta">Enviar consulta</string>
+    <string name="consulta_registrado_ok">Consulta publicado correctamente</string>
+    <string name="cargando_cosultas">Cargando tus consultas espere...</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
