@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.chaicopaillag.app.mageli.Activity.CitaActivity;
 import com.chaicopaillag.app.mageli.Adapter.CitasAdapter;
@@ -124,6 +125,22 @@ public class CitasFragment extends Fragment {
 
         };
         Recyc_citas.setAdapter(adapter);
+        Recyc_citas.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                if (newState== Recyc_citas.SCROLL_STATE_IDLE){
+                    fab_agregar_cita.show();
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy>0 || dy<0 && fab_agregar_cita.isShown()){
+                    fab_agregar_cita.hide();
+                }
+            }
+        });
     }
 
     @Override

@@ -29,7 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 public class ConsultasFragment extends Fragment {
-    private RecyclerView recyclerViewconsukta;
+    private RecyclerView recyclerViewconsulta;
     private FloatingActionButton fab_agregar_conculta;
     private DatabaseReference firebase;
     private FirebaseAuth firebaseAuth;
@@ -58,7 +58,7 @@ public class ConsultasFragment extends Fragment {
         firebaseUser=firebaseAuth.getCurrentUser();
         LinearLayoutManager linearLayoutManager= new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerViewconsukta.setLayoutManager(linearLayoutManager);
+        recyclerViewconsulta.setLayoutManager(linearLayoutManager);
         progres_carga_datos();
         Query query=firebase.orderByChild("uid_paciente").equalTo(firebaseUser.getUid()).limitToFirst(100);
          item_consulta=new FirebaseRecyclerOptions.Builder<Consulta>().setQuery(query,Consulta.class).build();
@@ -107,7 +107,23 @@ public class ConsultasFragment extends Fragment {
                  progress_carga.dismiss();
              }
          };
-         recyclerViewconsukta.setAdapter(adapter);
+         recyclerViewconsulta.setAdapter(adapter);
+        recyclerViewconsulta.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                if (newState== recyclerViewconsulta.SCROLL_STATE_IDLE){
+                    fab_agregar_conculta.show();
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy>0 || dy<0 && fab_agregar_conculta.isShown()){
+                    fab_agregar_conculta.hide();
+                }
+            }
+        });
     }
 
     @Override
@@ -132,7 +148,7 @@ public class ConsultasFragment extends Fragment {
     }
     private void inicializar_controles() {
         fab_agregar_conculta=(FloatingActionButton) getView().findViewById(R.id.fab_agregar_consultas);
-        recyclerViewconsukta=(RecyclerView)getView().findViewById(R.id.recy_consultas);
+        recyclerViewconsulta=(RecyclerView)getView().findViewById(R.id.recy_consultas);
         fab_agregar_conculta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

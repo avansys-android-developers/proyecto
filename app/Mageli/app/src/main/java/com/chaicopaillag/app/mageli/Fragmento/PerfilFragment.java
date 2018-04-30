@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.NestedScrollView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class PerfilFragment extends Fragment {
+    private ScrollView scrollperfil;
     private LinearLayout contenedor_perf;
     private FloatingActionButton fab_editar_perf;
     private FirebaseAuth auth;
@@ -112,6 +115,7 @@ public class PerfilFragment extends Fragment {
         contenedor_perf.setVisibility(View.INVISIBLE);
         txtperfil_nombre.setVisibility(View.INVISIBLE);
         txtperfil_correo.setVisibility(View.INVISIBLE);
+        scrollperfil=(ScrollView)getView().findViewById(R.id.scrollperfil);
         fab_editar_perf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,7 +124,16 @@ public class PerfilFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        scrollperfil.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                if(){
+
+                }
+            }
+        });
     }
+
     private void llenar_datos(Persona persona) {
         txtperfil_nombre.setText(persona.getNombre()+" "+persona.getApellidos());
         txtperfil_correo.setText(persona.getCorreo());

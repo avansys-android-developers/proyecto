@@ -13,7 +13,6 @@
         android:gravity="center"
         android:background="@drawable/bgcabeceranav"
         android:id="@+id/barner_perfil">
-
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_perfil"
             android:layout_width="80dp"
@@ -61,7 +60,8 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:id="@+id/scrollperfil">
 
             <LinearLayout
                 android:layout_width="match_parent"
