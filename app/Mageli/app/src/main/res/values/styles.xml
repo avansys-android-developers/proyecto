@@ -24,4 +24,13 @@
         <item name="android:textColor">@color/primario_text</item>
         <item name="android:background">@color/icono</item>
     </style>
+    <!--flat buton-->
+    <style name="flat_buton" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/rosa_ligth</item>
+        <item name="colorButtonNormal">@color/bgactivity</item>
+    </style>
+    <style name="material_buton" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/celeste_oscuro</item>
+        <item name="colorButtonNormal">@color/celeste</item>
+    </style>
 </resources>

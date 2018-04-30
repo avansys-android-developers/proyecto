@@ -42,19 +42,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/btn_posponer_cita"
-                    android:background="@drawable/editar_rosa" />
+                    android:src="@drawable/editar_rosa"
+                    android:background="?android:selectableItemBackground"/>
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/btn_cancelar_cita"
-                    android:background="@drawable/cancelar_rosa"
+                    android:src="@drawable/cancelar_rosa"
+                    android:background="?android:selectableItemBackground"
                     android:layout_marginStart="@dimen/pading"
                     android:layout_marginEnd="@dimen/pading"/>
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/btn_eliminar_cita"
-                    android:background="@drawable/eliminar_rosa"/>
+                    android:src="@drawable/eliminar_rosa"
+                    android:background="?android:selectableItemBackground"/>
             </LinearLayout>
         </LinearLayout>
         <View
@@ -76,6 +79,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="15dp"
                 android:id="@+id/item_descripcion_cita"
+                android:maxLength="30"
                 android:text="@string/descripcion"/>
         </LinearLayout>
         <View
@@ -88,7 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginStart="@dimen/pading">
+            android:layout_marginStart="12dp">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

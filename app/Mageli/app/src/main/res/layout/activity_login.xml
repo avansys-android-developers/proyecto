@@ -70,45 +70,38 @@
             <Button
                 android:id="@+id/btnlogin"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp"
+                android:layout_height="56dp"
                 android:layout_marginTop="@dimen/margenAriba_botom"
-                android:background="@color/celeste_oscuro"
                 android:text="@string/iniciar"
                 android:textAllCaps="false"
-                android:textColor="@color/icono" />
+                android:textColor="@color/icono"
+                style="@style/Widget.AppCompat.Button"
+                android:theme="@style/material_buton"/>
 
-            <LinearLayout
+            <com.google.android.flexbox.FlexboxLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/padingTopBotom"
-                android:gravity="center"
-                android:orientation="horizontal">
-
+                app:justifyContent="space_between">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
-                    android:text="@string/olvide_contrasenia" />
-
-                <TextView
-                    android:id="@+id/btnrestablecer_contrasenia"
+                    android:text="@string/olvide_contrasenia"
+                    android:gravity="center"/>
+                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:paddingBottom="@dimen/padingTopBotom"
-                    android:paddingTop="@dimen/padingTopBotom"
                     android:text="@string/restablecer_contrasia"
+                    android:theme="@style/flat_buton"
+                    android:textAllCaps="false"
                     android:textColor="@color/rosa"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                    android:id="@+id/btnrestablecer_contrasenia"
+                    style="@style/Widget.AppCompat.Button.Borderless"/>
+            </com.google.android.flexbox.FlexboxLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
                 android:text="@string/otambien"
                 android:textAlignment="center"
                 android:textColor="@color/celeste"
@@ -118,33 +111,33 @@
             <com.google.android.gms.common.SignInButton
                 android:id="@+id/btngoogle"
                 android:layout_width="match_parent"
-                android:layout_height="55dp">
+                android:layout_height="54dp">
             </com.google.android.gms.common.SignInButton>
 
-            <LinearLayout
+            <com.google.android.flexbox.FlexboxLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/marginbotom"
-                android:gravity="center"
-                android:orientation="horizontal">
-
+                android:layout_marginTop="@dimen/pading"
+                app:alignItems="stretch"
+                app:flexWrap="wrap"
+                app:alignContent="stretch"
+                app:justifyContent="space_between">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
-                    android:text="@string/no_tines_cuenta" />
-
-                <TextView
-                    android:id="@+id/btnregistrateahora"
+                    android:text="@string/no_tines_cuenta"
+                    android:gravity="center"/>
+                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:paddingBottom="@dimen/padingTopBotom"
-                    android:paddingTop="@dimen/padingTopBotom"
                     android:text="@string/registrate"
+                    android:theme="@style/flat_buton"
+                    android:textAllCaps="false"
                     android:textColor="@color/rosa"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                    android:id="@+id/btnregistrateahora"
+                    style="@style/Widget.AppCompat.Button.Borderless"/>
+            </com.google.android.flexbox.FlexboxLayout>
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

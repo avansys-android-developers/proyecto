@@ -13,8 +13,8 @@
     <string name="otambien">Ó</string>
     <string name="no_tines_cuenta">¿Aun no tienes una cuenta?</string>
     <string name="registrate">Registrate ahora</string>
-    <string name="olvide_contrasenia">Olvide mi contraseña</string>
-    <string name="restablecer_contrasia">Restablecer contraseña</string>
+    <string name="olvide_contrasenia">¿Olvidó su contraseña?</string>
+    <string name="restablecer_contrasia">Restablecer</string>
     <string name="restablecer_contrasia_mensaje">Se ha envio un link a su correo para restablecer la contraseña</string>
     <string name="verificar_sesion">Iniciando sesión...</string>
     <!--TODO: error login firebase-->

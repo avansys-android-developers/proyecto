@@ -81,46 +81,41 @@
 
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="56dp"
                 android:text="@string/registro"
                 android:id="@+id/btnregistro"
                 android:layout_marginTop="@dimen/margenAriba_botom"
-                android:background="@color/celeste_oscuro"
                 android:textColor="@color/icono"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false"
+                style="@style/Widget.AppCompat.Button"
+                android:theme="@style/material_buton"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/otambien"
                 android:textAlignment="center"
-                android:layout_marginTop="@dimen/marginbotom"
-                android:textColor="@color/celeste"
+                android:textColor="@color/celeste_oscuro"
                 android:textSize="20sp"
                 />
-            <LinearLayout
+            <com.google.android.flexbox.FlexboxLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="15dp"
-                android:gravity="center">
+                app:justifyContent="space_between">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/ya_tines_cuenta"
-                    android:layout_marginEnd="10dp"/>
-                <TextView
+                    android:gravity="center"/>
+                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/ir_login"
-                    android:gravity="end"
-                    android:id="@+id/btn_ir_login"
-                    android:layout_marginEnd="10dp"
+                    android:theme="@style/flat_buton"
+                    android:textAllCaps="false"
                     android:textColor="@color/rosa"
-                    android:textStyle="bold"
-                    android:paddingTop="@dimen/padingTopBotom"
-                    android:paddingBottom="@dimen/padingTopBotom"
-                    />
-            </LinearLayout>
+                    android:id="@+id/btn_ir_login"
+                    style="@style/Widget.AppCompat.Button.Borderless"/>
+            </com.google.android.flexbox.FlexboxLayout>
         </LinearLayout>
     </ScrollView>
 

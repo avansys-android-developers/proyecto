@@ -124,14 +124,6 @@ public class PerfilFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        scrollperfil.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                if(){
-
-                }
-            }
-        });
     }
 
     private void llenar_datos(Persona persona) {
