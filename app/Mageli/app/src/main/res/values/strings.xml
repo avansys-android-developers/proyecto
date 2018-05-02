@@ -23,7 +23,7 @@
     <string name="cerrar_sesion">Sesion cerrado en Mageli</string>
     <!--TODO: error login validacion-->
     <string name="error_correo">Ingrese su correo electrónico</string>
-    <string name="error_contrasenia">Ingrese la contraseña</string>
+    <string name="error_contrasenia">Ingrese su contraseña</string>
     <string name="error_contraseniabiz">Reingrese la contraseña</string>
     <string name="error_correo_no_valido">Ingrese un correo electrónico válido</string>
     <string name="error_contrasenia_no_valido">Ingrese una contraseña con más 6 caracteres</string>
@@ -90,7 +90,9 @@
     <string name="error_direccion">Ingrese su dirección</string>
     <string name="error_fecha_nacimiento">Ingrese un fecha de nacimiento válido</string>
     <string name="error_tipo_doc">Seleccione un tipo de documento</string>
-    <!--TODO: Aleta dialogo-->
+    <string name="anonimo">Anónimo</string>
+    <string name="pediatra">Pediatra</string>
+    <!--TODO: Alerta dialogo-->
     <string name="numero_hc_titulo">Número de Historial Clínico</string>
     <string name="mensaje_num_hc">Si sé el Número de mi Historia Clinica</string>
     <string name="perfil_ok">Datos actualizados corectamente</string>
@@ -117,7 +119,21 @@
     <string name="popap_titulo_pediatras">Seleccione una especialista</string>
     <string name="cargando_pediatras">Cargando especialistas espere...</string>
     <string name="cita_registrado_ok">Tu cita fue agregado con exíto</string>
+    <string name="cita_modificado_ok">Tu cita fue modificado con exíto</string>
+    <string name="atendido">Atendido</string>
+    <string name="cancelado">Cancelado</string>
+    <string name="pendiente">Pendiente</string>
+    <string name="postergado">Postergado</string>
     <string name="cargando_citas">Cargando tus citas espere...</string>
+    <string name="con">con</string>
+    <string name="modificar">Modificar o posponer</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="no_editar_cita_atendido">No se puede modificar o posponer  la cita, ya fue atendido</string>
+    <string name="no_editar_cita_cancelado_editar">No se puede modificar o posponer  la cita, ya fue cancelado</string>
+    <string name="no_editar_cita_cancelado">No se puede cancelar la cita, ya fue cancelado</string>
+    <string name="desea_cancelar_cita">¿Esta seguro de cancelar la cita?</string>
+    <string name="eliminar_cita">¿Esta seguro de eliminar la cita?</string>
+    <string name="cita_cancelado">Tu cita fue cancelado</string>
     <!-- TODO: Nueva consulta -->
     <string name="asunto_consulta">Asunto de la consulta</string>
     <string name="descripcion_consulta">Describe tu consulta</string>
@@ -126,7 +142,15 @@
     <string name="consulta_registrado_ok">Consulta publicado correctamente</string>
     <string name="cargando_cosultas">Cargando tus consultas espere...</string>
     <string name="eliminar_consulta">¿Desea eliminar la consulta?</string>
-    <string name="eliminar_cita">¿Desea eliminar la cita?</string>
+    <string name="editar_consulta">Modificar</string>
+    <string name="publicado">Publicado</string>
+    <string name="si_respuesta">1 Respuesta</string>
+    <string name="no_respuesta">Sin Respuesta</string>
+    <string name="no_editar_consulta">No se puede modificar la consulta ya fue respondido</string>
+    <string name="consulta_actualizado_ok">Consulta actualizado correctamente</string>
+    <string name="mis_respuestas">Mis Respuestas</string>
+    <string name="cerrar">Cerrar</string>
+    <string name="a">a</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

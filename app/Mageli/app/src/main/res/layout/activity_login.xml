@@ -30,8 +30,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/app_name"
-                    android:textColor="@color/celeste_oscuro"
+                    android:text="ageli"
+                    android:textColor="@color/celeste"
                     android:gravity="center"
                     android:textStyle="bold"
                     android:textSize="20sp" />
@@ -39,7 +39,6 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
                 <EditText
                     android:id="@+id/txtcorreo"
                     android:layout_width="match_parent"
@@ -51,27 +50,23 @@
                     android:maxLines="1"
                     android:singleLine="true" />
             </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:passwordToggleEnabled="true">
-
-                <EditText
-                    android:id="@+id/txtcontrasenia"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="@dimen/padingicono"
-                    android:drawableStart="@drawable/candado"
-                    android:hint="@string/contrasenia"
-                    android:inputType="textPassword" />
-            </android.support.design.widget.TextInputLayout>
-
+               <android.support.design.widget.TextInputLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   app:passwordToggleEnabled="true">
+                   <EditText
+                       android:id="@+id/txtcontrasenia"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:drawablePadding="@dimen/padingicono"
+                       android:drawableStart="@drawable/candado"
+                       android:hint="@string/contrasenia"
+                       android:inputType="textPassword" />
+               </android.support.design.widget.TextInputLayout>
             <Button
                 android:id="@+id/btnlogin"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:layout_marginTop="@dimen/margenAriba_botom"
                 android:text="@string/iniciar"
                 android:textAllCaps="false"
                 android:textColor="@color/icono"
@@ -81,18 +76,18 @@
             <com.google.android.flexbox.FlexboxLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padingTopBotom"
                 app:justifyContent="space_between">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/olvide_contrasenia"
+                    android:textColor="@color/primario_text"
                     android:gravity="center"/>
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/restablecer_contrasia"
-                    android:theme="@style/flat_buton"
+                    android:theme="@style/flat_buton_rosa"
                     android:textAllCaps="false"
                     android:textColor="@color/rosa"
                     android:id="@+id/btnrestablecer_contrasenia"
@@ -126,12 +121,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/no_tines_cuenta"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:textColor="@color/primario_text"/>
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/registrate"
-                    android:theme="@style/flat_buton"
+                    android:theme="@style/flat_buton_rosa"
                     android:textAllCaps="false"
                     android:textColor="@color/rosa"
                     android:id="@+id/btnregistrateahora"

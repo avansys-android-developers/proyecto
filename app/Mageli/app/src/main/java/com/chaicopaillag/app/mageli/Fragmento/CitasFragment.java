@@ -14,8 +14,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.chaicopaillag.app.mageli.Activity.CitaActivity;
+import com.chaicopaillag.app.mageli.Activity.ConsultaActivity;
 import com.chaicopaillag.app.mageli.Adapter.CitasAdapter;
 import com.chaicopaillag.app.mageli.Modelo.Citas;
 import com.chaicopaillag.app.mageli.R;
@@ -72,18 +74,52 @@ public class CitasFragment extends Fragment {
         Query query=firebase_bd.orderByChild("uid_paciente").equalTo(user.getUid()).limitToFirst(100);
         citas_items= new FirebaseRecyclerOptions.Builder<Citas>().setQuery(query,Citas.class).build();
         adapter= new FirebaseRecyclerAdapter<Citas, CitasAdapter.ViewHolder>(citas_items) {
-
             @Override
-            protected void onBindViewHolder(@NonNull CitasAdapter.ViewHolder holder, final int position, @NonNull Citas model) {
+            protected void onBindViewHolder(@NonNull CitasAdapter.ViewHolder holder, final int position, @NonNull final Citas model) {
                 holder.setAsunto(model.getAsunto());
+                holder.setNombre_peditra(model.getNombre_pediatra()+" - "+getString(R.string.pediatra));
                 holder.setDescripcion(model.getDescripcion());
                 holder.setFecha(model.getFecha());
                 holder.setHora(model.getHora());
-                if(model.isEstado()){
-                    holder.setEstado("Activo");
-                }else {
-                    holder.setEstado("Pendiente");
+                if(model.isFlag_atendido()){
+                    holder.setEstado(getString(R.string.atendido));
+                }else if(model.isFlag_cancelado()) {
+                    holder.setEstado(getString(R.string.cancelado));
+                }else if(model.isFlag_postergado()){
+                    holder.setEstado(getString(R.string.postergado));
                 }
+                else {
+                    holder.setEstado(getString(R.string.pendiente));
+                }
+                holder.btn_posponer.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                       if (model.isFlag_atendido()){
+                           Toast.makeText(getContext(),getString(R.string.no_editar_cita_atendido), Toast.LENGTH_SHORT).show();
+                       }else if (model.isFlag_cancelado()){
+                           Toast.makeText(getContext(),getString(R.string.no_editar_cita_cancelado_editar), Toast.LENGTH_SHORT).show();
+                       }
+                       else {
+                           Intent intent= new Intent(getContext(),CitaActivity.class);
+                           intent.putExtra("editar_cita",true);
+                           intent.putExtra("uid_cita",model.getId());
+                           startActivity(intent);
+                       }
+                    }
+                });
+                holder.btn_cancelar_cita.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (model.isFlag_atendido()){
+                            Toast.makeText(getContext(),getString(R.string.no_editar_cita_atendido), Toast.LENGTH_SHORT).show();
+                        }else if (model.isFlag_cancelado()){
+                            Toast.makeText(getContext(),getString(R.string.no_editar_cita_cancelado), Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            cancelar_cita(model.getId());
+                        }
+                    }
+                });
                 holder.btn_eliminar_cita.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -141,6 +177,25 @@ public class CitasFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private void cancelar_cita(final String uid_cita) {
+        final AlertDialog.Builder alert_cancelar = new AlertDialog.Builder(getContext(),R.style.progrescolor);
+        alert_cancelar.setTitle(R.string.app_name);
+        alert_cancelar.setMessage(R.string.desea_cancelar_cita);
+        alert_cancelar.setPositiveButton(R.string.si,new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                firebase_bd.child(uid_cita).child("flag_cancelado").setValue(true);
+            }
+        });
+        alert_cancelar.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        alert_cancelar.show();
+
     }
 
     @Override

@@ -25,12 +25,23 @@
         <item name="android:background">@color/icono</item>
     </style>
     <!--flat buton-->
-    <style name="flat_buton" parent="Theme.AppCompat.Light">
+    <style name="flat_buton_rosa" parent="Theme.AppCompat.Light">
         <item name="colorControlHighlight">@color/rosa_ligth</item>
         <item name="colorButtonNormal">@color/bgactivity</item>
     </style>
+    <!--buton normal-->
     <style name="material_buton" parent="Theme.AppCompat.Light">
         <item name="colorControlHighlight">@color/celeste_oscuro</item>
         <item name="colorButtonNormal">@color/celeste</item>
+    </style>
+    <!--flat buton celeste-->
+    <style name="flat_buton_celeste" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/celeste_light</item>
+        <item name="colorButtonNormal">@color/icono</item>
+    </style>
+    <!--flat buton celeste-->
+    <style name="flat_buton_secundary" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/secondario_text</item>
+        <item name="colorButtonNormal">@color/icono</item>
     </style>
 </resources>

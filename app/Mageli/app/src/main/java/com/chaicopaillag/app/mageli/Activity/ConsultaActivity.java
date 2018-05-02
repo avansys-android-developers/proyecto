@@ -3,6 +3,7 @@ package com.chaicopaillag.app.mageli.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
@@ -32,7 +33,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class ConsultaActivity extends AppCompatActivity {
@@ -50,12 +53,15 @@ public class ConsultaActivity extends AppCompatActivity {
     private Button btn_consulta;
     private AlertDialog.Builder PopapPediatras;
     private ProgressDialog progress_carga;
+    private String UID_P="AUnfN3zdsHevqcOGwfz29lB09Y33";
+    private String NOMBRE_P="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consulta);
-        inicializar_controles();
+        NOMBRE_P=getString(R.string.anonimo);
         inicializar_servicio();
+        inicializar_controles();
     }
 
     private void inicializar_servicio() {
@@ -101,6 +107,34 @@ public class ConsultaActivity extends AppCompatActivity {
                 validar_campos();
             }
         });
+        Intent intento= getIntent();
+        if (intento.getBooleanExtra("editar_consulta",true)&&intento.getStringExtra("uid_consulta")!=null){
+            String uid_consulta=intento.getStringExtra("uid_consulta");
+            fire_base.child("Consultas").child(uid_consulta).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    consulta=dataSnapshot.getValue(Consulta.class);
+                    if(consulta!=null){
+                        asunto.setText(consulta.getAsunto());
+                        descripcion.setText(consulta.getDescripcion());
+                        if (!consulta.getNombre_pediatra().equals(getString(R.string.anonimo))){
+                            uid_pediatra.setText(consulta.getUid_pediatra());
+                            nombre_pediatra.setText(consulta.getNombre_pediatra());
+                            esp_ped.setText("");
+                            correo_ped.setText("");
+                            UID_P=consulta.getUid_pediatra();
+                            NOMBRE_P=consulta.getNombre_pediatra();
+                            flexbox_pediatra.setVisibility(View.VISIBLE);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
     }
 
     private void cargar_pediatras() {
@@ -164,27 +198,38 @@ public class ConsultaActivity extends AppCompatActivity {
         String _asunto,_descripcion;
         _asunto=asunto.getText().toString();
         _descripcion=descripcion.getText().toString();
-        if (TextUtils.isEmpty(_asunto) || _asunto.length()<2||_asunto.length()>30){
+        if (TextUtils.isEmpty(_asunto) || _asunto.length()<2){
             asunto.setError(getString(R.string.error_asunto_cita));
             return;
-        }else  if (TextUtils.isEmpty(_descripcion)||_descripcion.length()<10 ||_descripcion.length()>500){
+        }else  if (TextUtils.isEmpty(_descripcion)||_descripcion.length()<10 ||_descripcion.length()>1000){
             descripcion.setError(getString(R.string.error_descripcion_cita));
             return;
         }
         else {
-            guardar_cita();
+            Intent intent= getIntent();
+            if (intent.getBooleanExtra("editar_consulta",true)&&intent.getStringExtra("uid_consulta")!=null){
+                actualizar_consulta();
+            }else {
+                guardar_cita();
+            }
         }
     }
 
-    private void guardar_cita() {
-        String _uid_consulta,_asunto,_descripcion,_ui_paciente,_ui_pediatra;
+    private void actualizar_consulta() {
+        String _uid_consulta,_asunto,_descripcion,_ui_paciente,_nombre_paciente,_ui_pediatra,_nombre_pediatra;
         boolean flag_respuesta,estado,privacidad;
         Date _fecha_registro;
-        _uid_consulta= UUID.randomUUID().toString();
+        Intent intent= getIntent();
+        _uid_consulta= intent.getStringExtra("uid_consulta");
         _asunto=asunto.getText().toString();
         _descripcion=descripcion.getText().toString();
         _ui_paciente=User.getUid();
+        _nombre_paciente=User.getDisplayName();
         _ui_pediatra=Obtener_Uid_pediatra();
+        _nombre_pediatra=NOMBRE_P;
+        if (sw_elegir_pediatra.isChecked()){
+            _nombre_pediatra=nombre_pediatra.getText().toString();
+        }
         flag_respuesta=false;
         estado=true;
         privacidad=false;
@@ -198,6 +243,62 @@ public class ConsultaActivity extends AppCompatActivity {
             consulta.setAsunto(_asunto);
             consulta.setDescripcion(_descripcion);
             consulta.setUid_paciente(_ui_paciente);
+            consulta.setNombre_paciente(_nombre_paciente);
+            consulta.setNombre_pediatra(_nombre_pediatra);
+            consulta.setUid_pediatra(_ui_pediatra);
+            consulta.setFecha_registro(_fecha_registro.toString());
+            consulta.setFlag_respuesta(flag_respuesta);
+            consulta.setEstado(estado);
+            consulta.setFlag_privacidad(privacidad);
+            Map<String, Object> actualizacion_cita = new HashMap<>();
+            actualizacion_cita.put("/id",consulta.getId() );
+            actualizacion_cita.put("/asunto",consulta.getAsunto());
+            actualizacion_cita.put("/descripcion",consulta.getDescripcion());
+            actualizacion_cita.put("/uid_paciente",consulta.getUid_paciente());
+            actualizacion_cita.put("/nombre_paciente",consulta.getNombre_paciente());
+            actualizacion_cita.put("/uid_pediatra",consulta.getUid_pediatra());
+            actualizacion_cita.put("/nombre_pediatra",consulta.getNombre_pediatra());
+            actualizacion_cita.put("/fecha_registro",consulta.getFecha_registro());
+            actualizacion_cita.put("/flag_respuesta",consulta.isFlag_respuesta());
+            actualizacion_cita.put("/flag_privacidad",consulta.isFlag_privacidad());
+            actualizacion_cita.put("/estado",consulta.isEstado());
+            fire_base.child("Consultas").child(_uid_consulta).updateChildren(actualizacion_cita);
+            Toast.makeText(this, R.string.consulta_actualizado_ok, Toast.LENGTH_SHORT).show();
+            finish();
+        }catch (Exception e){
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void guardar_cita() {
+        String _uid_consulta,_asunto,_descripcion,_ui_paciente,_nombre_paciente,_ui_pediatra,_nombre_pediatra;
+        boolean flag_respuesta,estado,privacidad;
+        Date _fecha_registro;
+        _uid_consulta= UUID.randomUUID().toString();
+        _asunto=asunto.getText().toString();
+        _descripcion=descripcion.getText().toString();
+        _ui_paciente=User.getUid();
+        _nombre_paciente=User.getDisplayName();
+        _ui_pediatra=Obtener_Uid_pediatra();
+        _nombre_pediatra=getString(R.string.anonimo);
+        if (sw_elegir_pediatra.isChecked()){
+            _nombre_pediatra=nombre_pediatra.getText().toString();
+        }
+        flag_respuesta=false;
+        estado=true;
+        privacidad=false;
+        if (sw_elegir_pediatra.isChecked()){
+            privacidad=true;
+        }
+        try{
+            _fecha_registro= new Date();
+            consulta=new Consulta();
+            consulta.setId(_uid_consulta);
+            consulta.setAsunto(_asunto);
+            consulta.setDescripcion(_descripcion);
+            consulta.setUid_paciente(_ui_paciente);
+            consulta.setNombre_paciente(_nombre_paciente);
+            consulta.setNombre_pediatra(_nombre_pediatra);
             consulta.setUid_pediatra(_ui_pediatra);
             consulta.setFecha_registro(_fecha_registro.toString());
             consulta.setFlag_respuesta(flag_respuesta);
@@ -211,7 +312,6 @@ public class ConsultaActivity extends AppCompatActivity {
         }
     }
     private String Obtener_Uid_pediatra(){
-        String UID_P="AUnfN3zdsHevqcOGwfz29lB09Y33";
         if (sw_elegir_pediatra.isChecked()){
             UID_P=uid_pediatra.getText().toString();
         }

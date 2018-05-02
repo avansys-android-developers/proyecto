@@ -1,4 +1,5 @@
 package com.chaicopaillag.app.mageli.Fragmento;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,9 +11,11 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.chaicopaillag.app.mageli.Activity.CitaActivity;
 import com.chaicopaillag.app.mageli.Activity.ConsultaActivity;
@@ -24,9 +27,16 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ConsultasFragment extends Fragment {
     private RecyclerView recyclerViewconsulta;
@@ -64,14 +74,44 @@ public class ConsultasFragment extends Fragment {
          item_consulta=new FirebaseRecyclerOptions.Builder<Consulta>().setQuery(query,Consulta.class).build();
          adapter= new FirebaseRecyclerAdapter<Consulta, ConsultasAdapter.ViewHolder>(item_consulta) {
             @Override
-            protected void onBindViewHolder(@NonNull ConsultasAdapter.ViewHolder holder, final int position, @NonNull Consulta model) {
+            protected void onBindViewHolder(@NonNull ConsultasAdapter.ViewHolder holder, final int position, @NonNull final Consulta model) {
                 holder.setAsunto(model.getAsunto());
                 holder.setDescripcion(model.getDescripcion());
-                if (model.isFlag_respuesta()){
-                    holder.setRespuesta("1 Respuesta");
-                }else {
-                    holder.setRespuesta("Sin Respuesta");
+                holder.setNombre_pediatra(model.getNombre_pediatra());
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                try {
+                    Date dfecha = formato.parse(model.getFecha_registro());
+                    holder.setFecha_consulta(formato.format(dfecha));
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 }
+
+                if (model.isFlag_respuesta()){
+                    holder.setRespuesta(getString(R.string.si_respuesta));
+                }else {
+                    holder.setRespuesta(getString(R.string.no_respuesta));
+                }
+                holder.btn_respuesta.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(model.isFlag_respuesta()){
+                            cargar_respuestas(model);
+                        }
+                    }
+                });
+                holder.btn_editar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (model.isFlag_respuesta()){
+                            Toast.makeText(getContext(),getString(R.string.no_editar_consulta), Toast.LENGTH_SHORT).show();
+                        }else {
+                            Intent intent= new Intent(getContext(),ConsultaActivity.class);
+                            intent.putExtra("editar_consulta",true);
+                            intent.putExtra("uid_consulta",model.getId());
+                            startActivity(intent);
+                        }
+                    }
+                });
                 holder.btn_eliminar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -124,6 +164,25 @@ public class ConsultasFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private void cargar_respuestas(Consulta model) {
+    firebase.child(model.getId()).addListenerForSingleValueEvent(new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            Consulta consult=dataSnapshot.getValue(Consulta.class);
+            if (consult!=null){
+                Dialog dialogRespuestas= new Dialog(getContext());
+
+                Toast.makeText(getContext(), consult.getAsunto(), Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+
+        }
+    });
     }
 
     @Override

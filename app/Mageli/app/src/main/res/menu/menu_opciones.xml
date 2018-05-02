@@ -2,19 +2,33 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/item_perfil"
+            android:id="@+id/menu_item_perfil"
             android:icon="@drawable/pediatra"
             android:title="@string/perfil" />
+    </group>
+    <group android:checkableBehavior="single">
         <item
-            android:id="@+id/item_citas"
+            android:id="@+id/menu_item_citas_paciente"
             android:icon="@drawable/citas"
-            android:title="@string/citas" />
+            android:title="@string/citas"/>
         <item
-            android:id="@+id/item_consulta"
+            android:id="@+id/menu_item_consulta_paciente"
             android:icon="@drawable/consultas"
-            android:title="@string/consulta" />
+            android:title="@string/consulta"/>
+    </group>
+    <group android:checkableBehavior="single">
         <item
-            android:id="@+id/item_chat"
+            android:id="@+id/menu_item_citas_pediatra"
+            android:icon="@drawable/citas"
+            android:title="@string/citas"/>
+        <item
+            android:id="@+id/menu_item_consulta_pediatra"
+            android:icon="@drawable/consultas"
+            android:title="@string/consulta"/>
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_item_chat"
             android:icon="@drawable/chat"
             android:title="@string/chats" />
     </group>
@@ -22,11 +36,11 @@
         <menu>
             <group android:checkableBehavior="single">
                 <item
-                    android:id="@+id/item_cuenta"
+                    android:id="@+id/menu_item_cuenta"
                     android:icon="@drawable/cuenta"
                     android:title="@string/micuenta" />
                 <item
-                    android:id="@+id/item_salir"
+                    android:id="@+id/menu_item_salir"
                     android:icon="@drawable/salir"
                     android:title="@string/salir" />
             </group>

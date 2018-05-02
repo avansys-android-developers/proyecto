@@ -33,8 +33,7 @@ import java.util.regex.Pattern;
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
     private EditText txt_correo,txt_contrasenia;
-    private Button btn_iniciar;
-    private TextView btn_registro,btn_restablecer_contra;
+    private Button btn_iniciar,btn_registro,btn_restablecer_contra;
     private SignInButton btn_google;
     private GoogleApiClient googleApiClient;
     public static final int SIGN_IN_CODE = 9001;
@@ -58,16 +57,15 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         txt_contrasenia=(EditText)findViewById(R.id.txtcontrasenia);
 
         btn_iniciar=(Button)findViewById(R.id.btnlogin);
-        btn_registro=(TextView)findViewById(R.id.btnregistrateahora);
+        btn_registro=(Button) findViewById(R.id.btnregistrateahora);
 
-        btn_restablecer_contra=(TextView)findViewById(R.id.btnrestablecer_contrasenia);
+        btn_restablecer_contra=(Button) findViewById(R.id.btnrestablecer_contrasenia);
         btn_google=(SignInButton)findViewById(R.id.btngoogle);
 
         btn_registro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(LoginActivity.this,RegistroUsuarioActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }
         });

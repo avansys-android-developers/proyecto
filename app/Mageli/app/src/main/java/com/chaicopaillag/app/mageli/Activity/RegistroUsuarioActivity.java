@@ -24,8 +24,7 @@ import java.util.regex.Pattern;
 
 public class RegistroUsuarioActivity extends AppCompatActivity {
     private EditText txt_correo,txt_contrasenia,getTxt_contraseniabiz;
-    private Button btn_registro;
-    private TextView btnIrlogin;
+    private Button btn_registro, btnIrlogin;
     private FirebaseAuth firebase_autent;
     private FirebaseUser user;
     @Override
@@ -40,7 +39,7 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
         getTxt_contraseniabiz=(EditText)findViewById(R.id.txtcontraseniabiz);
 
         btn_registro=(Button)findViewById(R.id.btnregistro);
-        btnIrlogin=(TextView)findViewById(R.id.btn_ir_login);
+        btnIrlogin=(Button) findViewById(R.id.btn_ir_login);
 
         btnIrlogin.setOnClickListener(new View.OnClickListener() {
             @Override

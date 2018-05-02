@@ -4,6 +4,8 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,8 +23,11 @@ import android.widget.Toast;
 
 import com.chaicopaillag.app.mageli.Modelo.Persona;
 import com.chaicopaillag.app.mageli.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -66,7 +71,7 @@ public class PerfilActivity extends AppCompatActivity {
         correo_ui=user.getEmail();
         firebase_ref=mi_db.getReference("Persona");
         Intent intent = getIntent();
-        if (intent!=null){
+        if (intent.getBooleanExtra("editar",true)){
             firebase_ref.child(id_ui).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -79,6 +84,7 @@ public class PerfilActivity extends AppCompatActivity {
                         txt_direccion.setText(persona.getDireccion());
                         txt_telefono.setText(persona.getTelefono());
                         fecha_nac.setText(persona.getFecha_nacimiento());
+                        tipo_persona=persona.getTipo_persona();
                         if (persona.isGenero()){
                             generoMasculino.setChecked(true);
                         }else {
@@ -160,7 +166,7 @@ public class PerfilActivity extends AppCompatActivity {
 
     private void modificar_datos() {
         Persona persona;
-        String id,nombre,apellidos,numero_documento,numero_hc,direccion, telefono,correo,fecha_nacimient;
+        String id,nombre,apellidos,numero_documento,numero_hc,direccion, telefono,correo,fecha_nacimient,foto_url;
         boolean genero;
         Date fecha_registro;
         id=id_ui;
@@ -171,9 +177,13 @@ public class PerfilActivity extends AppCompatActivity {
         direccion=txt_direccion.getText().toString();
         telefono=txt_telefono.getText().toString();
         correo=correo_ui;
-        especialidad="Pediatra";
+        especialidad="...";
         estado=true;
-        tipo_persona=1;
+        if (user.getPhotoUrl()!=null){
+            foto_url=user.getPhotoUrl().toString();
+        }else {
+            foto_url=null;
+        }
         if (generoMasculino.isChecked()){
             genero=true;
         }else {
@@ -187,7 +197,7 @@ public class PerfilActivity extends AppCompatActivity {
                     id,nombre,apellidos,numero_documento,
                     numero_hc,direccion,telefono,correo,
                     genero,tipo_doc,fecha_nacimient,fecha_registro+"",
-                    estado,tipo_persona,especialidad);
+                    estado,tipo_persona,especialidad,foto_url);
 //            Map<String, Object> miPersona = persona.miMap();
             Map<String, Object> Act_Persona_especifico = new HashMap<>();
             Act_Persona_especifico.put("/id",persona.getId() );
@@ -205,8 +215,9 @@ public class PerfilActivity extends AppCompatActivity {
             Act_Persona_especifico.put("/estado",persona.isEstado());
             Act_Persona_especifico.put("/tipo_persona",persona.getTipo_persona());
             Act_Persona_especifico.put("/especialidad",persona.getEspecialidad());
+            Act_Persona_especifico.put("/foto_url",persona.getFoto_url());
             firebase_ref.child(id_ui).updateChildren(Act_Persona_especifico);
-            Toast.makeText(PerfilActivity.this,R.string.perfil_ok,Toast.LENGTH_LONG).show();
+            actualizardatos_usuario(nombre,apellidos);
             finish();
         }catch (Exception e){
             System.out.print(e.getMessage());
@@ -253,7 +264,7 @@ public class PerfilActivity extends AppCompatActivity {
 
     private void guardar_datos() {
         Persona persona;
-        String id,nombre,apellidos,numero_documento,numero_hc,direccion, telefono,correo,fecha_nacimient;
+        String id,nombre,apellidos,numero_documento,numero_hc,direccion, telefono,correo,fecha_nacimient,foto_url;
         boolean genero;
         Date fecha_registro;
         id=id_ui;
@@ -266,7 +277,12 @@ public class PerfilActivity extends AppCompatActivity {
         correo=correo_ui;
         especialidad="...";
         estado=true;
-        tipo_persona=2;
+        tipo_persona=1;
+        if (user.getPhotoUrl()!=null){
+            foto_url=user.getPhotoUrl().toString();
+        }else {
+            foto_url=null;
+        }
         if (generoMasculino.isChecked()){
             genero=true;
         }else {
@@ -279,15 +295,30 @@ public class PerfilActivity extends AppCompatActivity {
                     id,nombre,apellidos,numero_documento,
                     numero_hc,direccion,telefono,correo,
                     genero,tipo_doc,fecha_nacimient,fecha_registro+"",
-                    estado,tipo_persona,especialidad);
+                    estado,tipo_persona,especialidad,foto_url);
             firebase_ref.child(id_ui).setValue(persona);
-            Toast.makeText(PerfilActivity.this,R.string.perfil_ok,Toast.LENGTH_LONG).show();
-            onBackPressed();
+            actualizardatos_usuario(nombre,apellidos);
             finish();
         }catch (Exception e){
             System.out.print(e.getMessage());
             Toast.makeText(PerfilActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void actualizardatos_usuario(String nombre, String apellidos) {
+
+        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                .setDisplayName(nombre +" "+ apellidos)
+                .build();
+                user.updateProfile(profileUpdates)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(PerfilActivity.this,R.string.perfil_ok,Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
     }
 
     private void Validar_campos() {

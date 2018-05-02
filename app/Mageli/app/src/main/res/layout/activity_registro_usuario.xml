@@ -29,8 +29,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/app_name"
-                    android:textColor="@color/celeste_oscuro"
+                    android:text="ageli"
+                    android:textColor="@color/celeste"
                     android:gravity="center"
                     android:textStyle="bold"
                     android:textSize="20sp" />
@@ -105,12 +105,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/ya_tines_cuenta"
+                    android:textColor="@color/primario_text"
                     android:gravity="center"/>
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/ir_login"
-                    android:theme="@style/flat_buton"
+                    android:theme="@style/flat_buton_rosa"
                     android:textAllCaps="false"
                     android:textColor="@color/rosa"
                     android:id="@+id/btn_ir_login"

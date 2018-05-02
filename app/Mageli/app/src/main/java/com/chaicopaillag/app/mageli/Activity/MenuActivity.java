@@ -21,10 +21,13 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.chaicopaillag.app.mageli.Fragmento.CitasFragment;
+import com.chaicopaillag.app.mageli.Fragmento.CitasPediatraFragment;
+import com.chaicopaillag.app.mageli.Fragmento.ConsultaPediatraFragment;
 import com.chaicopaillag.app.mageli.Fragmento.ConsultasFragment;
 import com.chaicopaillag.app.mageli.Fragmento.CuentasFragment;
 import com.chaicopaillag.app.mageli.Fragmento.InicioFragment;
 import com.chaicopaillag.app.mageli.Fragmento.PerfilFragment;
+import com.chaicopaillag.app.mageli.Modelo.Persona;
 import com.chaicopaillag.app.mageli.R;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -34,10 +37,18 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MenuActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
     private GoogleApiClient googleApiClient;
     private FirebaseAuth firebaseAuth;
+    private FirebaseUser user;
+    private Persona persona;
+    private DatabaseReference firebase;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
     private NavigationView menu_slide;
     private DrawerLayout drawer;
@@ -55,7 +66,7 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
 
     }
 
-    private void inicializar_servicios() {
+    private void inicializar_controles() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -71,6 +82,7 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
         nombreUser=(TextView) nav_cabecera.findViewById(R.id.nombreUsuario);
         correoUser=(TextView)nav_cabecera.findViewById(R.id.correoUsuario);
         imgUsuario=(ImageView)nav_cabecera.findViewById(R.id.imgUsuario);
+
         menu_slide.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -78,23 +90,31 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
                 Fragment mi_fragmento=null;
                 int id = item.getItemId();
                 switch (id){
-                    case R.id.item_perfil:
+                    case R.id.menu_item_perfil:
                         mi_fragmento=new PerfilFragment();
                         transframe=true;
                         break;
-                    case R.id.item_citas:
+                    case R.id.menu_item_citas_paciente:
                         mi_fragmento=new CitasFragment();
                         transframe=true;
                         break;
-                    case R.id.item_consulta:
+                    case R.id.menu_item_citas_pediatra:
+                        mi_fragmento=new CitasPediatraFragment();
+                        transframe=true;
+                        break;
+                    case R.id.menu_item_consulta_paciente:
                         mi_fragmento=new ConsultasFragment();
                         transframe=true;
                         break;
-                    case R.id.item_cuenta:
+                    case R.id.menu_item_consulta_pediatra:
+                        mi_fragmento=new ConsultaPediatraFragment();
+                        transframe=true;
+                        break;
+                    case R.id.menu_item_cuenta:
                         mi_fragmento=new CuentasFragment();
                         transframe=true;
                         break;
-                    case R.id.item_salir:
+                    case R.id.menu_item_salir:
                         SalirMenu();
                         break;
                 }
@@ -108,11 +128,9 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
             }
         });
         ponerFragmento(new InicioFragment());
-        firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     colocar_datos_usuario(user);
                 } else {
@@ -127,7 +145,15 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
                 .replace(R.id.contenedor,mi_fragmento)
                 .commit();
     }
-    private void inicializar_controles() {
+    private void ir_perfil(){
+        Intent intent = new Intent(MenuActivity.this, PerfilActivity.class);
+        startActivity(intent);
+    }
+    private void inicializar_servicios() {
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        firebase= FirebaseDatabase.getInstance().getReference("Persona");
+        firebaseAuth=FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -159,7 +185,6 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
         getMenuInflater().inflate(R.menu.menu_extra, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -217,6 +242,10 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
     protected void onStart() {
         super.onStart();
         firebaseAuth.addAuthStateListener(firebaseAuthListener);
+//        if (persona==null){
+//            Toast.makeText(MenuActivity.this, getString(R.string.actualiza_perfil), Toast.LENGTH_LONG).show();
+//            ir_perfil();
+//        }
     }
 
     @Override

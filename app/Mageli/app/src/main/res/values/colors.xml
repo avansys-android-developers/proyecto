@@ -2,12 +2,12 @@
 <resources>
     <color name="celeste">#2196F3</color>
     <color name="celeste_oscuro">#1976D2</color>
-    <color name="celete_light">#BBDEFB</color>
+    <color name="celeste_light">#BBDEFB</color>
     <color name="rosa">#FF4081</color>
     <color name="rosa_ligth">#FFBFD5</color>
     <color name="primario_text">#212121</color>
     <color name="secondario_text">#757575</color>
     <color name="icono">#FFFFFF</color>
     <color name="linea">#BDBDBD</color>
-    <color name="bgactivity">#DCDCDC</color>
+    <color name="bgactivity">#ddd</color>
 </resources>

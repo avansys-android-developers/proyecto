@@ -1,5 +1,10 @@
 package com.chaicopaillag.app.mageli.Modelo;
 
+import com.google.firebase.database.Exclude;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class Citas {
     private String id;
     private String asunto;
@@ -8,7 +13,9 @@ public class Citas {
     private String hora;
     private int cantidad_personas;
     private String uid_paciente;
+    private String nombre_paciente;
     private String uid_pediatra;
+    private String nombre_pediatra;
     private String fecha_registro;
     private boolean flag_atendido;
     private boolean flag_cancelado;
@@ -18,7 +25,7 @@ public class Citas {
     public Citas() {
     }
 
-    public Citas(String id, String asunto, String descripcion, String fecha, String hora, int cantidad_personas, String uid_paciente, String uid_pediatra, String fecha_registro, boolean flag_atendido, boolean flag_cancelado, boolean flag_postergado, boolean estado) {
+    public Citas(String id, String asunto, String descripcion, String fecha, String hora, int cantidad_personas, String uid_paciente, String nombre_paciente, String uid_pediatra, String nombre_pediatra, String fecha_registro, boolean flag_atendido, boolean flag_cancelado, boolean flag_postergado, boolean estado) {
         this.id = id;
         this.asunto = asunto;
         this.descripcion = descripcion;
@@ -26,7 +33,9 @@ public class Citas {
         this.hora = hora;
         this.cantidad_personas = cantidad_personas;
         this.uid_paciente = uid_paciente;
+        this.nombre_paciente = nombre_paciente;
         this.uid_pediatra = uid_pediatra;
+        this.nombre_pediatra = nombre_pediatra;
         this.fecha_registro = fecha_registro;
         this.flag_atendido = flag_atendido;
         this.flag_cancelado = flag_cancelado;
@@ -90,12 +99,28 @@ public class Citas {
         this.uid_paciente = uid_paciente;
     }
 
+    public String getNombre_paciente() {
+        return nombre_paciente;
+    }
+
+    public void setNombre_paciente(String nombre_paciente) {
+        this.nombre_paciente = nombre_paciente;
+    }
+
     public String getUid_pediatra() {
         return uid_pediatra;
     }
 
     public void setUid_pediatra(String uid_pediatra) {
         this.uid_pediatra = uid_pediatra;
+    }
+
+    public String getNombre_pediatra() {
+        return nombre_pediatra;
+    }
+
+    public void setNombre_pediatra(String nombre_pediatra) {
+        this.nombre_pediatra = nombre_pediatra;
     }
 
     public String getFecha_registro() {
@@ -136,5 +161,25 @@ public class Citas {
 
     public void setEstado(boolean estado) {
         this.estado = estado;
+    }
+    @Exclude
+    public Map<String,Object> miMap(){
+        HashMap<String ,Object> Resultado=new HashMap<>();
+        Resultado.put("id",id);
+        Resultado.put("asunto",asunto);
+        Resultado.put("descripcion",descripcion);
+        Resultado.put("fecha",fecha);
+        Resultado.put("hora",hora);
+        Resultado.put("cantidad_personas",cantidad_personas);
+        Resultado.put("uid_paciente",uid_paciente);
+        Resultado.put("nombre_paciente",nombre_paciente);
+        Resultado.put("uid_pediatra",uid_pediatra);
+        Resultado.put("nombre_pediatra",nombre_pediatra);
+        Resultado.put("fecha_registro",fecha_registro);
+        Resultado.put("flag_atendido",flag_atendido);
+        Resultado.put("flag_cancelado",flag_cancelado);
+        Resultado.put("flag_postergado",flag_postergado);
+        Resultado.put("estado",estado);
+        return Resultado;
     }
 }
