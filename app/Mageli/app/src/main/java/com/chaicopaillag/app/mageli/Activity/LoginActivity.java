@@ -46,13 +46,13 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         Inicializar_servicios();
         Inicializar_controles();
 
     }
 
     private void Inicializar_controles() {
+        progress_carga=new ProgressDialog(LoginActivity.this,R.style.progrescolor);
         txt_correo=(EditText)findViewById(R.id.txtcorreo);
         txt_contrasenia=(EditText)findViewById(R.id.txtcontrasenia);
 
@@ -127,7 +127,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 usuario = firebaseAuth.getCurrentUser();
                 if (usuario != null) {
                     if (usuario.isEmailVerified()){
-                        progress_carga.dismiss();
+                        if(progress_carga.isShowing()){
+                            progress_carga.dismiss();
+                        }
                         Ir_a_inicio();
                     }else {
                         FirebaseAuth.getInstance().signOut();
@@ -199,7 +201,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         return matcher.matches();
     }
     private void progres_iniciando_sesion() {
-        progress_carga=new ProgressDialog(LoginActivity.this,R.style.progrescolor);
         progress_carga.setTitle(R.string.app_name);
         progress_carga.setMessage(getString(R.string.verificar_sesion));
         progress_carga.setIndeterminate(true);
