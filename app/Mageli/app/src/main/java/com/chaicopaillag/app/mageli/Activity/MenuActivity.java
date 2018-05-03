@@ -150,7 +150,6 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
         startActivity(intent);
     }
     private void inicializar_servicios() {
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         firebase= FirebaseDatabase.getInstance().getReference("Persona");
         firebaseAuth=FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();

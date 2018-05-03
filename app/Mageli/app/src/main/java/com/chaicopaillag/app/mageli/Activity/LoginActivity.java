@@ -127,6 +127,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 usuario = firebaseAuth.getCurrentUser();
                 if (usuario != null) {
                     if (usuario.isEmailVerified()){
+                        progress_carga.dismiss();
                         Ir_a_inicio();
                     }else {
                         FirebaseAuth.getInstance().signOut();
