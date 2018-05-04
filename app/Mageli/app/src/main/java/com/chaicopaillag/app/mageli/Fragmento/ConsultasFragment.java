@@ -78,14 +78,7 @@ public class ConsultasFragment extends Fragment {
                 holder.setAsunto(model.getAsunto());
                 holder.setDescripcion(model.getDescripcion());
                 holder.setNombre_pediatra(model.getNombre_pediatra());
-                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-                try {
-                    Date dfecha = formato.parse(model.getFecha_registro());
-                    holder.setFecha_consulta(formato.format(dfecha));
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
+                holder.setFecha_consulta(model.getFecha_registro());
                 if (model.isFlag_respuesta()){
                     holder.setRespuesta(getString(R.string.si_respuesta));
                 }else {

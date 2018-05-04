@@ -5,28 +5,27 @@
             android:id="@+id/menu_item_perfil"
             android:icon="@drawable/pediatra"
             android:title="@string/perfil" />
-    </group>
-    <group android:checkableBehavior="single">
         <item
             android:id="@+id/menu_item_citas_paciente"
             android:icon="@drawable/citas"
-            android:title="@string/citas"/>
+            android:title="@string/citas"
+            android:visible="false"/>
         <item
             android:id="@+id/menu_item_consulta_paciente"
             android:icon="@drawable/consultas"
-            android:title="@string/consulta"/>
-    </group>
-    <group android:checkableBehavior="single">
+            android:title="@string/consulta"
+            android:visible="false"/>
         <item
             android:id="@+id/menu_item_citas_pediatra"
             android:icon="@drawable/citas"
-            android:title="@string/citas"/>
+            android:title="@string/citas"
+            android:visible="false"/>
         <item
             android:id="@+id/menu_item_consulta_pediatra"
             android:icon="@drawable/consultas"
-            android:title="@string/consulta"/>
-    </group>
-    <group android:checkableBehavior="single">
+            android:title="@string/consulta"
+            android:visible="false"/>
+
         <item
             android:id="@+id/menu_item_chat"
             android:icon="@drawable/chat"

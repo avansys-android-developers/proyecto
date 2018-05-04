@@ -125,7 +125,7 @@
     <string name="pendiente">Pendiente</string>
     <string name="postergado">Postergado</string>
     <string name="cargando_citas">Cargando tus citas espere...</string>
-    <string name="con">con</string>
+    <string name="con">Con:</string>
     <string name="modificar">Modificar o posponer</string>
     <string name="eliminar">Eliminar</string>
     <string name="no_editar_cita_atendido">No se puede modificar o posponer  la cita, ya fue atendido</string>
@@ -150,7 +150,9 @@
     <string name="consulta_actualizado_ok">Consulta actualizado correctamente</string>
     <string name="mis_respuestas">Mis Respuestas</string>
     <string name="cerrar">Cerrar</string>
-    <string name="a">a</string>
+    <string name="a">A:</string>
+    <!--todo: citas pediatra-->
+    <string name="de">De:</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -31,6 +31,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -216,9 +218,9 @@ public class ConsultaActivity extends AppCompatActivity {
     }
 
     private void actualizar_consulta() {
-        String _uid_consulta,_asunto,_descripcion,_ui_paciente,_nombre_paciente,_ui_pediatra,_nombre_pediatra;
+        String _uid_consulta,_asunto,_descripcion,_ui_paciente,_nombre_paciente,_ui_pediatra,_nombre_pediatra,_fecha_registro;
         boolean flag_respuesta,estado,privacidad;
-        Date _fecha_registro;
+        Date fecha_hora= new Date();
         Intent intent= getIntent();
         _uid_consulta= intent.getStringExtra("uid_consulta");
         _asunto=asunto.getText().toString();
@@ -237,7 +239,8 @@ public class ConsultaActivity extends AppCompatActivity {
             privacidad=true;
         }
         try{
-            _fecha_registro= new Date();
+            DateFormat formatofechahora = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            _fecha_registro=formatofechahora.format(fecha_hora);
             consulta=new Consulta();
             consulta.setId(_uid_consulta);
             consulta.setAsunto(_asunto);
@@ -246,7 +249,7 @@ public class ConsultaActivity extends AppCompatActivity {
             consulta.setNombre_paciente(_nombre_paciente);
             consulta.setNombre_pediatra(_nombre_pediatra);
             consulta.setUid_pediatra(_ui_pediatra);
-            consulta.setFecha_registro(_fecha_registro.toString());
+            consulta.setFecha_registro(_fecha_registro);
             consulta.setFlag_respuesta(flag_respuesta);
             consulta.setEstado(estado);
             consulta.setFlag_privacidad(privacidad);
@@ -271,9 +274,9 @@ public class ConsultaActivity extends AppCompatActivity {
     }
 
     private void guardar_cita() {
-        String _uid_consulta,_asunto,_descripcion,_ui_paciente,_nombre_paciente,_ui_pediatra,_nombre_pediatra;
+        String _uid_consulta,_asunto,_descripcion,_ui_paciente,_nombre_paciente,_ui_pediatra,_nombre_pediatra,_fecha_registro;
         boolean flag_respuesta,estado,privacidad;
-        Date _fecha_registro;
+        Date fecha_hora= new Date();
         _uid_consulta= UUID.randomUUID().toString();
         _asunto=asunto.getText().toString();
         _descripcion=descripcion.getText().toString();
@@ -291,7 +294,8 @@ public class ConsultaActivity extends AppCompatActivity {
             privacidad=true;
         }
         try{
-            _fecha_registro= new Date();
+            DateFormat formatofechahora = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            _fecha_registro=formatofechahora.format(fecha_hora);
             consulta=new Consulta();
             consulta.setId(_uid_consulta);
             consulta.setAsunto(_asunto);

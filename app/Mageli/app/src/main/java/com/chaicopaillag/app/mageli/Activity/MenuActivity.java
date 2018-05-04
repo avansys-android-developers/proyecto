@@ -63,9 +63,22 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
         setContentView(R.layout.activity_menu);
         inicializar_servicios();
         inicializar_controles();
+        validar_permisos();
 
     }
+    private void inicializar_servicios() {
+        firebase= FirebaseDatabase.getInstance().getReference("Persona");
+        firebaseAuth=FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
 
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this, (GoogleApiClient.OnConnectionFailedListener) this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+    }
     private void inicializar_controles() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -82,7 +95,6 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
         nombreUser=(TextView) nav_cabecera.findViewById(R.id.nombreUsuario);
         correoUser=(TextView)nav_cabecera.findViewById(R.id.correoUsuario);
         imgUsuario=(ImageView)nav_cabecera.findViewById(R.id.imgUsuario);
-
         menu_slide.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -98,12 +110,12 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
                         mi_fragmento=new CitasFragment();
                         transframe=true;
                         break;
-                    case R.id.menu_item_citas_pediatra:
-                        mi_fragmento=new CitasPediatraFragment();
-                        transframe=true;
-                        break;
                     case R.id.menu_item_consulta_paciente:
                         mi_fragmento=new ConsultasFragment();
+                        transframe=true;
+                        break;
+                    case R.id.menu_item_citas_pediatra:
+                        mi_fragmento=new CitasPediatraFragment();
                         transframe=true;
                         break;
                     case R.id.menu_item_consulta_pediatra:
@@ -138,6 +150,39 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
                 }
             }
         };
+
+    }
+    private void validar_permisos() {
+        firebase.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                persona=dataSnapshot.getValue(Persona.class);
+                if(persona!=null){
+                    if(persona.getTipo_persona()==1){
+                        menu_slide.getMenu().findItem(R.id.menu_item_citas_paciente).setVisible(true);
+                        menu_slide.getMenu().findItem(R.id.menu_item_consulta_paciente).setVisible(true);
+                        menu_slide.getMenu().findItem(R.id.menu_item_citas_pediatra).setVisible(false);
+                        menu_slide.getMenu().findItem(R.id.menu_item_consulta_pediatra).setVisible(false);
+
+                    }else {
+                        menu_slide.getMenu().findItem(R.id.menu_item_citas_pediatra).setVisible(true);
+                        menu_slide.getMenu().findItem(R.id.menu_item_consulta_pediatra).setVisible(true);
+                        menu_slide.getMenu().findItem(R.id.menu_item_citas_paciente).setVisible(false);
+                        menu_slide.getMenu().findItem(R.id.menu_item_consulta_paciente).setVisible(false);
+                    }
+                }else {
+                    menu_slide.getMenu().findItem(R.id.menu_item_citas_paciente).setVisible(true);
+                    menu_slide.getMenu().findItem(R.id.menu_item_consulta_paciente).setVisible(true);
+                    menu_slide.getMenu().findItem(R.id.menu_item_citas_pediatra).setVisible(false);
+                    menu_slide.getMenu().findItem(R.id.menu_item_consulta_pediatra).setVisible(false);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
     private void ponerFragmento(Fragment mi_fragmento) {
         getSupportFragmentManager()
@@ -149,19 +194,7 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
         Intent intent = new Intent(MenuActivity.this, PerfilActivity.class);
         startActivity(intent);
     }
-    private void inicializar_servicios() {
-        firebase= FirebaseDatabase.getInstance().getReference("Persona");
-        firebaseAuth=FirebaseAuth.getInstance();
-        user = firebaseAuth.getCurrentUser();
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
 
-        googleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this, (GoogleApiClient.OnConnectionFailedListener) this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
-    }
     private void colocar_datos_usuario(FirebaseUser user) {
         nombreUser.setText(user.getDisplayName());
         correoUser.setText(user.getEmail());
@@ -241,10 +274,6 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
     protected void onStart() {
         super.onStart();
         firebaseAuth.addAuthStateListener(firebaseAuthListener);
-//        if (persona==null){
-//            Toast.makeText(MenuActivity.this, getString(R.string.actualiza_perfil), Toast.LENGTH_LONG).show();
-//            ir_perfil();
-//        }
     }
 
     @Override

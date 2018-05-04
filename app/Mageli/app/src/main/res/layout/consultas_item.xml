@@ -78,8 +78,9 @@ android:clickable="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/publicado"
+                        android:textColor="@color/primario_text"
                         android:gravity="center"
-                        android:layout_marginEnd="5dp"/>
+                        android:layout_marginEnd="@dimen/pading"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -87,25 +88,6 @@ android:clickable="true"
                         android:gravity="center"
                         android:id="@+id/item_fecha_consulta"/>
                 </com.google.android.flexbox.FlexboxLayout>
-               <com.google.android.flexbox.FlexboxLayout
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content">
-                   <ImageButton
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:background="@drawable/respuesta"
-                       android:textAllCaps="false"
-                       android:textAppearance="?android:attr/textAppearanceSmall"
-                       android:id="@+id/btn_respuesta_consulta"
-                       android:tooltipText="@string/editar_consulta"/>
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="2 Respuestas"
-                       android:gravity="center"
-                       android:layout_marginStart="@dimen/pading"
-                       android:id="@+id/item_respuesta_consulta_contador"/>
-               </com.google.android.flexbox.FlexboxLayout>
             </com.google.android.flexbox.FlexboxLayout>
         </LinearLayout>
     </LinearLayout>
@@ -120,6 +102,26 @@ android:clickable="true"
         app:alignContent="space_around"
         app:alignItems="center"
         app:justifyContent="space_between">
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/pading">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/respuesta"
+                android:textAllCaps="false"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/btn_respuesta_consulta"
+                android:tooltipText="@string/editar_consulta"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2 Respuestas"
+                android:gravity="center"
+                android:layout_marginStart="@dimen/pading"
+                android:id="@+id/item_respuesta_consulta_contador"/>
+        </com.google.android.flexbox.FlexboxLayout>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
