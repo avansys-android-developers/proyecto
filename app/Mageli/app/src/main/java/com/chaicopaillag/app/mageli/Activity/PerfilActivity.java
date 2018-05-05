@@ -1,10 +1,7 @@
 package com.chaicopaillag.app.mageli.Activity;
-
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -41,7 +38,7 @@ import java.util.Map;
 
 public class PerfilActivity extends AppCompatActivity {
     private Toolbar toolbar;
-    private EditText txt_nombre,    txt_apellidos,txt_numero_doc,txt_numero_hc,txt_direccion,txt_telefono,fecha_nac;
+    private EditText txt_nombre,txt_apellidos,txt_numero_doc,txt_numero_hc,txt_direccion,txt_telefono,fecha_nac;
     private RadioButton generoMasculino,generoFemenino;
     private Spinner sp_tipo_doc;
     private Button btn_guardar;
@@ -55,6 +52,7 @@ public class PerfilActivity extends AppCompatActivity {
     private Calendar calendario;
     private DatePickerDialog mi_popap;
     private ArrayAdapter sp_adap;
+    public String editar_perfil;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,36 +69,38 @@ public class PerfilActivity extends AppCompatActivity {
         correo_ui=user.getEmail();
         firebase_ref=mi_db.getReference("Persona");
         Intent intent = getIntent();
-        if (intent.getBooleanExtra("editar",true)){
-            firebase_ref.child(id_ui).addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    Persona persona= dataSnapshot.getValue(Persona.class);
-                    if (persona!=null){
-                        txt_nombre.setText(persona.getNombre());
-                        txt_apellidos.setText(persona.getApellidos());
-                        txt_numero_doc.setText(persona.getNumero_documento());
-                        txt_numero_hc.setText(persona.getNumero_hc());
-                        txt_direccion.setText(persona.getDireccion());
-                        txt_telefono.setText(persona.getTelefono());
-                        fecha_nac.setText(persona.getFecha_nacimiento());
-                        tipo_persona=persona.getTipo_persona();
-                        if (persona.isGenero()){
-                            generoMasculino.setChecked(true);
-                        }else {
-                            generoFemenino.setChecked(true);
+        editar_perfil="";
+            if (intent.getBooleanExtra("editar_perfil",false)){
+                editar_perfil="Editando perfil";
+                firebase_ref.child(id_ui).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        Persona persona= dataSnapshot.getValue(Persona.class);
+                        if (persona!=null){
+                            txt_nombre.setText(persona.getNombre());
+                            txt_apellidos.setText(persona.getApellidos());
+                            txt_numero_doc.setText(persona.getNumero_documento());
+                            txt_numero_hc.setText(persona.getNumero_hc());
+                            txt_direccion.setText(persona.getDireccion());
+                            txt_telefono.setText(persona.getTelefono());
+                            fecha_nac.setText(persona.getFecha_nacimiento());
+                            tipo_persona=persona.getTipo_persona();
+                            if (persona.isGenero()){
+                                generoMasculino.setChecked(true);
+                            }else {
+                                generoFemenino.setChecked(true);
+                            }
+                            sp_adap = (ArrayAdapter) sp_tipo_doc.getAdapter();
+                            int posicion=sp_adap.getPosition(persona.getTipo_doc());
+                            sp_tipo_doc.setSelection(posicion);
                         }
-                        sp_adap = (ArrayAdapter) sp_tipo_doc.getAdapter();
-                        int posicion=sp_adap.getPosition(persona.getTipo_doc());
-                        sp_tipo_doc.setSelection(posicion);
                     }
-                }
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    Toast.makeText(PerfilActivity.this,R.string.cancelar_leer_datos_perfil,Toast.LENGTH_LONG).show();
-                }
-            });
-        }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Toast.makeText(PerfilActivity.this,R.string.cancelar_leer_datos_perfil,Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
     }
 
     private void inicializar_controles() {
@@ -356,8 +356,7 @@ public class PerfilActivity extends AppCompatActivity {
             fecha_nac.setError(getString(R.string.error_fecha_nacimiento));
             return;
         }else {
-            Intent intent = getIntent();
-            if (intent.getBooleanExtra("editar",true)){
+            if (editar_perfil.equals("Editando perfil")){
                 modificar_datos();
             }else {
                 guardar_datos();

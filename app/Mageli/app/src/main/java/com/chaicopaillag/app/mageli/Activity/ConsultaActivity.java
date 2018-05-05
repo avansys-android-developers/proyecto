@@ -226,7 +226,7 @@ public class ConsultaActivity extends AppCompatActivity {
         _asunto=asunto.getText().toString();
         _descripcion=descripcion.getText().toString();
         _ui_paciente=User.getUid();
-        _nombre_paciente=User.getDisplayName();
+        _nombre_paciente=User.getDisplayName() !=null ? User.getDisplayName() : getString(R.string.anonimo);
         _ui_pediatra=Obtener_Uid_pediatra();
         _nombre_pediatra=NOMBRE_P;
         if (sw_elegir_pediatra.isChecked()){
@@ -281,7 +281,7 @@ public class ConsultaActivity extends AppCompatActivity {
         _asunto=asunto.getText().toString();
         _descripcion=descripcion.getText().toString();
         _ui_paciente=User.getUid();
-        _nombre_paciente=User.getDisplayName();
+        _nombre_paciente=User.getDisplayName() !=null ? User.getDisplayName() : getString(R.string.anonimo);
         _ui_pediatra=Obtener_Uid_pediatra();
         _nombre_pediatra=getString(R.string.anonimo);
         if (sw_elegir_pediatra.isChecked()){

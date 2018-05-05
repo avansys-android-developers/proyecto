@@ -281,7 +281,7 @@ public class CitaActivity extends AppCompatActivity {
         _hora=mihora.getText().toString();
         _n_personas=Integer.parseInt(numero_personas.getText().toString());
         _ui_paciente=User.getUid();
-        _nombre_paciente=User.getDisplayName();
+        _nombre_paciente=User.getDisplayName()!=null ? User.getDisplayName() : getString(R.string.anonimo);
         _ui_pediatra=Obtener_Uid_pediatra();
         _nombre_pediatra=NOMBRE_P;
         if (sw_elegir_pediatra.isChecked()){
@@ -346,7 +346,7 @@ public class CitaActivity extends AppCompatActivity {
         _hora=mihora.getText().toString();
         _n_personas=Integer.parseInt(numero_personas.getText().toString());
         _ui_paciente=User.getUid();
-        _nombre_paciente=User.getDisplayName();
+        _nombre_paciente=User.getDisplayName()!=null ? User.getDisplayName() : getString(R.string.anonimo);
         _ui_pediatra=Obtener_Uid_pediatra();
         _nombre_pediatra=NOMBRE_P;
         if (sw_elegir_pediatra.isChecked()){

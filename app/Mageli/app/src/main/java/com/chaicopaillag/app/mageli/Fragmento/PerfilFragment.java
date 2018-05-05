@@ -31,12 +31,13 @@ import com.google.firebase.database.ValueEventListener;
 
 public class PerfilFragment extends Fragment {
     private ScrollView scrollperfil;
-    private LinearLayout contenedor_perf;
+    private LinearLayout contenedor_perf,baner_perf;
     private FloatingActionButton fab_editar_perf;
     private FirebaseAuth auth;
     private FirebaseUser user;
     private DatabaseReference firebase_bd;
     private ImageView imgUsuario;
+    private Persona persona;
     private TextView txtperfil_nombre,
             txtperfil_correo,
             txtperfil_telefono,
@@ -80,13 +81,14 @@ public class PerfilFragment extends Fragment {
         firebase_bd.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Persona persona= dataSnapshot.getValue(Persona.class);
+                persona= dataSnapshot.getValue(Persona.class);
                 if (persona!=null){
                     llenar_datos(persona);
                 }else {
                     progress_carga.dismiss();
                     Toast.makeText(getContext(), getString(R.string.actualiza_perfil), Toast.LENGTH_LONG).show();
-                    ir_perfil();
+                    Intent intent = new Intent(getContext(), PerfilActivity.class);
+                    startActivity(intent);
                 }
             }
             @Override
@@ -101,6 +103,7 @@ public class PerfilFragment extends Fragment {
 
     private void inicializar_controles() {
         contenedor_perf=(LinearLayout)getView().findViewById(R.id.contenedor_datos) ;
+        baner_perf=(LinearLayout)getView().findViewById(R.id.barner_perfil);
         fab_editar_perf=(FloatingActionButton) getView().findViewById(R.id.fab_editar_perfil);
         txtperfil_nombre=(TextView)getView().findViewById(R.id.perfil_nombre);
         txtperfil_correo=(TextView)getView().findViewById(R.id.perfil_correo);
@@ -111,17 +114,15 @@ public class PerfilFragment extends Fragment {
         txtperfil_fecha_nac=(TextView)getView().findViewById(R.id.perfil_fecha_nac);
         txtperfil_genero=(TextView)getView().findViewById(R.id.perfil_genero);
         imgUsuario=(ImageView)getView().findViewById(R.id.img_perfil);
-        imgUsuario.setVisibility(View.INVISIBLE);
-        contenedor_perf.setVisibility(View.INVISIBLE);
-        txtperfil_nombre.setVisibility(View.INVISIBLE);
-        txtperfil_correo.setVisibility(View.INVISIBLE);
         scrollperfil=(ScrollView)getView().findViewById(R.id.scrollperfil);
+        contenedor_perf.setVisibility(View.INVISIBLE);
+        baner_perf.setVisibility(View.INVISIBLE);
         fab_editar_perf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), PerfilActivity.class);
-                intent.putExtra("editar",true);
-                startActivity(intent);
+                Intent inten = new Intent(getContext(), PerfilActivity.class);
+                inten.putExtra("editar_perfil",false);
+                startActivity(inten);
             }
         });
     }
@@ -135,19 +136,18 @@ public class PerfilFragment extends Fragment {
         txtperfil_fecha_nac.setText(persona.getFecha_nacimiento());
         txtperfil_direccion.setText(persona.getDireccion());
         if (persona.isGenero()){
-            txtperfil_genero.setText("Masculino");
+            txtperfil_genero.setText(R.string.masculino);
         }else {
-            txtperfil_genero.setText("Femenino");
+            txtperfil_genero.setText(R.string.masculino);
         }
         progress_carga.dismiss();
-        imgUsuario.setVisibility(View.VISIBLE);
         contenedor_perf.setVisibility(View.VISIBLE);
-        txtperfil_nombre.setVisibility(View.VISIBLE);
-        txtperfil_correo.setVisibility(View.VISIBLE);
+        baner_perf.setVisibility(View.VISIBLE);
         fab_editar_perf.setVisibility(View.VISIBLE);
     }
-    private void ir_perfil(){
-        Intent intent = new Intent(getContext(), PerfilActivity.class);
-        startActivity(intent);
+    @Override
+    public void onStart() {
+        super.onStart();
+
     }
 }

@@ -56,7 +56,7 @@ public class CitasPediatraFragment extends Fragment {
         user=auth.getCurrentUser();
     }
     private void inicializar_controles() {
-        Recyc_citas=(RecyclerView)getView().findViewById(R.id.mis_citas);
+        Recyc_citas=(RecyclerView)getView().findViewById(R.id.mis_citas_pediatra);
         LinearLayoutManager linearLayoutManager= new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         Recyc_citas.setLayoutManager(linearLayoutManager);

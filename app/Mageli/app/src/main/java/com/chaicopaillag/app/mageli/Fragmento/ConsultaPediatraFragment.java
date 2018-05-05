@@ -91,7 +91,7 @@ public class ConsultaPediatraFragment extends Fragment {
     }
 
     private void inicializar_controles() {
-        recyclerViewconsulta=(RecyclerView)getView().findViewById(R.id.recy_consultas);
+        recyclerViewconsulta=(RecyclerView)getView().findViewById(R.id.mis_consultas_pediatra);
     }
     @Override
     public void onStart() {
