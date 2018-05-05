@@ -40,12 +40,12 @@ import java.util.Date;
 
 public class ConsultasFragment extends Fragment {
     private RecyclerView recyclerViewconsulta;
-    private FloatingActionButton fab_agregar_conculta;
     private DatabaseReference firebase;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private ProgressDialog progress_carga;
     private FirebaseRecyclerOptions item_consulta;
+    private FloatingActionButton fab_agregar_conculta;
     FirebaseRecyclerAdapter<Consulta,ConsultasAdapter.ViewHolder>adapter;
     public ConsultasFragment() {
     }

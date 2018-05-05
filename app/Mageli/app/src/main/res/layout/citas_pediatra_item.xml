@@ -33,7 +33,7 @@
                     android:textAlignment="textStart"
                     android:layout_marginEnd="@dimen/pading"
                     android:textColor="@color/primario_text"
-                    android:textStyle="bold"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:id="@+id/item_asunto_cita_pediatra"/>
                 <com.google.android.flexbox.FlexboxLayout
                     android:layout_width="match_parent"
@@ -42,29 +42,63 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/de"
+                        android:text="@string/con"
                         android:textAlignment="textStart"
                         android:layout_marginEnd="@dimen/pading"
                         android:textColor="@color/secondario_text"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Maria del Valle - Pediatra"
+                        android:text="Maria del Valle - Paciente"
                         android:textAlignment="textStart"
                         android:layout_marginEnd="@dimen/pading"
                         android:textColor="@color/primario_text"
-                        android:id="@+id/item_cita_nombre_pediatra"/>
+                        android:id="@+id/item_cita_nombre_pacient"/>
                 </com.google.android.flexbox.FlexboxLayout>
                 <com.google.android.flexbox.FlexboxLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    app:flexDirection="row"
+                    app:flexWrap="wrap">
+                    <com.google.android.flexbox.FlexboxLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:flexWrap="wrap"
+                        app:flexDirection="row"
+                        app:justifyContent="space_between">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <ImageButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/personas"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/pading"
+                                android:text="@string/personas"
+                                android:id="@+id/item_cita_pediatra_cantidad_personas"
+                                android:gravity="center"
+                                android:textColor="@color/secondario_text"/>
+                        </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Faltan 10 dias"
+                            android:textColor="@color/secondario_text"
+                            android:layout_marginRight="@dimen/pading"
+                            android:id="@+id/item_dias_restante"
+                            android:textAppearance="?android:attr/textAppearanceSmall"/>
+                    </com.google.android.flexbox.FlexboxLayout>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
                         android:layout_marginEnd="@dimen/pading"
-                        android:id="@+id/item_descripcion_cita"
+                        android:id="@+id/item_descripcion_cita_pediatra"
                         android:text="A earum illo, itaque ipsam blanditiis quae sit ullam optio odit nostrum beatae error, et facere molestiae dignissimos consequuntur vel iusto esse quos in ipsa magni repellat. Animi ea repudiandae nam repellat molestiae inventore ex in maiores repellendus autem vero quas expedita sit quaerat facere id, dolore qui voluptas molestias est odio consequatur labore perspiciatis, dolorem ratione! Delectus adipisci exercitationem ut porro deserunt fugit natus minus dignissimos quod repudiandae ad, ipsam officiis modi est ex? Inventore modi iure autem assumenda illum blanditiis?"/>
                 </com.google.android.flexbox.FlexboxLayout>
                 <com.google.android.flexbox.FlexboxLayout
@@ -77,18 +111,18 @@
                         android:layout_height="wrap_content"
                         android:text="12/12/2018"
                         android:textStyle="bold"
-                        android:id="@+id/item_fecha"/>
+                        android:id="@+id/item_fecha_cita_pediatra"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/item_hora_cita"
+                        android:id="@+id/item_hora_cita_pediatra"
                         android:textStyle="bold"
                         android:text="00:00"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Pendiente"
-                        android:id="@+id/item_estado_cita"
+                        android:id="@+id/item_estado_cita_pediatra"
                         />
                 </com.google.android.flexbox.FlexboxLayout>
             </LinearLayout>
@@ -103,13 +137,13 @@
             app:flexWrap="wrap"
             app:alignContent="space_around"
             app:alignItems="center"
-            app:justifyContent="space_around">
+            app:justifyContent="space_between">
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/btn_posponer_cita"
+                android:id="@+id/btn_si_tendido"
                 android:textAllCaps="false"
-                android:text="@string/modificar"
+                android:text="@string/marcar_atendido"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:theme="@style/flat_buton_celeste"
                 android:textColor="@color/celeste"
@@ -117,19 +151,9 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/btn_cancelar_cita"
-                android:theme="@style/flat_buton_secundary"
-                android:textColor="@color/primario_text"
-                android:text="@string/cancelar"
-                android:textAllCaps="false"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                style="@style/Widget.AppCompat.Button.Borderless"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/btn_eliminar_cita"
+                android:id="@+id/btn_no_atendido"
                 android:textColor="@color/rosa"
-                android:text="@string/eliminar"
+                android:text="@string/marcar_no_atendido"
                 android:theme="@style/flat_buton_rosa"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textAllCaps="false"

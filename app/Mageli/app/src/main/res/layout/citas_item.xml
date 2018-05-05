@@ -33,7 +33,7 @@
                     android:textAlignment="textStart"
                     android:layout_marginEnd="@dimen/pading"
                     android:textColor="@color/primario_text"
-                    android:textStyle="bold"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:id="@+id/item_asunto_cita"/>
                 <com.google.android.flexbox.FlexboxLayout
                     android:layout_width="match_parent"
