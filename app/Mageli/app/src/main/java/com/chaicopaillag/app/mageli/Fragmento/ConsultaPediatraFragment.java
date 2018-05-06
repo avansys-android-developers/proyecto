@@ -1,22 +1,16 @@
 package com.chaicopaillag.app.mageli.Fragmento;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.chaicopaillag.app.mageli.Activity.ConsultaActivity;
 import com.chaicopaillag.app.mageli.Adapter.ConsultaPediatraAdapter;
-import com.chaicopaillag.app.mageli.Adapter.ConsultasAdapter;
 import com.chaicopaillag.app.mageli.Modelo.Consulta;
 import com.chaicopaillag.app.mageli.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -62,13 +56,27 @@ public class ConsultaPediatraFragment extends Fragment {
         adapter= new FirebaseRecyclerAdapter<Consulta, ConsultaPediatraAdapter.ViewHolder>(item_consulta) {
             @Override
             protected void onBindViewHolder(@NonNull ConsultaPediatraAdapter.ViewHolder holder, final int position, @NonNull final Consulta model) {
+                holder.setAsunto(model.getAsunto());
+                holder.setNombre_paciente(model.getNombre_paciente()+" - "+getString(R.string.paciente));
+                holder.setDescripcion(model.getDescripcion());
+                holder.setFecha_consulta(model.getFecha_registro());
+                if (model.isFlag_respuesta()){
+                    holder.setRespuesta(getString(R.string.respondido));
+                }else {
+                    holder.setRespuesta(getString(R.string.no_respondido));
+                }
+                holder.btn_responder.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
+                    }
+                });
             }
             @NonNull
             @Override
             public ConsultaPediatraAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.consultas_item, parent, false);
+                        .inflate(R.layout.consultas_pediatra_item, parent, false);
                 return new ConsultaPediatraAdapter.ViewHolder(view);
             }
 

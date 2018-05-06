@@ -1,5 +1,6 @@
 package com.chaicopaillag.app.mageli.Activity;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -55,7 +56,7 @@ public class ConsultaActivity extends AppCompatActivity {
     private Button btn_consulta;
     private AlertDialog.Builder PopapPediatras;
     private ProgressDialog progress_carga;
-    private String UID_P="AUnfN3zdsHevqcOGwfz29lB09Y33";
+    private String UID_P="yBD9Mdb2x4SSboza48ggzZ42LTE2";
     private String NOMBRE_P="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -217,6 +218,7 @@ public class ConsultaActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
     private void actualizar_consulta() {
         String _uid_consulta,_asunto,_descripcion,_ui_paciente,_nombre_paciente,_ui_pediatra,_nombre_pediatra,_fecha_registro;
         boolean flag_respuesta,estado,privacidad;
@@ -239,7 +241,8 @@ public class ConsultaActivity extends AppCompatActivity {
             privacidad=true;
         }
         try{
-            DateFormat formatofechahora = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            DateFormat formatofechahora;
+            formatofechahora = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             _fecha_registro=formatofechahora.format(fecha_hora);
             consulta=new Consulta();
             consulta.setId(_uid_consulta);
@@ -273,6 +276,7 @@ public class ConsultaActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
     private void guardar_cita() {
         String _uid_consulta,_asunto,_descripcion,_ui_paciente,_nombre_paciente,_ui_pediatra,_nombre_pediatra,_fecha_registro;
         boolean flag_respuesta,estado,privacidad;
@@ -294,7 +298,8 @@ public class ConsultaActivity extends AppCompatActivity {
             privacidad=true;
         }
         try{
-            DateFormat formatofechahora = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            DateFormat formatofechahora;
+            formatofechahora = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             _fecha_registro=formatofechahora.format(fecha_hora);
             consulta=new Consulta();
             consulta.setId(_uid_consulta);

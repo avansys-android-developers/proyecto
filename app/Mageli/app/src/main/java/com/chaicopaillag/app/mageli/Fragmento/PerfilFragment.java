@@ -59,13 +59,13 @@ public class PerfilFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        progress_carga=new ProgressDialog(getContext(),R.style.progrescolor);
         inicializar_controles();
         inicializar_servicios();
         progres_carga_datos();
     }
 
     private void progres_carga_datos() {
-        progress_carga=new ProgressDialog(getContext(),R.style.progrescolor);
         progress_carga.setTitle(R.string.app_name);
         progress_carga.setMessage(getString(R.string.carga_perfil));
         progress_carga.setIndeterminate(true);
@@ -85,9 +85,14 @@ public class PerfilFragment extends Fragment {
                 if (persona!=null){
                     llenar_datos(persona);
                 }else {
-                    progress_carga.dismiss();
-                    Toast.makeText(getContext(), getString(R.string.actualiza_perfil), Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getContext(), PerfilActivity.class);
+                    if (progress_carga.isShowing()){
+                        progress_carga.dismiss();
+                    }
+                    contenedor_perf.setVisibility(View.INVISIBLE);
+                    baner_perf.setVisibility(View.INVISIBLE);
+                    fab_editar_perf.setVisibility(View.INVISIBLE);
+                    Toast.makeText(getActivity().getApplicationContext(), getString(R.string.actualiza_perfil), Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getActivity().getApplicationContext(), PerfilActivity.class);
                     startActivity(intent);
                 }
             }
@@ -117,11 +122,12 @@ public class PerfilFragment extends Fragment {
         scrollperfil=(ScrollView)getView().findViewById(R.id.scrollperfil);
         contenedor_perf.setVisibility(View.INVISIBLE);
         baner_perf.setVisibility(View.INVISIBLE);
+        fab_editar_perf.setVisibility(View.INVISIBLE);
         fab_editar_perf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent inten = new Intent(getContext(), PerfilActivity.class);
-                inten.putExtra("editar_perfil",false);
+                inten.putExtra("editar_perfil","ok");
                 startActivity(inten);
             }
         });
@@ -140,7 +146,9 @@ public class PerfilFragment extends Fragment {
         }else {
             txtperfil_genero.setText(R.string.masculino);
         }
-        progress_carga.dismiss();
+        if(progress_carga.isShowing()){
+            progress_carga.dismiss();
+        }
         contenedor_perf.setVisibility(View.VISIBLE);
         baner_perf.setVisibility(View.VISIBLE);
         fab_editar_perf.setVisibility(View.VISIBLE);

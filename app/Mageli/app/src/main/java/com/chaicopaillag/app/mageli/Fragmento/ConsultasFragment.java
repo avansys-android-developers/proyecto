@@ -77,7 +77,7 @@ public class ConsultasFragment extends Fragment {
             protected void onBindViewHolder(@NonNull ConsultasAdapter.ViewHolder holder, final int position, @NonNull final Consulta model) {
                 holder.setAsunto(model.getAsunto());
                 holder.setDescripcion(model.getDescripcion());
-                holder.setNombre_pediatra(model.getNombre_pediatra());
+                holder.setNombre_pediatra(model.getNombre_pediatra()+ " - "+getString(R.string.pediatra));
                 holder.setFecha_consulta(model.getFecha_registro());
                 if (model.isFlag_respuesta()){
                     holder.setRespuesta(getString(R.string.si_respuesta));

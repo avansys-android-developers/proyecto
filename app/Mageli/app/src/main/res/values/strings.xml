@@ -155,12 +155,17 @@
     <string name="personas">personas</string>
     <string name="para">Para:</string>
     <string name="de">De:</string>
+    <string name="marcar_como_no_atendido">¿Estas seguro de marcar la cita como no Atendido?</string>
+    <string name="marcar_como_atendido">¿Estas seguro de marcar la cita como Atendido?</string>
     <string name="marcar_no_atendido">Marca como no atendido</string>
     <string name="marcar_atendido">Marca como atendido</string>
+    <string name="no_atendido">No Atendido</string>
     <!--todo: consulta pediatra-->
     <string name="respondido">Respondido</string>
     <string name="no_respondido">No Respondido</string>
     <string name="responder">Responder consulta</string>
+    <string name="consultado">Consultado:</string>
+    <string name="paciente">Paciente</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

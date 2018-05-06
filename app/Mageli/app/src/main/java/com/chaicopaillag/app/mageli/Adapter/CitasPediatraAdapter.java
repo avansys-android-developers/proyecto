@@ -21,14 +21,14 @@ public class CitasPediatraAdapter {
         public ViewHolder(View itemView) {
             super(itemView);
             cardView=(CardView)itemView.findViewById(R.id.carview);
-            asunto=(TextView)itemView.findViewById(R.id.item_asunto_cita);
-            descripcion=(TextView)itemView.findViewById(R.id.item_descripcion_cita);
-            fecha=(TextView)itemView.findViewById(R.id.item_fecha);
-            hora=(TextView)itemView.findViewById(R.id.item_hora_cita);
-            estado=(TextView)itemView.findViewById(R.id.item_estado_cita);
-            nombre_paciente=(TextView)itemView.findViewById(R.id.item_cita_nombre_pediatra);
-            btn_atendido=(Button)itemView.findViewById(R.id.btn_eliminar_cita);
-            btn_no_atendido=(Button)itemView.findViewById(R.id.btn_cancelar_cita);
+            asunto=(TextView)itemView.findViewById(R.id.item_asunto_cita_pediatra);
+            descripcion=(TextView)itemView.findViewById(R.id.item_descripcion_cita_pediatra);
+            fecha=(TextView)itemView.findViewById(R.id.item_fecha_cita_pediatra);
+            hora=(TextView)itemView.findViewById(R.id.item_hora_cita_pediatra);
+            estado=(TextView)itemView.findViewById(R.id.item_estado_cita_pediatra);
+            nombre_paciente=(TextView)itemView.findViewById(R.id.item_cita_nombre_pacient);
+            btn_atendido=(Button)itemView.findViewById(R.id.btn_si_tendido);
+            btn_no_atendido=(Button)itemView.findViewById(R.id.btn_no_atendido);
             cantidad_personas=(TextView)itemView.findViewById(R.id.item_cita_pediatra_cantidad_personas);
             dias_restantes=(TextView)itemView.findViewById(R.id.item_dias_restante);
         }

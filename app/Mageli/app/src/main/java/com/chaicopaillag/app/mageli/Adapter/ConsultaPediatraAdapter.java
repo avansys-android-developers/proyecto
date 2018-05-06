@@ -16,12 +16,12 @@ public class ConsultaPediatraAdapter {
         public ViewHolder(View view){
             super(view);
             cardView=(CardView)view.findViewById(R.id.carview);
-            asunto=(TextView)view.findViewById(R.id.item_asunto_consulta);
-            nombre_paciente=(TextView)view.findViewById(R.id.item_nombre_pediatra_consulta);
-            descripcion=(TextView)view.findViewById(R.id.item_descripcion_consulta);
-            fecha_consulta=(TextView)view.findViewById(R.id.item_fecha_consulta);
-            respuesta=(TextView)view.findViewById(R.id.item_respuesta_consulta_contador);
-            btn_responder=(Button) view.findViewById(R.id.btn_editar_consulta);
+            asunto=(TextView)view.findViewById(R.id.item_asunto_consulta_pediatra);
+            nombre_paciente=(TextView)view.findViewById(R.id.item_nombre_paciente_consulta);
+            descripcion=(TextView)view.findViewById(R.id.item_descripcion_consulta_pediatra);
+            fecha_consulta=(TextView)view.findViewById(R.id.item_fecha_consulta_pediatra);
+            respuesta=(TextView)view.findViewById(R.id.item_estado_respuesta);
+            btn_responder=(Button) view.findViewById(R.id.btn_responder_consulta);
         }
 
         public void setAsunto(String asunto) {

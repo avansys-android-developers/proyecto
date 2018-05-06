@@ -34,11 +34,14 @@
                     android:layout_marginEnd="@dimen/pading"
                     android:textColor="@color/primario_text"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:id="@+id/item_asunto_cita_pediatra"/>
+                    android:id="@+id/item_asunto_cita_pediatra"
+                    android:layout_marginTop="@dimen/pading"
+                    android:layout_marginBottom="@dimen/pading"/>
                 <com.google.android.flexbox.FlexboxLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:justifyContent="flex_start">
+                    app:justifyContent="flex_start"
+                    android:layout_marginBottom="@dimen/pading">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -59,13 +62,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:flexDirection="row"
-                    app:flexWrap="wrap">
+                    app:flexWrap="wrap"
+                    android:layout_marginBottom="@dimen/pading">
                     <com.google.android.flexbox.FlexboxLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:flexWrap="wrap"
                         app:flexDirection="row"
-                        app:justifyContent="space_between">
+                        app:justifyContent="space_between"
+                        android:layout_marginBottom="@dimen/pading">
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

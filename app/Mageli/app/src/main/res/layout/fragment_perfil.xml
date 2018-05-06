@@ -45,7 +45,6 @@
         android:layout_gravity="center_vertical|start"
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/editar_blanco"
-        android:visibility="invisible"
         app:backgroundTint="@color/rosa"
         app:elevation="10dp"
         app:fabSize="auto"

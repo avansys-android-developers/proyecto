@@ -1,4 +1,5 @@
 package com.chaicopaillag.app.mageli.Activity;
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -31,6 +32,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -68,9 +71,9 @@ public class PerfilActivity extends AppCompatActivity {
         id_ui=user.getUid();
         correo_ui=user.getEmail();
         firebase_ref=mi_db.getReference("Persona");
-        Intent intent = getIntent();
+        Intent intent = this.getIntent();
         editar_perfil="";
-            if (intent.getBooleanExtra("editar_perfil",false)){
+            if (intent.hasExtra("editar_perfil")){
                 editar_perfil="Editando perfil";
                 firebase_ref.child(id_ui).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -164,11 +167,12 @@ public class PerfilActivity extends AppCompatActivity {
         });
     }
 
+    @SuppressLint("SimpleDateFormat")
     private void modificar_datos() {
         Persona persona;
-        String id,nombre,apellidos,numero_documento,numero_hc,direccion, telefono,correo,fecha_nacimient,foto_url;
+        String id,nombre,apellidos,numero_documento,numero_hc,direccion, telefono,correo,fecha_nacimient,foto_url,fecha_registro;
         boolean genero;
-        Date fecha_registro;
+        Date fecha_reg=new Date();
         id=id_ui;
         nombre=txt_nombre.getText().toString();
         apellidos=txt_apellidos.getText().toString();
@@ -190,13 +194,15 @@ public class PerfilActivity extends AppCompatActivity {
             genero=false;
         }
         fecha_nacimient= fecha_nac.getText().toString();
-        fecha_registro = new Date();
         try {
+            DateFormat formatofechahora;
+            formatofechahora = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            fecha_registro=formatofechahora.format(fecha_reg);
 //            String key =firebase_ref.child(id_ui).push().getKey();
             persona= new Persona(
                     id,nombre,apellidos,numero_documento,
                     numero_hc,direccion,telefono,correo,
-                    genero,tipo_doc,fecha_nacimient,fecha_registro+"",
+                    genero,tipo_doc,fecha_nacimient,fecha_registro,
                     estado,tipo_persona,especialidad,foto_url);
 //            Map<String, Object> miPersona = persona.miMap();
             Map<String, Object> Act_Persona_especifico = new HashMap<>();
@@ -262,11 +268,12 @@ public class PerfilActivity extends AppCompatActivity {
         mi_popap.show();
     }
 
+    @SuppressLint("SimpleDateFormat")
     private void guardar_datos() {
         Persona persona;
-        String id,nombre,apellidos,numero_documento,numero_hc,direccion, telefono,correo,fecha_nacimient,foto_url;
+        String id,nombre,apellidos,numero_documento,numero_hc,direccion, telefono,correo,fecha_nacimient,foto_url,fecha_registro;
         boolean genero;
-        Date fecha_registro;
+        Date fecha_reg= new Date();
         id=id_ui;
         nombre=txt_nombre.getText().toString();
         apellidos=txt_apellidos.getText().toString();
@@ -289,12 +296,14 @@ public class PerfilActivity extends AppCompatActivity {
             genero=false;
         }
         fecha_nacimient= fecha_nac.getText().toString();
-        fecha_registro = new Date();
         try {
+            DateFormat formatofechahora;
+            formatofechahora = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            fecha_registro=formatofechahora.format(fecha_reg);
             persona= new Persona(
                     id,nombre,apellidos,numero_documento,
                     numero_hc,direccion,telefono,correo,
-                    genero,tipo_doc,fecha_nacimient,fecha_registro+"",
+                    genero,tipo_doc,fecha_nacimient,fecha_registro,
                     estado,tipo_persona,especialidad,foto_url);
             firebase_ref.child(id_ui).setValue(persona);
             actualizardatos_usuario(nombre,apellidos);

@@ -1,5 +1,6 @@
 package com.chaicopaillag.app.mageli.Activity;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
@@ -35,6 +36,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -65,7 +68,7 @@ public class CitaActivity extends AppCompatActivity {
     private Button btn_cita;
     private AlertDialog.Builder PopapPediatras;
     private ProgressDialog progress_carga;
-    private String UID_P="AUnfN3zdsHevqcOGwfz29lB09Y33";
+    private String UID_P="yBD9Mdb2x4SSboza48ggzZ42LTE2";
     private String NOMBRE_P="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -268,11 +271,12 @@ public class CitaActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
     private void modificar_cita() {
-        String _uid_cita,_asunto,_descripcion,_fecha,_hora,_ui_paciente,_nombre_paciente,_ui_pediatra,_nombre_pediatra;
+        String _uid_cita,_asunto,_descripcion,_fecha,_hora,_ui_paciente,_nombre_paciente,_ui_pediatra,_nombre_pediatra,_fecha_registro;
         boolean flag_atendido,flag_cancelado,flag_postergado,estado;
         int _n_personas;
-        Date _fecha_registro;
+        Date fecha_reg=new Date();
         Intent inten= getIntent();
         _uid_cita= inten.getStringExtra("uid_cita");
         _asunto=asunto.getText().toString();
@@ -292,7 +296,9 @@ public class CitaActivity extends AppCompatActivity {
         flag_postergado=true;
         estado=true;
         try{
-            _fecha_registro= new Date();
+            DateFormat formatofechahora;
+            formatofechahora = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            _fecha_registro=formatofechahora.format(fecha_reg);
             citas=new Citas();
             citas.setId(_uid_cita);
             citas.setAsunto(_asunto);
@@ -304,7 +310,7 @@ public class CitaActivity extends AppCompatActivity {
             citas.setNombre_paciente(_nombre_paciente);
             citas.setUid_pediatra(_ui_pediatra);
             citas.setNombre_pediatra(_nombre_pediatra);
-            citas.setFecha_registro(_fecha_registro.toString());
+            citas.setFecha_registro(_fecha_registro);
             citas.setFlag_atendido(flag_atendido);
             citas.setFlag_cancelado(flag_cancelado);
             citas.setFlag_postergado(flag_postergado);
@@ -334,11 +340,12 @@ public class CitaActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("SimpleDateFormat")
     private void guardar_cita() {
-        String _uid_cita,_asunto,_descripcion,_fecha,_hora,_ui_paciente,_nombre_paciente,_ui_pediatra,_nombre_pediatra;
+        String _uid_cita,_asunto,_descripcion,_fecha,_hora,_ui_paciente,_nombre_paciente,_ui_pediatra,_nombre_pediatra,_fecha_registro;
         boolean flag_atendido,flag_cancelado,flag_postergado,estado;
         int _n_personas;
-        Date _fecha_registro;
+        Date fecha_reg=new Date();
         _uid_cita= UUID.randomUUID().toString();
         _asunto=asunto.getText().toString();
         _descripcion=descripcion.getText().toString();
@@ -357,7 +364,9 @@ public class CitaActivity extends AppCompatActivity {
         flag_postergado=false;
         estado=true;
         try{
-        _fecha_registro= new Date();
+        DateFormat formatofechahora;
+            formatofechahora = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            _fecha_registro=formatofechahora.format(fecha_reg);
         citas=new Citas();
         citas.setId(_uid_cita);
         citas.setAsunto(_asunto);
@@ -369,7 +378,7 @@ public class CitaActivity extends AppCompatActivity {
         citas.setNombre_paciente(_nombre_paciente);
         citas.setUid_pediatra(_ui_pediatra);
         citas.setNombre_pediatra(_nombre_pediatra);
-        citas.setFecha_registro(_fecha_registro.toString());
+        citas.setFecha_registro(_fecha_registro);
         citas.setFlag_atendido(flag_atendido);
         citas.setFlag_cancelado(flag_cancelado);
         citas.setFlag_postergado(flag_postergado);

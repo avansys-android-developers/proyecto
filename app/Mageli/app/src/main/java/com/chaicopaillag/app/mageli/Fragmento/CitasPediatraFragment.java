@@ -66,13 +66,42 @@ public class CitasPediatraFragment extends Fragment {
         adapter= new FirebaseRecyclerAdapter<Citas, CitasPediatraAdapter.ViewHolder>(citas_items) {
             @Override
             protected void onBindViewHolder(@NonNull CitasPediatraAdapter.ViewHolder holder, final int position, @NonNull final Citas model) {
-
+                holder.setAsunto(model.getAsunto());
+                holder.setNombre_paciente(model.getNombre_paciente()+" - "+getString(R.string.paciente));
+                holder.setCantidad_personas(getString(R.string.para)+" "+model.getCantidad_personas()+" "+getString(R.string.personas));
+                holder.setDescripcion(model.getDescripcion());
+                holder.setFecha(model.getFecha());
+                holder.setHora(model.getHora());
+                if(model.isFlag_atendido()){
+                    holder.setEstado(getString(R.string.atendido));
+                }else if(model.isFlag_cancelado()) {
+                    holder.setEstado(getString(R.string.cancelado));
+                }else if(model.isFlag_postergado()){
+                    holder.setEstado(getString(R.string.postergado));
+                }else if(!model.isEstado()){
+                    holder.setEstado(getString(R.string.no_atendido));
+                }
+                else {
+                    holder.setEstado(getString(R.string.pendiente));
+                }
+                holder.btn_no_atendido.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        marcar_como_no_atendido(model.getId());
+                    }
+                });
+                holder.btn_atendido.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        marcar_como_atendido(model.getId());
+                    }
+                });
             }
             @NonNull
             @Override
             public CitasPediatraAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.citas_item, parent, false);
+                        .inflate(R.layout.citas_pediatra_item, parent, false);
                 return new CitasPediatraAdapter.ViewHolder(view);
             }
             @Override
@@ -88,6 +117,42 @@ public class CitasPediatraFragment extends Fragment {
 
         };
         Recyc_citas.setAdapter(adapter);
+    }
+
+    private void marcar_como_atendido(final String id) {
+        final AlertDialog.Builder alert_marcar_atendido = new AlertDialog.Builder(getContext(),R.style.progrescolor);
+        alert_marcar_atendido.setTitle(R.string.app_name);
+        alert_marcar_atendido.setMessage(R.string.marcar_como_atendido);
+        alert_marcar_atendido.setPositiveButton(R.string.si,new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                firebase_bd.child(id).child("flag_atendido").setValue(true);
+            }
+        });
+        alert_marcar_atendido.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        alert_marcar_atendido.show();
+    }
+
+    private void marcar_como_no_atendido(final String id) {
+        final AlertDialog.Builder alert_marcar_no_atendido = new AlertDialog.Builder(getContext(),R.style.progrescolor);
+        alert_marcar_no_atendido.setTitle(R.string.app_name);
+        alert_marcar_no_atendido.setMessage(R.string.marcar_como_no_atendido);
+        alert_marcar_no_atendido.setPositiveButton(R.string.si,new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                firebase_bd.child(id).child("estado").setValue(false);
+            }
+        });
+        alert_marcar_no_atendido.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        alert_marcar_no_atendido.show();
     }
 
     private void progress_cargando_citass() {
