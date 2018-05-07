@@ -160,12 +160,18 @@
     <string name="marcar_no_atendido">Marca como no atendido</string>
     <string name="marcar_atendido">Marca como atendido</string>
     <string name="no_atendido">No Atendido</string>
+    <string name="marcar_atendido_ya_marcado_antendido">No se puede marcar la cita como atendido ya fue marcado anteriormente</string>
+    <string name="marcar_no_atendido_ya_antendido">No se puede marcar la cita como no atendido ya fue atendido</string>
+    <string name="marcar_atendido_marcado_no_antendido">No se puede marcar la cita como atendido ya fue marcado no atendido</string>
+    <string name="marcar_no_atendido_marcado_no_antendido">No se puede marcar la cita como no atendido ya fue marcado anteriormente</string>
     <!--todo: consulta pediatra-->
     <string name="respondido">Respondido</string>
     <string name="no_respondido">No Respondido</string>
     <string name="responder">Responder consulta</string>
     <string name="consultado">Consultado:</string>
     <string name="paciente">Paciente</string>
+    <string name="escribe_respuesta">Escribe tu respuesta aqui...</string>
+    <string name="respuesta_ok">Tu respuesta fue enviado correctamente</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

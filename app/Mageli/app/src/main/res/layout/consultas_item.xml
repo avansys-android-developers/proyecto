@@ -34,6 +34,7 @@ android:clickable="true"
                 android:textColor="@color/primario_text"
                 android:layout_marginEnd="@dimen/pading"
                 android:id="@+id/item_asunto_consulta"
+                android:fontFamily="@font/roboto_bold"
                 android:layout_marginTop="@dimen/pading"
                 android:layout_marginBottom="@dimen/pading"/>
             <com.google.android.flexbox.FlexboxLayout
@@ -54,6 +55,7 @@ android:clickable="true"
                     android:text="Maria del Valle - Pediatra"
                     android:textAlignment="textStart"
                     android:layout_marginEnd="@dimen/pading"
+                    android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/primario_text"
                     android:id="@+id/item_nombre_pediatra_consulta"/>
             </com.google.android.flexbox.FlexboxLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:flexDirection="row"
+        app:flexWrap="wrap">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="¿Pregunta consulta?"
+            android:fontFamily="@font/roboto_medium"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/padingTopBotom"
+            android:layout_marginTop="@dimen/padingTopBotom"
+            android:id="@+id/respuesta_asunto_titulo"/>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:overScrollMode="always"
+                android:scrollbarStyle="insideInset"
+                android:scrollbars="vertical"
+                android:gravity="top"
+                android:id="@+id/respuesta_consulta"
+                android:layout_marginBottom="@dimen/padingTopBotom"
+                android:hint="@string/escribe_respuesta"/>
+        </android.support.design.widget.TextInputLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/responder"
+            style="@style/Widget.AppCompat.Button"
+            android:theme="@style/material_buton"
+            android:textAllCaps="false"
+            android:textColor="@color/icono"
+            android:id="@+id/btn_responder_consulta"
+            android:height="56dp"/>
+    </com.google.android.flexbox.FlexboxLayout>
+
+</LinearLayout>

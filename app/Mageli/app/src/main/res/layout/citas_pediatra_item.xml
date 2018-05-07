@@ -32,6 +32,7 @@
                     android:text="Cita Nº Uno"
                     android:textAlignment="textStart"
                     android:layout_marginEnd="@dimen/pading"
+                    android:fontFamily="@font/roboto_bold"
                     android:textColor="@color/primario_text"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:id="@+id/item_asunto_cita_pediatra"
@@ -54,6 +55,7 @@
                         android:layout_height="wrap_content"
                         android:text="Maria del Valle - Paciente"
                         android:textAlignment="textStart"
+                        android:fontFamily="@font/roboto_medium"
                         android:layout_marginEnd="@dimen/pading"
                         android:textColor="@color/primario_text"
                         android:id="@+id/item_cita_nombre_pacient"/>

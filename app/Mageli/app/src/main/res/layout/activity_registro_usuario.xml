@@ -20,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:justifyContent="center"
-                android:layout_marginBottom="@dimen/marginbotom"
+                android:layout_marginBottom="50dp"
                 android:layout_marginTop="@dimen/marginbotom">
                 <ImageView
                     android:layout_width="40dp"

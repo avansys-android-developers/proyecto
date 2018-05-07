@@ -36,6 +36,7 @@ app:cardElevation="@dimen/pading">
                 android:layout_marginEnd="@dimen/pading"
                 android:id="@+id/item_asunto_consulta_pediatra"
                 android:layout_marginTop="@dimen/pading"
+                android:fontFamily="@font/roboto_bold"
                 android:layout_marginBottom="@dimen/pading"/>
             <com.google.android.flexbox.FlexboxLayout
                 android:layout_width="match_parent"
@@ -55,6 +56,7 @@ app:cardElevation="@dimen/pading">
                     android:text="Maria del Valle - Paciente"
                     android:textAlignment="textStart"
                     android:layout_marginEnd="@dimen/pading"
+                    android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/primario_text"
                     android:id="@+id/item_nombre_paciente_consulta"/>
             </com.google.android.flexbox.FlexboxLayout>

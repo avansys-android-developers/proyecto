@@ -4,11 +4,16 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chaicopaillag.app.mageli.Adapter.ConsultaPediatraAdapter;
 import com.chaicopaillag.app.mageli.Modelo.Consulta;
@@ -20,6 +25,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+
+import java.util.Objects;
 
 public class ConsultaPediatraFragment extends Fragment {
     private RecyclerView recyclerViewconsulta;
@@ -68,7 +75,7 @@ public class ConsultaPediatraFragment extends Fragment {
                 holder.btn_responder.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        resonder_consulta(model);
                     }
                 });
             }
@@ -87,6 +94,29 @@ public class ConsultaPediatraFragment extends Fragment {
             }
         };
         recyclerViewconsulta.setAdapter(adapter);
+    }
+
+    private void resonder_consulta(final Consulta model) {
+        Button btn_responder;
+        TextView asunto;
+        final EditText respuesta;
+        LayoutInflater inflater=getLayoutInflater();
+        View popap= inflater.inflate(R.layout.responder_consulta_pediatra,null);
+        btn_responder=(Button)popap.findViewById(R.id.btn_responder_consulta);
+        asunto=(TextView) popap.findViewById(R.id.respuesta_asunto_titulo);
+        respuesta=(EditText) popap.findViewById(R.id.respuesta_consulta);
+        btn_responder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //firebase.child("Respuestas").child(model.getId()).child("descripcion").setValue(respuesta.getText().toString());
+                Toast.makeText(getContext(), getString(R.string.respuesta_ok), Toast.LENGTH_SHORT).show();
+            }
+        });
+        asunto.setText(model.getAsunto());
+        AlertDialog.Builder popap_respuesta_consulta= new AlertDialog.Builder(Objects.requireNonNull(getContext()));
+        popap_respuesta_consulta.setView(popap);
+        popap_respuesta_consulta.show();
+
     }
 
     private void progres_carga_datos() {

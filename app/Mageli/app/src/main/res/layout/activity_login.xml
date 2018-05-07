@@ -21,8 +21,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:justifyContent="center"
-                android:layout_marginBottom="@dimen/marginbotom"
-                android:layout_marginTop="@dimen/marginbotom">
+                android:layout_marginBottom="50dp"
+                android:layout_marginTop="@dimen/padingTopBotom">
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"

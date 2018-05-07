@@ -87,13 +87,27 @@ public class CitasPediatraFragment extends Fragment {
                 holder.btn_no_atendido.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        marcar_como_no_atendido(model.getId());
+                        if(!model.isEstado()){
+                            Toast.makeText(getContext(),getString(R.string.marcar_no_atendido_marcado_no_antendido), Toast.LENGTH_SHORT).show();
+                        }else if(model.isFlag_atendido()){
+                            Toast.makeText(getContext(),getString(R.string.marcar_no_atendido_ya_antendido), Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            marcar_como_no_atendido(model.getId());
+                        }
                     }
                 });
                 holder.btn_atendido.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        marcar_como_atendido(model.getId());
+                        if(model.isFlag_atendido()){
+                            Toast.makeText(getContext(),getString(R.string.marcar_atendido_ya_marcado_antendido), Toast.LENGTH_SHORT).show();
+                        }
+                        else if(!model.isEstado()){
+                            Toast.makeText(getContext(),getString(R.string.marcar_atendido_marcado_no_antendido), Toast.LENGTH_SHORT).show();
+                        }else {
+                            marcar_como_atendido(model.getId());
+                        }
                     }
                 });
             }
