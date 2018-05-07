@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/celeste</item>
         <item name="colorPrimaryDark">@color/celeste_oscuro</item>
         <item name="colorAccent">@color/rosa</item>
+        <item name="android:fontFamily">@font/fuentes</item>
     </style>
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>

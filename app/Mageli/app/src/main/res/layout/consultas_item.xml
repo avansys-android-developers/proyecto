@@ -67,6 +67,7 @@ android:clickable="true"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     android:layout_marginEnd="@dimen/pading"
+                    android:lineSpacingMultiplier="1.3"
                     android:id="@+id/item_descripcion_consulta"
                     android:text="A earum illo, itaque ipsam blanditiis quae sit ullam optio odit nostrum beatae error, et facere molestiae dignissimos consequuntur vel iusto esse quos in ipsa magni repellat. Animi ea repudiandae nam repellat molestiae inventore ex in maiores repellendus autem vero quas expedita sit quaerat facere id, dolore qui voluptas molestias est odio consequatur labore perspiciatis, dolorem ratione! Delectus adipisci exercitationem ut porro deserunt fugit natus minus dignissimos quod repudiandae ad, ipsam officiis modi est ex? Inventore modi iure autem assumenda illum blanditiis?"/>
             </com.google.android.flexbox.FlexboxLayout>

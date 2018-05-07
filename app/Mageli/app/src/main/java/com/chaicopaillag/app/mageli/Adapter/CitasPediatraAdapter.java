@@ -16,7 +16,6 @@ public class CitasPediatraAdapter {
         public TextView hora;
         public TextView estado;
         public TextView cantidad_personas;
-        public TextView dias_restantes;
         public Button btn_atendido,btn_no_atendido;
         public ViewHolder(View itemView) {
             super(itemView);
@@ -30,7 +29,6 @@ public class CitasPediatraAdapter {
             btn_atendido=(Button)itemView.findViewById(R.id.btn_si_tendido);
             btn_no_atendido=(Button)itemView.findViewById(R.id.btn_no_atendido);
             cantidad_personas=(TextView)itemView.findViewById(R.id.item_cita_pediatra_cantidad_personas);
-            dias_restantes=(TextView)itemView.findViewById(R.id.item_dias_restante);
         }
 
         public void setAsunto(String asunto) {
@@ -59,10 +57,6 @@ public class CitasPediatraAdapter {
 
         public void setCantidad_personas(String cantidad_personas) {
             this.cantidad_personas.setText(cantidad_personas);
-        }
-
-        public void setDias_restantes(String dias_restantes) {
-            this.dias_restantes.setText(dias_restantes);
         }
     }
 
