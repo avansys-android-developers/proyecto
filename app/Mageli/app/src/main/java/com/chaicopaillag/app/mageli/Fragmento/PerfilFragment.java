@@ -144,7 +144,7 @@ public class PerfilFragment extends Fragment {
         if (persona.isGenero()){
             txtperfil_genero.setText(R.string.masculino);
         }else {
-            txtperfil_genero.setText(R.string.masculino);
+            txtperfil_genero.setText(R.string.femenino);
         }
         if(progress_carga.isShowing()){
             progress_carga.dismiss();

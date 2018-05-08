@@ -72,25 +72,28 @@ public class CitasPediatraFragment extends Fragment {
                 holder.setDescripcion(model.getDescripcion());
                 holder.setFecha(model.getFecha());
                 holder.setHora(model.getHora());
-                if(model.isFlag_atendido()){
-                    holder.setEstado(getString(R.string.atendido));
-                }else if(model.isFlag_cancelado()) {
-                    holder.setEstado(getString(R.string.cancelado));
-                }else if(model.isFlag_postergado()){
+                if(model.getEstado()==1){
+                    holder.setEstado(getString(R.string.pendiente));
+                }else if(model.getEstado()==2) {
                     holder.setEstado(getString(R.string.postergado));
-                }else if(!model.isEstado()){
+                }else if(model.getEstado()==3){
+                    holder.setEstado(getString(R.string.cancelado));
+                }else if(model.getEstado()==4){
                     holder.setEstado(getString(R.string.no_atendido));
                 }
                 else {
-                    holder.setEstado(getString(R.string.pendiente));
+                    holder.setEstado(getString(R.string.atendido));
                 }
                 holder.btn_no_atendido.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(!model.isEstado()){
-                            Toast.makeText(getContext(),getString(R.string.marcar_no_atendido_marcado_no_antendido), Toast.LENGTH_SHORT).show();
-                        }else if(model.isFlag_atendido()){
-                            Toast.makeText(getContext(),getString(R.string.marcar_no_atendido_ya_antendido), Toast.LENGTH_SHORT).show();
+                        if(model.getEstado()==4){
+                            Toast.makeText(getContext(),getString(R.string.marcar_no_atendido_marcado_no_antendido), Toast.LENGTH_LONG).show();
+                        }else if(model.getEstado()==5){
+                            Toast.makeText(getContext(),getString(R.string.marcar_no_atendido_ya_antendido), Toast.LENGTH_LONG).show();
+                        }
+                        else if(model.getEstado()==3){
+                            Toast.makeText(getContext(),getString(R.string.marcar_no_atendido_ya_cancelado), Toast.LENGTH_LONG).show();
                         }
                         else {
                             marcar_como_no_atendido(model.getId());
@@ -100,12 +103,15 @@ public class CitasPediatraFragment extends Fragment {
                 holder.btn_atendido.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(model.isFlag_atendido()){
-                            Toast.makeText(getContext(),getString(R.string.marcar_atendido_ya_marcado_antendido), Toast.LENGTH_SHORT).show();
+                        if(model.getEstado()==5){
+                            Toast.makeText(getContext(),getString(R.string.marcar_atendido_ya_marcado_antendido), Toast.LENGTH_LONG).show();
                         }
-                        else if(!model.isEstado()){
-                            Toast.makeText(getContext(),getString(R.string.marcar_atendido_marcado_no_antendido), Toast.LENGTH_SHORT).show();
-                        }else {
+                        else if(model.getEstado()==4){
+                            Toast.makeText(getContext(),getString(R.string.marcar_atendido_marcado_no_antendido), Toast.LENGTH_LONG).show();
+                        }else if(model.getEstado()==3){
+                            Toast.makeText(getContext(),getString(R.string.marcar_atendido_ya_cancelado), Toast.LENGTH_LONG).show();
+                        }
+                        else {
                             marcar_como_atendido(model.getId());
                         }
                     }
@@ -140,7 +146,7 @@ public class CitasPediatraFragment extends Fragment {
         alert_marcar_atendido.setPositiveButton(R.string.si,new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                firebase_bd.child(id).child("flag_atendido").setValue(true);
+                firebase_bd.child(id).child("estado").setValue(5);
             }
         });
         alert_marcar_atendido.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
@@ -158,7 +164,7 @@ public class CitasPediatraFragment extends Fragment {
         alert_marcar_no_atendido.setPositiveButton(R.string.si,new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                firebase_bd.child(id).child("estado").setValue(false);
+                firebase_bd.child(id).child("estado").setValue(4);
             }
         });
         alert_marcar_no_atendido.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {

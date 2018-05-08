@@ -7,184 +7,226 @@
     android:background="@color/bgactivity"
     android:orientation="vertical"
     tools:context=".Activity.CitaActivity">
-        <include layout="@layout/mi_toolbar"
-        android:id="@+id/toolbar_cita"/>
+    <include
+        android:id="@+id/toolbar_cita"
+        layout="@layout/mi_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingStart="@dimen/margenDerechoIzquierdo"
-            android:paddingEnd="@dimen/margenDerechoIzquierdo">
-            <android.support.design.widget.TextInputLayout
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <EditText
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingEnd="@dimen/margenDerechoIzquierdo"
+                android:paddingStart="@dimen/margenDerechoIzquierdo">
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="5dp"
-                    android:drawableStart="@drawable/asunto"
-                    android:hint="@string/asunto"
-                    android:inputType="textPersonName"
-                    android:id="@+id/asunto_cita"/>
-            </android.support.design.widget.TextInputLayout>
+                    android:layout_height="wrap_content">
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="125dp"
-                    android:drawablePadding="5dp"
-                    android:gravity="top"
-                    android:drawableStart="@drawable/descripcion"
-                    android:hint="@string/descripcion"
-                    android:inputType="text|textMultiLine"
-                    android:overScrollMode="always"
-                    android:scrollbarStyle="insideInset"
-                    android:scrollbars="vertical"
-                    android:id="@+id/descipcion_cita"/>
-            </android.support.design.widget.TextInputLayout>
-            <com.google.android.flexbox.FlexboxLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:flexWrap="wrap"
-                app:alignItems="stretch"
-                app:alignContent="space_between">
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_flexBasisPercent="50%"
-                    app:layout_alignSelf="flex_start"
-                    android:layout_marginEnd="5dp">
                     <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawablePadding="6dp"
-                        android:drawableStart="@drawable/calendario"
-                        android:hint="@string/fecha"
-                        android:id="@+id/fecha_cita"
-                        android:inputType="date"
-                        style="@android:style/Widget.DeviceDefault.Light.Spinner"
-                        android:maxLength="10"/>
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_flexBasisPercent="45%"
-                    android:layout_marginStart="5dp"
-                    app:layout_alignSelf="flex_end">
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawablePadding="6dp"
-                        android:drawableStart="@drawable/clock"
-                        android:hint="@string/hora"
-                        android:inputType="time"
-                        android:id="@+id/hora_cita"
-                        style="@android:style/Widget.DeviceDefault.Light.Spinner"
-                        android:maxLength="5"/>
-                </android.support.design.widget.TextInputLayout>
-            </com.google.android.flexbox.FlexboxLayout>
-            <com.google.android.flexbox.FlexboxLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:flexWrap="wrap"
-                app:alignItems="stretch"
-                app:alignContent="space_between">
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_flexBasisPercent="40%">
-                    <EditText
+                        android:id="@+id/asunto_cita"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawablePadding="5dp"
-                        android:drawableStart="@drawable/pacientes"
-                        android:hint="@string/n_peronsas"
-                        android:id="@+id/n_personas"
-                        android:inputType="number"
-                        android:maxLength="1"/>
+                        android:drawableStart="@drawable/asunto"
+                        android:hint="@string/asunto"
+                        android:inputType="textPersonName" />
                 </android.support.design.widget.TextInputLayout>
+
                 <android.support.design.widget.TextInputLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_flexBasisPercent="60%"
-                    android:gravity="center">
-                    <android.support.v7.widget.SwitchCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/descipcion_cita"
                         android:layout_width="match_parent"
-                        android:hint="@string/elejir_esp"
-                        android:textAlignment="center"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/sw_elegir_pediatra"/>
+                        android:layout_height="125dp"
+                        android:drawablePadding="5dp"
+                        android:drawableStart="@drawable/descripcion"
+                        android:gravity="top"
+                        android:hint="@string/descripcion"
+                        android:inputType="text|textMultiLine"
+                        android:overScrollMode="always"
+                        android:scrollbarStyle="insideInset"
+                        android:scrollbars="vertical" />
                 </android.support.design.widget.TextInputLayout>
-            </com.google.android.flexbox.FlexboxLayout>
 
-            <com.google.android.flexbox.FlexboxLayout
-                android:id="@+id/fila_pediatra"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/pading"
-                android:layout_marginTop="@dimen/pading"
-                android:visibility="invisible">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/img_perfil_pediatra_cita"
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="@dimen/pading"
-                    android:src="@drawable/perfil" />
-                <LinearLayout
+                <com.google.android.flexbox.FlexboxLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/nombre_pediatra_cita"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Gerardo Chaico Padilla"
-                        android:textColor="@color/primario_text"
-                        android:textSize="13dp" />
-                    <TextView
-                        android:id="@+id/especialidad_pediatra_cita"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Pediatra"
-                        android:textSize="12dp"/>
-                    <View
-                        android:id="@+id/divider"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/linea" />
-                    <TextView
-                        android:id="@+id/correo_pediatra_cita"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:text="micoreo@cv-true.com"
-                        android:textSize="11dp"/>
-                    <TextView
-                        android:id="@+id/uid_pediatra"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="4s5a4d5asd5a4d"
-                        android:textColor="@color/secondario_text"
-                        android:textSize="7sp" />
+                    android:layout_marginBottom="@dimen/pading"
+                    android:layout_marginTop="@dimen/pading"
+                    app:alignItems="stretch"
+                    app:flexWrap="wrap"
+                    app:justifyContent="space_between">
 
-                </LinearLayout>
-            </com.google.android.flexbox.FlexboxLayout>
-            <Button
-                android:id="@+id/btn_cita"
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_alignSelf="flex_start"
+                        app:layout_flexBasisPercent="50%">
+
+                        <EditText
+                            android:id="@+id/fecha_cita"
+                            style="@android:style/Widget.DeviceDefault.Light.Spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="6dp"
+                            android:drawableStart="@drawable/calendario"
+                            android:hint="@string/fecha"
+                            android:inputType="date"
+                            android:maxLength="10" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        app:layout_alignSelf="flex_end"
+                        app:layout_flexBasisPercent="45%">
+
+                        <EditText
+                            android:id="@+id/hora_cita"
+                            style="@android:style/Widget.DeviceDefault.Light.Spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="6dp"
+                            android:drawableStart="@drawable/clock"
+                            android:hint="@string/hora"
+                            android:inputType="time"
+                            android:maxLength="5" />
+                    </android.support.design.widget.TextInputLayout>
+                </com.google.android.flexbox.FlexboxLayout>
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:alignContent="space_between"
+                    app:alignItems="stretch"
+                    app:flexWrap="wrap">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/pading"
+                        android:layout_marginTop="@dimen/pading"
+                        app:layout_flexBasisPercent="40%">
+
+                        <EditText
+                            android:id="@+id/n_personas"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="5dp"
+                            android:drawableStart="@drawable/pacientes"
+                            android:hint="@string/n_peronsas"
+                            android:inputType="number"
+                            android:maxLength="1" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        app:layout_flexBasisPercent="60%">
+
+                        <android.support.v7.widget.SwitchCompat
+                            android:id="@+id/sw_elegir_pediatra"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/elejir_esp"
+                            android:textAlignment="center" />
+                    </android.support.design.widget.TextInputLayout>
+                </com.google.android.flexbox.FlexboxLayout>
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/fila_pediatra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/pading"
+                    android:layout_marginTop="@dimen/pading"
+                    android:visibility="gone">
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/img_perfil_pediatra_cita"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/perfil"
+                        app:civ_border_color="@color/icono"
+                        app:civ_border_width="2dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/pading"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/nombre_pediatra_cita"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="Gerardo Chaico Padilla"
+                            android:textColor="@color/primario_text"
+                            android:textSize="13dp" />
+
+                        <TextView
+                            android:id="@+id/correo_pediatra_cita"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="micoreo@cv-true.com"
+                            android:textSize="11dp"
+                            android:textStyle="bold" />
+
+                        <View
+                            android:id="@+id/divider"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/linea" />
+
+                        <TextView
+                            android:id="@+id/cel_pediatra_cita"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:fontFamily="@font/roboto_light"
+                            android:text="999 999 999"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:id="@+id/uid_pediatra"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="4s5a4d5asd5a4d"
+                            android:textColor="@color/secondario_text"
+                            android:textSize="7sp" />
+
+                    </LinearLayout>
+                </com.google.android.flexbox.FlexboxLayout>
+
+                <Button
+                    android:id="@+id/btn_cita"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginBottom="@dimen/padingTopBotom"
+                    android:layout_marginTop="@dimen/padingTopBotom"
+                    android:text="@string/btn_cita"
+                    android:textAllCaps="false"
+                    android:textColor="@color/icono"
+                    android:theme="@style/material_buton" />
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginTop="@dimen/padingTopBotom"
-                android:text="@string/btn_cita"
-                android:textAllCaps="false"
-                android:textColor="@color/icono"
-                android:layout_marginBottom="@dimen/padingTopBotom"
-                style="@style/Widget.AppCompat.Button"
-                android:theme="@style/material_buton"/>
+                android:layout_height="match_parent"
+                android:orientation="vertical" />
         </LinearLayout>
-
+    </ScrollView>
 </LinearLayout>

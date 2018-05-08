@@ -36,6 +36,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.security.PrivateKey;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -63,13 +64,15 @@ public class CitaActivity extends AppCompatActivity {
     private int anio,mes,dia,hora,minuto;
     private EditText asunto,descripcion,fecha,mihora,numero_personas;
     private CircleImageView img_perfil_pediatra;
-    private  TextView nombre_pediatra,uid_pediatra,correo_ped,esp_ped;
+    private  TextView nombre_pediatra,uid_pediatra,correo_ped,cel_pediatra;
     private SwitchCompat sw_elegir_pediatra;
     private Button btn_cita;
     private AlertDialog.Builder PopapPediatras;
     private ProgressDialog progress_carga;
     private String UID_P="yBD9Mdb2x4SSboza48ggzZ42LTE2";
     private String NOMBRE_P="";
+    private String CORREO_PED="";
+    private String CEL_PED="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,7 +102,7 @@ public class CitaActivity extends AppCompatActivity {
         nombre_pediatra=(TextView) findViewById(R.id.nombre_pediatra_cita);
         uid_pediatra=(TextView) findViewById(R.id.uid_pediatra);
         correo_ped=(TextView) findViewById(R.id.correo_pediatra_cita);
-        esp_ped=(TextView) findViewById(R.id.especialidad_pediatra_cita);
+        cel_pediatra=(TextView) findViewById(R.id.cel_pediatra_cita);
         flexbox_pediatra=(FlexboxLayout)findViewById(R.id.fila_pediatra);
         btn_cita=(Button)findViewById(R.id.btn_cita);
         sw_elegir_pediatra=(SwitchCompat)findViewById(R.id.sw_elegir_pediatra);
@@ -132,7 +135,7 @@ public class CitaActivity extends AppCompatActivity {
                 if (isChecked){
                     cargar_pediatras();
                 }else {
-                    flexbox_pediatra.setVisibility(View.INVISIBLE);
+                    flexbox_pediatra.setVisibility(View.GONE);
                 }
             }
         });
@@ -158,11 +161,13 @@ public class CitaActivity extends AppCompatActivity {
                     if (!citas.getNombre_pediatra().equals(getString(R.string.anonimo))){
                         nombre_pediatra.setText(citas.getNombre_pediatra());
                         uid_pediatra.setText(citas.getUid_pediatra());
-                        esp_ped.setText("");
-                        correo_ped.setText("");
+                        cel_pediatra.setText(citas.getCel_pediatra());
+                        correo_ped.setText(citas.getCorreo_pediatra());
                         flexbox_pediatra.setVisibility(View.VISIBLE);
                         UID_P=citas.getUid_pediatra();
                         NOMBRE_P=citas.getNombre_pediatra();
+                        CORREO_PED=citas.getCorreo_pediatra();
+                        CEL_PED=citas.getCel_pediatra();
                     }
                 }
                 }
@@ -200,7 +205,7 @@ public class CitaActivity extends AppCompatActivity {
                         nombre_pediatra.setText(persona.getNombre()+" "+persona.getApellidos());
                         uid_pediatra.setText(persona.getId());
                         correo_ped.setText(persona.getCorreo());
-                        esp_ped.setText(persona.getEspecialidad());
+                        cel_pediatra.setText(persona.getTelefono());
                         if (persona.getFoto_url()!=null){
                             Glide.with(getApplicationContext()).load(persona.getFoto_url()).into(img_perfil_pediatra);
                         }
@@ -273,9 +278,9 @@ public class CitaActivity extends AppCompatActivity {
 
     @SuppressLint("SimpleDateFormat")
     private void modificar_cita() {
-        String _uid_cita,_asunto,_descripcion,_fecha,_hora,_ui_paciente,_nombre_paciente,_ui_pediatra,_nombre_pediatra,_fecha_registro;
-        boolean flag_atendido,flag_cancelado,flag_postergado,estado;
-        int _n_personas;
+        String _uid_cita,_asunto,_descripcion,_fecha,_hora,_ui_paciente,_nombre_paciente,
+                _correo_paciente,_ui_pediatra,_nombre_pediatra,_correo_pediatra,_cel_pediatra,_fecha_registro;
+        int _n_personas,estado;
         Date fecha_reg=new Date();
         Intent inten= getIntent();
         _uid_cita= inten.getStringExtra("uid_cita");
@@ -286,15 +291,18 @@ public class CitaActivity extends AppCompatActivity {
         _n_personas=Integer.parseInt(numero_personas.getText().toString());
         _ui_paciente=User.getUid();
         _nombre_paciente=User.getDisplayName()!=null ? User.getDisplayName() : getString(R.string.anonimo);
-        _ui_pediatra=Obtener_Uid_pediatra();
+        _correo_paciente=User.getEmail();
+        _ui_pediatra=UID_P;
         _nombre_pediatra=NOMBRE_P;
+        _cel_pediatra=CEL_PED;
+        _correo_pediatra=CORREO_PED;
         if (sw_elegir_pediatra.isChecked()){
             _nombre_pediatra=nombre_pediatra.getText().toString();
+            _cel_pediatra=cel_pediatra.getText().toString();
+            _correo_pediatra=correo_ped.getText().toString();
+            _ui_pediatra=uid_pediatra.getText().toString();
         }
-        flag_atendido=false;
-        flag_cancelado=false;
-        flag_postergado=true;
-        estado=true;
+        estado=2;
         try{
             DateFormat formatofechahora;
             formatofechahora = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -308,13 +316,14 @@ public class CitaActivity extends AppCompatActivity {
             citas.setCantidad_personas(_n_personas);
             citas.setUid_paciente(_ui_paciente);
             citas.setNombre_paciente(_nombre_paciente);
+            citas.setCorreo_paciente(_correo_paciente);
             citas.setUid_pediatra(_ui_pediatra);
             citas.setNombre_pediatra(_nombre_pediatra);
+            citas.setCorreo_pediatra(_correo_pediatra);
+            citas.setCel_pediatra(_cel_pediatra);
             citas.setFecha_registro(_fecha_registro);
-            citas.setFlag_atendido(flag_atendido);
-            citas.setFlag_cancelado(flag_cancelado);
-            citas.setFlag_postergado(flag_postergado);
             citas.setEstado(estado);
+
             Map<String, Object> actualizacion_cita = new HashMap<>();
             actualizacion_cita.put("/id",citas.getId() );
             actualizacion_cita.put("/asunto",citas.getAsunto());
@@ -324,13 +333,13 @@ public class CitaActivity extends AppCompatActivity {
             actualizacion_cita.put("/cantidad_personas",citas.getCantidad_personas());
             actualizacion_cita.put("/uid_paciente",citas.getUid_paciente());
             actualizacion_cita.put("/nombre_paciente",citas.getNombre_paciente());
+            actualizacion_cita.put("/correo_paciente",citas.getCorreo_paciente());
             actualizacion_cita.put("/uid_pediatra",citas.getUid_pediatra());
             actualizacion_cita.put("/nombre_pediatra",citas.getNombre_pediatra());
+            actualizacion_cita.put("/correo_pediatra",citas.getCorreo_pediatra());
+            actualizacion_cita.put("/cel_pediatra",citas.getCel_pediatra());
             actualizacion_cita.put("/fecha_registro",citas.getFecha_registro());
-            actualizacion_cita.put("/flag_atendido",citas.isFlag_atendido());
-            actualizacion_cita.put("/flag_cancelado",citas.isFlag_cancelado());
-            actualizacion_cita.put("/flag_postergado",citas.isFlag_postergado());
-            actualizacion_cita.put("/estado",citas.isEstado());
+            actualizacion_cita.put("/estado",citas.getEstado());
             fire_base.child("Citas").child(_uid_cita).updateChildren(actualizacion_cita);
             Toast.makeText(this, R.string.cita_modificado_ok, Toast.LENGTH_SHORT).show();
             finish();
@@ -342,9 +351,9 @@ public class CitaActivity extends AppCompatActivity {
 
     @SuppressLint("SimpleDateFormat")
     private void guardar_cita() {
-        String _uid_cita,_asunto,_descripcion,_fecha,_hora,_ui_paciente,_nombre_paciente,_ui_pediatra,_nombre_pediatra,_fecha_registro;
-        boolean flag_atendido,flag_cancelado,flag_postergado,estado;
-        int _n_personas;
+        String _uid_cita,_asunto,_descripcion,_fecha,_hora,_ui_paciente,_nombre_paciente,
+                _correo_paciente,_ui_pediatra,_nombre_pediatra,_correo_pediatra,_cel_pediatra,_fecha_registro;
+        int _n_personas,estado;
         Date fecha_reg=new Date();
         _uid_cita= UUID.randomUUID().toString();
         _asunto=asunto.getText().toString();
@@ -354,15 +363,18 @@ public class CitaActivity extends AppCompatActivity {
         _n_personas=Integer.parseInt(numero_personas.getText().toString());
         _ui_paciente=User.getUid();
         _nombre_paciente=User.getDisplayName()!=null ? User.getDisplayName() : getString(R.string.anonimo);
-        _ui_pediatra=Obtener_Uid_pediatra();
+        _correo_paciente=User.getEmail();
+        _ui_pediatra=UID_P;
         _nombre_pediatra=NOMBRE_P;
+        _cel_pediatra=CEL_PED;
+        _correo_pediatra=CORREO_PED;
         if (sw_elegir_pediatra.isChecked()){
             _nombre_pediatra=nombre_pediatra.getText().toString();
+            _cel_pediatra=cel_pediatra.getText().toString();
+            _correo_pediatra=correo_ped.getText().toString();
+            _ui_pediatra=uid_pediatra.getText().toString();
         }
-        flag_atendido=false;
-        flag_cancelado=false;
-        flag_postergado=false;
-        estado=true;
+        estado=1;
         try{
         DateFormat formatofechahora;
             formatofechahora = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -376,12 +388,12 @@ public class CitaActivity extends AppCompatActivity {
         citas.setCantidad_personas(_n_personas);
         citas.setUid_paciente(_ui_paciente);
         citas.setNombre_paciente(_nombre_paciente);
+        citas.setCorreo_paciente(_correo_paciente);
         citas.setUid_pediatra(_ui_pediatra);
         citas.setNombre_pediatra(_nombre_pediatra);
+        citas.setCorreo_pediatra(_correo_pediatra);
+        citas.setCel_pediatra(_cel_pediatra);
         citas.setFecha_registro(_fecha_registro);
-        citas.setFlag_atendido(flag_atendido);
-        citas.setFlag_cancelado(flag_cancelado);
-        citas.setFlag_postergado(flag_postergado);
         citas.setEstado(estado);
         fire_base.child("Citas").child(_uid_cita).setValue(citas);
         Toast.makeText(this, R.string.cita_registrado_ok, Toast.LENGTH_SHORT).show();
@@ -390,12 +402,6 @@ public class CitaActivity extends AppCompatActivity {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
-    }
-    private String Obtener_Uid_pediatra(){
-        if (sw_elegir_pediatra.isChecked()){
-            UID_P=uid_pediatra.getText().toString();
-        }
-        return UID_P;
     }
     private void cargar_calendario() {
         calenda= Calendar.getInstance();

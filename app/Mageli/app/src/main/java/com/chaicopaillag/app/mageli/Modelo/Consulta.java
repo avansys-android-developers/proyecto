@@ -11,8 +11,11 @@ public class Consulta {
     private String descripcion;
     private String uid_paciente;
     private String nombre_paciente;
+    private String correo_paciente;
     private String uid_pediatra;
     private String nombre_pediatra;
+    private String correo_pediatra;
+    private String cel_pediatra;
     private String fecha_registro;
     private boolean flag_respuesta;
     private boolean flag_privacidad;
@@ -21,14 +24,17 @@ public class Consulta {
     public Consulta() {
     }
 
-    public Consulta(String id, String asunto, String descripcion, String uid_paciente, String nombre_paciente, String uid_pediatra, String nombre_pediatra, String fecha_registro, boolean flag_respuesta, boolean flag_privacidad, boolean estado) {
+    public Consulta(String id, String asunto, String descripcion, String uid_paciente, String nombre_paciente, String correo_paciente, String uid_pediatra, String nombre_pediatra, String correo_pediatra, String cel_pediatra, String fecha_registro, boolean flag_respuesta, boolean flag_privacidad, boolean estado) {
         this.id = id;
         this.asunto = asunto;
         this.descripcion = descripcion;
         this.uid_paciente = uid_paciente;
         this.nombre_paciente = nombre_paciente;
+        this.correo_paciente = correo_paciente;
         this.uid_pediatra = uid_pediatra;
         this.nombre_pediatra = nombre_pediatra;
+        this.correo_pediatra = correo_pediatra;
+        this.cel_pediatra = cel_pediatra;
         this.fecha_registro = fecha_registro;
         this.flag_respuesta = flag_respuesta;
         this.flag_privacidad = flag_privacidad;
@@ -75,6 +81,14 @@ public class Consulta {
         this.nombre_paciente = nombre_paciente;
     }
 
+    public String getCorreo_paciente() {
+        return correo_paciente;
+    }
+
+    public void setCorreo_paciente(String correo_paciente) {
+        this.correo_paciente = correo_paciente;
+    }
+
     public String getUid_pediatra() {
         return uid_pediatra;
     }
@@ -89,6 +103,22 @@ public class Consulta {
 
     public void setNombre_pediatra(String nombre_pediatra) {
         this.nombre_pediatra = nombre_pediatra;
+    }
+
+    public String getCorreo_pediatra() {
+        return correo_pediatra;
+    }
+
+    public void setCorreo_pediatra(String correo_pediatra) {
+        this.correo_pediatra = correo_pediatra;
+    }
+
+    public String getCel_pediatra() {
+        return cel_pediatra;
+    }
+
+    public void setCel_pediatra(String cel_pediatra) {
+        this.cel_pediatra = cel_pediatra;
     }
 
     public String getFecha_registro() {
@@ -122,6 +152,7 @@ public class Consulta {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+
     @Exclude
     public Map<String,Object> miMap(){
         HashMap<String ,Object> Resultado=new HashMap<>();
@@ -130,8 +161,11 @@ public class Consulta {
         Resultado.put("descripcion",descripcion);
         Resultado.put("uid_paciente",uid_paciente);
         Resultado.put("nombre_paciente",nombre_paciente);
+        Resultado.put("correo_paciente",correo_paciente);
         Resultado.put("uid_pediatra",uid_pediatra);
         Resultado.put("nombre_pediatra",nombre_pediatra);
+        Resultado.put("correo_pediatra",correo_pediatra);
+        Resultado.put("cel_pediatra",cel_pediatra);
         Resultado.put("fecha_registro",fecha_registro);
         Resultado.put("flag_respuesta",flag_respuesta);
         Resultado.put("flag_privacidad",flag_privacidad);

@@ -83,7 +83,7 @@
                     android:drawableStart="@drawable/card"
                     android:drawableTint="@color/secondario_text"
                     android:hint="@string/numero_hc"
-                    android:inputType="number"
+                    android:inputType="text"
                     android:id="@+id/txt_num_hc"/>
             </android.support.design.widget.TextInputLayout>
 
@@ -120,8 +120,8 @@
             </android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/pading">
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -137,9 +137,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:layout_marginTop="@dimen/padingTopBotom"
-                android:layout_marginBottom="@dimen/padingTopBotom">
+                android:orientation="horizontal">
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -158,7 +156,6 @@
                 android:id="@+id/btn_perfil"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:layout_marginTop="@dimen/padingTopBotom"
                 android:text="@string/btn_perfil"
                 android:textAllCaps="false"
                 android:textColor="@color/icono"

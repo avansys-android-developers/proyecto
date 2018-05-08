@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.chaicopaillag.app.mageli.Modelo.Persona;
 import com.chaicopaillag.app.mageli.R;
+import com.firebase.ui.auth.data.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -55,7 +56,7 @@ public class PerfilActivity extends AppCompatActivity {
     private Calendar calendario;
     private DatePickerDialog mi_popap;
     private ArrayAdapter sp_adap;
-    public String editar_perfil;
+    public String editar_perfil,specialidad;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +74,7 @@ public class PerfilActivity extends AppCompatActivity {
         firebase_ref=mi_db.getReference("Persona");
         Intent intent = this.getIntent();
         editar_perfil="";
+        specialidad="...";
             if (intent.hasExtra("editar_perfil")){
                 editar_perfil="Editando perfil";
                 firebase_ref.child(id_ui).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -88,6 +90,7 @@ public class PerfilActivity extends AppCompatActivity {
                             txt_telefono.setText(persona.getTelefono());
                             fecha_nac.setText(persona.getFecha_nacimiento());
                             tipo_persona=persona.getTipo_persona();
+                            specialidad=persona.getEspecialidad();
                             if (persona.isGenero()){
                                 generoMasculino.setChecked(true);
                             }else {
@@ -181,7 +184,7 @@ public class PerfilActivity extends AppCompatActivity {
         direccion=txt_direccion.getText().toString();
         telefono=txt_telefono.getText().toString();
         correo=correo_ui;
-        especialidad="...";
+        especialidad=specialidad;
         estado=true;
         if (user.getPhotoUrl()!=null){
             foto_url=user.getPhotoUrl().toString();
@@ -282,7 +285,7 @@ public class PerfilActivity extends AppCompatActivity {
         direccion=txt_direccion.getText().toString();
         telefono=txt_telefono.getText().toString();
         correo=correo_ui;
-        especialidad="...";
+        especialidad=specialidad;
         estado=true;
         tipo_persona=1;
         if (user.getPhotoUrl()!=null){
@@ -349,7 +352,7 @@ public class PerfilActivity extends AppCompatActivity {
         }else  if (TextUtils.isEmpty(tipo_doc)|| tipo_doc.equals("Selecciona tipo de documento")){
             Toast.makeText(PerfilActivity.this, R.string.error_tipo_doc, Toast.LENGTH_LONG).show();
             return;
-        }else  if (TextUtils.isEmpty(numero_documento)||numero_documento.length()!=8){
+        }else  if (TextUtils.isEmpty(numero_documento)||numero_documento.length()>10){
             txt_numero_doc.setError(getString(R.string.error_numero_documento));
             return;
         }else  if (TextUtils.isEmpty(numero_hc)||numero_hc.length()!=10){
