@@ -5,6 +5,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import com.chaicopaillag.app.mageli.R;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class CitasPediatraAdapter {
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
@@ -17,6 +20,7 @@ public class CitasPediatraAdapter {
         public TextView estado;
         public TextView cantidad_personas;
         public Button btn_atendido,btn_no_atendido;
+        public CircleImageView img_paciente;
         public ViewHolder(View itemView) {
             super(itemView);
             cardView=(CardView)itemView.findViewById(R.id.carview);
@@ -29,6 +33,7 @@ public class CitasPediatraAdapter {
             btn_atendido=(Button)itemView.findViewById(R.id.btn_si_tendido);
             btn_no_atendido=(Button)itemView.findViewById(R.id.btn_no_atendido);
             cantidad_personas=(TextView)itemView.findViewById(R.id.item_cita_pediatra_cantidad_personas);
+            img_paciente=(CircleImageView)itemView.findViewById(R.id.img_paciente_cita);
         }
 
         public void setAsunto(String asunto) {

@@ -4,9 +4,9 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import com.chaicopaillag.app.mageli.R;
+import de.hdodenhof.circleimageview.CircleImageView;
 public class CitasAdapter{
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
@@ -17,6 +17,7 @@ public class CitasAdapter{
         public TextView fecha;
         public TextView hora;
         public TextView estado;
+        public CircleImageView img_pediatra;
         public Button btn_eliminar_cita,btn_cancelar_cita,btn_posponer;
         public ViewHolder(View itemView) {
             super(itemView);
@@ -30,6 +31,7 @@ public class CitasAdapter{
             btn_eliminar_cita=(Button)itemView.findViewById(R.id.btn_eliminar_cita);
             btn_cancelar_cita=(Button)itemView.findViewById(R.id.btn_cancelar_cita);
             btn_posponer=(Button)itemView.findViewById(R.id.btn_posponer_cita);
+            img_pediatra=(CircleImageView)itemView.findViewById(R.id.img_pediatra_cita);
         }
 
         public void setAsunto(String asunto) {
@@ -54,7 +56,6 @@ public class CitasAdapter{
         public void setNombre_peditra(String nombre_peditra){
             this.nombre_peditra.setText(nombre_peditra);
         }
-
     }
 }
 //https://medium.com/@beingrahul/firebase-cloud-firestore-v-s-firebase-realtime-database-931d4265d4b0

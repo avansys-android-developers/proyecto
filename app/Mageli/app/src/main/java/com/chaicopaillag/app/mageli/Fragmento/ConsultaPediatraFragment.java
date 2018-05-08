@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.chaicopaillag.app.mageli.Adapter.ConsultaPediatraAdapter;
 import com.chaicopaillag.app.mageli.Modelo.Consulta;
 import com.chaicopaillag.app.mageli.R;
@@ -67,6 +68,7 @@ public class ConsultaPediatraFragment extends Fragment {
                 holder.setNombre_paciente(model.getNombre_paciente()+" - "+getString(R.string.paciente));
                 holder.setDescripcion(model.getDescripcion());
                 holder.setFecha_consulta(model.getFecha_registro());
+                Glide.with(getActivity().getApplicationContext()).load(model.getUrl_img_paciente()).into(holder.img_paciente_consulta);
                 if (model.isFlag_respuesta()){
                     holder.setRespuesta(getString(R.string.respondido));
                 }else {

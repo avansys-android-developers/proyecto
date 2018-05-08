@@ -35,13 +35,14 @@
                     android:textColor="@color/primario_text"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:id="@+id/item_asunto_cita"
-                    android:fontFamily="@font/roboto_bold"
+                    android:fontFamily="@font/roboto_medium"
                     android:layout_marginTop="@dimen/pading"
                     android:layout_marginBottom="@dimen/pading"/>
                 <com.google.android.flexbox.FlexboxLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:justifyContent="flex_start"
+                    app:alignItems="center"
                     android:layout_marginBottom="@dimen/pading">
                     <TextView
                         android:layout_width="wrap_content"
@@ -50,15 +51,29 @@
                         android:textAlignment="textStart"
                         android:layout_marginEnd="@dimen/pading"
                         android:textColor="@color/secondario_text"/>
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Maria del Valle - Pediatra"
-                        android:textAlignment="textStart"
-                        android:layout_marginEnd="@dimen/pading"
-                        android:fontFamily="@font/roboto_medium"
-                        android:textColor="@color/primario_text"
-                        android:id="@+id/item_cita_nombre_pediatra"/>
+                        android:orientation="horizontal"
+                        android:gravity="center">
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/perfil"
+                            android:id="@+id/img_pediatra_cita"
+                            app:civ_border_width="2dp"
+                            app:civ_border_color="@color/icono"
+                            android:layout_marginEnd="5dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Maria del Valle - Pediatra"
+                            android:textAlignment="textStart"
+                            android:layout_marginEnd="@dimen/pading"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textColor="@color/primario_text"
+                            android:id="@+id/item_cita_nombre_pediatra"/>
+                    </LinearLayout>
                 </com.google.android.flexbox.FlexboxLayout>
                 <com.google.android.flexbox.FlexboxLayout
                     android:layout_width="match_parent"

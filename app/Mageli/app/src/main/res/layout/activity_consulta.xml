@@ -69,7 +69,7 @@
                 android:visibility="gone">
 
                 <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/img_perfil_pediatra_cita"
+                    android:id="@+id/img_perfil_pediatra_consulta"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="center"

@@ -94,7 +94,7 @@
     <string name="pediatra">Pediatra</string>
     <!--TODO: Alerta dialogo-->
     <string name="numero_hc_titulo">Número de Historial Clínico</string>
-    <string name="mensaje_num_hc">Si sé el Número de mi Historia Clinica</string>
+    <string name="mensaje_num_hc">¿Sé mi Número de mi Historia Clinica?</string>
     <string name="perfil_ok">Datos actualizados corectamente</string>
     <string name="no">No</string>
     <string name="si">Si</string>

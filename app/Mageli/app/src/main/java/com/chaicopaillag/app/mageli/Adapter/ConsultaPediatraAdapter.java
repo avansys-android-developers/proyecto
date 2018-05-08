@@ -8,11 +8,14 @@ import android.widget.TextView;
 
 import com.chaicopaillag.app.mageli.R;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ConsultaPediatraAdapter {
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public CardView cardView;
         public TextView asunto,descripcion,respuesta,nombre_paciente,fecha_consulta,estado_respuesta;
         public Button btn_responder;
+        public CircleImageView img_paciente_consulta;
         public ViewHolder(View view){
             super(view);
             cardView=(CardView)view.findViewById(R.id.carview);
@@ -22,6 +25,7 @@ public class ConsultaPediatraAdapter {
             fecha_consulta=(TextView)view.findViewById(R.id.item_fecha_consulta_pediatra);
             respuesta=(TextView)view.findViewById(R.id.item_estado_respuesta);
             btn_responder=(Button) view.findViewById(R.id.btn_responder_consulta);
+            img_paciente_consulta=(CircleImageView)itemView.findViewById(R.id.img_paciente_consulta);
         }
 
         public void setAsunto(String asunto) {

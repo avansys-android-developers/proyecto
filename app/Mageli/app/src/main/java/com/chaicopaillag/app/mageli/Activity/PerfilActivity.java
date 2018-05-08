@@ -201,13 +201,11 @@ public class PerfilActivity extends AppCompatActivity {
             DateFormat formatofechahora;
             formatofechahora = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             fecha_registro=formatofechahora.format(fecha_reg);
-//            String key =firebase_ref.child(id_ui).push().getKey();
             persona= new Persona(
                     id,nombre,apellidos,numero_documento,
                     numero_hc,direccion,telefono,correo,
                     genero,tipo_doc,fecha_nacimient,fecha_registro,
                     estado,tipo_persona,especialidad,foto_url);
-//            Map<String, Object> miPersona = persona.miMap();
             Map<String, Object> Act_Persona_especifico = new HashMap<>();
             Act_Persona_especifico.put("/id",persona.getId() );
             Act_Persona_especifico.put("/nombre",persona.getNombre());

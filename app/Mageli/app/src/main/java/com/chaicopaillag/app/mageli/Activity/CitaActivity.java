@@ -73,6 +73,8 @@ public class CitaActivity extends AppCompatActivity {
     private String NOMBRE_P="";
     private String CORREO_PED="";
     private String CEL_PED="";
+    private String URL_IMG_DEFAULT="https://firebasestorage.googleapis.com/v0/b/appmageli.appspot.com/o/perfil.png?alt=media&token=c2c2e8f2-9777-4829-9e23-69a66dcedd06";
+    private String URL_IMG_PEDIATRA="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -168,6 +170,8 @@ public class CitaActivity extends AppCompatActivity {
                         NOMBRE_P=citas.getNombre_pediatra();
                         CORREO_PED=citas.getCorreo_pediatra();
                         CEL_PED=citas.getCel_pediatra();
+                        URL_IMG_PEDIATRA=citas.getUrl_img_pediatra();
+                        Glide.with(getApplicationContext()).load(URL_IMG_PEDIATRA).into(img_perfil_pediatra);
                     }
                 }
                 }
@@ -208,6 +212,10 @@ public class CitaActivity extends AppCompatActivity {
                         cel_pediatra.setText(persona.getTelefono());
                         if (persona.getFoto_url()!=null){
                             Glide.with(getApplicationContext()).load(persona.getFoto_url()).into(img_perfil_pediatra);
+                            URL_IMG_PEDIATRA=persona.getFoto_url();
+                        }else {
+                            Glide.with(getApplicationContext()).load(URL_IMG_DEFAULT).into(img_perfil_pediatra);
+                            URL_IMG_PEDIATRA=URL_IMG_DEFAULT;
                         }
                     }
                 });
@@ -279,7 +287,8 @@ public class CitaActivity extends AppCompatActivity {
     @SuppressLint("SimpleDateFormat")
     private void modificar_cita() {
         String _uid_cita,_asunto,_descripcion,_fecha,_hora,_ui_paciente,_nombre_paciente,
-                _correo_paciente,_ui_pediatra,_nombre_pediatra,_correo_pediatra,_cel_pediatra,_fecha_registro;
+                _correo_paciente,_url_img_paciente,_ui_pediatra,_nombre_pediatra,_correo_pediatra,
+                _cel_pediatra,_url_img_pediatra,_fecha_registro;
         int _n_personas,estado;
         Date fecha_reg=new Date();
         Intent inten= getIntent();
@@ -291,11 +300,13 @@ public class CitaActivity extends AppCompatActivity {
         _n_personas=Integer.parseInt(numero_personas.getText().toString());
         _ui_paciente=User.getUid();
         _nombre_paciente=User.getDisplayName()!=null ? User.getDisplayName() : getString(R.string.anonimo);
+        _url_img_paciente=User.getPhotoUrl()!=null ? User.getPhotoUrl().toString() :URL_IMG_DEFAULT;
+        _correo_pediatra=CORREO_PED;
         _correo_paciente=User.getEmail();
         _ui_pediatra=UID_P;
         _nombre_pediatra=NOMBRE_P;
         _cel_pediatra=CEL_PED;
-        _correo_pediatra=CORREO_PED;
+        _url_img_pediatra=URL_IMG_PEDIATRA;
         if (sw_elegir_pediatra.isChecked()){
             _nombre_pediatra=nombre_pediatra.getText().toString();
             _cel_pediatra=cel_pediatra.getText().toString();
@@ -317,10 +328,12 @@ public class CitaActivity extends AppCompatActivity {
             citas.setUid_paciente(_ui_paciente);
             citas.setNombre_paciente(_nombre_paciente);
             citas.setCorreo_paciente(_correo_paciente);
+            citas.setUrl_img_paciente(_url_img_paciente);
             citas.setUid_pediatra(_ui_pediatra);
             citas.setNombre_pediatra(_nombre_pediatra);
             citas.setCorreo_pediatra(_correo_pediatra);
             citas.setCel_pediatra(_cel_pediatra);
+            citas.setUrl_img_pediatra(_url_img_pediatra);
             citas.setFecha_registro(_fecha_registro);
             citas.setEstado(estado);
 
@@ -334,10 +347,12 @@ public class CitaActivity extends AppCompatActivity {
             actualizacion_cita.put("/uid_paciente",citas.getUid_paciente());
             actualizacion_cita.put("/nombre_paciente",citas.getNombre_paciente());
             actualizacion_cita.put("/correo_paciente",citas.getCorreo_paciente());
+            actualizacion_cita.put("/url_img_paciente",citas.getUrl_img_paciente());
             actualizacion_cita.put("/uid_pediatra",citas.getUid_pediatra());
             actualizacion_cita.put("/nombre_pediatra",citas.getNombre_pediatra());
             actualizacion_cita.put("/correo_pediatra",citas.getCorreo_pediatra());
             actualizacion_cita.put("/cel_pediatra",citas.getCel_pediatra());
+            actualizacion_cita.put("/url_img_pediatra",citas.getUrl_img_pediatra());
             actualizacion_cita.put("/fecha_registro",citas.getFecha_registro());
             actualizacion_cita.put("/estado",citas.getEstado());
             fire_base.child("Citas").child(_uid_cita).updateChildren(actualizacion_cita);
@@ -352,7 +367,8 @@ public class CitaActivity extends AppCompatActivity {
     @SuppressLint("SimpleDateFormat")
     private void guardar_cita() {
         String _uid_cita,_asunto,_descripcion,_fecha,_hora,_ui_paciente,_nombre_paciente,
-                _correo_paciente,_ui_pediatra,_nombre_pediatra,_correo_pediatra,_cel_pediatra,_fecha_registro;
+                _correo_paciente,_url_img_paciente,_ui_pediatra,_nombre_pediatra,_correo_pediatra,
+                _cel_pediatra,_url_img_pediatra,_fecha_registro;
         int _n_personas,estado;
         Date fecha_reg=new Date();
         _uid_cita= UUID.randomUUID().toString();
@@ -364,10 +380,12 @@ public class CitaActivity extends AppCompatActivity {
         _ui_paciente=User.getUid();
         _nombre_paciente=User.getDisplayName()!=null ? User.getDisplayName() : getString(R.string.anonimo);
         _correo_paciente=User.getEmail();
+        _url_img_paciente=User.getPhotoUrl()!=null ? User.getPhotoUrl().toString() : URL_IMG_DEFAULT;
         _ui_pediatra=UID_P;
         _nombre_pediatra=NOMBRE_P;
         _cel_pediatra=CEL_PED;
         _correo_pediatra=CORREO_PED;
+        _url_img_pediatra=URL_IMG_PEDIATRA;
         if (sw_elegir_pediatra.isChecked()){
             _nombre_pediatra=nombre_pediatra.getText().toString();
             _cel_pediatra=cel_pediatra.getText().toString();
@@ -389,10 +407,12 @@ public class CitaActivity extends AppCompatActivity {
         citas.setUid_paciente(_ui_paciente);
         citas.setNombre_paciente(_nombre_paciente);
         citas.setCorreo_paciente(_correo_paciente);
+        citas.setUrl_img_paciente(_url_img_paciente);
         citas.setUid_pediatra(_ui_pediatra);
         citas.setNombre_pediatra(_nombre_pediatra);
         citas.setCorreo_pediatra(_correo_pediatra);
         citas.setCel_pediatra(_cel_pediatra);
+        citas.setUrl_img_pediatra(_url_img_pediatra);
         citas.setFecha_registro(_fecha_registro);
         citas.setEstado(estado);
         fire_base.child("Citas").child(_uid_cita).setValue(citas);

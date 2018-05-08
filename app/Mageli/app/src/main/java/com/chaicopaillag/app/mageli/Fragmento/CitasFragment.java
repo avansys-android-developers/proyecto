@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.chaicopaillag.app.mageli.Activity.CitaActivity;
 import com.chaicopaillag.app.mageli.Activity.ConsultaActivity;
 import com.chaicopaillag.app.mageli.Adapter.CitasAdapter;
@@ -81,6 +82,7 @@ public class CitasFragment extends Fragment {
                 holder.setDescripcion(model.getDescripcion());
                 holder.setFecha(model.getFecha());
                 holder.setHora(model.getHora());
+                Glide.with(getActivity().getApplicationContext()).load(model.getUrl_img_pediatra()).into(holder.img_pediatra);
                 if(model.getEstado()==1){
                     holder.setEstado(getString(R.string.pendiente));
                 }else if(model.getEstado()==2) {

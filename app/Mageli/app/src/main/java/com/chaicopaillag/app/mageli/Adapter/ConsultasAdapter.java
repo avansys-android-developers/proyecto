@@ -11,12 +11,15 @@ import android.widget.Toast;
 
 import com.chaicopaillag.app.mageli.R;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ConsultasAdapter {
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public CardView cardView;
         public TextView asunto,descripcion,respuesta,nombre_pediatra,fecha_consulta;
         public ImageButton btn_respuesta;
         public Button btn_editar,btn_eliminar;
+        public CircleImageView img_pediatra;
         public ViewHolder(View view){
             super(view);
             cardView=(CardView)view.findViewById(R.id.carview);
@@ -28,6 +31,7 @@ public class ConsultasAdapter {
             btn_editar=(Button) view.findViewById(R.id.btn_editar_consulta);
             btn_eliminar=(Button) view.findViewById(R.id.btn_eliminar_consulta);
             btn_respuesta=(ImageButton)view.findViewById(R.id.btn_respuesta_consulta);
+            img_pediatra=(CircleImageView)itemView.findViewById(R.id.img_pediatra_consulta);
         }
         public void setAsunto(String asunto) {
             this.asunto.setText(asunto);

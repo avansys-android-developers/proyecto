@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.chaicopaillag.app.mageli.Activity.CitaActivity;
 import com.chaicopaillag.app.mageli.Activity.ConsultaActivity;
 import com.chaicopaillag.app.mageli.Activity.PerfilActivity;
@@ -79,6 +80,7 @@ public class ConsultasFragment extends Fragment {
                 holder.setDescripcion(model.getDescripcion());
                 holder.setNombre_pediatra(model.getNombre_pediatra()+ " - "+getString(R.string.pediatra));
                 holder.setFecha_consulta(model.getFecha_registro());
+                Glide.with(getActivity().getApplicationContext()).load(model.getUrl_img_padiatra()).into(holder.img_pediatra);
                 if (model.isFlag_respuesta()){
                     holder.setRespuesta(getString(R.string.si_respuesta));
                 }else {

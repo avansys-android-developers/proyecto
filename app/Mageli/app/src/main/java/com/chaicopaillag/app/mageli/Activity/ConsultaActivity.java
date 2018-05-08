@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.chaicopaillag.app.mageli.Modelo.Citas;
 import com.chaicopaillag.app.mageli.Modelo.Consulta;
 import com.chaicopaillag.app.mageli.Modelo.Persona;
@@ -41,6 +42,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ConsultaActivity extends AppCompatActivity {
     private DatabaseReference fire_base;
     private FirebaseAuth firebaseAuth;
@@ -55,11 +58,14 @@ public class ConsultaActivity extends AppCompatActivity {
     private SwitchCompat sw_elegir_pediatra;
     private Button btn_consulta;
     private AlertDialog.Builder PopapPediatras;
+    private CircleImageView img_perfil_pediatra;
     private ProgressDialog progress_carga;
     private String UID_P="yBD9Mdb2x4SSboza48ggzZ42LTE2";
     private String NOMBRE_P="";
     private String CORREO_PED="";
     private String CEL_PED="";
+    private String URL_IMG_DEFAULT="https://firebasestorage.googleapis.com/v0/b/appmageli.appspot.com/o/perfil.png?alt=media&token=c2c2e8f2-9777-4829-9e23-69a66dcedd06";
+    private String URL_IMG_PEDIATRA="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +95,7 @@ public class ConsultaActivity extends AppCompatActivity {
         flexbox_pediatra=(FlexboxLayout)findViewById(R.id.fila_pediatra_privada);
         btn_consulta=(Button)findViewById(R.id.btn_consulta);
         sw_elegir_pediatra=(SwitchCompat)findViewById(R.id.sw_consulta_privada);
+        img_perfil_pediatra=(CircleImageView)findViewById(R.id.img_perfil_pediatra_consulta);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,6 +138,8 @@ public class ConsultaActivity extends AppCompatActivity {
                             NOMBRE_P=consulta.getNombre_pediatra();
                             CEL_PED=consulta.getCel_pediatra();
                             CORREO_PED=consulta.getCorreo_pediatra();
+                            URL_IMG_PEDIATRA=consulta.getUrl_img_padiatra();
+                            Glide.with(getApplicationContext()).load(URL_IMG_PEDIATRA).into(img_perfil_pediatra);
                         }
                     }
                 }
@@ -170,6 +179,13 @@ public class ConsultaActivity extends AppCompatActivity {
                                 uid_pediatra.setText(persona.getId());
                                 correo_ped.setText(persona.getCorreo());
                                 cel_pediatra.setText(persona.getTelefono());
+                                if (persona.getFoto_url()!=null){
+                                    Glide.with(getApplicationContext()).load(persona.getFoto_url()).into(img_perfil_pediatra);
+                                    URL_IMG_PEDIATRA=persona.getFoto_url();
+                                }else {
+                                    Glide.with(getApplicationContext()).load(URL_IMG_DEFAULT).into(img_perfil_pediatra);
+                                    URL_IMG_PEDIATRA=URL_IMG_DEFAULT;
+                                }
                             }
                         });
                 PopapPediatras.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -223,8 +239,8 @@ public class ConsultaActivity extends AppCompatActivity {
 
     @SuppressLint("SimpleDateFormat")
     private void actualizar_consulta() {
-        String _uid_consulta,_asunto,_descripcion,_ui_paciente,_nombre_paciente,
-                _correo_paciente,_ui_pediatra,_nombre_pediatra,_correo_pediatra,_cel_pediatra,_fecha_registro;
+        String _uid_consulta,_asunto,_descripcion,_ui_paciente,_nombre_paciente,_url_img_paciente,
+                _correo_paciente,_ui_pediatra,_nombre_pediatra,_correo_pediatra,_cel_pediatra,_url_img_pediatra,_fecha_registro;
         boolean flag_respuesta,estado,privacidad;
         Date fecha_hora= new Date();
         Intent intent= getIntent();
@@ -234,15 +250,17 @@ public class ConsultaActivity extends AppCompatActivity {
         _ui_paciente=User.getUid();
         _nombre_paciente=User.getDisplayName() !=null ? User.getDisplayName() : getString(R.string.anonimo);
         _correo_paciente=User.getEmail();
+        _url_img_paciente=User.getPhotoUrl()!=null ? User.getPhotoUrl().toString() :URL_IMG_DEFAULT;
         _ui_pediatra=UID_P;
         _nombre_pediatra = NOMBRE_P.equals("") ? getString(R.string.anonimo) : NOMBRE_P;
         _correo_pediatra=CORREO_PED;
         _cel_pediatra=CEL_PED;
+        _url_img_pediatra=URL_IMG_PEDIATRA;
         if (sw_elegir_pediatra.isChecked()){
             _nombre_pediatra=nombre_pediatra.getText().toString();
             _correo_pediatra=correo_ped.getText().toString();
             _cel_pediatra=cel_pediatra.getText().toString();
-            UID_P=uid_pediatra.getText().toString();
+            _ui_pediatra=uid_pediatra.getText().toString();
         }
         if (sw_elegir_pediatra.isChecked()){
             _nombre_pediatra=nombre_pediatra.getText().toString();
@@ -264,10 +282,12 @@ public class ConsultaActivity extends AppCompatActivity {
             consulta.setUid_paciente(_ui_paciente);
             consulta.setNombre_paciente(_nombre_paciente);
             consulta.setCorreo_paciente(_correo_paciente);
+            consulta.setUrl_img_paciente(_url_img_paciente);
             consulta.setUid_pediatra(_ui_pediatra);
             consulta.setNombre_pediatra(_nombre_pediatra);
             consulta.setCorreo_pediatra(_correo_pediatra);
             consulta.setCel_pediatra(_cel_pediatra);
+            consulta.setUrl_img_padiatra(_url_img_pediatra);
             consulta.setFecha_registro(_fecha_registro.toString());
             consulta.setFlag_respuesta(flag_respuesta);
             consulta.setEstado(estado);
@@ -279,10 +299,12 @@ public class ConsultaActivity extends AppCompatActivity {
             actualizacion_cita.put("/uid_paciente",consulta.getUid_paciente());
             actualizacion_cita.put("/nombre_paciente",consulta.getNombre_paciente());
             actualizacion_cita.put("/correo_paciente",consulta.getCorreo_paciente());
+            actualizacion_cita.put("/url_img_paciente",consulta.getUrl_img_paciente());
             actualizacion_cita.put("/uid_pediatra",consulta.getUid_pediatra());
             actualizacion_cita.put("/nombre_pediatra",consulta.getNombre_pediatra());
             actualizacion_cita.put("/correo_pediatra",consulta.getCorreo_pediatra());
             actualizacion_cita.put("/cel_pediatra",consulta.getCel_pediatra());
+            actualizacion_cita.put("/url_img_padiatra",consulta.getUrl_img_padiatra());
             actualizacion_cita.put("/fecha_registro",consulta.getFecha_registro());
             actualizacion_cita.put("/flag_respuesta",consulta.isFlag_respuesta());
             actualizacion_cita.put("/flag_privacidad",consulta.isFlag_privacidad());
@@ -297,8 +319,8 @@ public class ConsultaActivity extends AppCompatActivity {
 
     @SuppressLint("SimpleDateFormat")
     private void guardar_cita() {
-        String _uid_consulta,_asunto,_descripcion,_ui_paciente,_nombre_paciente,
-                _correo_paciente,_ui_pediatra,_nombre_pediatra,_correo_pediatra,_cel_pediatra,_fecha_registro;
+        String _uid_consulta,_asunto,_descripcion,_ui_paciente,_nombre_paciente,_url_img_paciente,
+                _correo_paciente,_ui_pediatra,_nombre_pediatra,_correo_pediatra,_cel_pediatra,_url_img_pediatra,_fecha_registro;
         boolean flag_respuesta,estado,privacidad;
         Date fecha_hora= new Date();
         _uid_consulta= UUID.randomUUID().toString();
@@ -307,15 +329,17 @@ public class ConsultaActivity extends AppCompatActivity {
         _ui_paciente=User.getUid();
         _nombre_paciente=User.getDisplayName() !=null ? User.getDisplayName() : getString(R.string.anonimo);
         _correo_paciente=User.getEmail();
+        _url_img_paciente=User.getPhotoUrl()!=null ? User.getPhotoUrl().toString() :URL_IMG_DEFAULT;
         _ui_pediatra=UID_P;
         _nombre_pediatra=getString(R.string.anonimo);
-        _correo_pediatra="";
-        _cel_pediatra="";
+        _correo_pediatra=CORREO_PED;
+        _cel_pediatra=CEL_PED;
+        _url_img_pediatra=URL_IMG_PEDIATRA;
         if (sw_elegir_pediatra.isChecked()){
             _nombre_pediatra=nombre_pediatra.getText().toString();
             _correo_pediatra=correo_ped.getText().toString();
             _cel_pediatra=cel_pediatra.getText().toString();
-            UID_P=uid_pediatra.getText().toString();
+            _ui_pediatra=uid_pediatra.getText().toString();
         }
         flag_respuesta=false;
         estado=true;
@@ -334,10 +358,12 @@ public class ConsultaActivity extends AppCompatActivity {
             consulta.setUid_paciente(_ui_paciente);
             consulta.setNombre_paciente(_nombre_paciente);
             consulta.setCorreo_paciente(_correo_paciente);
+            consulta.setUrl_img_paciente(_url_img_paciente);
             consulta.setUid_pediatra(_ui_pediatra);
             consulta.setNombre_pediatra(_nombre_pediatra);
             consulta.setCorreo_pediatra(_correo_pediatra);
             consulta.setCel_pediatra(_cel_pediatra);
+            consulta.setUrl_img_padiatra(_url_img_pediatra);
             consulta.setFecha_registro(_fecha_registro.toString());
             consulta.setFlag_respuesta(flag_respuesta);
             consulta.setEstado(estado);
