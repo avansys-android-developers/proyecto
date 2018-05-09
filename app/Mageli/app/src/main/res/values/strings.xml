@@ -177,6 +177,8 @@
     <string name="paciente">Paciente</string>
     <string name="escribe_respuesta">Escribe tu respuesta aqui...</string>
     <string name="respuesta_ok">Tu respuesta fue enviado correctamente</string>
+    <string name="consulta_ya_respondido">Ya respondiste la consulta anteriormente</string>
+    <string name="respuesta_no_valida">La respuesta debe tener por lo menos 15 carácteres para se valida</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

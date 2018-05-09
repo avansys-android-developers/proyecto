@@ -4,9 +4,9 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_marginTop="@dimen/padingTopBotom"
-    android:layout_marginStart="@dimen/margenDerechoIzquierdo"
-    android:layout_marginEnd="@dimen/margenDerechoIzquierdo">
+    android:paddingTop="@dimen/padingTopBotom"
+    android:paddingStart="@dimen/margenDerechoIzquierdo"
+    android:paddingRight="@dimen/margenDerechoIzquierdo">
     <com.google.android.flexbox.FlexboxLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,6 +21,12 @@
             android:layout_marginBottom="@dimen/padingTopBotom"
             android:layout_marginTop="@dimen/padingTopBotom"
             android:id="@+id/respuesta_asunto_titulo"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="loee"
+            android:id="@+id/text_pregunta"
+            android:layout_marginBottom="@dimen/pading"/>
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -35,16 +41,6 @@
                 android:layout_marginBottom="@dimen/padingTopBotom"
                 android:hint="@string/escribe_respuesta"/>
         </android.support.design.widget.TextInputLayout>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/responder"
-            style="@style/Widget.AppCompat.Button"
-            android:theme="@style/material_buton"
-            android:textAllCaps="false"
-            android:textColor="@color/icono"
-            android:id="@+id/btn_responder_consulta"
-            android:height="56dp"/>
     </com.google.android.flexbox.FlexboxLayout>
 
 </LinearLayout>

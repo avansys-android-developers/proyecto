@@ -1,5 +1,7 @@
 package com.chaicopaillag.app.mageli.Fragmento;
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -77,7 +79,11 @@ public class ConsultaPediatraFragment extends Fragment {
                 holder.btn_responder.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        resonder_consulta(model);
+                        if(model.isFlag_respuesta()){
+                            Toast.makeText(getContext(),getString(R.string.consulta_ya_respondido), Toast.LENGTH_SHORT).show();
+                        }else{
+                            resonder_consulta(model);
+                        }
                     }
                 });
             }
@@ -99,24 +105,37 @@ public class ConsultaPediatraFragment extends Fragment {
     }
 
     private void resonder_consulta(final Consulta model) {
-        Button btn_responder;
-        TextView asunto;
+        TextView asunto,text_descripcion;
         final EditText respuesta;
         LayoutInflater inflater=getLayoutInflater();
         View popap= inflater.inflate(R.layout.responder_consulta_pediatra,null);
-        btn_responder=(Button)popap.findViewById(R.id.btn_responder_consulta);
         asunto=(TextView) popap.findViewById(R.id.respuesta_asunto_titulo);
         respuesta=(EditText) popap.findViewById(R.id.respuesta_consulta);
-        btn_responder.setOnClickListener(new View.OnClickListener() {
+        text_descripcion=(TextView)popap.findViewById(R.id.text_pregunta);
+        asunto.setText(model.getAsunto());
+        text_descripcion.setText(model.getDescripcion());
+        final AlertDialog.Builder popap_respuesta_consulta= new AlertDialog.Builder(Objects.requireNonNull(getContext()), R.style.progrescolor);
+        popap_respuesta_consulta.setTitle(R.string.app_name);
+        popap_respuesta_consulta.setView(popap);
+        popap_respuesta_consulta.setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                //firebase.child("Respuestas").child(model.getId()).child("descripcion").setValue(respuesta.getText().toString());
-                Toast.makeText(getContext(), getString(R.string.respuesta_ok), Toast.LENGTH_SHORT).show();
+            public void onClick(DialogInterface dialog, int which) {
+                String respuest=respuesta.getText().toString();
+                if(respuest.length()<15 || respuest.equals("")){
+                    Toast.makeText(getContext(), getString(R.string.respuesta_no_valida), Toast.LENGTH_LONG).show();
+                }else{
+                    firebase.child(model.getId()).child("flag_respuesta").setValue(true);
+                    firebase.child(model.getId()).child("Respuestas").child("descripcion").setValue(respuest);
+                    Toast.makeText(getContext(), getString(R.string.respuesta_ok), Toast.LENGTH_LONG).show();
+                }
             }
         });
-        asunto.setText(model.getAsunto());
-        AlertDialog.Builder popap_respuesta_consulta= new AlertDialog.Builder(Objects.requireNonNull(getContext()));
-        popap_respuesta_consulta.setView(popap);
+        popap_respuesta_consulta.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
         popap_respuesta_consulta.show();
 
     }

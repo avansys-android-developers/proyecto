@@ -15,6 +15,8 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -38,6 +40,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 public class ConsultasFragment extends Fragment {
     private RecyclerView recyclerViewconsulta;
@@ -165,11 +168,28 @@ public class ConsultasFragment extends Fragment {
     firebase.child(model.getId()).addListenerForSingleValueEvent(new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
-            Consulta consult=dataSnapshot.getValue(Consulta.class);
-            if (consult!=null){
-                Dialog dialogRespuestas= new Dialog(getContext());
-
-                Toast.makeText(getContext(), consult.getAsunto(), Toast.LENGTH_SHORT).show();
+            String asunto =dataSnapshot.child("asunto").getValue().toString();
+            String pediatra =dataSnapshot.child("nombre_pediatra").getValue().toString();
+            String respuesta =dataSnapshot.child("Respuestas").child("descripcion").getValue().toString();
+            if (respuesta!=null){
+                LayoutInflater inflater=getLayoutInflater();
+                View popap= inflater.inflate(R.layout.respuestas_consulta,null);
+                TextView asunto_consulta_respuesta=popap.findViewById(R.id.asunto_consulta_respuesta);
+                TextView respuesta_pediatra=popap.findViewById(R.id.respondido_pediatra);
+                TextView descripcion= popap.findViewById(R.id.respuesta_descripcion);
+                asunto_consulta_respuesta.setText(asunto);
+                respuesta_pediatra.setText(pediatra);
+                descripcion.setText(respuesta);
+                final AlertDialog.Builder popap_respuesta= new AlertDialog.Builder(Objects.requireNonNull(getContext()), R.style.progrescolor);
+                popap_respuesta.setTitle(R.string.app_name);
+                popap_respuesta.setView(popap);
+                popap_respuesta.setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                popap_respuesta.show();
             }
         }
 

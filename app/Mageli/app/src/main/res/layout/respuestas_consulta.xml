@@ -1,63 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.flexbox.FlexboxLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:justifyContent="center"
-    app:alignItems="center">
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_flexBasisPercent="85%"
-                app:alignItems="stretch"
-                app:cardElevation="@dimen/pading"
-                app:flexWrap="wrap"
-                app:justifyContent="flex_start">
-               <com.google.android.flexbox.FlexboxLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   app:flexWrap="wrap"
-                   app:alignItems="stretch"
-                   app:justifyContent="space_around"
-                   android:padding="@dimen/pading">
-                   <TextView
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:text="@string/mis_respuestas"
-                       android:layout_margin="@dimen/pading"
-                       android:textAlignment="center"/>
-                   <TextView
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:text="Respondido por:"
-                       android:layout_marginBottom="@dimen/pading"/>
-                   <TextView
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:text="Gerard Chaico Padilla - Pediatra"
-                       android:textStyle="bold"
-                       android:layout_marginBottom="@dimen/pading"
-                       android:textColor="@color/primario_text"
-                       android:id="@+id/respondido_pediatra"/>
-                   <TextView
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:id="@+id/respuesta_descripcion"
-                       android:text="Colore corrupti! Velit adipisci eveniet vel cum minima vitae, sequi facere explicabo unde non est ad! Repudiandae laboriosam libero explicabo omnis soluta ea saepe cupiditate, tempora deserunt laborum quia tenetur optio sunt incidunt debitis dignissimos blanditiis harum nostrum reprehenderit! Quod obcaecati voluptas numquam maxime ipsam error dolore quo sit in quasi animi beatae saepe, culpa doloremque, aliquid illo nulla accusantium ratione molestiae commodi. Et dolores ad inventore."/>
-                    <com.google.android.flexbox.FlexboxLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:flexWrap="wrap"
-                        app:justifyContent="flex_end">
-                        <android.support.v7.widget.AppCompatButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:theme="@style/flat_buton_rosa"
-                            android:text="@string/cerrar"
-                            android:id="@+id/btn_respuesta_cerrar"
-                            android:textColor="@color/rosa"
-                            style="@style/Widget.AppCompat.Button.Borderless"/>
-                    </com.google.android.flexbox.FlexboxLayout>
-               </com.google.android.flexbox.FlexboxLayout>
-            </android.support.v7.widget.CardView>
+    app:alignItems="center"
+    android:padding="@dimen/pading">
+       <com.google.android.flexbox.FlexboxLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           app:flexWrap="wrap"
+           app:alignItems="stretch"
+           app:justifyContent="space_around"
+           android:padding="@dimen/pading">
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="@string/mis_respuestas"
+               android:textColor="@color/primario_text"
+               android:id="@+id/asunto_consulta_respuesta"
+               android:layout_marginBottom="@dimen/pading"/>
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Respondido por:"
+               android:layout_marginBottom="@dimen/pading"/>
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Gerard Chaico Padilla - Pediatra"
+               android:textStyle="bold"
+               android:layout_marginBottom="@dimen/pading"
+               android:textColor="@color/primario_text"
+               android:id="@+id/respondido_pediatra"/>
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/respuesta_descripcion"
+               android:text="Colore corrupti! Velit adipisci eveniet vel cum minima vitae, sequi facere explicabo unde non est ad! Repudiandae laboriosam libero explicabo omnis soluta ea saepe cupiditate, tempora deserunt laborum quia tenetur optio sunt incidunt debitis dignissimos blanditiis harum nostrum reprehenderit! Quod obcaecati voluptas numquam maxime ipsam error dolore quo sit in quasi animi beatae saepe, culpa doloremque, aliquid illo nulla accusantium ratione molestiae commodi. Et dolores ad inventore."/>
+       </com.google.android.flexbox.FlexboxLayout>
 </com.google.android.flexbox.FlexboxLayout>
