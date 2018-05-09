@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:paddingTop="@dimen/padingTopBotom"
     android:paddingStart="@dimen/margenDerechoIzquierdo"
+    android:background="@color/bgactivity"
     android:paddingRight="@dimen/margenDerechoIzquierdo">
     <com.google.android.flexbox.FlexboxLayout
         android:layout_width="match_parent"
@@ -17,7 +18,7 @@
             android:layout_height="wrap_content"
             android:text="¿Pregunta consulta?"
             android:fontFamily="@font/roboto_medium"
-            android:textStyle="bold"
+            android:textAppearance="?android:textAppearanceMedium"
             android:layout_marginBottom="@dimen/padingTopBotom"
             android:layout_marginTop="@dimen/padingTopBotom"
             android:id="@+id/respuesta_asunto_titulo"/>
@@ -26,6 +27,7 @@
             android:layout_height="wrap_content"
             android:text="loee"
             android:id="@+id/text_pregunta"
+            android:lineSpacingMultiplier="1.3"
             android:layout_marginBottom="@dimen/pading"/>
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"

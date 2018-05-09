@@ -97,6 +97,14 @@ public class ConsultasFragment extends Fragment {
                         }
                     }
                 });
+                holder.respuesta.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(model.isFlag_respuesta()){
+                            cargar_respuestas(model);
+                        }
+                    }
+                });
                 holder.btn_editar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -181,7 +189,6 @@ public class ConsultasFragment extends Fragment {
                 respuesta_pediatra.setText(pediatra);
                 descripcion.setText(respuesta);
                 final AlertDialog.Builder popap_respuesta= new AlertDialog.Builder(Objects.requireNonNull(getContext()), R.style.progrescolor);
-                popap_respuesta.setTitle(R.string.app_name);
                 popap_respuesta.setView(popap);
                 popap_respuesta.setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
                     @Override
@@ -190,6 +197,8 @@ public class ConsultasFragment extends Fragment {
                     }
                 });
                 popap_respuesta.show();
+            }else {
+                Toast.makeText(getContext(), R.string.consulta_sin_respuesta, Toast.LENGTH_SHORT).show();
             }
         }
 

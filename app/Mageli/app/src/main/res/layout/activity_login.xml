@@ -21,49 +21,63 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:justifyContent="center"
-                android:layout_marginBottom="50dp"
+                app:flexWrap="wrap"
+                android:layout_marginBottom="@dimen/margenDerechoIzquierdo"
                 android:layout_marginTop="@dimen/padingTopBotom">
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:src="@drawable/logo"/>
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="ageli"
+                    android:text="@string/app_name"
                     android:textColor="@color/celeste_oscuro"
                     android:gravity="center"
                     android:fontFamily="@font/roboto_bold"
                     android:textStyle="bold"
+                    android:layout_marginTop="@dimen/padingTopBotom"
                     android:textSize="20sp" />
             </com.google.android.flexbox.FlexboxLayout>
-            <android.support.design.widget.TextInputLayout
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <EditText
-                    android:id="@+id/txtcorreo"
+                android:layout_height="wrap_content"
+                android:background="@color/icono"
+                android:elevation="@dimen/pading">
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawablePadding="@dimen/padingicono"
-                    android:drawableStart="@drawable/correo"
-                    android:hint="@string/correo"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:singleLine="true" />
-            </android.support.design.widget.TextInputLayout>
-               <android.support.design.widget.TextInputLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   app:passwordToggleEnabled="true">
-                   <EditText
-                       android:id="@+id/txtcontrasenia"
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:drawablePadding="@dimen/padingicono"
-                       android:drawableStart="@drawable/candado"
-                       android:hint="@string/contrasenia"
-                       android:inputType="textPassword" />
-               </android.support.design.widget.TextInputLayout>
+                    android:orientation="vertical"
+                    android:layout_marginTop="@dimen/pading">
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/txtcorreo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/padingicono"
+                            android:drawableStart="@drawable/correo"
+                            android:hint="@string/correo"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:singleLine="true" />
+                    </android.support.design.widget.TextInputLayout>
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:passwordToggleEnabled="true">
+                        <EditText
+                            android:id="@+id/txtcontrasenia"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/padingicono"
+                            android:drawableStart="@drawable/candado"
+                            android:hint="@string/contrasenia"
+                            android:inputType="textPassword" />
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
             <Button
                 android:id="@+id/btnlogin"
                 android:layout_width="match_parent"
@@ -72,6 +86,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/icono"
                 style="@style/Widget.AppCompat.Button"
+                android:layout_marginTop="@dimen/padingTopBotom"
                 android:theme="@style/material_buton"/>
 
             <com.google.android.flexbox.FlexboxLayout
@@ -94,16 +109,36 @@
                     android:id="@+id/btnrestablecer_contrasenia"
                     style="@style/Widget.AppCompat.Button.Borderless"/>
             </com.google.android.flexbox.FlexboxLayout>
-
-            <TextView
+            <com.google.android.flexbox.FlexboxLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/otambien"
-                android:textAlignment="center"
-                android:textColor="@color/celeste"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
+                app:flexDirection="row"
+                app:flexWrap="nowrap"
+                app:justifyContent="space_between"
+                app:alignItems="center"
+                android:layout_marginBottom="@dimen/pading">
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:id="@+id/lineauno"
+                    android:background="@color/linea"
+                    app:layout_flexBasisPercent="35%"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/otambien"
+                    android:textAlignment="center"
+                    android:textColor="@color/celeste"
+                    app:layout_flexBasisPercent="10%"/>
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:id="@+id/lineados"
+                    android:background="@color/linea"
+                    app:layout_flexBasisPercent="35%"
+                    />
+            </com.google.android.flexbox.FlexboxLayout>
             <com.google.android.gms.common.SignInButton
                 android:id="@+id/btngoogle"
                 android:layout_width="match_parent"

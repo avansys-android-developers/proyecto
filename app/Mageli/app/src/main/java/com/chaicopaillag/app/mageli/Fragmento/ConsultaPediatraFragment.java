@@ -80,7 +80,7 @@ public class ConsultaPediatraFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         if(model.isFlag_respuesta()){
-                            Toast.makeText(getContext(),getString(R.string.consulta_ya_respondido), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(),getString(R.string.consulta_ya_respondido), Toast.LENGTH_LONG).show();
                         }else{
                             resonder_consulta(model);
                         }
@@ -115,7 +115,6 @@ public class ConsultaPediatraFragment extends Fragment {
         asunto.setText(model.getAsunto());
         text_descripcion.setText(model.getDescripcion());
         final AlertDialog.Builder popap_respuesta_consulta= new AlertDialog.Builder(Objects.requireNonNull(getContext()), R.style.progrescolor);
-        popap_respuesta_consulta.setTitle(R.string.app_name);
         popap_respuesta_consulta.setView(popap);
         popap_respuesta_consulta.setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
             @Override

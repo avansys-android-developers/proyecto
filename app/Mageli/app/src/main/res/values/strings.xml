@@ -153,6 +153,7 @@
     <string name="consulta_actualizado_ok">Consulta actualizado correctamente</string>
     <string name="mis_respuestas">Mis Respuestas</string>
     <string name="cerrar">Cerrar</string>
+    <string name="consulta_sin_respuesta">La consulta aun no tiene una respuesta</string>
     <string name="a">A:</string>
     <!--todo: citas pediatra-->
     <string name="personas">personas</string>

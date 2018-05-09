@@ -69,7 +69,7 @@ public class CitaActivity extends AppCompatActivity {
     private Button btn_cita;
     private AlertDialog.Builder PopapPediatras;
     private ProgressDialog progress_carga;
-    private String UID_P="yBD9Mdb2x4SSboza48ggzZ42LTE2";
+    private String UID_P="lpo35Ph7LsN3lJEkNSxaQ60Lx8u1";
     private String NOMBRE_P="";
     private String CORREO_PED="";
     private String CEL_PED="";
@@ -306,12 +306,13 @@ public class CitaActivity extends AppCompatActivity {
         _ui_pediatra=UID_P;
         _nombre_pediatra=NOMBRE_P;
         _cel_pediatra=CEL_PED;
-        _url_img_pediatra=URL_IMG_PEDIATRA;
+        _url_img_pediatra=URL_IMG_DEFAULT;
         if (sw_elegir_pediatra.isChecked()){
             _nombre_pediatra=nombre_pediatra.getText().toString();
             _cel_pediatra=cel_pediatra.getText().toString();
             _correo_pediatra=correo_ped.getText().toString();
             _ui_pediatra=uid_pediatra.getText().toString();
+            _url_img_pediatra=URL_IMG_PEDIATRA;
         }
         estado=2;
         try{
@@ -385,12 +386,13 @@ public class CitaActivity extends AppCompatActivity {
         _nombre_pediatra=NOMBRE_P;
         _cel_pediatra=CEL_PED;
         _correo_pediatra=CORREO_PED;
-        _url_img_pediatra=URL_IMG_PEDIATRA;
+        _url_img_pediatra=URL_IMG_DEFAULT;
         if (sw_elegir_pediatra.isChecked()){
             _nombre_pediatra=nombre_pediatra.getText().toString();
             _cel_pediatra=cel_pediatra.getText().toString();
             _correo_pediatra=correo_ped.getText().toString();
             _ui_pediatra=uid_pediatra.getText().toString();
+            _ui_pediatra=URL_IMG_PEDIATRA;
         }
         estado=1;
         try{

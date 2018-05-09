@@ -57,6 +57,7 @@ public class PerfilActivity extends AppCompatActivity {
     private DatePickerDialog mi_popap;
     private ArrayAdapter sp_adap;
     public String editar_perfil,specialidad;
+    private String URL_IMG_DEFAULT="https://firebasestorage.googleapis.com/v0/b/appmageli.appspot.com/o/perfil.png?alt=media&token=c2c2e8f2-9777-4829-9e23-69a66dcedd06";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -189,7 +190,7 @@ public class PerfilActivity extends AppCompatActivity {
         if (user.getPhotoUrl()!=null){
             foto_url=user.getPhotoUrl().toString();
         }else {
-            foto_url=null;
+            foto_url=URL_IMG_DEFAULT;
         }
         if (generoMasculino.isChecked()){
             genero=true;
@@ -289,7 +290,7 @@ public class PerfilActivity extends AppCompatActivity {
         if (user.getPhotoUrl()!=null){
             foto_url=user.getPhotoUrl().toString();
         }else {
-            foto_url=null;
+            foto_url=URL_IMG_DEFAULT;
         }
         if (generoMasculino.isChecked()){
             genero=true;
