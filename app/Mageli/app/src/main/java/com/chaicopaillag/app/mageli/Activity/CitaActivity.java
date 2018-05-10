@@ -306,7 +306,7 @@ public class CitaActivity extends AppCompatActivity {
         _ui_pediatra=UID_P;
         _nombre_pediatra=NOMBRE_P;
         _cel_pediatra=CEL_PED;
-        _url_img_pediatra=URL_IMG_DEFAULT;
+        _url_img_pediatra=URL_IMG_PEDIATRA;
         if (sw_elegir_pediatra.isChecked()){
             _nombre_pediatra=nombre_pediatra.getText().toString();
             _cel_pediatra=cel_pediatra.getText().toString();
@@ -392,7 +392,7 @@ public class CitaActivity extends AppCompatActivity {
             _cel_pediatra=cel_pediatra.getText().toString();
             _correo_pediatra=correo_ped.getText().toString();
             _ui_pediatra=uid_pediatra.getText().toString();
-            _ui_pediatra=URL_IMG_PEDIATRA;
+            _url_img_pediatra=URL_IMG_PEDIATRA;
         }
         estado=1;
         try{
