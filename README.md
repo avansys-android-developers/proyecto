@@ -33,12 +33,12 @@ ___
 ***Datos de tu perfil***
 > Pulsa el boton de menu para mostrar el menu lateral, y luego en la seleccione el item de ***Perfil*** para ver tus datos personales,si auno no has ingresado tus datos personales, la aplicacion te pedirá que lo hagas y segir usando **Mageli** de lo contrario no te dejar seguir, puedes editar tus datos presionando el ***boton editar circular***
 
-![](https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/app/propotipos/perfil.png "Datos de tu perfil")
+![](https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/app/propotipos/perfil.jpg "Datos de tu perfil")
 
 ***Editar mi Perfil***
 > Ingrese todas sus datos personales correctamente, antes de guardas revisar que todos esten bien. Los cambios se veran reflejado al instante por que ***Mageli*** funciona en tiempo real.
 
-![](https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/app/propotipos/editarperfil.png "Editar mi Perfil")
+![](https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/app/propotipos/editarperfil.jpg "Editar mi Perfil")
 
 ***Mis Citas***
 > En la sección de citas estan todas las citas que has tenido las atenidadas, pendientes y las cancelados al pulsar cada uno podrás ver el tedalle completo de la Cita, tambien podrás editar, eliminar y cancelar la Cita. Puedes agregar mas citas pulsando el boton circular de agregar.
@@ -48,7 +48,7 @@ ___
 ***Crear Nueva Cita***
 > Crea una cita nueva donde podrás especificar el asunto de la Cita, una pequeña descripción, elegir la fecha y la hora , tambien limitar la cantidad de persona a ser atendido en la cita y por ultimo podras decidir elegir una Pediatra especifico o no seleccionar ninguno.
 
-![](https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/app/propotipos/nuevacita.png  "Crear Nueva Cita")
+![](https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/app/propotipos/nuevacita.jpg  "Crear Nueva Cita")
 
 ***Mis Consultas***
 > La sección de consulta en donde podras ver todas tus consultas hechas a la especialistas sobre tus dudas o preguntas. Tambien podrás editar,eliminar tu consulta. Puedes seguier haciendo consultas pulsando el boton circular de agregar.
@@ -58,4 +58,4 @@ ___
 ***Crear una nueva Consulta***
 > Has una nueva consulta en donde podrás especificar el itulo de la consulta, una pequeña descripción en donde podras decidir si es una consulta abierta y publica a la que todos los usuarios podran leer o simplemente de forma privada y a una Pediatra especifico o no seleccionar ninguno.
 
-![](https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/app/propotipos/nuevaconsulta.png  "Crear una nueva Consulta")
+![](https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/app/propotipos/nuevaconsulta.jpg  "Crear una nueva Consulta")
