@@ -24,6 +24,16 @@
         <activity android:name=".Activity.PerfilActivity" />
         <activity android:name=".Activity.CitaActivity" />
         <activity android:name=".Activity.ConsultaActivity"></activity>
+        <service android:name=".Servicios.MiFirebaseNotificacionServicio">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <service android:name=".Servicios.MiFirebaseInstanciaIDServicio">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
