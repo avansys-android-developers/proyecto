@@ -59,3 +59,13 @@ ___
 > Has una nueva consulta en donde podrás especificar el itulo de la consulta, una pequeña descripción en donde podras decidir si es una consulta abierta y publica a la que todos los usuarios podran leer o simplemente de forma privada y a una Pediatra especifico o no seleccionar ninguno.
 
 ![](https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/app/propotipos/nuevaconsulta.jpg  "Crear una nueva Consulta")
+
+***Responder Consulta***
+> Los especialistas podran leer tus consultas, veran el asunto, la descripcion y tus datos como tu nombre y poderte responder tan pronto como quiere.
+
+![](https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/app/propotipos/respuestaconsulta.png "Responder Consulta")
+
+***Leer Consulta***
+> Una ves que la consulta haya sido respondido por la especialista sobre el tema consulto podras leer las respuetas de una forma sencilla.
+
+![](https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/app/propotipos/leerrespuesta.png "Leer Consulta")
