@@ -60,7 +60,7 @@ public class MiFirebaseNotificacionServicio extends FirebaseMessagingService {
     private void AbrirNotificacion(RemoteMessage remoteMessage) {
 
         Intent intent= new Intent(this, MenuActivity.class);
-        intent.putExtra("titulo",remoteMessage.getNotification().getTitle());
+        intent.putExtra("notificacion",remoteMessage.getNotification().getTitle());
         PendingIntent pendingIntent= PendingIntent.getActivity(
                 this,
                 0,

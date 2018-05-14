@@ -26,6 +26,7 @@ import com.chaicopaillag.app.mageli.Fragmento.ConsultaPediatraFragment;
 import com.chaicopaillag.app.mageli.Fragmento.ConsultasFragment;
 import com.chaicopaillag.app.mageli.Fragmento.CuentasFragment;
 import com.chaicopaillag.app.mageli.Fragmento.InicioFragment;
+import com.chaicopaillag.app.mageli.Fragmento.NotificacionFragment;
 import com.chaicopaillag.app.mageli.Fragmento.PerfilFragment;
 import com.chaicopaillag.app.mageli.Modelo.Notificacion;
 import com.chaicopaillag.app.mageli.Modelo.Persona;
@@ -71,6 +72,11 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
         inicializar_servicios();
         inicializar_controles();
         validar_permisos();
+        Intent intent= getIntent();
+        if (intent!=null && intent.hasExtra("notificacion")){
+            ponerFragmento(new NotificacionFragment());
+            getActionBar().setTitle(getString(R.string.notificacion));
+        }
 
     }
     private void inicializar_servicios() {
@@ -129,6 +135,10 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
                         mi_fragmento=new ConsultaPediatraFragment();
                         transframe=true;
                         break;
+                    case R.id.menu_item_notificacon:
+                        mi_fragmento=new NotificacionFragment();
+                        transframe=true;
+                        break;
                     case R.id.menu_item_cuenta:
                         mi_fragmento=new CuentasFragment();
                         transframe=true;
@@ -157,23 +167,6 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
                 }
             }
         };
-        Intent intent= getIntent();
-//        if (intent!=null && intent.hasExtra("notificacion")){
-//            Date fecha_reg=new Date();
-//            String fecha_notify;
-//            DateFormat formatofechahora;
-//            formatofechahora = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-//            fecha_notify=formatofechahora.format(fecha_reg);
-//            String UID_Notify=UUID.randomUUID().toString();
-//            Notificacion notificacion= new Notificacion(
-//                    UID_Notify,
-//                    intent.getStringExtra("titulo"),
-//                    intent.getStringExtra("notificacion"),
-//                    fecha_notify,
-//                    user.getUid()
-//            );
-//            firebase.child("Notificacion").child(user.getUid()).child(UID_Notify).setValue(notificacion);
-//        }
     }
     private void validar_permisos() {
         firebase.child("Persona").child(user.getUid()).addValueEventListener(new ValueEventListener() {
@@ -213,11 +206,6 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
                 .replace(R.id.contenedor,mi_fragmento)
                 .commit();
     }
-    private void ir_perfil(){
-        Intent intent = new Intent(MenuActivity.this, PerfilActivity.class);
-        startActivity(intent);
-    }
-
     private void colocar_datos_usuario(FirebaseUser user) {
         nombreUser.setText(user.getDisplayName());
         correoUser.setText(user.getEmail());
@@ -244,9 +232,6 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id){
-            case R.id.item_notificacion:
-                item.setIcon(R.drawable.si_notificacion);
-                return true;
             case R.id.item_inicio:
                 ponerFragmento(new InicioFragment());
                 return true;

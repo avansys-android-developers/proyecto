@@ -45,7 +45,7 @@
     <string name="nombre_usuario">Nombre Usuario</string>
     <string name="correo_usuario">correo@mageli.com</string>
     <string name="descripcion_nav">Cabezera</string>
-    <string name="notificacion">Mis notificaciones</string>
+    <string name="notificacion">Notificaciones</string>
     <string name="inicio">Inicio</string>
     <string name="configuracion">Configuración</string>
     <string name="privacidad">Privacidad</string>
@@ -155,8 +155,10 @@
     <string name="cerrar">Cerrar</string>
     <string name="consulta_sin_respuesta">La consulta aun no ha sido respondido</string>
     <string name="a">A:</string>
+    <string name="no_consulta">No tienes nuevas Consultas</string>
     <!--todo: citas pediatra-->
     <string name="personas">personas</string>
+    <string name="no_citas">No tienes nuevas Citas</string>
     <string name="para">Para:</string>
     <string name="de">De:</string>
     <string name="marcar_como_no_atendido">¿Estas seguro de marcar la cita como no Atendido?</string>
@@ -181,7 +183,7 @@
     <string name="consulta_ya_respondido">Ya respondiste la consulta anteriormente</string>
     <string name="respuesta_no_valida">La respuesta debe tener por lo menos 15 carácteres para se valida</string>
     <!--TODO Notificaciones-->
-    <string name="titulo_notificacion">Titulo Notificacion</string>
+    <string name="no_notificacones">No tienes nuevas Notificaciones</string>
     <string name="error_enviar_notificacion">Error al enviar notificación</string>
     <string name="notificacion_cita_enviada">La notificación de cita fue enviada</string>
     <string name="notificacion_cita_no_enviada">No se pudo enviar la notificación</string>

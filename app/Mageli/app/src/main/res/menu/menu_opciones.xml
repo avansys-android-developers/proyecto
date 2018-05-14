@@ -27,8 +27,8 @@
             android:visible="false"/>
 
         <item
-            android:id="@+id/menu_item_chat"
-            android:icon="@drawable/chat"
+            android:id="@+id/menu_item_notificacon"
+            android:icon="@drawable/si_notificacion"
             android:title="@string/chats" />
     </group>
     <item android:title="@string/cuenta">

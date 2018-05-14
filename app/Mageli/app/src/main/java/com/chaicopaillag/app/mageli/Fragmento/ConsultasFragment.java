@@ -1,5 +1,4 @@
 package com.chaicopaillag.app.mageli.Fragmento;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,18 +10,15 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.chaicopaillag.app.mageli.Activity.CitaActivity;
 import com.chaicopaillag.app.mageli.Activity.ConsultaActivity;
-import com.chaicopaillag.app.mageli.Activity.PerfilActivity;
 import com.chaicopaillag.app.mageli.Adapter.ConsultasAdapter;
 import com.chaicopaillag.app.mageli.Modelo.Consulta;
 import com.chaicopaillag.app.mageli.Modelo.RespuestaConsulta;
@@ -37,10 +33,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Objects;
 
 public class ConsultasFragment extends Fragment {
@@ -51,7 +43,8 @@ public class ConsultasFragment extends Fragment {
     private ProgressDialog progress_carga;
     private FirebaseRecyclerOptions item_consulta;
     private FloatingActionButton fab_agregar_conculta;
-    FirebaseRecyclerAdapter<Consulta,ConsultasAdapter.ViewHolder>adapter;
+    private LinearLayout sinconsulta;
+    private FirebaseRecyclerAdapter<Consulta,ConsultasAdapter.ViewHolder>adapter;
     public ConsultasFragment() {
     }
     @Override
@@ -151,7 +144,16 @@ public class ConsultasFragment extends Fragment {
              @Override
              public void onDataChanged() {
                  super.onDataChanged();
-                 progress_carga.dismiss();
+                 if (adapter.getItemCount()>0){
+                     recyclerViewconsulta.setVisibility(View.VISIBLE);
+                     sinconsulta.setVisibility(View.INVISIBLE);
+                 }else {
+                     recyclerViewconsulta.setVisibility(View.GONE);
+                     sinconsulta.setVisibility(View.VISIBLE);
+                 }
+                 if(progress_carga.isShowing()) {
+                     progress_carga.dismiss();
+                 }
              }
          };
          recyclerViewconsulta.setAdapter(adapter);
@@ -231,6 +233,7 @@ public class ConsultasFragment extends Fragment {
     private void inicializar_controles() {
         fab_agregar_conculta=(FloatingActionButton) getView().findViewById(R.id.fab_agregar_consultas);
         recyclerViewconsulta=(RecyclerView)getView().findViewById(R.id.recy_consultas);
+        sinconsulta=(LinearLayout)getView().findViewById(R.id.layautSinConsulta);
         fab_agregar_conculta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

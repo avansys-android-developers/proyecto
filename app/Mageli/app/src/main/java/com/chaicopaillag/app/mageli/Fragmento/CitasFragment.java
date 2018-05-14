@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -51,11 +52,12 @@ public class CitasFragment extends Fragment {
     private FloatingActionButton fab_agregar_cita;
     private DatabaseReference firebase_bd;
     private RecyclerView Recyc_citas;
-    FirebaseRecyclerAdapter<Citas,CitasAdapter.ViewHolder>adapter;
-    FirebaseRecyclerOptions<Citas>citas_items;
-    ProgressDialog progress_carga;
-    FirebaseAuth auth;
-    FirebaseUser user;
+    private FirebaseRecyclerAdapter<Citas,CitasAdapter.ViewHolder>adapter;
+    private FirebaseRecyclerOptions<Citas>citas_items;
+    private ProgressDialog progress_carga;
+    private FirebaseAuth auth;
+    private FirebaseUser user;
+    private LinearLayout layoutSinCitas;
     public CitasFragment() {
     }
     @Override
@@ -78,6 +80,7 @@ public class CitasFragment extends Fragment {
     private void inicializar_controles() {
         Recyc_citas=(RecyclerView)getView().findViewById(R.id.mis_citas);
         fab_agregar_cita=(FloatingActionButton) getView().findViewById(R.id.fab_agregar_citas);
+        layoutSinCitas=(LinearLayout)getView().findViewById(R.id.layautSinCitas);
         fab_agregar_cita.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -182,7 +185,16 @@ public class CitasFragment extends Fragment {
             @Override
             public void onDataChanged() {
                 super.onDataChanged();
-                progress_carga.dismiss();
+                if (adapter.getItemCount()>0){
+                    Recyc_citas.setVisibility(View.VISIBLE);
+                    layoutSinCitas.setVisibility(View.GONE);
+                }else {
+                    Recyc_citas.setVisibility(View.GONE);
+                    layoutSinCitas.setVisibility(View.VISIBLE);
+                }
+                if (progress_carga.isShowing()){
+                    progress_carga.dismiss();
+                }
             }
 
             @Override

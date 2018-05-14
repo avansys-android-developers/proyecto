@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,7 +58,8 @@ public class ConsultaPediatraFragment extends Fragment {
     private FirebaseUser firebaseUser;
     private ProgressDialog progress_carga;
     private FirebaseRecyclerOptions item_consulta;
-    FirebaseRecyclerAdapter<Consulta,ConsultaPediatraAdapter.ViewHolder>adapter;
+    private FirebaseRecyclerAdapter<Consulta,ConsultaPediatraAdapter.ViewHolder>adapter;
+    private LinearLayout layautSinConsultaPed;
     public ConsultaPediatraFragment() {
     }
     @Override
@@ -118,7 +120,16 @@ public class ConsultaPediatraFragment extends Fragment {
             @Override
             public void onDataChanged() {
                 super.onDataChanged();
-                progress_carga.dismiss();
+                if (adapter.getItemCount()>0){
+                    recyclerViewconsulta.setVisibility(View.VISIBLE);
+                    layautSinConsultaPed.setVisibility(View.GONE);
+                }else {
+                    recyclerViewconsulta.setVisibility(View.GONE);
+                    layautSinConsultaPed.setVisibility(View.VISIBLE);
+                }
+                if (progress_carga.isShowing()){
+                    progress_carga.dismiss();
+                }
             }
         };
         recyclerViewconsulta.setAdapter(adapter);
@@ -234,6 +245,7 @@ public class ConsultaPediatraFragment extends Fragment {
     }
     private void inicializar_controles() {
         recyclerViewconsulta=(RecyclerView)getView().findViewById(R.id.mis_consultas_pediatra);
+        layautSinConsultaPed=(LinearLayout)getView().findViewById(R.id.layautSinConsultaPediatra);
     }
     @Override
     public void onStart() {

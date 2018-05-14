@@ -9,8 +9,26 @@
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/mis_citas" >
-    </android.support.v7.widget.RecyclerView>
+        android:id="@+id/mis_citas"
+        android:visibility="gone"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:id="@+id/layautSinCitas">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/imgNoNotificacacion"
+            android:src="@drawable/no_notificacion"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/secondario_text"
+            android:textAlignment="center"
+            android:text="@string/no_consulta"/>
+    </LinearLayout>
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:id="@+id/fab_agregar_citas"

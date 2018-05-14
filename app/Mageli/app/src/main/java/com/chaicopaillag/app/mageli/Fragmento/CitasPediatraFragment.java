@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -48,11 +49,12 @@ import java.util.Map;
 public class CitasPediatraFragment extends Fragment {
     private DatabaseReference firebase_bd;
     private RecyclerView Recyc_citas;
-    FirebaseRecyclerAdapter<Citas,CitasPediatraAdapter.ViewHolder> adapter;
-    FirebaseRecyclerOptions<Citas> citas_items;
-    ProgressDialog progress_carga;
-    FirebaseAuth auth;
-    FirebaseUser user;
+    private FirebaseRecyclerAdapter<Citas,CitasPediatraAdapter.ViewHolder> adapter;
+    private FirebaseRecyclerOptions<Citas> citas_items;
+    private ProgressDialog progress_carga;
+    private FirebaseAuth auth;
+    private FirebaseUser user;
+    private LinearLayout layautSinCitaPed;
     public CitasPediatraFragment() {
     }
     @Override
@@ -75,6 +77,7 @@ public class CitasPediatraFragment extends Fragment {
     }
     private void inicializar_controles() {
         Recyc_citas=(RecyclerView)getView().findViewById(R.id.mis_citas_pediatra);
+        layautSinCitaPed=(LinearLayout)getView().findViewById(R.id.layautSinCitataPediatra);
         LinearLayoutManager linearLayoutManager= new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         Recyc_citas.setLayoutManager(linearLayoutManager);
@@ -146,7 +149,16 @@ public class CitasPediatraFragment extends Fragment {
             @Override
             public void onDataChanged() {
                 super.onDataChanged();
-                progress_carga.dismiss();
+                if(adapter.getItemCount()>0) {
+                    Recyc_citas.setVisibility(View.VISIBLE);
+                    layautSinCitaPed.setVisibility(View.GONE);
+                }else{
+                    Recyc_citas.setVisibility(View.GONE);
+                    layautSinCitaPed.setVisibility(View.VISIBLE);
+                }
+                if (progress_carga.isShowing()){
+                    progress_carga.dismiss();
+                }
             }
 
             @Override
