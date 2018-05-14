@@ -24,11 +24,12 @@ public class  Persona {
     private int tipo_persona;
     private String especialidad;
     private String foto_url;
+    private String token;
 
     public Persona() {
     }
 
-    public Persona(String id, String nombre, String apellidos, String numero_documento, String numero_hc, String direccion, String telefono, String correo, boolean genero, String tipo_doc, String fecha_nacimiento, String fecha_registro, boolean estado, int tipo_persona, String especialidad, String foto_url) {
+    public Persona(String id, String nombre, String apellidos, String numero_documento, String numero_hc, String direccion, String telefono, String correo, boolean genero, String tipo_doc, String fecha_nacimiento, String fecha_registro, boolean estado, int tipo_persona, String especialidad, String foto_url, String token) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -45,6 +46,7 @@ public class  Persona {
         this.tipo_persona = tipo_persona;
         this.especialidad = especialidad;
         this.foto_url = foto_url;
+        this.token = token;
     }
 
     public String getId() {
@@ -175,6 +177,14 @@ public class  Persona {
         this.foto_url = foto_url;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     @Exclude
     public Map<String,Object> miMap(){
         HashMap<String ,Object>Resultado=new HashMap<>();
@@ -194,6 +204,7 @@ public class  Persona {
         Resultado.put("tipo_persona",tipo_persona);
         Resultado.put("especialidad",especialidad);
         Resultado.put("foto_url",foto_url);
+        Resultado.put("token",token);
         return Resultado;
     }
 }

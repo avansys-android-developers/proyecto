@@ -1,5 +1,5 @@
 package com.chaicopaillag.app.mageli.Fragmento;
-import android.app.Dialog;
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -9,26 +9,45 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.chaicopaillag.app.mageli.Activity.Utiles;
 import com.chaicopaillag.app.mageli.Adapter.ConsultaPediatraAdapter;
 import com.chaicopaillag.app.mageli.Modelo.Consulta;
+import com.chaicopaillag.app.mageli.Modelo.Persona;
+import com.chaicopaillag.app.mageli.Modelo.RespuestaConsulta;
 import com.chaicopaillag.app.mageli.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class ConsultaPediatraFragment extends Fragment {
@@ -54,14 +73,15 @@ public class ConsultaPediatraFragment extends Fragment {
     }
 
     private void inicializar_servicio() {
-        firebase= FirebaseDatabase.getInstance().getReference("Consultas");
+        firebase= FirebaseDatabase.getInstance().getReference();
         firebaseAuth=FirebaseAuth.getInstance();
         firebaseUser=firebaseAuth.getCurrentUser();
+        Utiles.REQUEST= Volley.newRequestQueue(getActivity().getApplicationContext());
         LinearLayoutManager linearLayoutManager= new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerViewconsulta.setLayoutManager(linearLayoutManager);
         progres_carga_datos();
-        Query query=firebase.orderByChild("uid_pediatra").equalTo(firebaseUser.getUid()).limitToFirst(100);
+        Query query=firebase.child("Consultas").orderByChild("uid_pediatra").equalTo(firebaseUser.getUid()).limitToFirst(100);
         item_consulta=new FirebaseRecyclerOptions.Builder<Consulta>().setQuery(query,Consulta.class).build();
         adapter= new FirebaseRecyclerAdapter<Consulta, ConsultaPediatraAdapter.ViewHolder>(item_consulta) {
             @Override
@@ -117,14 +137,22 @@ public class ConsultaPediatraFragment extends Fragment {
         final AlertDialog.Builder popap_respuesta_consulta= new AlertDialog.Builder(Objects.requireNonNull(getContext()), R.style.progrescolor);
         popap_respuesta_consulta.setView(popap);
         popap_respuesta_consulta.setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
+            @SuppressLint("SimpleDateFormat")
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String respuest=respuesta.getText().toString();
+                Date fecha_reg=new Date();
+                DateFormat formatofechahora;
+                formatofechahora = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                String fecha_espuesta=formatofechahora.format(fecha_reg);
                 if(respuest.length()<15 || respuest.equals("")){
                     Toast.makeText(getContext(), getString(R.string.respuesta_no_valida), Toast.LENGTH_LONG).show();
                 }else{
-                    firebase.child(model.getId()).child("flag_respuesta").setValue(true);
-                    firebase.child(model.getId()).child("Respuestas").child("descripcion").setValue(respuest);
+                    firebase.child("Consultas").child(model.getId()).child("flag_respuesta").setValue(true);
+                    RespuestaConsulta respuestaConsulta= new RespuestaConsulta(model.getId(),respuest,fecha_espuesta);
+                    firebase.child("RespuestasConsulta").child(model.getId()).setValue(respuestaConsulta);
+                    CargarTokenPaciente(model.getUid_paciente());
+                    EnviarNotificacionConsultaRespuesta(model,respuestaConsulta,"NotificarConsultaRespuesta");
                     Toast.makeText(getContext(), getString(R.string.respuesta_ok), Toast.LENGTH_LONG).show();
                 }
             }
@@ -147,7 +175,63 @@ public class ConsultaPediatraFragment extends Fragment {
         progress_carga.setCancelable(false);
         progress_carga.show();
     }
+    private  void CargarTokenPaciente(String uid_paciente){
+        firebase.child("Persona").child(uid_paciente).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Persona persona= dataSnapshot.getValue(Persona.class);
+                if (persona!=null){
+                    Utiles.TOKEN_PACIENTE =persona.getToken();
+                }else {
+                    Utiles.TOKEN_PACIENTE="";
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
+    private void EnviarNotificacionConsultaRespuesta(final Consulta consulta,final RespuestaConsulta respuesta, final String accion) {
+        StringRequest stringRequest= new StringRequest(Request.Method.POST, Utiles.MAGELI_URl,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject= new JSONObject(response);
+                            int resultado=Integer.parseInt(jsonObject.getString("success"));
+                            if (resultado>0){
+                                Toast.makeText(getActivity().getApplicationContext(),getString(R.string.notificacion_consulta_respuesta), Toast.LENGTH_SHORT).show();
+                            }else {
+                                Toast.makeText(getActivity().getApplicationContext(), getString(R.string.notificacion_no_enviada), Toast.LENGTH_SHORT).show();
+                            }
+                        }catch (JSONException jex){
+                            Log.e("Error: ",jex.getMessage());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+//                        Toast.makeText(getActivity().getApplicationContext(), getString(R.string.error_enviar_notificacion), Toast.LENGTH_SHORT).show();
+                        Log.e("Error: ",error.getMessage());
+                        Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }){
+            @Override
+            protected Map<String ,String> getParams(){
+                Map<String,String>parametros_citas=new HashMap<>();
+                parametros_citas.put("accion",accion);
+                parametros_citas.put("asunto",consulta.getAsunto());
+                parametros_citas.put("pediatra",consulta.getNombre_pediatra());
+                parametros_citas.put("descripcion",respuesta.getDescripcion());
+                parametros_citas.put("fecha",respuesta.getFecha());
+                parametros_citas.put("token",Utiles.TOKEN_PACIENTE);
+                return parametros_citas;
+            }
+        };
+        Utiles.REQUEST.add(stringRequest);
 
+    }
     private void inicializar_controles() {
         recyclerViewconsulta=(RecyclerView)getView().findViewById(R.id.mis_consultas_pediatra);
     }

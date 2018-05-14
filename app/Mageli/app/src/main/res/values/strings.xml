@@ -153,7 +153,7 @@
     <string name="consulta_actualizado_ok">Consulta actualizado correctamente</string>
     <string name="mis_respuestas">Mis Respuestas</string>
     <string name="cerrar">Cerrar</string>
-    <string name="consulta_sin_respuesta">La consulta aun no tiene una respuesta</string>
+    <string name="consulta_sin_respuesta">La consulta aun no ha sido respondido</string>
     <string name="a">A:</string>
     <!--todo: citas pediatra-->
     <string name="personas">personas</string>
@@ -177,9 +177,21 @@
     <string name="consultado">Consultado:</string>
     <string name="paciente">Paciente</string>
     <string name="escribe_respuesta">Escribe tu respuesta aqui...</string>
-    <string name="respuesta_ok">Tu respuesta fue enviado correctamente</string>
+    <string name="respuesta_ok">Respondido correctamente</string>
     <string name="consulta_ya_respondido">Ya respondiste la consulta anteriormente</string>
     <string name="respuesta_no_valida">La respuesta debe tener por lo menos 15 carácteres para se valida</string>
+    <!--TODO Notificaciones-->
+    <string name="titulo_notificacion">Titulo Notificacion</string>
+    <string name="error_enviar_notificacion">Error al enviar notificación</string>
+    <string name="notificacion_cita_enviada">La notificación de cita fue enviada</string>
+    <string name="notificacion_cita_no_enviada">No se pudo enviar la notificación</string>
+    <string name="notificacion_cita_cancelacion">Se envio una notificación por cancelar la Cita</string>
+    <string name="notificacion_consulta_enviada">Notificación de consulta enviada</string>
+    <string name="notificacion_consulta_no_enviada">No se puede enviar la notificación de consulta</string>
+    <string name="notificacion_cita_atendida">Notificación de cita completada fue enviada</string>
+    <string name="notificacion_cita_atendida_error">No se puede enviar la notificación de cita completada</string>
+    <string name="notificacion_consulta_respuesta">Notificación de respuesta fue enviada</string>
+    <string name="notificacion_no_enviada">Notificación no enviada</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

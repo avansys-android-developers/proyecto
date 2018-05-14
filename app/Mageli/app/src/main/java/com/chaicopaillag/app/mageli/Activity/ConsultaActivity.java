@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,8 +19,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
-import com.chaicopaillag.app.mageli.Modelo.Citas;
 import com.chaicopaillag.app.mageli.Modelo.Consulta;
 import com.chaicopaillag.app.mageli.Modelo.Persona;
 import com.chaicopaillag.app.mageli.R;
@@ -32,6 +37,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -79,6 +87,7 @@ public class ConsultaActivity extends AppCompatActivity {
         fire_base = FirebaseDatabase.getInstance().getReference();
         firebaseAuth= FirebaseAuth.getInstance();
         User=firebaseAuth.getCurrentUser();
+        Utiles.REQUEST= Volley.newRequestQueue(this);
     }
 
     private void inicializar_controles() {
@@ -151,7 +160,22 @@ public class ConsultaActivity extends AppCompatActivity {
             });
         }
     }
-
+    private  void CargarTokenPediatra(String uid_pediatra){
+        fire_base.child("Persona").child(uid_pediatra).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                persona= dataSnapshot.getValue(Persona.class);
+                if (persona!=null){
+                    Utiles.TOKEN_PEDIATRA =persona.getToken();
+                }else {
+                    Utiles.TOKEN_PEDIATRA="";
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
     private void cargar_pediatras() {
         lista_pediatras= new ArrayList<Persona>();
         final List<String> lista = new ArrayList<>();
@@ -179,6 +203,7 @@ public class ConsultaActivity extends AppCompatActivity {
                                 uid_pediatra.setText(persona.getId());
                                 correo_ped.setText(persona.getCorreo());
                                 cel_pediatra.setText(persona.getTelefono());
+                                Utiles.TOKEN_PEDIATRA=persona.getToken();
                                 if (persona.getFoto_url()!=null){
                                     Glide.with(getApplicationContext()).load(persona.getFoto_url()).into(img_perfil_pediatra);
                                     URL_IMG_PEDIATRA=persona.getFoto_url();
@@ -371,10 +396,49 @@ public class ConsultaActivity extends AppCompatActivity {
             consulta.setEstado(estado);
             consulta.setFlag_privacidad(privacidad);
             fire_base.child("Consultas").child(_uid_consulta).setValue(consulta);
+            EnviarNotificacionConsulta(consulta,"NotificarNuevaConsulta");
             Toast.makeText(this, R.string.consulta_registrado_ok, Toast.LENGTH_SHORT).show();
             finish();
         }catch (Exception e){
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
+    }
+    private void EnviarNotificacionConsulta(final Consulta consulta , final String accion) {
+        StringRequest stringRequest= new StringRequest(Request.Method.POST, Utiles.MAGELI_URl,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject= new JSONObject(response);
+                            int resultado=Integer.parseInt(jsonObject.getString("success"));
+                            if (resultado>0){
+                                Toast.makeText(ConsultaActivity.this, getString(R.string.notificacion_consulta_enviada), Toast.LENGTH_SHORT).show();
+                            }else {
+                                Toast.makeText(ConsultaActivity.this, getString(R.string.notificacion_consulta_no_enviada), Toast.LENGTH_SHORT).show();
+                            }
+                        }catch (JSONException jex){
+                            Log.e("Error: ",jex.getMessage());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(ConsultaActivity.this, getString(R.string.error_enviar_notificacion), Toast.LENGTH_SHORT).show();
+                    }
+                }){
+            @Override
+            protected Map<String ,String>getParams(){
+                Map<String,String>parametros_citas=new HashMap<>();
+                parametros_citas.put("accion",accion);
+                parametros_citas.put("asunto",consulta.getAsunto());
+                parametros_citas.put("paciente",consulta.getNombre_paciente());
+                parametros_citas.put("descripcion",consulta.getDescripcion());
+                parametros_citas.put("fecha",consulta.getFecha_registro());
+                parametros_citas.put("token",Utiles.TOKEN_PEDIATRA);
+                return parametros_citas;
+            }
+        };
+        Utiles.REQUEST.add(stringRequest);
     }
 }

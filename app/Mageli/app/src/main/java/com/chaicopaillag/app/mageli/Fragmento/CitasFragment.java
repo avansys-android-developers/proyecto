@@ -10,26 +10,42 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.chaicopaillag.app.mageli.Activity.CitaActivity;
 import com.chaicopaillag.app.mageli.Activity.ConsultaActivity;
+import com.chaicopaillag.app.mageli.Activity.Utiles;
 import com.chaicopaillag.app.mageli.Adapter.CitasAdapter;
 import com.chaicopaillag.app.mageli.Modelo.Citas;
+import com.chaicopaillag.app.mageli.Modelo.Persona;
 import com.chaicopaillag.app.mageli.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class CitasFragment extends Fragment {
     private FloatingActionButton fab_agregar_cita;
@@ -54,9 +70,10 @@ public class CitasFragment extends Fragment {
         inicializar_controles();
     }
     private void inicializar_servicios() {
-        firebase_bd=FirebaseDatabase.getInstance().getReference("Citas");
+        firebase_bd=FirebaseDatabase.getInstance().getReference();
         auth=FirebaseAuth.getInstance();
         user=auth.getCurrentUser();
+        Utiles.REQUEST= Volley.newRequestQueue(getActivity().getApplicationContext());
     }
     private void inicializar_controles() {
         Recyc_citas=(RecyclerView)getView().findViewById(R.id.mis_citas);
@@ -72,7 +89,7 @@ public class CitasFragment extends Fragment {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         Recyc_citas.setLayoutManager(linearLayoutManager);
         progress_cargando_citass();
-        Query query=firebase_bd.orderByChild("uid_paciente").equalTo(user.getUid()).limitToFirst(100);
+        Query query=firebase_bd.child("Citas").orderByChild("uid_paciente").equalTo(user.getUid()).limitToFirst(100);
         citas_items= new FirebaseRecyclerOptions.Builder<Citas>().setQuery(query,Citas.class).build();
         adapter= new FirebaseRecyclerAdapter<Citas, CitasAdapter.ViewHolder>(citas_items) {
             @Override
@@ -126,7 +143,7 @@ public class CitasFragment extends Fragment {
                             Toast.makeText(getContext(),getString(R.string.no_cancelar_cita_atendido), Toast.LENGTH_LONG).show();
                         }
                         else {
-                            cancelar_cita(model.getId());
+                            cancelar_cita(model);
                         }
                     }
                 });
@@ -139,7 +156,11 @@ public class CitasFragment extends Fragment {
                         alert_cita.setPositiveButton(R.string.si,new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                adapter.getRef(position).removeValue();
+                                try {
+                                    adapter.getRef(position).removeValue();
+                                } catch (Exception e){
+                                    Log.e("Error: ",e.getMessage());
+                                }
                             }
                         });
                         alert_cita.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
@@ -189,14 +210,16 @@ public class CitasFragment extends Fragment {
         });
     }
 
-    private void cancelar_cita(final String uid_cita) {
+    private void cancelar_cita(final Citas cita) {
         final AlertDialog.Builder alert_cancelar = new AlertDialog.Builder(getContext(),R.style.progrescolor);
         alert_cancelar.setTitle(R.string.app_name);
         alert_cancelar.setMessage(R.string.desea_cancelar_cita);
         alert_cancelar.setPositiveButton(R.string.si,new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                firebase_bd.child(uid_cita).child("estado").setValue(3);
+                firebase_bd.child("Citas").child(cita.getId()).child("estado").setValue(3);
+                CargarTokenPediatra(cita.getUid_pediatra());
+                EnviarNotificacionCancelacionCita(cita,"NotificarCitaCancelado");
             }
         });
         alert_cancelar.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
@@ -226,5 +249,61 @@ public class CitasFragment extends Fragment {
         progress_carga.setIndeterminate(true);
         progress_carga.setCancelable(false);
         progress_carga.show();
+    }
+    private  void CargarTokenPediatra(String uid_pediatra){
+        firebase_bd.child("Persona").child(uid_pediatra).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+              Persona  persona= dataSnapshot.getValue(Persona.class);
+                if (persona!=null){
+                    Utiles.TOKEN_PEDIATRA =persona.getToken();
+                }else {
+                    Utiles.TOKEN_PEDIATRA="";
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
+    private void EnviarNotificacionCancelacionCita(final Citas citas, final String accion) {
+        StringRequest stringRequest= new StringRequest(Request.Method.POST, Utiles.MAGELI_URl,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject= new JSONObject(response);
+                            int resultado=Integer.parseInt(jsonObject.getString("success"));
+                            if (resultado>0){
+                                Toast.makeText(getActivity().getApplicationContext(),getString(R.string.notificacion_cita_cancelacion), Toast.LENGTH_SHORT).show();
+                            }else {
+                                Toast.makeText(getActivity().getApplicationContext(), getString(R.string.notificacion_cita_no_enviada), Toast.LENGTH_SHORT).show();
+                            }
+                        }catch (JSONException jex){
+                            Log.e("Error: ",jex.getMessage());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity().getApplicationContext(), getString(R.string.error_enviar_notificacion), Toast.LENGTH_SHORT).show();
+                    }
+                }){
+            @Override
+            protected Map<String ,String> getParams(){
+                Map<String,String>parametros_citas=new HashMap<>();
+                parametros_citas.put("accion",accion);
+                parametros_citas.put("asunto",citas.getAsunto());
+                parametros_citas.put("paciente",citas.getNombre_paciente());
+                parametros_citas.put("descripcion",citas.getDescripcion());
+                parametros_citas.put("fecha",citas.getFecha());
+                parametros_citas.put("hora",citas.getHora());
+                parametros_citas.put("token",Utiles.TOKEN_PEDIATRA);
+                return parametros_citas;
+            }
+        };
+        Utiles.REQUEST.add(stringRequest);
+
     }
 }

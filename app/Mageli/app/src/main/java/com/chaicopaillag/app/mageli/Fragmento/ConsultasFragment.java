@@ -25,6 +25,7 @@ import com.chaicopaillag.app.mageli.Activity.ConsultaActivity;
 import com.chaicopaillag.app.mageli.Activity.PerfilActivity;
 import com.chaicopaillag.app.mageli.Adapter.ConsultasAdapter;
 import com.chaicopaillag.app.mageli.Modelo.Consulta;
+import com.chaicopaillag.app.mageli.Modelo.RespuestaConsulta;
 import com.chaicopaillag.app.mageli.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -67,14 +68,14 @@ public class ConsultasFragment extends Fragment {
     }
 
     private void inicializar_servicio() {
-        firebase= FirebaseDatabase.getInstance().getReference("Consultas");
+        firebase= FirebaseDatabase.getInstance().getReference();
         firebaseAuth=FirebaseAuth.getInstance();
         firebaseUser=firebaseAuth.getCurrentUser();
         LinearLayoutManager linearLayoutManager= new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerViewconsulta.setLayoutManager(linearLayoutManager);
         progres_carga_datos();
-        Query query=firebase.orderByChild("uid_paciente").equalTo(firebaseUser.getUid()).limitToFirst(100);
+        Query query=firebase.child("Consultas").orderByChild("uid_paciente").equalTo(firebaseUser.getUid()).limitToFirst(100);
          item_consulta=new FirebaseRecyclerOptions.Builder<Consulta>().setQuery(query,Consulta.class).build();
          adapter= new FirebaseRecyclerAdapter<Consulta, ConsultasAdapter.ViewHolder>(item_consulta) {
             @Override
@@ -172,22 +173,20 @@ public class ConsultasFragment extends Fragment {
         });
     }
 
-    private void cargar_respuestas(Consulta model) {
-    firebase.child(model.getId()).addListenerForSingleValueEvent(new ValueEventListener() {
+    private void cargar_respuestas(final Consulta model) {
+    firebase.child("RespuestasConsulta").child(model.getId()).orderByValue().addListenerForSingleValueEvent(new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
-            String asunto =dataSnapshot.child("asunto").getValue().toString();
-            String pediatra =dataSnapshot.child("nombre_pediatra").getValue().toString();
-            String respuesta =dataSnapshot.child("Respuestas").child("descripcion").getValue().toString();
-            if (respuesta!=null){
+            RespuestaConsulta respuestaConsulta= dataSnapshot.getValue(RespuestaConsulta.class);
+            if (respuestaConsulta!=null){
                 LayoutInflater inflater=getLayoutInflater();
                 View popap= inflater.inflate(R.layout.respuestas_consulta,null);
                 TextView asunto_consulta_respuesta=popap.findViewById(R.id.asunto_consulta_respuesta);
                 TextView respuesta_pediatra=popap.findViewById(R.id.respondido_pediatra);
                 TextView descripcion= popap.findViewById(R.id.respuesta_descripcion);
-                asunto_consulta_respuesta.setText(asunto);
-                respuesta_pediatra.setText(pediatra);
-                descripcion.setText(respuesta);
+                asunto_consulta_respuesta.setText(model.getAsunto());
+                respuesta_pediatra.setText(model.getNombre_pediatra());
+                descripcion.setText(respuestaConsulta.getDescripcion());
                 final AlertDialog.Builder popap_respuesta= new AlertDialog.Builder(Objects.requireNonNull(getContext()), R.style.progrescolor);
                 popap_respuesta.setView(popap);
                 popap_respuesta.setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {

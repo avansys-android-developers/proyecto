@@ -32,6 +32,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -174,7 +175,7 @@ public class PerfilActivity extends AppCompatActivity {
     @SuppressLint("SimpleDateFormat")
     private void modificar_datos() {
         Persona persona;
-        String id,nombre,apellidos,numero_documento,numero_hc,direccion, telefono,correo,fecha_nacimient,foto_url,fecha_registro;
+        String id,nombre,apellidos,numero_documento,numero_hc,direccion, telefono,correo,fecha_nacimient,foto_url,fecha_registro,token;
         boolean genero;
         Date fecha_reg=new Date();
         id=id_ui;
@@ -187,6 +188,7 @@ public class PerfilActivity extends AppCompatActivity {
         correo=correo_ui;
         especialidad=specialidad;
         estado=true;
+        token= FirebaseInstanceId.getInstance().getToken();
         if (user.getPhotoUrl()!=null){
             foto_url=user.getPhotoUrl().toString();
         }else {
@@ -206,7 +208,7 @@ public class PerfilActivity extends AppCompatActivity {
                     id,nombre,apellidos,numero_documento,
                     numero_hc,direccion,telefono,correo,
                     genero,tipo_doc,fecha_nacimient,fecha_registro,
-                    estado,tipo_persona,especialidad,foto_url);
+                    estado,tipo_persona,especialidad,foto_url,token);
             Map<String, Object> Act_Persona_especifico = new HashMap<>();
             Act_Persona_especifico.put("/id",persona.getId() );
             Act_Persona_especifico.put("/nombre",persona.getNombre());
@@ -224,6 +226,7 @@ public class PerfilActivity extends AppCompatActivity {
             Act_Persona_especifico.put("/tipo_persona",persona.getTipo_persona());
             Act_Persona_especifico.put("/especialidad",persona.getEspecialidad());
             Act_Persona_especifico.put("/foto_url",persona.getFoto_url());
+            Act_Persona_especifico.put("/token",persona.getToken());
             firebase_ref.child(id_ui).updateChildren(Act_Persona_especifico);
             actualizardatos_usuario(nombre,apellidos);
             finish();
@@ -273,7 +276,7 @@ public class PerfilActivity extends AppCompatActivity {
     @SuppressLint("SimpleDateFormat")
     private void guardar_datos() {
         Persona persona;
-        String id,nombre,apellidos,numero_documento,numero_hc,direccion, telefono,correo,fecha_nacimient,foto_url,fecha_registro;
+        String id,nombre,apellidos,numero_documento,numero_hc,direccion, telefono,correo,fecha_nacimient,foto_url,fecha_registro,token;
         boolean genero;
         Date fecha_reg= new Date();
         id=id_ui;
@@ -286,6 +289,7 @@ public class PerfilActivity extends AppCompatActivity {
         correo=correo_ui;
         especialidad=specialidad;
         estado=true;
+        token=FirebaseInstanceId.getInstance().getToken();
         tipo_persona=1;
         if (user.getPhotoUrl()!=null){
             foto_url=user.getPhotoUrl().toString();
@@ -306,7 +310,7 @@ public class PerfilActivity extends AppCompatActivity {
                     id,nombre,apellidos,numero_documento,
                     numero_hc,direccion,telefono,correo,
                     genero,tipo_doc,fecha_nacimient,fecha_registro,
-                    estado,tipo_persona,especialidad,foto_url);
+                    estado,tipo_persona,especialidad,foto_url,token);
             firebase_ref.child(id_ui).setValue(persona);
             actualizardatos_usuario(nombre,apellidos);
             finish();

@@ -27,8 +27,10 @@ import com.chaicopaillag.app.mageli.Fragmento.ConsultasFragment;
 import com.chaicopaillag.app.mageli.Fragmento.CuentasFragment;
 import com.chaicopaillag.app.mageli.Fragmento.InicioFragment;
 import com.chaicopaillag.app.mageli.Fragmento.PerfilFragment;
+import com.chaicopaillag.app.mageli.Modelo.Notificacion;
 import com.chaicopaillag.app.mageli.Modelo.Persona;
 import com.chaicopaillag.app.mageli.R;
+import com.firebase.ui.auth.data.model.User;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -42,6 +44,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
 
 public class MenuActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
     private GoogleApiClient googleApiClient;
@@ -67,7 +74,7 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
 
     }
     private void inicializar_servicios() {
-        firebase= FirebaseDatabase.getInstance().getReference("Persona");
+        firebase= FirebaseDatabase.getInstance().getReference();
         firebaseAuth=FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -150,10 +157,26 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
                 }
             }
         };
-
+        Intent intent= getIntent();
+//        if (intent!=null && intent.hasExtra("notificacion")){
+//            Date fecha_reg=new Date();
+//            String fecha_notify;
+//            DateFormat formatofechahora;
+//            formatofechahora = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+//            fecha_notify=formatofechahora.format(fecha_reg);
+//            String UID_Notify=UUID.randomUUID().toString();
+//            Notificacion notificacion= new Notificacion(
+//                    UID_Notify,
+//                    intent.getStringExtra("titulo"),
+//                    intent.getStringExtra("notificacion"),
+//                    fecha_notify,
+//                    user.getUid()
+//            );
+//            firebase.child("Notificacion").child(user.getUid()).child(UID_Notify).setValue(notificacion);
+//        }
     }
     private void validar_permisos() {
-        firebase.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+        firebase.child("Persona").child(user.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 persona=dataSnapshot.getValue(Persona.class);
@@ -287,4 +310,5 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+
 }
