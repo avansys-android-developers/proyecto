@@ -1,12 +1,9 @@
 package com.chaicopaillag.app.mageli.Adapter;
-
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
-
 import com.chaicopaillag.app.mageli.R;
-
 public class NotificacionAdapter {
 
     public static class ViewHolder extends RecyclerView.ViewHolder{

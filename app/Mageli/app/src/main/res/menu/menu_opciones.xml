@@ -29,7 +29,7 @@
         <item
             android:id="@+id/menu_item_notificacon"
             android:icon="@drawable/si_notificacion"
-            android:title="@string/chats" />
+            android:title="@string/notificacion" />
     </group>
     <item android:title="@string/cuenta">
         <menu>

@@ -75,7 +75,7 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
         Intent intent= getIntent();
         if (intent!=null && intent.hasExtra("notificacion")){
             ponerFragmento(new NotificacionFragment());
-            getActionBar().setTitle(getString(R.string.notificacion));
+            getSupportActionBar().setTitle(R.string.notificacion);
         }
 
     }

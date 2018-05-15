@@ -8,7 +8,6 @@ public class Notificacion {
     private String uid_persona;
 
     public Notificacion() {
-
     }
 
     public Notificacion(String id, String titulo, String mensaje, String fecha, String uid_persona) {

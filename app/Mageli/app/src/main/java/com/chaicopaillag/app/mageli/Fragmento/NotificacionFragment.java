@@ -56,7 +56,7 @@ public class NotificacionFragment extends Fragment {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         RecicleNotificacion.setLayoutManager(linearLayoutManager);
         progress_cargando_citass();
-        Query query=firebase_bd.child("Notificacion").orderByChild("uid_persona").equalTo(user.getUid()).limitToFirst(100);
+        Query query=firebase_bd.child("Notificacion").child(user.getUid()).orderByChild(user.getUid()).limitToFirst(100);
         notify_items= new FirebaseRecyclerOptions.Builder<Notificacion>().setQuery(query,Notificacion.class).build();
         adapter= new FirebaseRecyclerAdapter<Notificacion, NotificacionAdapter.ViewHolder>(notify_items) {
             @Override
@@ -65,6 +65,7 @@ public class NotificacionFragment extends Fragment {
                 holder.setMensaje(model.getMensaje());
                 holder.setFecha_nofity(model.getFecha());
             }
+
             @NonNull
             @Override
             public NotificacionAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -72,6 +73,7 @@ public class NotificacionFragment extends Fragment {
                         .inflate(R.layout.item_notificacion, parent, false);
                 return new NotificacionAdapter.ViewHolder(view);
             }
+
             @Override
             public void onDataChanged() {
                 super.onDataChanged();
@@ -86,11 +88,8 @@ public class NotificacionFragment extends Fragment {
                     progress_carga.dismiss();
                 }
             }
-            @Override
-            public void onError(@NonNull DatabaseError error) {
-                super.onError(error);
-            }
         };
+        RecicleNotificacion.setAdapter(adapter);
     }
     @Override
     public void onStart() {

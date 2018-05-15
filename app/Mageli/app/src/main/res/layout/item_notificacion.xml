@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="5dp">
+            android:padding="@dimen/pading">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
                         android:textAlignment="textStart"
                         android:layout_marginEnd="@dimen/pading"
                         android:textColor="@color/primario_text"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
                         android:id="@+id/item_titulo_notify"
                         android:fontFamily="@font/roboto_medium"/>
                 </LinearLayout>
@@ -74,7 +74,8 @@
             android:layout_marginEnd="@dimen/pading"
             app:flexWrap="wrap"
             app:justifyContent="space_between"
-            android:layout_marginBottom="@dimen/pading">
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

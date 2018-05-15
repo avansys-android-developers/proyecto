@@ -21,7 +21,7 @@ tools:context=".Fragmento.CitasPediatraFragment">
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/imgNoNotificacacion"
-            android:src="@drawable/no_notificacion"/>
+            android:src="@drawable/citas"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
