@@ -7,16 +7,6 @@
         android:title="@string/inicio"
         app:showAsAction="never" />
     <item
-        android:id="@+id/item_configuracion"
-        android:orderInCategory="100"
-        android:title="@string/configuracion"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/item_privacidad"
-        android:orderInCategory="100"
-        android:title="@string/privacidad"
-        app:showAsAction="never" />
-    <item
         android:id="@+id/item_web"
         android:orderInCategory="100"
         android:title="@string/web"

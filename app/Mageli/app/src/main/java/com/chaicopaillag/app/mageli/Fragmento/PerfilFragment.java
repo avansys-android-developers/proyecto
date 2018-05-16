@@ -30,7 +30,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class PerfilFragment extends Fragment {
-    private ScrollView scrollperfil;
     private LinearLayout contenedor_perf,baner_perf;
     private FloatingActionButton fab_editar_perf;
     private FirebaseAuth auth;
@@ -47,30 +46,41 @@ public class PerfilFragment extends Fragment {
             txtperfil_fecha_nac,
             txtperfil_genero;
     private  String uid;
-    private ProgressDialog progress_carga;
     public PerfilFragment() {
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_perfil, container, false);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        progress_carga=new ProgressDialog(getContext(),R.style.progrescolor);
-        inicializar_controles();
+        View view=inflater.inflate(R.layout.fragment_perfil, container, false);
+       inicializar_controls(view);
         inicializar_servicios();
-        progres_carga_datos();
+        return view;
     }
 
-    private void progres_carga_datos() {
-        progress_carga.setTitle(R.string.app_name);
-        progress_carga.setMessage(getString(R.string.carga_perfil));
-        progress_carga.setIndeterminate(true);
-        progress_carga.setCancelable(false);
-        progress_carga.show();
+    private void inicializar_controls(View view) {
+        contenedor_perf=(LinearLayout)view.findViewById(R.id.contenedor_datos) ;
+        baner_perf=(LinearLayout)view.findViewById(R.id.barner_perfil);
+        fab_editar_perf=(FloatingActionButton) view.findViewById(R.id.fab_editar_perfil);
+        txtperfil_nombre=(TextView)view.findViewById(R.id.perfil_nombre);
+        txtperfil_correo=(TextView)view.findViewById(R.id.perfil_correo);
+        txtperfil_telefono=(TextView)view.findViewById(R.id.pefil_telefono);
+        txtperfil_direccion=(TextView)view.findViewById(R.id.perfil_direccion);
+        txtperfil_numero_doc=(TextView)view.findViewById(R.id.perfil_numero_doc);
+        txtperfil_nhc=(TextView)view.findViewById(R.id.perfil_nhc);
+        txtperfil_fecha_nac=(TextView)view.findViewById(R.id.perfil_fecha_nac);
+        txtperfil_genero=(TextView)view.findViewById(R.id.perfil_genero);
+        imgUsuario=(ImageView)view.findViewById(R.id.img_perfil);
+        contenedor_perf.setVisibility(View.INVISIBLE);
+        baner_perf.setVisibility(View.INVISIBLE);
+        fab_editar_perf.setVisibility(View.INVISIBLE);
+        fab_editar_perf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent inten = new Intent(getContext(), PerfilActivity.class);
+                inten.putExtra("editar_perfil","ok");
+                startActivity(inten);
+            }
+        });
     }
 
     private void inicializar_servicios() {
@@ -85,9 +95,6 @@ public class PerfilFragment extends Fragment {
                 if (persona!=null){
                     llenar_datos(persona);
                 }else {
-                    if (progress_carga.isShowing()){
-                        progress_carga.dismiss();
-                    }
                     contenedor_perf.setVisibility(View.INVISIBLE);
                     baner_perf.setVisibility(View.INVISIBLE);
                     fab_editar_perf.setVisibility(View.INVISIBLE);
@@ -106,33 +113,6 @@ public class PerfilFragment extends Fragment {
         }
     }
 
-    private void inicializar_controles() {
-        contenedor_perf=(LinearLayout)getView().findViewById(R.id.contenedor_datos) ;
-        baner_perf=(LinearLayout)getView().findViewById(R.id.barner_perfil);
-        fab_editar_perf=(FloatingActionButton) getView().findViewById(R.id.fab_editar_perfil);
-        txtperfil_nombre=(TextView)getView().findViewById(R.id.perfil_nombre);
-        txtperfil_correo=(TextView)getView().findViewById(R.id.perfil_correo);
-        txtperfil_telefono=(TextView)getView().findViewById(R.id.pefil_telefono);
-        txtperfil_direccion=(TextView)getView().findViewById(R.id.perfil_direccion);
-        txtperfil_numero_doc=(TextView)getView().findViewById(R.id.perfil_numero_doc);
-        txtperfil_nhc=(TextView)getView().findViewById(R.id.perfil_nhc);
-        txtperfil_fecha_nac=(TextView)getView().findViewById(R.id.perfil_fecha_nac);
-        txtperfil_genero=(TextView)getView().findViewById(R.id.perfil_genero);
-        imgUsuario=(ImageView)getView().findViewById(R.id.img_perfil);
-        scrollperfil=(ScrollView)getView().findViewById(R.id.scrollperfil);
-        contenedor_perf.setVisibility(View.INVISIBLE);
-        baner_perf.setVisibility(View.INVISIBLE);
-        fab_editar_perf.setVisibility(View.INVISIBLE);
-        fab_editar_perf.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent inten = new Intent(getContext(), PerfilActivity.class);
-                inten.putExtra("editar_perfil","ok");
-                startActivity(inten);
-            }
-        });
-    }
-
     private void llenar_datos(Persona persona) {
         txtperfil_nombre.setText(persona.getNombre()+" "+persona.getApellidos());
         txtperfil_correo.setText(persona.getCorreo());
@@ -145,9 +125,6 @@ public class PerfilFragment extends Fragment {
             txtperfil_genero.setText(R.string.masculino);
         }else {
             txtperfil_genero.setText(R.string.femenino);
-        }
-        if(progress_carga.isShowing()){
-            progress_carga.dismiss();
         }
         contenedor_perf.setVisibility(View.VISIBLE);
         baner_perf.setVisibility(View.VISIBLE);

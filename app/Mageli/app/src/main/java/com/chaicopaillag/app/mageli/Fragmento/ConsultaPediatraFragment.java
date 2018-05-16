@@ -56,7 +56,6 @@ public class ConsultaPediatraFragment extends Fragment {
     private DatabaseReference firebase;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
-    private ProgressDialog progress_carga;
     private FirebaseRecyclerOptions item_consulta;
     private FirebaseRecyclerAdapter<Consulta,ConsultaPediatraAdapter.ViewHolder>adapter;
     private LinearLayout layautSinConsultaPed;
@@ -65,13 +64,15 @@ public class ConsultaPediatraFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_consulta_pediatra, container, false);
+        View view=inflater.inflate(R.layout.fragment_consulta_pediatra, container, false);
+        inicializar_controles(view);
+        inicializar_servicio();
+        return view;
     }
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        inicializar_controles();
-        inicializar_servicio();
+
     }
 
     private void inicializar_servicio() {
@@ -82,7 +83,6 @@ public class ConsultaPediatraFragment extends Fragment {
         LinearLayoutManager linearLayoutManager= new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerViewconsulta.setLayoutManager(linearLayoutManager);
-        progres_carga_datos();
         Query query=firebase.child("Consultas").orderByChild("uid_pediatra").equalTo(firebaseUser.getUid()).limitToFirst(100);
         item_consulta=new FirebaseRecyclerOptions.Builder<Consulta>().setQuery(query,Consulta.class).build();
         adapter= new FirebaseRecyclerAdapter<Consulta, ConsultaPediatraAdapter.ViewHolder>(item_consulta) {
@@ -126,9 +126,6 @@ public class ConsultaPediatraFragment extends Fragment {
                 }else {
                     recyclerViewconsulta.setVisibility(View.GONE);
                     layautSinConsultaPed.setVisibility(View.VISIBLE);
-                }
-                if (progress_carga.isShowing()){
-                    progress_carga.dismiss();
                 }
             }
         };
@@ -177,15 +174,6 @@ public class ConsultaPediatraFragment extends Fragment {
         popap_respuesta_consulta.show();
 
     }
-
-    private void progres_carga_datos() {
-        progress_carga=new ProgressDialog(getContext(),R.style.progrescolor);
-        progress_carga.setTitle(R.string.app_name);
-        progress_carga.setMessage(getString(R.string.cargando_cosultas));
-        progress_carga.setIndeterminate(true);
-        progress_carga.setCancelable(false);
-        progress_carga.show();
-    }
     private  void CargarTokenPaciente(String uid_paciente){
         firebase.child("Persona").child(uid_paciente).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -223,7 +211,6 @@ public class ConsultaPediatraFragment extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-//                        Toast.makeText(getActivity().getApplicationContext(), getString(R.string.error_enviar_notificacion), Toast.LENGTH_SHORT).show();
                         Log.e("Error: ",error.getMessage());
                         Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -243,9 +230,9 @@ public class ConsultaPediatraFragment extends Fragment {
         Utiles.REQUEST.add(stringRequest);
 
     }
-    private void inicializar_controles() {
-        recyclerViewconsulta=(RecyclerView)getView().findViewById(R.id.mis_consultas_pediatra);
-        layautSinConsultaPed=(LinearLayout)getView().findViewById(R.id.layautSinConsultaPediatra);
+    private void inicializar_controles(View view) {
+        recyclerViewconsulta=(RecyclerView)view.findViewById(R.id.mis_consultas_pediatra);
+        layautSinConsultaPed=(LinearLayout)view.findViewById(R.id.layautSinConsultaPediatra);
     }
     @Override
     public void onStart() {

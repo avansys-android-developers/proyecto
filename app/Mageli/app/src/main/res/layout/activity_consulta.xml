@@ -27,7 +27,7 @@
                     android:drawablePadding="5dp"
                     android:drawableStart="@drawable/asunto"
                     android:hint="@string/asunto_consulta"
-                    android:inputType="textPersonName"
+                    android:inputType="textCapWords|textCapSentences"
                     android:id="@+id/asunto_consulta"/>
             </android.support.design.widget.TextInputLayout>
 

@@ -28,7 +28,6 @@ public class NotificacionFragment extends Fragment {
     private LinearLayout layoutSinNotify;
     private FirebaseRecyclerAdapter<Notificacion,NotificacionAdapter.ViewHolder> adapter;
     private FirebaseRecyclerOptions<Notificacion> notify_items;
-    private ProgressDialog progress_carga;
     private FirebaseAuth auth;
     private FirebaseUser user;
     public NotificacionFragment() {
@@ -36,26 +35,23 @@ public class NotificacionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_notificacion, container, false);
+        View view=inflater.inflate(R.layout.fragment_notificacion, container, false);;
+            InicializarServicsio();
+            InicializarControles(view);
+        return view;
     }
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        InicializarServicsio();
-        InicializarControles();
-    }
+
     private void InicializarServicsio() {
         firebase_bd= FirebaseDatabase.getInstance().getReference();
         auth=FirebaseAuth.getInstance();
         user=auth.getCurrentUser();
     }
-    private void InicializarControles() {
-        RecicleNotificacion=(RecyclerView)getView().findViewById(R.id.recyclerNotificacion);
-        layoutSinNotify=(LinearLayout)getView().findViewById(R.id.layautSinNotificacion);
+    private void InicializarControles(View view) {
+        RecicleNotificacion=(RecyclerView)view.findViewById(R.id.recyclerNotificacion);
+        layoutSinNotify=(LinearLayout)view.findViewById(R.id.layautSinNotificacion);
         LinearLayoutManager linearLayoutManager= new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         RecicleNotificacion.setLayoutManager(linearLayoutManager);
-        progress_cargando_citass();
         Query query=firebase_bd.child("Notificacion").child(user.getUid()).orderByChild(user.getUid()).limitToFirst(100);
         notify_items= new FirebaseRecyclerOptions.Builder<Notificacion>().setQuery(query,Notificacion.class).build();
         adapter= new FirebaseRecyclerAdapter<Notificacion, NotificacionAdapter.ViewHolder>(notify_items) {
@@ -84,9 +80,6 @@ public class NotificacionFragment extends Fragment {
                     layoutSinNotify.setVisibility(View.VISIBLE);
                     RecicleNotificacion.setVisibility(View.GONE);
                 }
-                if (progress_carga.isShowing()){
-                    progress_carga.dismiss();
-                }
             }
         };
         RecicleNotificacion.setAdapter(adapter);
@@ -102,13 +95,4 @@ public class NotificacionFragment extends Fragment {
         super.onStop();
         adapter.stopListening();
     }
-    private void progress_cargando_citass() {
-        progress_carga=new ProgressDialog(getContext(),R.style.progrescolor);
-        progress_carga.setTitle(R.string.app_name);
-        progress_carga.setMessage(getString(R.string.cargando_citas));
-        progress_carga.setIndeterminate(true);
-        progress_carga.setCancelable(false);
-        progress_carga.show();
-    }
-
 }

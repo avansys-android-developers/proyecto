@@ -20,6 +20,7 @@
             android:layout_marginBottom="@dimen/pading"
             android:src="@drawable/perfil"
             app:civ_border_color="@color/icono"
+            android:elevation="@dimen/pading"
             app:civ_border_width="2dp" />
         <TextView
             android:layout_width="match_parent"

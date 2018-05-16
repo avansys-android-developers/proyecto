@@ -36,7 +36,7 @@
                         android:drawablePadding="5dp"
                         android:drawableStart="@drawable/asunto"
                         android:hint="@string/asunto"
-                        android:inputType="textPersonName" />
+                        android:inputType="textCapWords|textCapSentences"/>
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout

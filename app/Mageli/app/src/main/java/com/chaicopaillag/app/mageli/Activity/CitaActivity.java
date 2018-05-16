@@ -496,6 +496,7 @@ public class CitaActivity extends AppCompatActivity {
     }
     private void cargar_calendario() {
         calenda= Calendar.getInstance();
+        calenda.add(Calendar.YEAR,-1);
         anio=calenda.get(Calendar.YEAR);
         mes=calenda.get(Calendar.MONTH);
         dia=calenda.get(Calendar.DAY_OF_MONTH);

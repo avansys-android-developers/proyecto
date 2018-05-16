@@ -54,7 +54,7 @@ public class CitasFragment extends Fragment {
     private RecyclerView Recyc_citas;
     private FirebaseRecyclerAdapter<Citas,CitasAdapter.ViewHolder>adapter;
     private FirebaseRecyclerOptions<Citas>citas_items;
-    private ProgressDialog progress_carga;
+//    private ProgressDialog progress_carga;
     private FirebaseAuth auth;
     private FirebaseUser user;
     private LinearLayout layoutSinCitas;
@@ -63,24 +63,22 @@ public class CitasFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_citas, container, false);
-    }
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+        View view=inflater.inflate(R.layout.fragment_citas, container, false);
         inicializar_servicios();
-        inicializar_controles();
+        inicializar_controles(view);
+        return view;
     }
+
     private void inicializar_servicios() {
         firebase_bd=FirebaseDatabase.getInstance().getReference();
         auth=FirebaseAuth.getInstance();
         user=auth.getCurrentUser();
         Utiles.REQUEST= Volley.newRequestQueue(getActivity().getApplicationContext());
     }
-    private void inicializar_controles() {
-        Recyc_citas=(RecyclerView)getView().findViewById(R.id.mis_citas);
-        fab_agregar_cita=(FloatingActionButton) getView().findViewById(R.id.fab_agregar_citas);
-        layoutSinCitas=(LinearLayout)getView().findViewById(R.id.layautSinCitas);
+    private void inicializar_controles(View view) {
+        Recyc_citas=(RecyclerView)view.findViewById(R.id.mis_citas);
+        fab_agregar_cita=(FloatingActionButton) view.findViewById(R.id.fab_agregar_citas);
+        layoutSinCitas=(LinearLayout)view.findViewById(R.id.layautSinCitas);
         fab_agregar_cita.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,7 +89,6 @@ public class CitasFragment extends Fragment {
         LinearLayoutManager linearLayoutManager= new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         Recyc_citas.setLayoutManager(linearLayoutManager);
-        progress_cargando_citass();
         Query query=firebase_bd.child("Citas").orderByChild("uid_paciente").equalTo(user.getUid()).limitToFirst(100);
         citas_items= new FirebaseRecyclerOptions.Builder<Citas>().setQuery(query,Citas.class).build();
         adapter= new FirebaseRecyclerAdapter<Citas, CitasAdapter.ViewHolder>(citas_items) {
@@ -192,9 +189,6 @@ public class CitasFragment extends Fragment {
                     Recyc_citas.setVisibility(View.GONE);
                     layoutSinCitas.setVisibility(View.VISIBLE);
                 }
-                if (progress_carga.isShowing()){
-                    progress_carga.dismiss();
-                }
             }
 
             @Override
@@ -253,14 +247,6 @@ public class CitasFragment extends Fragment {
     public void onStop() {
         super.onStop();
         adapter.stopListening();
-    }
-    private void progress_cargando_citass() {
-        progress_carga=new ProgressDialog(getContext(),R.style.progrescolor);
-        progress_carga.setTitle(R.string.app_name);
-        progress_carga.setMessage(getString(R.string.cargando_citas));
-        progress_carga.setIndeterminate(true);
-        progress_carga.setCancelable(false);
-        progress_carga.show();
     }
     private  void CargarTokenPediatra(String uid_pediatra){
         firebase_bd.child("Persona").child(uid_pediatra).addListenerForSingleValueEvent(new ValueEventListener() {

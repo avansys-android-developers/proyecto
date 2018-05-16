@@ -40,7 +40,6 @@ public class ConsultasFragment extends Fragment {
     private DatabaseReference firebase;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
-    private ProgressDialog progress_carga;
     private FirebaseRecyclerOptions item_consulta;
     private FloatingActionButton fab_agregar_conculta;
     private LinearLayout sinconsulta;
@@ -50,14 +49,10 @@ public class ConsultasFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_consultas, container, false);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        inicializar_controles();
+        View view=inflater.inflate(R.layout.fragment_consultas, container, false);;
+        inicializar_controles(view);
         inicializar_servicio();
+        return view;
     }
 
     private void inicializar_servicio() {
@@ -67,7 +62,6 @@ public class ConsultasFragment extends Fragment {
         LinearLayoutManager linearLayoutManager= new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerViewconsulta.setLayoutManager(linearLayoutManager);
-        progres_carga_datos();
         Query query=firebase.child("Consultas").orderByChild("uid_paciente").equalTo(firebaseUser.getUid()).limitToFirst(100);
          item_consulta=new FirebaseRecyclerOptions.Builder<Consulta>().setQuery(query,Consulta.class).build();
          adapter= new FirebaseRecyclerAdapter<Consulta, ConsultasAdapter.ViewHolder>(item_consulta) {
@@ -151,9 +145,6 @@ public class ConsultasFragment extends Fragment {
                      recyclerViewconsulta.setVisibility(View.GONE);
                      sinconsulta.setVisibility(View.VISIBLE);
                  }
-                 if(progress_carga.isShowing()) {
-                     progress_carga.dismiss();
-                 }
              }
          };
          recyclerViewconsulta.setAdapter(adapter);
@@ -221,19 +212,10 @@ public class ConsultasFragment extends Fragment {
         super.onStop();
         adapter.stopListening();
     }
-
-    private void progres_carga_datos() {
-        progress_carga=new ProgressDialog(getContext(),R.style.progrescolor);
-        progress_carga.setTitle(R.string.app_name);
-        progress_carga.setMessage(getString(R.string.cargando_cosultas));
-        progress_carga.setIndeterminate(true);
-        progress_carga.setCancelable(false);
-        progress_carga.show();
-    }
-    private void inicializar_controles() {
-        fab_agregar_conculta=(FloatingActionButton) getView().findViewById(R.id.fab_agregar_consultas);
-        recyclerViewconsulta=(RecyclerView)getView().findViewById(R.id.recy_consultas);
-        sinconsulta=(LinearLayout)getView().findViewById(R.id.layautSinConsulta);
+    private void inicializar_controles(View view) {
+        fab_agregar_conculta=(FloatingActionButton) view.findViewById(R.id.fab_agregar_consultas);
+        recyclerViewconsulta=(RecyclerView)view.findViewById(R.id.recy_consultas);
+        sinconsulta=(LinearLayout)view.findViewById(R.id.layautSinConsulta);
         fab_agregar_conculta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

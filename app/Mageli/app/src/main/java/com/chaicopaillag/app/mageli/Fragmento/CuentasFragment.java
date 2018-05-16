@@ -25,19 +25,15 @@ public class CuentasFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_cuentas, container, false);
-    }
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        View view=inflater.inflate(R.layout.fragment_cuentas, container, false);
         firebaseAuth=FirebaseAuth.getInstance();
         firebaseUser=firebaseAuth.getCurrentUser();
-        img_cuenta=(CircleImageView)getView().findViewById(R.id.img_perfil_cuenta);
-        nombre=(TextView)getView().findViewById(R.id.nombre_cuenta);
-        correo=(TextView)getView().findViewById(R.id.correo_cuenta);
-        proveedor=(TextView)getView().findViewById(R.id.provedor_cuenta);
-        fecha=(TextView)getView().findViewById(R.id.fecha_creado_cuenta);
-        uuid=(TextView)getView().findViewById(R.id.uid_cuenta);
+        img_cuenta=(CircleImageView)view.findViewById(R.id.img_perfil_cuenta);
+        nombre=(TextView)view.findViewById(R.id.nombre_cuenta);
+        correo=(TextView)view.findViewById(R.id.correo_cuenta);
+        proveedor=(TextView)view.findViewById(R.id.provedor_cuenta);
+        fecha=(TextView)view.findViewById(R.id.fecha_creado_cuenta);
+        uuid=(TextView)view.findViewById(R.id.uid_cuenta);
 
         nombre.setText(firebaseUser.getDisplayName());
         correo.setText(firebaseUser.getEmail());
@@ -51,5 +47,6 @@ public class CuentasFragment extends Fragment {
         if (firebaseUser.getPhotoUrl()!=null){
             Glide.with(getContext()).load(firebaseUser.getPhotoUrl()).into(img_cuenta);
         }
+        return view;
     }
 }

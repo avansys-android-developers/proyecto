@@ -50,6 +50,7 @@
     <string name="configuracion">Configuración</string>
     <string name="privacidad">Privacidad</string>
     <string name="web">Web de App Mageli</string>
+    <string name="salir_preciona_una_ves_mas">Presione dos veces para salir</string>
 
     <!--TODO: Opciones menu-->
     <string name="perfil">Mi Perfil</string>

@@ -2,6 +2,8 @@ package com.chaicopaillag.app.mageli.Activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -65,6 +67,7 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
     private ImageView imgUsuario;
     private View nav_cabecera;
     private Toolbar toolbar;
+    private int contador_salir=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -219,8 +222,24 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            if (contador_salir == 0) {
+                Toast.makeText(MenuActivity.this,getString(R.string.salir_preciona_una_ves_mas), Toast.LENGTH_SHORT).show();
+                contador_salir++;
+            }else {
+                super.onBackPressed();
+            }
+            new CountDownTimer(3000,1000){
+
+                @Override
+                public void onTick(long millisUntilFinished) {
+                }
+                @Override
+                public void onFinish() {
+                contador_salir=0;
+                }
+            }.start();
         }
+
     }
 
     @Override
@@ -235,6 +254,10 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
             case R.id.item_inicio:
                 ponerFragmento(new InicioFragment());
                 return true;
+            case  R.id.item_web:
+                Uri uri = Uri.parse("https://app-mageli.chaicopadillag.com/");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
             default:
                     return true;
         }
