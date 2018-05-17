@@ -30,30 +30,35 @@ public class MiFirebaseNotificacionServicio extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         Log.e("TAG","Mensaje : "+remoteMessage.getNotification().getBody());
-        GuardarNotificacion(remoteMessage);
-        AbrirNotificacion(remoteMessage);
+        if(remoteMessage.getData().size()>0){
+            AbrirNotificacion(remoteMessage);
+            GuardarNotificacion(remoteMessage.getNotification().getTitle(),remoteMessage.getNotification().getBody());
+        }else {
+        }
     }
 
 
     @SuppressLint("SimpleDateFormat")
-    private void GuardarNotificacion(RemoteMessage remoteMessage) {
+    public void GuardarNotificacion(String titulo,String mensaje) {
         firebase = FirebaseDatabase.getInstance().getReference();
         firebaseAuth=FirebaseAuth.getInstance();
         firebaseUser=firebaseAuth.getCurrentUser();
-        Date fecha_reg=new Date();
-        String fecha_notify;
-        DateFormat formatofechahora;
-        formatofechahora = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        fecha_notify=formatofechahora.format(fecha_reg);
-        String UID_Notify= UUID.randomUUID().toString();
-        Notificacion notificacion= new Notificacion(
-                UID_Notify,
-                remoteMessage.getNotification().getTitle(),
-                remoteMessage.getNotification().getBody(),
-                fecha_notify,
-                firebaseUser.getUid()
-        );
-        firebase.child(Notificacion.class.getSimpleName()).child(firebaseUser.getUid()).child(UID_Notify).setValue(notificacion);
+        if(firebase!=null){
+            Date fecha_reg=new Date();
+            String fecha_notify;
+            DateFormat formatofechahora;
+            formatofechahora = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            fecha_notify=formatofechahora.format(fecha_reg);
+            String UID_Notify= UUID.randomUUID().toString();
+            Notificacion notificacion= new Notificacion(
+                    UID_Notify,
+                    titulo,
+                    mensaje,
+                    fecha_notify,
+                    firebaseUser.getUid()
+            );
+            firebase.child(Notificacion.class.getSimpleName()).child(firebaseUser.getUid()).child(UID_Notify).setValue(notificacion);
+        }
 
     }
 
