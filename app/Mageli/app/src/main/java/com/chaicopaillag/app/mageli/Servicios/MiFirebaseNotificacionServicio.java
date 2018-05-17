@@ -69,7 +69,7 @@ public class MiFirebaseNotificacionServicio extends FirebaseMessagingService {
         Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder builder= new NotificationCompat.Builder(this);
         builder.setSmallIcon(R.drawable.notificacion)
-                .setColor(getResources().getColor(R.color.celeste))
+                .setColor(getResources().getColor(R.color.celeste_oscuro))
                 .setAutoCancel(true)
                 .setContentTitle(remoteMessage.getNotification().getTitle())
                 .setContentText(remoteMessage.getNotification().getBody())

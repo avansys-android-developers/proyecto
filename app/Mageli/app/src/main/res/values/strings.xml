@@ -49,7 +49,7 @@
     <string name="inicio">Inicio</string>
     <string name="configuracion">Configuración</string>
     <string name="privacidad">Privacidad</string>
-    <string name="web">Web de App Mageli</string>
+    <string name="web">Web de Mageli</string>
     <string name="salir_preciona_una_ves_mas">Presione dos veces para salir</string>
 
     <!--TODO: Opciones menu-->
@@ -194,7 +194,5 @@
     <string name="notificacion_cita_atendida">Notificación de cita completada fue enviada</string>
     <string name="notificacion_cita_atendida_error">No se puede enviar la notificación de cita completada</string>
     <string name="notificacion_consulta_respuesta">Notificación de respuesta fue enviada</string>
-    <string name="notificacion_no_enviada">Notificación no enviada</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="notificacion_no_enviada">Notificación no enviada</string> 
 </resources>
