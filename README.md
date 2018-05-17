@@ -33,12 +33,12 @@ ___
 ***Datos de tu perfil***
 > Pulsa el boton de menu para mostrar el menu lateral, y luego en la seleccione el item de ***Perfil*** para ver tus datos personales,si auno no has ingresado tus datos personales, la aplicacion te pedirá que lo hagas y segir usando **Mageli** de lo contrario no te dejar seguir, puedes editar tus datos presionando el ***boton editar circular***
 
-![](https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/app/propotipos/perfil.jpg "Datos de tu perfil")
+![](https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/app/propotipos/perfil.png "Datos de tu perfil")
 
 ***Editar mi Perfil***
 > Ingrese todas sus datos personales correctamente, antes de guardas revisar que todos esten bien. Los cambios se veran reflejado al instante por que ***Mageli*** funciona en tiempo real.
 
-![](https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/app/propotipos/editarperfil.jpg "Editar mi Perfil")
+![](https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/app/propotipos/editarperfil.png "Editar mi Perfil")
 
 ***Mis Citas***
 > En la sección de citas estan todas las citas que has tenido las atenidadas, pendientes y las cancelados al pulsar cada uno podrás ver el tedalle completo de la Cita, tambien podrás editar, eliminar y cancelar la Cita. Puedes agregar mas citas pulsando el boton circular de agregar.
@@ -73,7 +73,12 @@ ___
 ***Mis Notificaciones***
 > En la seccion de notificaciones podrás ver todas las actividades que hayas tenido de citas y consultas con los usuarios que hayas interactuado.
 
-![](https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/app/propotipos/leerrespuesta.png "Leer Consulta")
+![](https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/app/propotipos/notificaciones.png "Leer Consulta")
+
+***Mi Cuenta***
+> La informnación detallada de tu cuenta en **Mageli**.
+
+![](https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/app/propotipos/cuenta.png "Leer Consulta")
 
 ---
->> Para mi desarrollar aplicaciones en mi pasion amo porgramar, asi que no habia problemas en ese aspecto para poder desarrollar esta aplicacion, la logica estaba siempre ahi. Lo mas complicado quizas era entrar los procesos, acciones que se den en esta area del hospital,siempre es un reto desarrollar una aplicacion del rubro que tu desconoces, pero al final siempre terminas familiarisando. Empezar a desarrollar con un lenguaje de programacion que tienes el conocimiento basico (como **Android**), es otro de los retos que teniamos que superar, leer bastante, buscar documentacion probar cosas nuevas como es **Firebase**. Pero desarrollar la aplicacion  **Mageli** con  **Android** y la plataforma de **Firebase** es uno mis experiencias muy gratas por que me ayudado bastante en el tiempo de desarrollo haciendo que sea mas rapido y menos tiempo, talvez si hubiese preferido usar otras herramientas quizas me hubiese tomado mas tiempo y mi apicacion no no seria mas amigable para los usuarios. [Gerardo Chaico Padilla](https://chaicopadillag.com )
+>> Para mi desarrollar aplicaciones en mi pasion amo porgramar, asi que no habia problemas en ese aspecto para poder desarrollar esta aplicacion, la logica estaba siempre ahi. Lo mas complicado quizas era entrar los procesos, acciones que se den en esta area del hospital,siempre es un reto desarrollar una aplicacion del rubro que tu desconoces, pero al final siempre terminas familiarisando. Empezar a desarrollar con un lenguaje de programacion que tienes el conocimiento basico (como **Android**), es otro de los retos que teniamos que superar, leer bastante, buscar documentacion probar cosas nuevas como es **Firebase**. Pero desarrollar la aplicacion  **Mageli** con  **Android** y la plataforma de **Firebase** es uno mis experiencias muy gratas por que me ayudado bastante en el tiempo de desarrollo haciendo que sea mas rapido y menos tiempo, talvez si hubiese preferido usar otras herramientas quizas me hubiese tomado mas tiempo y mi apicacion no no seria mas amigable para los usuarios. [Gerardo Chaico Padilla](https://chaicopadillag.com target="_blank")
