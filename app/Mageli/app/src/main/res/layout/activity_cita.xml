@@ -51,7 +51,7 @@
                         android:drawableStart="@drawable/descripcion"
                         android:gravity="top"
                         android:hint="@string/descripcion"
-                        android:inputType="text|textMultiLine"
+                        android:inputType="textCapWords|textCapSentences|textMultiLine"
                         android:overScrollMode="always"
                         android:scrollbarStyle="insideInset"
                         android:scrollbars="vertical" />

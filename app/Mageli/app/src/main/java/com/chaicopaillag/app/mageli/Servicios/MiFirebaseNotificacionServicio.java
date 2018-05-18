@@ -30,14 +30,9 @@ public class MiFirebaseNotificacionServicio extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         Log.e("TAG","Mensaje : "+remoteMessage.getNotification().getBody());
-        if(remoteMessage.getData().size()>0){
             AbrirNotificacion(remoteMessage);
             GuardarNotificacion(remoteMessage.getNotification().getTitle(),remoteMessage.getNotification().getBody());
-        }else {
-        }
     }
-
-
     @SuppressLint("SimpleDateFormat")
     public void GuardarNotificacion(String titulo,String mensaje) {
         firebase = FirebaseDatabase.getInstance().getReference();

@@ -27,7 +27,7 @@
                     android:drawableStart="@drawable/pediatra"
                     android:drawableTint="@color/secondario_text"
                     android:hint="@string/nombre"
-                    android:inputType="textPersonName"
+                    android:inputType="textCapWords|textCapSentences"
                     android:id="@+id/txt_nombre"
                     android:maxLength="30"/>
             </android.support.design.widget.TextInputLayout>
@@ -42,7 +42,7 @@
                     android:drawableStart="@drawable/pacientes"
                     android:drawableTint="@color/secondario_text"
                     android:hint="@string/apellidos"
-                    android:inputType="textPersonName"
+                    android:inputType="textCapWords|textCapSentences"
                     android:id="@+id/txt_apellidos"
                     android:maxLength="50"/>
             </android.support.design.widget.TextInputLayout>
@@ -98,7 +98,7 @@
                     android:drawableStart="@drawable/casa"
                     android:drawableTint="@color/secondario_text"
                     android:hint="@string/direccion"
-                    android:inputType="textPostalAddress"
+                    android:inputType="textPostalAddress|textCapWords|textCapSentences"
                     android:id="@+id/txt_direccion"
                     android:maxLength="100"/>
             </android.support.design.widget.TextInputLayout>

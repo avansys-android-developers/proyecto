@@ -39,6 +39,7 @@
                 android:scrollbarStyle="insideInset"
                 android:scrollbars="vertical"
                 android:gravity="top"
+                android:inputType="textMultiLine|textCapWords|textCapSentences"
                 android:id="@+id/respuesta_consulta"
                 android:layout_marginBottom="@dimen/padingTopBotom"
                 android:hint="@string/escribe_respuesta"/>
