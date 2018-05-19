@@ -1,7 +1,7 @@
 # [Mageli](https://app-mageli.chaicopadillag.com/)
 Desarrollo de una aplicación móvil de citas y consultas para optimizar la calidad de atencion en el area de pediatria del hospital "San Bartolome" en la ciudad de Lima.
 
-![](https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/app/propotipos/mageli.png "Mageli")
+[![Mageli](https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/app/propotipos/mageli.png)](https://app-mageli.chaicopadillag.com)
 
 [![Mageli](https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/app/propotipos/play_store.png)](https://play.google.com/store/apps/details?id=com.chaicopaillag.app.mageli)
 ___
