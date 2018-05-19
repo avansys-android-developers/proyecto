@@ -448,10 +448,10 @@ nav#cbp-spmenu-s2 h3 {
 .top-nav {
     margin: 0.85em 2.7em 0 0;
 }
-.logo img{
+/*.logo img{
 	width:90%;
 	background-size:100%;
-}
+}*/
 .banner-info p {
   overflow: hidden;
   height: 90px;
@@ -524,9 +524,9 @@ nav#cbp-spmenu-s2 h3 {
 }
 }
 @media (max-width:640px){
-.logo img {
+/*.logo img {
   width: 80%;
-}
+}*/
 .banner-info h1 {
   font-size: 2.5em;
 }
@@ -594,9 +594,9 @@ nav#cbp-spmenu-s2 h3 {
 }
 }
 @media (max-width:480px){
-.logo img {
+/*.logo img {
   width: 65%;
-}
+}*/
 .top-nav {
   margin: 0.3em 2em 0 0;
 }
