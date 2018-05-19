@@ -2,8 +2,6 @@
 Desarrollo de una aplicación móvil de citas y consultas para optimizar la calidad de atencion en el area de pediatria del hospital "San Bartolome" en la ciudad de Lima.
 
 [![Mageli](https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/app/propotipos/mageli.png)](https://app-mageli.chaicopadillag.com)
-
-[![Mageli](https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/app/propotipos/play_store.png)](https://play.google.com/store/apps/details?id=com.chaicopaillag.app.mageli)
 ___
 ***Registro de Usuario***
 > Si eres un usuario nuevo tendrás que registrarte en la aplicación con correo electrónico y tu contraseña correctamente, se te enviara un link a tu correo para que puedas validar tu registro e iniciar sesi{on en **Mageli**, de lo contrario no podras iniciar sesión.
@@ -81,6 +79,8 @@ ___
 > La informnación detallada de tu cuenta en **Mageli**.
 
 ![](https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/app/propotipos/cuenta.png "Leer Consulta")
+
+[![Mageli](https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/app/propotipos/play_store.png)](https://play.google.com/store/apps/details?id=com.chaicopaillag.app.mageli)
 
 ---
 >	Para mi desarrollar aplicaciones en mi pasion amo programar, asi que no habia problemas en ese aspecto para poder desarrollar esta aplicacion, la lógica estaba siempre ahi. Lo mas complicado quizas era encontrar los procesos, acciones que se den en esta area del hospital,siempre es un reto desarrollar una aplicacion del rubro que tu desconoces, pero al final siempre terminas familiarisando. Empezar a desarrollar con un lenguaje de programacion que tienes el conocimiento basico (como **Android**), es otro de los retos que teniamos que superar, leer bastante, buscar documentacion probar cosas nuevas como es **Firebase**. Pero desarrollar la aplicacion  **Mageli** con  **Android** y la plataforma de **Firebase** es uno mis experiencias muy gratas por que me ayudado bastante en el tiempo de desarrollo haciendo que sea mas rapido y menos tiempo, talvez si hubiese preferido usar otras herramientas quizas me hubiese tomado mas tiempo y mi apicacion no no seria mas amigable para los usuarios. [Gerardo Chaico Padilla](https://chaicopadillag.com)
