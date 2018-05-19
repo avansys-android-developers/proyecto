@@ -24,7 +24,7 @@ padding:0;
 }
 /*----*/
 .banner{
-	background:url(../img/bg.jpg) no-repeat;
+	background:url(https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/web/img/bg.jpg) no-repeat;
 	background-size:cover;
 	min-height:720px;
 	position:relative;
@@ -134,16 +134,16 @@ nav#cbp-spmenu-s2 h3 {
 	margin-top:4em;
 }
 .grid1{
-	background:url(../img/ap1.png) no-repeat 0px 0px;
+	background:url(https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/web/img/ap1.png) no-repeat 0px 0px;
 }
 .grid2{
-	background:url(../img/ap2.png) no-repeat 0px 0px;
+	background:url(https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/web/img/ap2.png) no-repeat 0px 0px;
 }
 .grid3{
-	background:url(../img/ap3.png) no-repeat 0px 0px;
+	background:url(https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/web/img/ap3.png) no-repeat 0px 0px;
 }
 .grid4{
-	background:url(../img/ap4.png) no-repeat 0px 0px;
+	background:url(https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/web/img/ap4.png) no-repeat 0px 0px;
 }
 .feature-grid{
 	padding:0px 0 10px 140px;
@@ -239,7 +239,7 @@ nav#cbp-spmenu-s2 h3 {
 }
 /*--team--*/
 .team{
-	background:url(../img/bg2.jpg) no-repeat 0px 0px;
+	background:url(https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/web/img/bg2.jpg) no-repeat 0px 0px;
 	background-size:cover;
 	padding:4em 0 0 0;
 	min-height:570px;
@@ -279,7 +279,7 @@ nav#cbp-spmenu-s2 h3 {
 	margin-top:12px;
 }
 .social-icons span{
-	background:url(../img/social.png) no-repeat 0px 0px;
+	background:url(https://raw.githubusercontent.com/avansys-android-developers/proyecto/master/web/img/social.png) no-repeat 0px 0px;
 	width:42px;
 	height:36px;
 	display:inline-block;
