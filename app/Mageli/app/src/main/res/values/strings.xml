@@ -37,7 +37,7 @@
     <string name="registro_exito">Se ha Registrado exitósamente en Mageli</string>
     <string name="registro_error">Lo sentimos no se podido registrar en Mageli</string>
     <string name="verificacion_correo">Se ha envio un link a su correo para la verificacón de tu correo electrónico</string>
-    <string name="no_verificado_correo">Necesitas verificar tu correo electrónico para iniciar sesión Mageli</string>
+    <string name="no_verificado_correo">Necesitas verificar tu correo electrónico para iniciar sesión</string>
     <!--TODO: Menu-->
     <string name="menu">Mageli</string>
     <string name="abrir_nav">Abrir Menu</string>

@@ -218,48 +218,56 @@ public class CitaActivity extends AppCompatActivity {
         consulta.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot person : dataSnapshot.getChildren()){
-                    persona=person.getValue(Persona.class);
-                    lista_pediatras.add(persona);
-                    lista.add(persona.getNombre()+" "+persona.getApellidos()+" - "+persona.getEspecialidad());
-                }
-                PopapPediatras.setAdapter(new ArrayAdapter<>(
-                        CitaActivity.this,android.R.layout.simple_list_item_1,lista),
-                        new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int item) {
-                        persona=new Persona();
-                        persona=lista_pediatras.get(item);
-                        flexbox_pediatra.setVisibility(View.VISIBLE);
-                        nombre_pediatra.setText(persona.getNombre()+" "+persona.getApellidos());
-                        uid_pediatra.setText(persona.getId());
-                        correo_ped.setText(persona.getCorreo());
-                        cel_pediatra.setText(persona.getTelefono());
-                        Utiles.TOKEN_PEDIATRA=persona.getToken();
+                try {
+                    for (DataSnapshot person : dataSnapshot.getChildren()){
+                        persona=person.getValue(Persona.class);
+                        lista_pediatras.add(persona);
+                        lista.add(persona.getNombre()+" "+persona.getApellidos()+" - "+persona.getEspecialidad());
+                    }
+                    PopapPediatras.setAdapter(new ArrayAdapter<>(
+                            CitaActivity.this,android.R.layout.simple_list_item_1,lista),
+                            new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int item) {
+                            persona=new Persona();
+                            persona=lista_pediatras.get(item);
+                            flexbox_pediatra.setVisibility(View.VISIBLE);
+                            nombre_pediatra.setText(persona.getNombre()+" "+persona.getApellidos());
+                            uid_pediatra.setText(persona.getId());
+                            correo_ped.setText(persona.getCorreo());
+                            cel_pediatra.setText(persona.getTelefono());
+                            Utiles.TOKEN_PEDIATRA=persona.getToken();
 
-                        if (persona.getFoto_url()!=null){
-                            Glide.with(getApplicationContext()).load(persona.getFoto_url()).into(img_perfil_pediatra);
-                            URL_IMG_PEDIATRA=persona.getFoto_url();
-                        }else {
-                            Glide.with(getApplicationContext()).load(URL_IMG_DEFAULT).into(img_perfil_pediatra);
-                            URL_IMG_PEDIATRA=URL_IMG_DEFAULT;
+                            if (persona.getFoto_url()!=null){
+                                Glide.with(getApplicationContext()).load(persona.getFoto_url()).into(img_perfil_pediatra);
+                                URL_IMG_PEDIATRA=persona.getFoto_url();
+                            }else {
+                                Glide.with(getApplicationContext()).load(URL_IMG_DEFAULT).into(img_perfil_pediatra);
+                                URL_IMG_PEDIATRA=URL_IMG_DEFAULT;
+                            }
+                            dialog.dismiss();
                         }
+                    });
+                    PopapPediatras.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public void onCancel(DialogInterface dialog) {
+                            sw_elegir_pediatra.setChecked(false);
+                        }
+                    });
+                    PopapPediatras.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            sw_elegir_pediatra.setChecked(false);
+                        }
+                    });
+                    if (progress_carga.isShowing()){
+                        progress_carga.dismiss();
                     }
-                });
-                PopapPediatras.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialog) {
-                        sw_elegir_pediatra.setChecked(false);
-                    }
-                });
-                PopapPediatras.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        sw_elegir_pediatra.setChecked(false);
-                    }
-                });
-                progress_carga.dismiss();
-                PopapPediatras.show();
+                    PopapPediatras.show();
+                }catch (Exception e){
+                    Log.e("Error:",e.getMessage());
+                }
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {

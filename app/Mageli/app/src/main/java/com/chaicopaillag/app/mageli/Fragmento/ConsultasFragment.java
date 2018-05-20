@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -115,7 +116,11 @@ public class ConsultasFragment extends Fragment {
                         alert_consulta.setPositiveButton(R.string.si,new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                adapter.getRef(position).removeValue();
+                                try {
+                                    adapter.getRef(position).removeValue();
+                                }catch (Exception e){
+                                    Log.e("Exception en", e.getMessage());
+                                }
                             }
                         });
                         alert_consulta.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {

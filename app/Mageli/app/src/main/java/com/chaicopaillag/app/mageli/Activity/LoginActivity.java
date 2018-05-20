@@ -134,6 +134,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                     }else {
                         FirebaseAuth.getInstance().signOut();
                         mensaje_verifa_tu_correo();
+                        if(progress_carga.isShowing()){
+                            progress_carga.dismiss();
+                        }
                     }
                 }
             }
@@ -154,6 +157,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
 
     private void Ir_a_inicio() {
+        if (progress_carga.isShowing()){
+            progress_carga.dismiss();
+        }
         Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
@@ -168,8 +174,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         if (correo.equals("")){
             txt_correo.setError(getString(R.string.error_correo));
         }
-
-        if(contrasenia.equals("")){
+        else if(contrasenia.equals("")){
             txt_contrasenia.setError(getString(R.string.error_contrasenia));
         }
         else if (!validarcorreo(correo)){
@@ -182,10 +187,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
-                                Ir_a_inicio();
-                            }else {
-                                progress_carga.dismiss();
-                                Toast.makeText(LoginActivity.this, getText(R.string.error_ingreso), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

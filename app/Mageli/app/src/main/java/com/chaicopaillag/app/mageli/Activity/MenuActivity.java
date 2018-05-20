@@ -72,6 +72,16 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if (user != null) {
+                    colocar_datos_usuario(user);
+                } else {
+                    Ir_a_login();
+                }
+            }
+        };
         inicializar_servicios();
         inicializar_controles();
         validar_permisos();
@@ -160,16 +170,6 @@ public class MenuActivity extends AppCompatActivity implements GoogleApiClient.O
             }
         });
         ponerFragmento(new InicioFragment());
-        firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if (user != null) {
-                    colocar_datos_usuario(user);
-                } else {
-                    Ir_a_login();
-                }
-            }
-        };
     }
     private void validar_permisos() {
         firebase.child("Persona").child(user.getUid()).addValueEventListener(new ValueEventListener() {
