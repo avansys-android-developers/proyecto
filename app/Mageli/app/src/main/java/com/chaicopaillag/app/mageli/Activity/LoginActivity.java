@@ -186,7 +186,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()){
+                            if (!task.isSuccessful()){
+                                if(progress_carga.isShowing()){
+                                    progress_carga.dismiss();
+                                }
+                                Toast.makeText(LoginActivity.this, R.string.error_ingreso, Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
